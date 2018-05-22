@@ -1,0 +1,45 @@
+{
+  "name": "simple-vue",
+  "version": "0.1.0",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iamceege/simple-vue"
+  },
+  "scripts": {
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "serve": "vue-cli-service serve --open",
+    "start": "npm run serve",
+    "test": "vue-cli-service test:unit",
+    "test:watch": "vue-cli-service test:unit --watch"
+  },
+  "dependencies": {
+    "@vue/cli-plugin-babel": "^3.0.0-beta.11",
+    "@vue/cli-plugin-eslint": "^3.0.0-beta.11",
+    "@vue/cli-plugin-unit-jest": "^3.0.0-beta.11",
+    "@vue/cli-service": "^3.0.0-beta.11",
+    "@vue/eslint-config-airbnb": "^3.0.0-beta.11",
+    "@vue/test-utils": "^1.0.0-beta.16",
+    "axios": "^0.18.0",
+    "babel-core": "^7.0.0-0",
+    "babel-jest": "^22.0.4",
+    "eslint-plugin-jest": "^21.15.1",
+    "format-usd": "^1.0.1",
+    "moment": "^2.22.1",
+    "nib": "^1.1.2",
+    "store": "^2.0.12",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1",
+    "vee-validate": "^2.0.9",
+    "vue": "^2.5.16",
+    "vue-meta": "^1.5.0",
+    "vue-router": "^3.0.1",
+    "vue-template-compiler": "^2.5.13"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}

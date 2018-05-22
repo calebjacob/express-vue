@@ -1,0 +1,55 @@
+.modal
+  display: block
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  background: rgba(#000, 0.5)
+  overflow-y: auto
+  -webkit-overflow-scrolling: touch
+  z-index: 900
+
+  &.modal-enter-active,
+  &.modal-leave-active
+    transition: opacity 200ms
+
+    .container
+      transition: transform 200ms
+
+  &.modal-enter,
+  &.modal-leave-to
+    opacity: 0
+
+    .container
+      transform: scale(0.75, 0.75)
+
+  .container
+    padding: $spacing
+    position: relative
+
+.modal--compact
+  .container
+    max-width: 750px
+
+
+
+.modal__close
+  display: inline-block
+  float: right
+  cursor: pointer
+  margin-bottom: $spacing
+  color: #fff
+  background: none
+  border: none
+  font-weight: 500
+
+
+
+
+.modal__wrapper
+  clear: both
+  background: #fff
+  padding: $spacing * 2
+  padding-bottom: $spacing
+  text-align: center

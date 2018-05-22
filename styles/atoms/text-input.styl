@@ -1,0 +1,23 @@
+.text-input
+  display: block
+  width: 100%
+  margin: 0 0 $spacing
+  height: $inputHeight
+  padding: 0 ($spacing * 0.75)
+  outline: none
+  border: 1px solid $borderColor
+  border-radius: $borderRadius
+  background: #fff
+  -webkit-appearance: none
+
+  &:focus
+    background: #fff
+    border-color: $textColor
+
+  &.invalid,
+  &.text-input--error
+    border-color: $errorColor
+
+    &:focus
+      background: #fff
+      border-color: $errorColor
