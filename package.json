@@ -12,7 +12,9 @@
     "serve": "vue-cli-service serve --open",
     "start": "npm run serve",
     "test": "vue-cli-service test:unit",
-    "test:watch": "vue-cli-service test:unit --watch"
+    "test:watch": "vue-cli-service test:unit --watch",
+
+    "nodemon": "nodemon --ext js,swig,json --ignore ui/js/ --ignore app/public/dist/*.js app/index.js"
   },
   "dependencies": {
     "@vue/cli-plugin-babel": "^3.0.0-beta.11",
@@ -24,13 +26,18 @@
     "axios": "^0.18.0",
     "babel-core": "^7.0.0-0",
     "babel-jest": "^22.0.4",
+    "body-parser": "^1.18.3",
+    "compression": "^1.7.2",
     "eslint-plugin-jest": "^21.15.1",
+    "express": "^4.16.3",
     "format-usd": "^1.0.1",
     "moment": "^2.22.1",
     "nib": "^1.1.2",
+    "nodemon": "^1.17.4",
     "store": "^2.0.12",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
+    "swig-templates": "^2.0.2",
     "vee-validate": "^2.0.9",
     "vue": "^2.5.16",
     "vue-meta": "^1.5.0",
