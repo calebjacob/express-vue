@@ -1,44 +1,30 @@
-// Require all modules to get the app running:
+// Require all dependencies:
 
-var package = require('../package.json');
-var express = require('express');
-var app = express();
-var compression = require('compression');
-var bodyParser = require('body-parser');
-var swig = require('swig-templates');
-var config = require('config');
-var routes = require('routes');
-var debug = require('routes/middleware/debug');
+const express = require('express');
+const compression = require('compression');
+const bodyParser = require('body-parser');
+const routes = require('routes');
+const debug = require('routes/middleware/debug');
+const config = require('config');
+
+
+
+// Create express app instance:
+
+const app = express();
 
 
 
 // Configure general app settings and functionality:
 
-app.use(compression());
-app.use(express.static(`${__dirname}/public`));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+app.use(compression());
 
-
-
-// Configure app to use Swig as default template/render engine:
-
-swig.setDefaults({
-  loader: swig.loaders.fs(`${__dirname}/views`)
-});
-app.engine('swig', swig.renderFile);
-app.set('view engine', 'swig');
-app.set('views', `${__dirname}/views`);
-
-
-
-// Setting global variables that are always accessible inside of views:
-
-app.locals = {
-  package: package
-};
+app.use(express.static(`${__dirname}/dist`));
+app.use(express.static(`${__dirname}/public`));
 
 
 
@@ -57,6 +43,10 @@ app.use(debug);
 // Run the app:
 
 app.listen(config.port);
+
+if (config.environment === 'local') {
+  console.log(`App is being served at localhost:${config.port}`);
+}
 
 
 

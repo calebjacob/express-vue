@@ -10,8 +10,10 @@ module.exports = {
   },
 
   globals: {
+    appRoot: true,
     createLocalVue: true,
     mount: true,
+    nodeMocksHttp: true,
     shallowMount: true
   },
 

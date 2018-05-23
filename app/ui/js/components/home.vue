@@ -18,6 +18,11 @@
 
     <p v-else>Weather report for Lakewood, CO: <b>{{ weather.temperature }}° - {{ weather.description }}</b></p>
 
+    <img src="/images/favicon.png" alt="Fav Icon">
+
+    <br>
+    <br>
+
     <button class="button" type="button" @click="$openModal('example')">Open a Modal</button>
 
     <modal name="example">

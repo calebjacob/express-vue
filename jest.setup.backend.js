@@ -1,5 +1,2 @@
-appRoot = `${__dirname}`;
-expect = require('chai').expect;
-nodeMocksHttp = require('node-mocks-http');
-proxyquire = require('proxyquire');
-sinon = require('sinon');
+global.appRoot = require('app-root-path') + '/app';
+global.nodeMocksHttp = require('node-mocks-http');

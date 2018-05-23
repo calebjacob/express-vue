@@ -18,6 +18,8 @@ module.exports = {
     'jest-serializer-vue'
   ],
 
+  testEnvironment: 'jsdom',
+
   testMatch: [
     '<rootDir>/app/ui/js/**/*.test.js'
   ],
