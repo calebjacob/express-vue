@@ -9,7 +9,7 @@ module.exports = {
   ],
 
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/app/ui/js/$1'
+    '^@/(.*)$': '<rootDir>/app/frontend/js/$1'
   },
 
   setupTestFrameworkScriptFile: './jest.setup.frontend.js',
@@ -21,7 +21,7 @@ module.exports = {
   testEnvironment: 'jsdom',
 
   testMatch: [
-    '<rootDir>/app/ui/js/**/*.test.js'
+    '<rootDir>/app/frontend/js/**/*.test.js'
   ],
 
   transform: {

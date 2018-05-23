@@ -1,13 +1,13 @@
 // subject:
 
-import app from '@/components/app.vue';
+import layout from '@/components/layout.vue';
 
 
 
 // wrapper:
 
 function createWrapper() {
-  const wrapper = shallowMount(app, {});
+  const wrapper = shallowMount(layout, {});
 
   return wrapper;
 }
@@ -16,7 +16,7 @@ function createWrapper() {
 
 // tests:
 
-describe('component - app', () => {
+describe('component - layout', () => {
   let wrapper;
 
   beforeEach(() => {
@@ -24,7 +24,7 @@ describe('component - app', () => {
   });
 
   it('correctly named', () => {
-    expect(app.name).toEqual('App');
+    expect(layout.name).toEqual('Layout');
   });
 
   it('renders a view', () => {
@@ -33,11 +33,11 @@ describe('component - app', () => {
 
   describe('metaInfo.titleTemplate()', () => {
     it('returns base website title when no title chunk is passed in', () => {
-      expect(app.metaInfo.titleTemplate()).toEqual('Simple Vue');
+      expect(layout.metaInfo.titleTemplate()).toEqual('Simple Vue');
     });
 
     it('title chuck with base website title when chunk is passed in', () => {
-      expect(app.metaInfo.titleTemplate('Foobar')).toEqual('Foobar | Simple Vue');
+      expect(layout.metaInfo.titleTemplate('Foobar')).toEqual('Foobar | Simple Vue');
     });
   });
 });

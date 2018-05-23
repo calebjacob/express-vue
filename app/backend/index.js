@@ -1,11 +1,13 @@
 // Require all dependencies:
 
+const appRoot = require('app-root-path');
 const express = require('express');
 const compression = require('compression');
 const bodyParser = require('body-parser');
-const routes = require('routes');
-const debug = require('routes/middleware/debug');
-const config = require('config');
+
+const config = require('./config');
+const routes = require('./routes');
+const debug = require('./routes/middleware/debug');
 
 
 
@@ -23,8 +25,8 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(compression());
 
-app.use(express.static(`${__dirname}/dist`));
-app.use(express.static(`${__dirname}/public`));
+app.use(express.static(`${appRoot}/app/dist`));
+app.use(express.static(`${appRoot}/app/public`));
 
 
 

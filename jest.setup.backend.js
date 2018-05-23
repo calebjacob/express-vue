@@ -1,2 +1,2 @@
-global.appRoot = require('app-root-path') + '/app';
+global.appRoot = require('app-root-path');
 global.nodeMocksHttp = require('node-mocks-http');

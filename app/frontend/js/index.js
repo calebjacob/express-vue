@@ -1,5 +1,5 @@
-import app from '@/components/app.vue';
 import globals from '@/globals';
+import layout from '@/components/layout.vue';
 import router from '@/router';
 import Vue from 'vue';
 
@@ -19,15 +19,15 @@ globals.initialize();
 
 // confgiure vue instance and router:
 
-const main = new Vue({
+const app = new Vue({
   router,
   render(createElement) {
-    return createElement(app);
+    return createElement(layout);
   }
 });
 
-main.$mount('#app');
+app.$mount('#app');
 
 
 
-export default main;
+export default app;

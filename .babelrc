@@ -1,5 +1,6 @@
 {
-  "presets": [
-    "@vue/app"
+  retainLines: true,
+  presets: [
+    '@vue/app'
   ]
 }
