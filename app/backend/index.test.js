@@ -41,6 +41,10 @@ jest.mock('./routes/middleware/debug', () => {
 // tests:
 
 describe('app', function() {
+  it('creats an express app instance', function() {
+    expect(express).toHaveBeenCalled();
+  });
+
   it('sets up json body parsing', function() {
     expect(app.use).toHaveBeenCalledWith(bodyParser.json());
   });
@@ -58,6 +62,9 @@ describe('app', function() {
   });
 
   it('sets up public directories', function() {
+    expect(express.static).toHaveBeenCalledWith(`${appRoot}/app/dist`);
+    expect(express.static).toHaveBeenCalledWith(`${appRoot}/app/public`);
+
     expect(app.use).toHaveBeenCalledWith(`express static - ${appRoot}/app/dist`);
     expect(app.use).toHaveBeenCalledWith(`express static - ${appRoot}/app/public`);
   });

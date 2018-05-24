@@ -17,4 +17,4 @@ Vue.config = {};
 
 
 
-export default Vue;
+module.exports = Vue;

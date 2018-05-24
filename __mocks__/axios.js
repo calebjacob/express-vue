@@ -8,4 +8,4 @@ axios.create = jest.fn(() => {
 
 
 
-export default axios;
+module.exports = axios;

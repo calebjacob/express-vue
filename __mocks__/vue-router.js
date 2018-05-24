@@ -6,4 +6,4 @@ const VueRouter = jest.fn(() => {
 
 
 
-export default VueRouter;
+module.exports = VueRouter;
