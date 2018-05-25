@@ -8,11 +8,11 @@
   },
   "scripts": {
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
+    "lint": "vue-cli-service lint app/backend/*.js app/backend/**/*.js app/frontend/**/*.js app/frontend/**/*.vue",
     "serve": "vue-cli-service serve --open",
     "start": "vue-cli-service build --mode development --watch",
-    "test": "vue-cli-service test:unit",
-    "test:watch": "vue-cli-service test:unit --watch",
+    "test": "vue-cli-service test:unit --projects ./jest.config.frontend.js ./jest.config.backend.js",
+    "test:watch": "vue-cli-service test:unit --watch --projects ./jest.config.frontend.js ./jest.config.backend.js",
     "nodemon": "nodemon --ext js,swig,json --ignore app/frontend/js/ --ignore app/dist/ app/backend/index.js"
   },
   "dependencies": {

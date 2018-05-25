@@ -2,8 +2,8 @@ const environment = process.env.NODE_ENV || 'local';
 const port = process.env.PORT || '1234';
 
 const globalConfig = {
-  port: port,
-  environment: environment
+  port,
+  environment
 };
 
 const environmentSpecificConfig = {

@@ -23,8 +23,10 @@ module.exports = {
     'arrow-body-style': ['error', 'always'],
     'comma-dangle': ['error', 'never'],
     'brace-style': ['error', 'stroustrup'],
+    'global-require': ['off'],
     'max-len': ['off'],
     'no-alert': ['off'],
+    'no-console': ['off'],
     'no-multiple-empty-lines': ['error', {
         max: 3,
         maxEOF: 1

@@ -1,14 +1,23 @@
-function get(req, res, next) {
+function get(req, res) {
   res.json({
     thing: 'car',
     color: 'blue',
-    fancy: true,
-    miles: 7000
+    miles: 7000,
+    foobar: req.foobar
+  });
+}
+
+
+
+function post(req, res) {
+  res.json({
+    id: 1
   });
 }
 
 
 
 module.exports = {
-  get
+  get,
+  post
 };

@@ -1,16 +1,22 @@
-let express = require('express');
-let api = require('./api');
-let pages = require('./pages');
+const express = require('express');
+const api = require('./api');
+const middleware = require('./middleware');
+const pages = require('./pages');
 
 
 
-module.exports = function(app) {
-  let routers = {
+function routes(app) {
+  const routers = {
     public: express.Router()
   };
 
+  middleware(routers);
   api(routers);
   pages(routers);
 
   app.use('/', routers.public);
-};
+}
+
+
+
+module.exports = routes;

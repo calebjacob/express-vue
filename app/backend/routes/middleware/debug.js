@@ -1,4 +1,4 @@
-module.exports = function debug(error, req, res, next) {
+function debug(error, req, res, next) {
   console.dir(error, {
     depth: null,
     colors: true
@@ -7,3 +7,7 @@ module.exports = function debug(error, req, res, next) {
   res.status(500);
   res.json({});
 };
+
+
+
+module.exports = debug;

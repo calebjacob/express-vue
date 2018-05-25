@@ -16,7 +16,7 @@ module.exports = {
       .tap((args) => {
         args[0][0].from = path.resolve('./app/frontend/index.html');
         return args;
-      });
+    });
   },
 
   configureWebpack: {

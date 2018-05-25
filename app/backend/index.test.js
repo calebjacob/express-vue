@@ -25,31 +25,31 @@ jest.mock('express');
 jest.mock('./config', () => {
   return {
     port: 7777
-  }
+  };
 });
 
 jest.mock('./routes', () => {
-  return jest.fn()
+  return jest.fn();
 });
 
 jest.mock('./routes/middleware/debug', () => {
-  return 'debug middleware'
+  return 'debug middleware';
 });
 
 
 
 // tests:
 
-describe('app', function() {
-  it('creats an express app instance', function() {
+describe('app', () => {
+  it('creats an express app instance', () => {
     expect(express).toHaveBeenCalled();
   });
 
-  it('sets up json body parsing', function() {
+  it('sets up json body parsing', () => {
     expect(app.use).toHaveBeenCalledWith(bodyParser.json());
   });
 
-  it('sets up urlencoded body parsing', function() {
+  it('sets up urlencoded body parsing', () => {
     expect(bodyParser.urlencoded).toHaveBeenCalledWith({
       extended: true
     });
@@ -57,11 +57,11 @@ describe('app', function() {
     expect(app.use).toHaveBeenCalledWith(bodyParser.urlencoded());
   });
 
-  it('sets up gzip compression', function() {
+  it('sets up gzip compression', () => {
     expect(app.use).toHaveBeenCalledWith(compression());
   });
 
-  it('sets up public directories', function() {
+  it('sets up public directories', () => {
     expect(express.static).toHaveBeenCalledWith(`${appRoot}/app/dist`);
     expect(express.static).toHaveBeenCalledWith(`${appRoot}/app/public`);
 
@@ -69,15 +69,15 @@ describe('app', function() {
     expect(app.use).toHaveBeenCalledWith(`express static - ${appRoot}/app/public`);
   });
 
-  it('initializes all routes with express app', function() {
+  it('initializes all routes with express app', () => {
     expect(routes).toHaveBeenCalledWith(app);
   });
 
-  it('sets up debug middleware', function() {
+  it('sets up debug middleware', () => {
     expect(app.use).toHaveBeenCalledWith(debug);
   });
 
-  it('listens on port defined by config', function() {
+  it('listens on port defined by config', () => {
     expect(app.listen).toHaveBeenCalledWith(config.port);
   });
 });

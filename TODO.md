@@ -3,8 +3,9 @@
 - [x] Rename frontend main.js file to index.js - have it export `app` instead of `main`. Rename `app` component to `layout`.
 - [x] Get tests running for frontend
 - [x] Create dummy API endpoint
-- [ ] Create dummy middleware and include in routers index
-- [ ] Get tests running/written for all of backend
+- [x] Create dummy middleware and include in routers index
+- [x] Get tests running/written for all of backend
+- [ ] Try moving dist folder into public (via static inside static)
 - [ ] Try using vue cli serve command for local dev
 - [ ] Cleanup dist folder after every build
 - [ ] Sort out all package.json scripts / commands for starting / building (update README)

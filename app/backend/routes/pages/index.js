@@ -1,9 +1,11 @@
-let pages = {
-  vue: require('./vue')
+const vue = require('./vue');
+
+
+
+function pages (routers) {
+  routers.public.get(/^(?!\/api).*/, vue.get);
 };
 
 
 
-module.exports = function(routers) {
-  routers.public.get(/^(?!\/api).*/, pages.vue.get);
-};
+module.exports = pages;
