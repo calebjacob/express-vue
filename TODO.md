@@ -11,7 +11,7 @@
 - [x] Sort out all package.json scripts / commands for starting / building (update README)
 - [x] Fix modal event.$on() bug still firing for previously destroyed modals
 - [x] Close modal on background click
+- [x] Remove nib? Autoprefixer seems to already be taking care of the heavy lifting.
 - [ ] Check in on need of "retainLines": true in `.babelrc`: https://github.com/facebook/jest/issues/6108
-- [ ] Remove nib? Autoprefixer seems to already be taking care of the heavy lifting.
 - [ ] Stylus doesn't log any errors on compilation (unkown variable, bad syntax)
 - [ ] Copy over all frontend JS and replace for simple-vue
