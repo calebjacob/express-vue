@@ -5,7 +5,7 @@
     }">
       <div class="layout layout--vertical-align" v-entrap-focus>
         <div class="layout__primary">
-          <div class="container">
+          <div class="container" v-click-outside="close">
             <button class="modal__close" type="button" @click="$closeModal(name)">Close</button>
 
             <div class="modal__wrapper">
@@ -61,6 +61,10 @@
     },
 
     methods: {
+      test() {
+        console.log(true);
+      },
+
       close() {
         this.isOpen = false;
 

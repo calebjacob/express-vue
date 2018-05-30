@@ -10,6 +10,7 @@ import modal from '@/components/modal.vue';
 import validatedForm from '@/components/validated-form.vue';
 
 import autoFocus from '@/directives/auto-focus';
+import clickOutside from 'vue-click-outside';
 import dropDown from '@/directives/drop-down';
 import entrapFocus from '@/directives/entrap-focus';
 import maskInput from '@/directives/mask-input';
@@ -30,7 +31,6 @@ import VueRouter from 'vue-router';
 // mocks:
 
 jest.mock('vue');
-jest.mock('@/services/session');
 
 
 
@@ -55,6 +55,10 @@ describe('globals', () => {
     describe('directives are initialized', () => {
       it('autoFocus', () => {
         expect(Vue.directive).toHaveBeenCalledWith('autoFocus', autoFocus);
+      });
+
+      it('clickOutside', () => {
+        expect(Vue.directive).toHaveBeenCalledWith('clickOutside', clickOutside);
       });
 
       it('dropDown', () => {

@@ -10,7 +10,7 @@
 - [x] Cleanup dist folder after every build
 - [x] Sort out all package.json scripts / commands for starting / building (update README)
 - [x] Fix modal event.$on() bug still firing for previously destroyed modals
-- [ ] Close modal on background click
+- [x] Close modal on background click
 - [ ] Check in on need of "retainLines": true in `.babelrc`: https://github.com/facebook/jest/issues/6108
 - [ ] Remove nib? Autoprefixer seems to already be taking care of the heavy lifting.
 - [ ] Stylus doesn't log any errors on compilation (unkown variable, bad syntax)
