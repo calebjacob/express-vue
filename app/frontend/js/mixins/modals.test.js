@@ -49,6 +49,8 @@ describe('mixin - modals', () => {
     wrapper = createWrapper();
   });
 
+
+
   describe('methods.$modals.closeModal()', () => {
     beforeEach(() => {
       wrapper.vm.$closeModal('foobar');
@@ -58,6 +60,8 @@ describe('mixin - modals', () => {
       expect(events.$emit).toHaveBeenCalledWith('modals:close:foobar');
     });
   });
+
+
 
   describe('methods.$modals.openModal()', () => {
     beforeEach(() => {

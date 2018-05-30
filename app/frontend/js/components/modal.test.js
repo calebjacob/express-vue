@@ -67,6 +67,8 @@ describe('component - modal', () => {
     });
   });
 
+
+
   describe('created()', () => {
     const closeFunction = modal.methods.close;
     const openFunction = modal.methods.open;
@@ -112,6 +114,8 @@ describe('component - modal', () => {
     });
   });
 
+
+
   describe('destroyed()', () => {
     beforeEach(() => {
       jest.spyOn(events, '$off');
@@ -124,6 +128,8 @@ describe('component - modal', () => {
       expect(events.$off).toHaveBeenCalledWith('modals:open:foobar');
     });
   });
+
+
 
   describe('methods.close()', () => {
     beforeEach(() => {
@@ -162,6 +168,8 @@ describe('component - modal', () => {
       expect(firstInput.focus).toHaveBeenCalled();
     });
   });
+
+
 
   describe('methods.open()', () => {
     beforeEach(() => {

@@ -59,6 +59,8 @@ describe('component - home', () => {
     expect(wrapper.html().length).toBeGreaterThan(0);
   });
 
+
+
   describe('created()', () => {
     beforeEach(() => {
       home.loadCurrentWeather = jest.fn();
@@ -74,6 +76,8 @@ describe('component - home', () => {
       delete home.loadCurrentWeather;
     });
   });
+
+
 
   describe('methods.loadCurrentWeather()', () => {
     beforeEach(() => {

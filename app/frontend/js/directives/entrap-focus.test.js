@@ -54,11 +54,15 @@ describe('directive - entrapFocus', () => {
     entrapFocus.inserted(wrapper.element);
   });
 
+
+
   describe('when the input is inserted into the DOM', () => {
     it('automatically focuses the first input', () => {
       expect(firstInput.focus).toHaveBeenCalled();
     });
   });
+
+
 
   describe('when tabbing downwards', () => {
     let keydownEvent;
@@ -102,6 +106,8 @@ describe('directive - entrapFocus', () => {
     });
   });
 
+
+
   describe('when tabbing upwards', () => {
     let keydownEvent;
 
@@ -128,6 +134,8 @@ describe('directive - entrapFocus', () => {
         expect(lastInput.focus).toHaveBeenCalled();
       });
     });
+
+
 
     describe('when currently focused in last input', () => {
       beforeEach(() => {

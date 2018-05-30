@@ -87,6 +87,8 @@ describe('component - validatedForm', () => {
     expect(validatedForm.inject.$validator).toBeTruthy();
   });
 
+
+
   describe('mounted()', () => {
     beforeEach(() => {
       validatedForm.focusFirstInput = jest.fn();
@@ -279,6 +281,8 @@ describe('component - validatedForm', () => {
     });
   });
 
+
+
   describe('methods.markFormAsDirty()', () => {
     beforeEach(() => {
       wrapper.vm.dirty = false;
@@ -289,6 +293,8 @@ describe('component - validatedForm', () => {
       expect(wrapper.vm.dirty).toEqual(true);
     });
   });
+
+
 
   describe('methods.submit()', () => {
     const submitEvent = {};

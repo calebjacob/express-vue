@@ -68,6 +68,8 @@ describe('service - storage', () => {
     });
   });
 
+
+
   describe('local', () => {
     it('creates a local store', () => {
       expect(engine.createStore).toHaveBeenCalledWith([localStorage], [defaultsPlugin]);
@@ -80,6 +82,8 @@ describe('service - storage', () => {
       });
     });
   });
+
+
 
   describe('session', () => {
     it('creates a session store', () => {

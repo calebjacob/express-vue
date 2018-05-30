@@ -3,42 +3,49 @@
 import filterObjects from '@/helpers/filter-objects';
 
 
+
+// mocks:
+
+const objectOne = {
+  name: 'Von Miller',
+  state: 'Colorado',
+  appearance: {
+    hairColor: 'Brown'
+  }
+};
+
+const objectTwo = {
+  name: 'Donald Trump',
+  state: 'Colorado',
+  appearance: {
+    hairColor: 'Yellow'
+  }
+};
+
+const objectThree = {
+  name: 'B.o-b\'s Mike',
+  state: 'Virginia',
+  appearance: {
+    hairColor: 'Brown'
+  }
+};
+
+const objects = [objectOne, objectTwo, objectThree];
+const searchKeys = ['name', 'state', 'appearance.hairColor'];
+
+
+
 // tests:
 
 describe('helpers - filterObjects', () => {
-  const objectOne = {
-    name: 'Von Miller',
-    state: 'Colorado',
-    appearance: {
-      hairColor: 'Brown'
-    }
-  };
-
-  const objectTwo = {
-    name: 'Donald Trump',
-    state: 'Colorado',
-    appearance: {
-      hairColor: 'Yellow'
-    }
-  };
-
-  const objectThree = {
-    name: 'B.o-b\'s Mike',
-    state: 'Virginia',
-    appearance: {
-      hairColor: 'Brown'
-    }
-  };
-
-  const objects = [objectOne, objectTwo, objectThree];
-  const searchKeys = ['name', 'state', 'appearance.hairColor'];
-
   describe('when searchTerm is null', () => {
     it('no objects are filtered out', () => {
       const results = filterObjects(null, searchKeys, objects);
       expect(results).toEqual(objects);
     });
   });
+
+
 
   describe('when searchTerm is defined', () => {
     it('filters based on exact match', () => {

@@ -54,6 +54,8 @@ describe('mixin - user', () => {
     expect(user.data().global__user).toEqual(null);
   });
 
+
+
   describe('created()', () => {
     beforeEach(() => {
       user.$getUser = jest.fn();
@@ -82,12 +84,16 @@ describe('mixin - user', () => {
     });
   });
 
+
+
   describe('computed.$user()', () => {
     it('returns the value of global__user', () => {
       wrapper.vm.global__user = 'chuck norris user';
       expect(wrapper.vm.$user).toEqual(wrapper.vm.global__user);
     });
   });
+
+
 
   describe('methods.$getUser', () => {
     beforeEach(() => {

@@ -26,6 +26,8 @@ describe('service - session', () => {
     storage.local.set.mockClear();
   });
 
+
+
   describe('reset()', () => {
     beforeEach(() => {
       jest.spyOn(session.user, 'set');
@@ -37,6 +39,8 @@ describe('service - session', () => {
       expect(session.user.set).toHaveBeenCalledWith(null);
     });
   });
+
+
 
   describe('user.get()', () => {
     beforeEach(() => {
@@ -51,6 +55,8 @@ describe('service - session', () => {
       expect(session.user.get()).toEqual('get local storage - user');
     });
   });
+
+
 
   describe('user.set()', () => {
     beforeEach(() => {
