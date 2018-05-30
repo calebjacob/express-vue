@@ -25,8 +25,8 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(compression());
 
-app.use(express.static(`${appRoot}/app/dist`));
 app.use(express.static(`${appRoot}/app/public`));
+app.use(express.static(`${appRoot}/app/public/dist`));
 
 
 

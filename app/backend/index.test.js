@@ -62,11 +62,11 @@ describe('app', () => {
   });
 
   it('sets up public directories', () => {
-    expect(express.static).toHaveBeenCalledWith(`${appRoot}/app/dist`);
     expect(express.static).toHaveBeenCalledWith(`${appRoot}/app/public`);
+    expect(express.static).toHaveBeenCalledWith(`${appRoot}/app/public/dist`);
 
-    expect(app.use).toHaveBeenCalledWith(`express static - ${appRoot}/app/dist`);
     expect(app.use).toHaveBeenCalledWith(`express static - ${appRoot}/app/public`);
+    expect(app.use).toHaveBeenCalledWith(`express static - ${appRoot}/app/public/dist`);
   });
 
   it('initializes all routes with express app', () => {

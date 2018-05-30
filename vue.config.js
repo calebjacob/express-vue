@@ -33,7 +33,7 @@ module.exports = {
     }
   },
 
-  outputDir: 'app/dist',
+  outputDir: 'app/public/dist',
 
   lintOnSave: false
 };
