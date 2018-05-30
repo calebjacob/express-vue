@@ -1,19 +1,20 @@
 {
-  "name": "simple-vue",
+  "name": "express-vue",
   "version": "0.1.0",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/iamceege/simple-vue"
+    "url": "https://github.com/iamceege/express-vue"
   },
   "scripts": {
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint app/backend/*.js app/backend/**/*.js app/frontend/**/*.js app/frontend/**/*.vue",
-    "serve": "vue-cli-service serve --open",
-    "start": "vue-cli-service build --mode development --watch",
-    "test": "vue-cli-service test:unit --projects ./jest.config.frontend.js ./jest.config.backend.js",
-    "test:watch": "vue-cli-service test:unit --watch --projects ./jest.config.frontend.js ./jest.config.backend.js",
-    "nodemon": "nodemon --ext js,swig,json --ignore app/frontend/js/ --ignore app/dist/ app/backend/index.js"
+    "nodemon": "nodemon --ext js,swig,json --ignore app/frontend/js/ --ignore app/dist/ app/backend/index.js",
+    "production": "npm run build && NODE_ENV='production' node app/backend/index.js",
+    "start:backend": "npm run nodemon",
+    "start:frontend": "vue-cli-service serve --open",
+    "test": "vue-cli-service test:unit --projects ./jest.config.backend.js ./jest.config.frontend.js",
+    "test:watch": "vue-cli-service test:unit --watch --projects ./jest.config.backend.js ./jest.config.frontend.js"
   },
   "dependencies": {
     "@vue/cli-plugin-babel": "^3.0.0-beta.11",

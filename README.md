@@ -23,11 +23,14 @@ Now install all of the project's dependencies via NPM:
 npm install
 ```
 
-To get started with local development, boot up the server, compilers, and watchers:
+To get started with local development, boot up the backend server and frontend compilers/watchers:
 
 ```
-npm start
+npm start:backend
+npm start:frontend
 ```
+
+When running the frontend dev server via Vue CLI, all changes will be hot loaded to your browser - eliminating the need to refresh manually after each change.
 
 ## Testing & Linting
 
@@ -57,7 +60,7 @@ Create a production ready build:
 npm run build
 ```
 
-This will generate a `/dist` folder with all frontend assets compiled - ready to be served by some other server process.
+This will generate a `app/public/dist` folder with all frontend assets compiled - ready to be served by the Express app.
 
 ## Conventions
 
