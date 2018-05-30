@@ -68,37 +68,60 @@ describe('component - modal', () => {
   });
 
   describe('created()', () => {
+    const closeFunction = modal.methods.close;
+    const openFunction = modal.methods.open;
+
     beforeEach(() => {
-      wrapper.vm.close = jest.fn();
-      wrapper.vm.open = jest.fn();
+      modal.methods.close = jest.fn();
+      modal.methods.open = jest.fn();
+
+      wrapper = createWrapper();
     });
 
     describe('when "modals:close" event occurs', () => {
       it('modal closes when name matches', () => {
-        events.$emit('modals:close', 'foobar');
+        events.$emit('modals:close:foobar');
 
-        expect(wrapper.vm.close).toHaveBeenCalled();
+        expect(modal.methods.close).toHaveBeenCalled();
       });
 
       it('modal does not close when name does not match', () => {
-        events.$emit('modals:close', 'baz');
+        events.$emit('modals:close:baz');
 
-        expect(wrapper.vm.close).toHaveBeenCalledTimes(0);
+        expect(modal.methods.close).toHaveBeenCalledTimes(0);
       });
     });
 
     describe('when "modals:open" event occurs', () => {
       it('modal opens when name matches', () => {
-        events.$emit('modals:open', 'foobar');
+        events.$emit('modals:open:foobar');
 
-        expect(wrapper.vm.open).toHaveBeenCalled();
+        expect(modal.methods.open).toHaveBeenCalled();
       });
 
       it('modal does not open when name does not match', () => {
-        events.$emit('modals:open', 'baz');
+        events.$emit('modals:open:baz');
 
-        expect(wrapper.vm.open).toHaveBeenCalledTimes(0);
+        expect(modal.methods.open).toHaveBeenCalledTimes(0);
       });
+    });
+
+    afterEach(() => {
+      modal.methods.close = closeFunction;
+      modal.methods.open = openFunction;
+    });
+  });
+
+  describe('destroyed()', () => {
+    beforeEach(() => {
+      jest.spyOn(events, '$off');
+
+      wrapper.vm.$destroy();
+    });
+
+    it('removes modal open event listener', () => {
+      expect(events.$off).toHaveBeenCalledWith('modals:close:foobar');
+      expect(events.$off).toHaveBeenCalledWith('modals:open:foobar');
     });
   });
 

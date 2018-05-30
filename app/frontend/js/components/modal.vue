@@ -47,17 +47,13 @@
     },
 
     created() {
-      events.$on('modals:close', (name) => {
-        if (name === this.name) {
-          this.close();
-        }
-      });
+      events.$on(`modals:close:${this.name}`, this.close);
+      events.$on(`modals:open:${this.name}`, this.open);
+    },
 
-      events.$on('modals:open', (name) => {
-        if (name === this.name) {
-          this.open();
-        }
-      });
+    destroyed() {
+      events.$off(`modals:close:${this.name}`);
+      events.$off(`modals:open:${this.name}`);
     },
 
     mounted() {

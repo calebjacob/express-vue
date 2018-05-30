@@ -9,7 +9,7 @@
 - [x] Try using vue cli serve command for local dev
 - [x] Cleanup dist folder after every build
 - [x] Sort out all package.json scripts / commands for starting / building (update README)
-- [ ] Fix modal event.$on() bug still firing for previously destroyed modals
+- [x] Fix modal event.$on() bug still firing for previously destroyed modals
 - [ ] Close modal on background click
 - [ ] Check in on need of "retainLines": true in `.babelrc`: https://github.com/facebook/jest/issues/6108
 - [ ] Remove nib? Autoprefixer seems to already be taking care of the heavy lifting.
