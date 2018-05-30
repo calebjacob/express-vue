@@ -14,13 +14,6 @@ module.exports = {
         args[0].template = path.resolve('./app/frontend/index.html');
         return args;
       });
-
-    config
-      .plugin('copy')
-      .tap((args) => {
-        args[0][0].from = path.resolve('./app/frontend/index.html');
-        return args;
-    });
   },
 
   configureWebpack: {
