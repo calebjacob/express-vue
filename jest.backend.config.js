@@ -5,7 +5,7 @@ module.exports = {
     'js'
   ],
 
-  setupTestFrameworkScriptFile: './jest.setup.backend.js',
+  setupTestFrameworkScriptFile: './jest.backend.setup.js',
 
   testEnvironment: 'node',
 

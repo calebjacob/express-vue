@@ -12,7 +12,7 @@ module.exports = {
     '^@/(.*)$': '<rootDir>/app/frontend/js/$1'
   },
 
-  setupTestFrameworkScriptFile: './jest.setup.frontend.js',
+  setupTestFrameworkScriptFile: './jest.frontend.setup.js',
 
   snapshotSerializers: [
     'jest-serializer-vue'
