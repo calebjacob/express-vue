@@ -12,6 +12,6 @@
 - [x] Fix modal event.$on() bug still firing for previously destroyed modals
 - [x] Close modal on background click
 - [x] Remove nib? Autoprefixer seems to already be taking care of the heavy lifting.
-- [ ] Check in on need of "retainLines": true in `.babelrc`: https://github.com/facebook/jest/issues/6108
 - [ ] Stylus doesn't log any errors on compilation (unkown variable, bad syntax) - use SASS?
 - [ ] Copy over all frontend JS and replace for simple-vue
+- [ ] Check in on need of "retainLines": true in `.babelrc`: https://github.com/facebook/jest/issues/6108 - the need of this has been fixed/removed in Jest 23.1 (however, Vue CLI is using Jest 22 still)
