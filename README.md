@@ -34,16 +34,34 @@ When running the frontend dev server via Vue CLI, all changes will be hot loaded
 
 ## Testing & Linting
 
-The [Jest](https://facebook.github.io/jest/) testing framework is used to unit test all backend & frontend code. To run the test suite once:
+The [Jest](https://facebook.github.io/jest/) testing framework is used to unit test all backend & frontend code. To run the backend and frontend test suite once:
 
 ```
 npm test
 ```
 
-Run the test suite everytime a file changes:
+Run the backend test suite once:
 
 ```
-npm run test:watch
+npm run test:backend
+```
+
+Run the backend test suite everytime a file changes:
+
+```
+npm run test:backend:watch
+```
+
+Run the frontend test suite once:
+
+```
+npm run test:frontend
+```
+
+Run the frontend test suite everytime a file changes:
+
+```
+npm run test:frontend:watch
 ```
 
 Lint all code and auto fix syntax issues:

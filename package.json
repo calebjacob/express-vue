@@ -13,8 +13,11 @@
     "production": "npm run build && NODE_ENV='production' node app/backend/index.js",
     "start:backend": "npm run nodemon",
     "start:frontend": "vue-cli-service serve --open",
-    "test": "vue-cli-service test:unit --projects ./jest.frontend.config.js ./jest.backend.config.js",
-    "test:watch": "vue-cli-service test:unit --watch --projects ./jest.frontend.config.js ./jest.backend.config.js"
+    "test": "npm run test:backend && npm run test:frontend",
+    "test:backend": "vue-cli-service test:unit --projects ./jest.backend.config.js",
+    "test:backend:watch": "vue-cli-service test:unit --watch --projects ./jest.backend.config.js",
+    "test:frontend": "vue-cli-service test:unit --projects ./jest.frontend.config.js",
+    "test:frontend:watch": "vue-cli-service test:unit --watch --projects ./jest.frontend.config.js"
   },
   "dependencies": {
     "@vue/cli-plugin-babel": "^3.0.0-beta.15",
