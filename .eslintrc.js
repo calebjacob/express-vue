@@ -48,6 +48,7 @@ module.exports = {
 
     'vue/attributes-order': 'never',
     'vue/max-attributes-per-line': 'never',
+    'vue/require-prop-types': 'never',
 
     'indent': 'off',
     'vue/script-indent': ['error', 2, {
