@@ -35,11 +35,11 @@ describe('component - layout', () => {
 
   describe('metaInfo.titleTemplate()', () => {
     it('returns base website title when no title chunk is passed in', () => {
-      expect(layout.metaInfo.titleTemplate()).toEqual('Simple Vue');
+      expect(layout.metaInfo.titleTemplate()).toEqual('Express Vue');
     });
 
     it('title chuck with base website title when chunk is passed in', () => {
-      expect(layout.metaInfo.titleTemplate('Foobar')).toEqual('Foobar | Simple Vue');
+      expect(layout.metaInfo.titleTemplate('Foobar')).toEqual('Foobar | Express Vue');
     });
   });
 });

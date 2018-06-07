@@ -12,7 +12,7 @@
 
     metaInfo: {
       titleTemplate(titleChunk) {
-        return titleChunk ? `${titleChunk} | Simple Vue` : 'Simple Vue';
+        return titleChunk ? `${titleChunk} | Express Vue` : 'Express Vue';
       }
     }
   };
