@@ -1,6 +1,6 @@
 # Express Vue
 
-A simple, Node starter project built with Express and Vue. Integrated with [Vue CLI](https://github.com/vuejs/vue-cli).
+A simple, Node starter project built with [Express](https://expressjs.com/) and [Vue](https://vuejs.org/), which is integrated with [Vue CLI](https://github.com/vuejs/vue-cli).
 
 ## Getting Started
 
@@ -26,8 +26,8 @@ npm install
 To get started with local development, boot up the backend server and frontend compilers/watchers:
 
 ```
-npm start:backend
-npm start:frontend
+npm run start:backend
+npm run start:frontend
 ```
 
 When running the frontend dev server via Vue CLI, all changes will be hot loaded to your browser - eliminating the need to refresh manually after each change.
