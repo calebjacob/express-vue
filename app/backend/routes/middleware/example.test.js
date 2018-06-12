@@ -14,8 +14,8 @@ let res;
 
 // tests:
 
-describe('middleware - example', function() {
-  beforeEach(function() {
+describe('middleware - example', () => {
+  beforeEach(() => {
     req = nodeMocksHttp.createRequest();
     res = nodeMocksHttp.createResponse();
     next.mockClear();

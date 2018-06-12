@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint app/backend/*.js app/backend/**/*.js app/frontend/**/*.js app/frontend/**/*.vue",
+    "lint": "vue-cli-service lint 'app/backend/**/*.js' 'app/frontend/js/**/*.js' 'app/frontend/js/**/*.vue'",
     "nodemon": "nodemon --ext js,swig,json --ignore app/frontend/js/ --ignore app/dist/ app/backend/index.js",
     "production": "npm run build && NODE_ENV='production' node app/backend/index.js",
     "start:backend": "npm run nodemon",

@@ -13,8 +13,8 @@ let res;
 
 // tests:
 
-describe('page - vue', function() {
-  beforeEach(function() {
+describe('page - vue', () => {
+  beforeEach(() => {
     req = nodeMocksHttp.createRequest();
     res = nodeMocksHttp.createResponse();
     res.sendFile = jest.fn();

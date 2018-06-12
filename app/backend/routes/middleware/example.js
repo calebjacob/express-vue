@@ -2,7 +2,7 @@ function example(req, res, next) {
   req.foobar = true;
 
   next();
-};
+}
 
 
 

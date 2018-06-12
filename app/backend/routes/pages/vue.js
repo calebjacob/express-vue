@@ -2,7 +2,7 @@ const appRoot = require('app-root-path');
 
 
 
-function get(req, res, next) {
+function get(req, res) {
   res.sendFile(`${appRoot}/app/public/dist/index.html`);
 }
 

@@ -22,14 +22,14 @@ const routers = {
 
 // tests:
 
-describe('pages', function() {
-  beforeEach(function() {
+describe('pages', () => {
+  beforeEach(() => {
     routers.public.get.mockClear();
 
     pages(routers);
   });
 
-  it('vue.get() is configured', function() {
+  it('vue.get() is configured', () => {
     expect(routers.public.get).toHaveBeenCalledWith(/^(?!\/api).*/, vue.get);
   });
 });

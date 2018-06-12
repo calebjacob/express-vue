@@ -12,5 +12,7 @@
 - [x] Fix modal event.$on() bug still firing for previously destroyed modals
 - [x] Close modal on background click
 - [x] Remove nib? Autoprefixer seems to already be taking care of the heavy lifting.
+- [ ] Copy over text input, validated form, radio input, and any other changes from P@T
+- [ ] Switch props test style to test each individual prop instead of testing whole object of props at once
 - [ ] Stylus doesn't log any errors on compilation (unkown variable, bad syntax) - use SASS? However, SASS depends `node-sass` which currently has security issues with v4.9: https://github.com/sass/node-sass/issues/2355
 - [ ] Check in on need of "retainLines": true in `.babelrc`: https://github.com/facebook/jest/issues/6108 - the need of this has been fixed/removed in Jest 23.1 (however, Vue CLI is using Jest 22 still)

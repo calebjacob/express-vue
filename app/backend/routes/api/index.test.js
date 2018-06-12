@@ -23,19 +23,19 @@ const routers = {
 
 // tests:
 
-describe('api', function() {
-  beforeEach(function() {
+describe('api', () => {
+  beforeEach(() => {
     routers.public.get.mockClear();
     routers.public.post.mockClear();
 
     api(routers);
   });
 
-  it('example.get() is configured', function() {
+  it('example.get() is configured', () => {
     expect(routers.public.get).toHaveBeenCalledWith('/api/example', example.get);
   });
 
-  it('example.post() is configured', function() {
+  it('example.post() is configured', () => {
     expect(routers.public.post).toHaveBeenCalledWith('/api/example', example.post);
   });
 });

@@ -22,14 +22,14 @@ const routers = {
 
 // tests:
 
-describe('middleware', function() {
-  beforeEach(function() {
+describe('middleware', () => {
+  beforeEach(() => {
     routers.public.use.mockClear();
 
     middleware(routers);
   });
 
-  it('example() is configured', function() {
+  it('example() is configured', () => {
     expect(routers.public.use).toHaveBeenCalledWith(example);
   });
 });

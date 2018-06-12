@@ -19,8 +19,8 @@ global.console = {
 
 // tests:
 
-describe('middleware - debug', function() {
-  beforeEach(function() {
+describe('middleware - debug', () => {
+  beforeEach(() => {
     req = nodeMocksHttp.createRequest();
     res = nodeMocksHttp.createResponse();
     next.mockClear();
@@ -31,18 +31,18 @@ describe('middleware - debug', function() {
     debug(error, req, res, next);
   });
 
-  it('logs error', function() {
+  it('logs error', () => {
     expect(console.dir).toHaveBeenCalledWith(error, {
       depth: null,
       colors: true
     });
   });
 
-  it('sets status to 500', function() {
+  it('sets status to 500', () => {
     expect(res.status).toHaveBeenCalledWith(500);
   });
 
-  it('sends empty json response', function() {
+  it('sends empty json response', () => {
     expect(res.json).toHaveBeenCalledWith({});
   });
 });

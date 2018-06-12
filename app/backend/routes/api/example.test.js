@@ -13,8 +13,8 @@ let res;
 
 // tests:
 
-describe('api - example', function() {
-  beforeEach(function() {
+describe('api - example', () => {
+  beforeEach(() => {
     req = nodeMocksHttp.createRequest();
     res = nodeMocksHttp.createResponse();
 

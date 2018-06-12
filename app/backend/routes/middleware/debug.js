@@ -1,4 +1,4 @@
-function debug(error, req, res, next) {
+function debug(error, req, res) {
   console.dir(error, {
     depth: null,
     colors: true
@@ -6,7 +6,7 @@ function debug(error, req, res, next) {
 
   res.status(500);
   res.json({});
-};
+}
 
 
 
