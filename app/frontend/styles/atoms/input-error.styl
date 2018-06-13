@@ -1,0 +1,14 @@
+.input-error
+  display: block
+  font-size: 0.8rem
+  line-height: 1.4em
+  font-weight: 300
+  color: $errorColor
+  padding-top: $spacing * 0.25
+  text-align: left
+
+.input-error--after-submit-attempt
+  display: none
+
+  .form--submit-attempted &
+    display: block

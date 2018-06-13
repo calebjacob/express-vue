@@ -30,8 +30,6 @@
 
       <p>This is an example modal.</p>
 
-      <input class="text-input" type="test" name="test">
-
       <button class="button" type="button" @click="$closeModal('example')">Ok</button>
     </modal>
   </div>

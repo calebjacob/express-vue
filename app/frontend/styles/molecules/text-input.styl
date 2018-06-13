@@ -1,23 +1,34 @@
 .text-input
+  margin: 0 0 $spacing
+  position: relative
+  text-align: left
+
+
+
+.text-input__input
   display: block
   width: 100%
-  margin: 0 0 $spacing
   height: $inputHeight
+  margin: 0
   padding: 0 ($spacing * 0.75)
   outline: none
   border: 1px solid $borderColor
   border-radius: $borderRadius
   background: #fff
+  cursor: text
+  transition: border-color 150ms
   -webkit-appearance: none
 
   &:focus
     background: #fff
     border-color: $textColor
+    box-shadow: $focusGlow
 
-  &.invalid,
-  &.text-input--error
+  .form--submit-attempted &.invalid,
+  &.dirty.invalid
     border-color: $errorColor
 
     &:focus
       background: #fff
       border-color: $errorColor
+

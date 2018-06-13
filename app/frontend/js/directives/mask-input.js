@@ -1,7 +1,12 @@
 const formats = {
-  creditCard: {
+  cardNumber: {
     segments: [4, 4, 4, 4],
-    separator: '-'
+    separator: ' '
+  },
+
+  cardExpiration: {
+    segments: [2, 2],
+    separator: '/'
   },
 
   phone: {
@@ -47,8 +52,12 @@ function mask(element, type) {
     reappearing after every delete attempt:
   */
 
-  if (isDeleting && maskedValue.substr(maskedValue.length - 1, 1) === format.separator) {
-    maskedValue = maskedValue.substr(0, maskedValue.length - 1);
+  if (isDeleting) {
+    const lastCharacters = maskedValue.substr(maskedValue.length - format.separator.length, format.separator.length);
+
+    if (lastCharacters === format.separator) {
+      maskedValue = maskedValue.substr(0, maskedValue.length - format.separator.length);
+    }
   }
 
   updateValue(element, maskedValue);
@@ -56,15 +65,15 @@ function mask(element, type) {
 
 
 
-function updateValue(element, value) {
+function updateValue(element, maskedValue) {
   let caretPosition = document.activeElement.selectionEnd;
   const caretIsAtEnd = element.value.length === caretPosition;
   const inputEvent = new Event('input', {
     bubbles: true
   });
 
-  element.value = value;
-  element.dataset.oldValue = value;
+  element.value = maskedValue;
+  element.dataset.oldValue = maskedValue;
 
   // if cursor was at end when user changed input, push it to end, else keep it where it was:
 
@@ -88,7 +97,7 @@ const maskInput = {
     const type = binding.value;
     const changed = element.dataset.oldValue !== element.value;
 
-    if (changed) {
+    if (changed && type) {
       mask(element, type);
     }
   }

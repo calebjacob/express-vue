@@ -24,12 +24,12 @@ function createWrapper(options = {}) {
   `;
 
   const wrapper = shallowMount(validatedForm, {
-    mocks: {
-      $validator
-    },
     propsData: {
       name: 'myForm',
       validSubmit
+    },
+    provide: {
+      $validator
     },
     slots: {
       default: template
@@ -60,31 +60,29 @@ describe('component - validatedForm', () => {
   });
 
   it('allows props', () => {
-    expect(validatedForm.props).toEqual({
-      disabled: {
-        type: Boolean,
-        default: false
-      },
+    expect(validatedForm.props.disabled).toEqual({
+      type: Boolean,
+      default: false
+    });
 
-      disableAutoFocus: {
-        type: Boolean,
-        default: false
-      },
+    expect(validatedForm.props.disableAutoFocus).toEqual({
+      type: Boolean,
+      default: false
+    });
 
-      name: {
-        type: String,
-        required: true
-      },
+    expect(validatedForm.props.name).toEqual({
+      type: String,
+      required: true
+    });
 
-      validSubmit: {
-        type: Function,
-        required: true
-      }
+    expect(validatedForm.props.validSubmit).toEqual({
+      type: Function,
+      required: true
     });
   });
 
   it('injects $validator', () => {
-    expect(validatedForm.inject.$validator).toBeTruthy();
+    expect(validatedForm.inject.$validator.from).toEqual('$validator');
   });
 
 
@@ -104,6 +102,8 @@ describe('component - validatedForm', () => {
       delete validatedForm.focusFirstInput;
     });
   });
+
+
 
   describe('methods.focusFirstInput()', () => {
     let input;
@@ -353,6 +353,22 @@ describe('component - validatedForm', () => {
       it('focuses first invalid input', () => {
         expect(invalidInput.focus).toHaveBeenCalled();
       });
+    });
+  });
+
+
+
+  describe('provide()', () => {
+    beforeEach(() => {
+      validatedForm.name = 'myCrazyForm';
+    });
+
+    it('returns the name of the form', () => {
+      expect(validatedForm.provide().validatedForm.name).toEqual('myCrazyForm');
+    });
+
+    afterEach(() => {
+      delete validatedForm.name;
     });
   });
 });

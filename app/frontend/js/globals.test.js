@@ -6,7 +6,10 @@ import globals from '@/globals';
 
 // dependencies:
 
+import inputError from '@/components/input-error.vue';
 import modal from '@/components/modal.vue';
+import radioInput from '@/components/radio-input.vue';
+import textInput from '@/components/text-input.vue';
 import validatedForm from '@/components/validated-form.vue';
 
 import autoFocus from '@/directives/auto-focus';
@@ -16,6 +19,7 @@ import entrapFocus from '@/directives/entrap-focus';
 import maskInput from '@/directives/mask-input';
 
 import dollars from '@/filters/dollars';
+import lowercase from '@/filters/lowercase';
 import moment from '@/filters/moment';
 
 import modals from '@/mixins/modals';
@@ -43,8 +47,20 @@ describe('globals', () => {
     });
 
     describe('components are initialized', () => {
+      it('inputError', () => {
+        expect(Vue.component).toHaveBeenCalledWith('inputError', inputError);
+      });
+
       it('modal', () => {
         expect(Vue.component).toHaveBeenCalledWith('modal', modal);
+      });
+
+      it('radioInput', () => {
+        expect(Vue.component).toHaveBeenCalledWith('radioInput', radioInput);
+      });
+
+      it('textInput', () => {
+        expect(Vue.component).toHaveBeenCalledWith('textInput', textInput);
       });
 
       it('validatedForm', () => {
@@ -79,6 +95,10 @@ describe('globals', () => {
         expect(Vue.filter).toHaveBeenCalledWith('dollars', dollars);
       });
 
+      it('lowercase', () => {
+        expect(Vue.filter).toHaveBeenCalledWith('lowercase', lowercase);
+      });
+
       it('moment', () => {
         expect(Vue.filter).toHaveBeenCalledWith('moment', moment);
       });
@@ -97,7 +117,8 @@ describe('globals', () => {
     describe('plugins are initialized', () => {
       it('VeeValidate', () => {
         expect(Vue.use).toHaveBeenCalledWith(VeeValidate, {
-          classes: true
+          classes: true,
+          events: 'input'
         });
       });
 

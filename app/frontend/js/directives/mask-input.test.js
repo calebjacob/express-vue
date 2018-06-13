@@ -87,10 +87,10 @@ describe('directive - maskInput', () => {
 
 
 
-  describe('creditCard', () => {
+  describe('cardNumber', () => {
     beforeEach(() => {
       wrapper = createWrapper({
-        template: '<input type="text" v-model="myValue" v-mask-input="\'creditCard\'">'
+        template: '<input type="text" v-model="myValue" v-mask-input="\'cardNumber\'">'
       });
     });
 
@@ -99,8 +99,8 @@ describe('directive - maskInput', () => {
         wrapper.vm.myValue = '1234123412341234';
 
         wrapper.vm.$nextTick(() => {
-          expect(wrapper.element.value).toEqual('1234-1234-1234-1234');
-          expect(wrapper.vm.myValue).toEqual('1234-1234-1234-1234');
+          expect(wrapper.element.value).toEqual('1234 1234 1234 1234');
+          expect(wrapper.vm.myValue).toEqual('1234 1234 1234 1234');
 
           done();
         });
@@ -110,8 +110,8 @@ describe('directive - maskInput', () => {
         wrapper.vm.myValue = '1234 1234.1234 / 1234';
 
         wrapper.vm.$nextTick(() => {
-          expect(wrapper.element.value).toEqual('1234-1234-1234-1234');
-          expect(wrapper.vm.myValue).toEqual('1234-1234-1234-1234');
+          expect(wrapper.element.value).toEqual('1234 1234 1234 1234');
+          expect(wrapper.vm.myValue).toEqual('1234 1234 1234 1234');
 
           done();
         });
@@ -121,8 +121,53 @@ describe('directive - maskInput', () => {
         wrapper.vm.myValue = '12,34/1234a1234-12.34b';
 
         wrapper.vm.$nextTick(() => {
-          expect(wrapper.element.value).toEqual('1234-1234-1234-1234');
-          expect(wrapper.vm.myValue).toEqual('1234-1234-1234-1234');
+          expect(wrapper.element.value).toEqual('1234 1234 1234 1234');
+          expect(wrapper.vm.myValue).toEqual('1234 1234 1234 1234');
+
+          done();
+        });
+      });
+    });
+  });
+
+
+
+  describe('cardExpiration', () => {
+    beforeEach(() => {
+      wrapper = createWrapper({
+        template: '<input type="text" v-model="myValue" v-mask-input="\'cardExpiration\'">'
+      });
+    });
+
+    describe('when user changes input', () => {
+      it('formats their input', (done) => {
+        wrapper.vm.myValue = '0618';
+
+        wrapper.vm.$nextTick(() => {
+          expect(wrapper.element.value).toEqual('06/18');
+          expect(wrapper.vm.myValue).toEqual('06/18');
+
+          done();
+        });
+      });
+
+      it('reformats other formats', (done) => {
+        wrapper.vm.myValue = '06.18';
+
+        wrapper.vm.$nextTick(() => {
+          expect(wrapper.element.value).toEqual('06/18');
+          expect(wrapper.vm.myValue).toEqual('06/18');
+
+          done();
+        });
+      });
+
+      it('strips out non digit characters', (done) => {
+        wrapper.vm.myValue = 'a.0.6 foo18!';
+
+        wrapper.vm.$nextTick(() => {
+          expect(wrapper.element.value).toEqual('06/18');
+          expect(wrapper.vm.myValue).toEqual('06/18');
 
           done();
         });

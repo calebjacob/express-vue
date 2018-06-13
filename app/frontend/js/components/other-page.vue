@@ -11,22 +11,33 @@
     <h2>Sign In</h2>
 
     <validated-form name="myForm" :valid-submit="updateUser">
-      <label class="label" for="name">Name</label>
-
-      <input class="text-input" type="text" name="name" id="name" placeholder="Name..." v-model="name" v-validate="{
+      <text-input type="text" label="Name" name="name" placeholder="Enter your name..." v-model="name" :validations="{
         required: true,
         max: 10
-      }">
+      }" />
 
-      <p>{{ errors.first('myForm.name') }}</p>
-
-      <label class="label" for="phone">Phone</label>
-
-      <input class="text-input" type="phone" name="phone" id="phone" placeholder="Phone number..." v-model="phone" v-mask-input="'phone'" v-validate="{
+      <text-input type="phone" label="Phone" name="phone" placeholder="Enter your phone..." v-model="phone" :validations="{
         required: true
-      }">
+      }" />
 
-      <p>{{ errors.first('myForm.phone') }}</p>
+      <radio-input label="Age" name="age" :options="[
+        {
+          display: '20',
+          value: 20
+        },
+        {
+          display: '30',
+          value: 30
+        },
+        {
+          display: '40',
+          value: 40
+        },
+      ]" v-model="age" :validations="{
+        required: true
+      }" />
+
+      <p>Age: {{ age }}</p>
 
       <button class="button" type="submit">Submit</button>
     </validated-form>
@@ -63,6 +74,7 @@
 
     data() {
       return {
+        age: null,
         name: null,
         phone: null
       };
@@ -75,6 +87,7 @@
 
       updateUser() { // TEST
         session.user.set({
+          age: this.age,
           name: this.name,
           phone: this.phone
         });

@@ -28,6 +28,7 @@ describe('component - otherPage', () => {
   });
 
   it('defaults model values', () => {
+    expect(otherPage.data().age).toEqual(null);
     expect(otherPage.data().name).toEqual(null);
     expect(otherPage.data().phone).toEqual(null);
   });

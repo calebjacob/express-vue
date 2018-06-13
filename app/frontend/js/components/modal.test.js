@@ -54,16 +54,14 @@ describe('component - modal', () => {
   });
 
   it('allows props', () => {
-    expect(modal.props).toEqual({
-      modalStyle: {
-        type: String,
-        default: null
-      },
+    expect(modal.props.modalStyle).toEqual({
+      type: String,
+      default: null
+    });
 
-      name: {
-        type: String,
-        required: true
-      }
+    expect(modal.props.name).toEqual({
+      type: String,
+      required: true
     });
   });
 

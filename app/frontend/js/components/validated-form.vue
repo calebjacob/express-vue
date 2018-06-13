@@ -45,7 +45,21 @@
       };
     },
 
-    inject: ['$validator'],
+    inject: {
+      $validator: {
+        from: '$validator'
+      }
+    },
+
+    provide() {
+      const name = this.name;
+
+      return {
+        validatedForm: {
+          name
+        }
+      };
+    },
 
     mounted() {
       this.focusFirstInput();
