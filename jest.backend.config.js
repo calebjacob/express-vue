@@ -11,5 +11,9 @@ module.exports = {
 
   testMatch: [
     '<rootDir>/app/backend/**/*.test.js'
+  ],
+
+  watchPathIgnorePatterns: [
+    '<rootDir>/app/frontend/'
   ]
 };
