@@ -25,7 +25,7 @@ describe('service - weather', () => {
 
   describe('current()', () => {
     beforeEach(() => {
-      weather.current();
+      weather.current().catch(() => {});
     });
 
     it('makes GET request to weather API', () => {
