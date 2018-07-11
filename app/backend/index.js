@@ -47,7 +47,7 @@ app.use(debug);
 app.listen(config.port);
 
 if (config.environment === 'local') {
-  console.log(`App is being served at localhost:${config.port}`);
+  console.log(`App running at: localhost:${config.port}`);
 }
 
 

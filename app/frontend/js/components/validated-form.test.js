@@ -302,7 +302,6 @@ describe('component - validatedForm', () => {
     beforeEach(() => {
       submitEvent.preventDefault = jest.fn();
 
-      wrapper.vm.name = 'foobar';
       wrapper.vm.submit(submitEvent);
     });
 
@@ -315,7 +314,7 @@ describe('component - validatedForm', () => {
     });
 
     it('calls $validator.validateAll() with form scope/name', () => {
-      expect($validator.validateAll).toHaveBeenCalledWith('foobar');
+      expect($validator.validateAll).toHaveBeenCalledWith('myForm');
     });
 
     describe('when $validator.validateAll() resolves with true', () => {
