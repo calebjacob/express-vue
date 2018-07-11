@@ -50,37 +50,31 @@ describe('directive - maskInput', () => {
     });
 
     describe('when user changes input', () => {
-      it('formats their input', (done) => {
-        wrapper.vm.myValue = '122333';
-
-        wrapper.vm.$nextTick(() => {
-          expect(wrapper.element.value).toEqual('1/22/333');
-          expect(wrapper.vm.myValue).toEqual('1/22/333');
-
-          done();
+      it('formats their input', () => {
+        wrapper.setData({
+          myValue: '122333'
         });
+
+        expect(wrapper.element.value).toEqual('1/22/333');
+        expect(wrapper.vm.myValue).toEqual('1/22/333');
       });
 
-      it('reformats other formats', (done) => {
-        wrapper.vm.myValue = '1.22 333';
-
-        wrapper.vm.$nextTick(() => {
-          expect(wrapper.element.value).toEqual('1/22/333');
-          expect(wrapper.vm.myValue).toEqual('1/22/333');
-
-          done();
+      it('reformats other formats', () => {
+        wrapper.setData({
+          myValue: '1.22 333'
         });
+
+        expect(wrapper.element.value).toEqual('1/22/333');
+        expect(wrapper.vm.myValue).toEqual('1/22/333');
       });
 
-      it('strips out non digit characters', (done) => {
-        wrapper.vm.myValue = 'a1.22}3D33';
-
-        wrapper.vm.$nextTick(() => {
-          expect(wrapper.element.value).toEqual('1/22/333');
-          expect(wrapper.vm.myValue).toEqual('1/22/333');
-
-          done();
+      it('strips out non digit characters', () => {
+        wrapper.setData({
+          myValue: 'a1.22}3D33'
         });
+
+        expect(wrapper.element.value).toEqual('1/22/333');
+        expect(wrapper.vm.myValue).toEqual('1/22/333');
       });
     });
   });
@@ -95,37 +89,31 @@ describe('directive - maskInput', () => {
     });
 
     describe('when user changes input', () => {
-      it('formats their input', (done) => {
-        wrapper.vm.myValue = '1234123412341234';
-
-        wrapper.vm.$nextTick(() => {
-          expect(wrapper.element.value).toEqual('1234 1234 1234 1234');
-          expect(wrapper.vm.myValue).toEqual('1234 1234 1234 1234');
-
-          done();
+      it('formats their input', () => {
+        wrapper.setData({
+          myValue: '1234123412341234'
         });
+
+        expect(wrapper.element.value).toEqual('1234 1234 1234 1234');
+        expect(wrapper.vm.myValue).toEqual('1234 1234 1234 1234');
       });
 
-      it('reformats other formats', (done) => {
-        wrapper.vm.myValue = '1234 1234.1234 / 1234';
-
-        wrapper.vm.$nextTick(() => {
-          expect(wrapper.element.value).toEqual('1234 1234 1234 1234');
-          expect(wrapper.vm.myValue).toEqual('1234 1234 1234 1234');
-
-          done();
+      it('reformats other formats', () => {
+        wrapper.setData({
+          myValue: '1234 1234.1234 / 1234'
         });
+
+        expect(wrapper.element.value).toEqual('1234 1234 1234 1234');
+        expect(wrapper.vm.myValue).toEqual('1234 1234 1234 1234');
       });
 
-      it('strips out non digit characters', (done) => {
-        wrapper.vm.myValue = '12,34/1234a1234-12.34b';
-
-        wrapper.vm.$nextTick(() => {
-          expect(wrapper.element.value).toEqual('1234 1234 1234 1234');
-          expect(wrapper.vm.myValue).toEqual('1234 1234 1234 1234');
-
-          done();
+      it('strips out non digit characters', () => {
+        wrapper.setData({
+          myValue: '12,34/1234a1234-12.34b'
         });
+
+        expect(wrapper.element.value).toEqual('1234 1234 1234 1234');
+        expect(wrapper.vm.myValue).toEqual('1234 1234 1234 1234');
       });
     });
   });
@@ -140,37 +128,31 @@ describe('directive - maskInput', () => {
     });
 
     describe('when user changes input', () => {
-      it('formats their input', (done) => {
-        wrapper.vm.myValue = '0618';
-
-        wrapper.vm.$nextTick(() => {
-          expect(wrapper.element.value).toEqual('06/18');
-          expect(wrapper.vm.myValue).toEqual('06/18');
-
-          done();
+      it('formats their input', () => {
+        wrapper.setData({
+          myValue: '0618'
         });
+
+        expect(wrapper.element.value).toEqual('06/18');
+        expect(wrapper.vm.myValue).toEqual('06/18');
       });
 
-      it('reformats other formats', (done) => {
-        wrapper.vm.myValue = '06.18';
-
-        wrapper.vm.$nextTick(() => {
-          expect(wrapper.element.value).toEqual('06/18');
-          expect(wrapper.vm.myValue).toEqual('06/18');
-
-          done();
+      it('reformats other formats', () => {
+        wrapper.setData({
+          myValue: '06.18'
         });
+
+        expect(wrapper.element.value).toEqual('06/18');
+        expect(wrapper.vm.myValue).toEqual('06/18');
       });
 
-      it('strips out non digit characters', (done) => {
-        wrapper.vm.myValue = 'a.0.6 foo18!';
-
-        wrapper.vm.$nextTick(() => {
-          expect(wrapper.element.value).toEqual('06/18');
-          expect(wrapper.vm.myValue).toEqual('06/18');
-
-          done();
+      it('strips out non digit characters', () => {
+        wrapper.setData({
+          myValue: 'a.0.6 foo18!'
         });
+
+        expect(wrapper.element.value).toEqual('06/18');
+        expect(wrapper.vm.myValue).toEqual('06/18');
       });
     });
   });
@@ -185,37 +167,31 @@ describe('directive - maskInput', () => {
     });
 
     describe('when user changes input', () => {
-      it('formats their input', (done) => {
-        wrapper.vm.myValue = '1231231234';
-
-        wrapper.vm.$nextTick(() => {
-          expect(wrapper.element.value).toEqual('123-123-1234');
-          expect(wrapper.vm.myValue).toEqual('123-123-1234');
-
-          done();
+      it('formats their input', () => {
+        wrapper.setData({
+          myValue: '1231231234'
         });
+
+        expect(wrapper.element.value).toEqual('123-123-1234');
+        expect(wrapper.vm.myValue).toEqual('123-123-1234');
       });
 
-      it('reformats other formats', (done) => {
-        wrapper.vm.myValue = '(123) 123-1234';
-
-        wrapper.vm.$nextTick(() => {
-          expect(wrapper.element.value).toEqual('123-123-1234');
-          expect(wrapper.vm.myValue).toEqual('123-123-1234');
-
-          done();
+      it('reformats other formats', () => {
+        wrapper.setData({
+          myValue: '(123) 123-1234'
         });
+
+        expect(wrapper.element.value).toEqual('123-123-1234');
+        expect(wrapper.vm.myValue).toEqual('123-123-1234');
       });
 
-      it('strips out non digit characters', (done) => {
-        wrapper.vm.myValue = '.1/2a3)123{12--34';
-
-        wrapper.vm.$nextTick(() => {
-          expect(wrapper.element.value).toEqual('123-123-1234');
-          expect(wrapper.vm.myValue).toEqual('123-123-1234');
-
-          done();
+      it('strips out non digit characters', () => {
+        wrapper.setData({
+          myValue: '.1/2a3)123{12--34'
         });
+
+        expect(wrapper.element.value).toEqual('123-123-1234');
+        expect(wrapper.vm.myValue).toEqual('123-123-1234');
       });
     });
   });

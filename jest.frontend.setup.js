@@ -17,7 +17,18 @@ Vue.mixin({
   }
 });
 
-Vue.config.warnHandler = () => {};
+Vue.config.warnHandler = (message, vm, trace) => {
+
+  if (
+    message.indexOf('Unknown custom element') === -1 &&
+    message.indexOf('Failed to resolve directive') === -1 &&
+    message.indexOf('Failed to resolve filter') === -1 &&
+    message.indexOf('Avoid mutating a prop directly') === -1
+  ) {
+    console.error(message);
+    console.log(trace);
+  }
+};
 
 global.createLocalVue = vueTestUtils.createLocalVue;
 global.mount = vueTestUtils.mount;

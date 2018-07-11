@@ -120,7 +120,9 @@ describe('component - validatedForm', () => {
             `
           });
 
-          wrapper.vm.disableAutoFocus = true;
+          wrapper.setProps({
+            disableAutoFocus: true
+          });
 
           input = wrapper.element.querySelector('#first');
           jest.spyOn(input, 'focus');
@@ -146,8 +148,6 @@ describe('component - validatedForm', () => {
             `
           });
 
-          wrapper.vm.disableAutoFocus = false;
-
           input = wrapper.element.querySelector('#first');
           jest.spyOn(input, 'focus');
 
@@ -169,8 +169,6 @@ describe('component - validatedForm', () => {
               </div>
             `
           });
-
-          wrapper.vm.disableAutoFocus = false;
 
           input = wrapper.element.querySelector('#second');
           jest.spyOn(input, 'focus');
@@ -194,8 +192,6 @@ describe('component - validatedForm', () => {
             `
           });
 
-          wrapper.vm.disableAutoFocus = false;
-
           input = wrapper.element.querySelector('#second');
           jest.spyOn(input, 'focus');
 
@@ -217,8 +213,6 @@ describe('component - validatedForm', () => {
               </div>
             `
           });
-
-          wrapper.vm.disableAutoFocus = false;
 
           input = wrapper.element.querySelector('#second');
           jest.spyOn(input, 'focus');
@@ -242,8 +236,6 @@ describe('component - validatedForm', () => {
             `
           });
 
-          wrapper.vm.disableAutoFocus = false;
-
           input = wrapper.element.querySelector('#first');
           jest.spyOn(input, 'focus');
 
@@ -266,8 +258,6 @@ describe('component - validatedForm', () => {
             `
           });
 
-          wrapper.vm.disableAutoFocus = false;
-
           input = wrapper.element.querySelector('#first');
           jest.spyOn(input, 'focus');
 
@@ -285,7 +275,10 @@ describe('component - validatedForm', () => {
 
   describe('methods.markFormAsDirty()', () => {
     beforeEach(() => {
-      wrapper.vm.dirty = false;
+      wrapper.setData({
+        dirty: false
+      });
+
       wrapper.vm.markFormAsDirty();
     });
 

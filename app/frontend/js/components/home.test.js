@@ -81,8 +81,10 @@ describe('component - home', () => {
 
   describe('methods.loadCurrentWeather()', () => {
     beforeEach(() => {
-      wrapper.vm.weatherIsLoading = false;
-      wrapper.vm.weatherFailedToLoad = true;
+      wrapper.setData({
+        weatherIsLoading: false,
+        weatherFailedToLoad: true
+      });
 
       wrapper.vm.loadCurrentWeather();
     });

@@ -132,7 +132,10 @@ describe('component - modal', () => {
   describe('methods.close()', () => {
     beforeEach(() => {
       document.body.style.overflow = 'hidden';
-      wrapper.vm.isOpen = true;
+
+      wrapper.setData({
+        isOpen: true
+      });
 
       wrapper.vm.close();
     });
@@ -172,7 +175,10 @@ describe('component - modal', () => {
   describe('methods.open()', () => {
     beforeEach(() => {
       document.body.style.overflow = '';
-      wrapper.vm.isOpen = false;
+
+      wrapper.setData({
+        isOpen: false
+      });
 
       wrapper.vm.focusFirstInput = jest.fn();
 

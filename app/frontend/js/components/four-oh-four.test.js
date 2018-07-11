@@ -24,7 +24,7 @@ describe('component - fourOhFour', () => {
   });
 
   it('correctly named', () => {
-    expect(fourOhFour.name).toEqual('404');
+    expect(fourOhFour.name).toEqual('FourOhFour');
   });
 
   it('sets page title', () => {

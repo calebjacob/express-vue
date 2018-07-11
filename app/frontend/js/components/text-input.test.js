@@ -31,6 +31,7 @@ function createWrapper() {
       value: 'foobar'
     },
     provide: {
+      $validator: {},
       validatedForm
     }
   });
@@ -110,7 +111,10 @@ describe('component - textInput', () => {
       describe('when input is nested inside a <validated-form> scope', () => {
         beforeEach(() => {
           validatedForm.name = 'crazyForm';
-          wrapper.vm.name = 'crazyInput';
+
+          wrapper.setData({
+            name: 'crazyInput'
+          });
         });
 
         it('returns input name nested inside form scope', () => {
@@ -121,13 +125,14 @@ describe('component - textInput', () => {
       describe('when input is not nested inside a <validated-form> scope', () => {
         beforeEach(() => {
           validatedForm.name = null;
-          wrapper.vm.name = 'crazyInput';
 
-          wrapper.vm.$nextTick();
+          wrapper.setData({
+            name: 'stinkyInput'
+          });
         });
 
         it('returns input name', () => {
-          expect(wrapper.vm.scopedInputName).toEqual('crazyInput');
+          expect(wrapper.vm.scopedInputName).toEqual('stinkyInput');
         });
       });
     });
@@ -138,7 +143,9 @@ describe('component - textInput', () => {
   describe('computed.val', () => {
     describe('get()', () => {
       beforeEach(() => {
-        wrapper.vm.value = 7;
+        wrapper.setProps({
+          value: 7
+        });
       });
 
       it('returns value', () => {
@@ -148,7 +155,9 @@ describe('component - textInput', () => {
 
     describe('set()', () => {
       beforeEach(() => {
-        wrapper.vm.val = 'some text';
+        wrapper.setData({
+          val: 'some text'
+        });
       });
 
       it('emit input event with new value', () => {
@@ -162,7 +171,10 @@ describe('component - textInput', () => {
   describe('methods.blurHandler()', () => {
     describe('when value is currently an empty string', () => {
       beforeEach(() => {
-        wrapper.vm.value = '';
+        wrapper.setProps({
+          value: ''
+        });
+
         wrapper.vm.blurHandler();
       });
 
@@ -173,7 +185,10 @@ describe('component - textInput', () => {
 
     describe('when value is not currently an empty string', () => {
       beforeEach(() => {
-        wrapper.vm.value = 'foo';
+        wrapper.setProps({
+          value: 'some text'
+        });
+
         wrapper.vm.blurHandler();
       });
 
