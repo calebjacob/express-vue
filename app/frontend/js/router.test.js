@@ -9,6 +9,7 @@ import router from '@/router';
 import fourOhFour from '@/components/four-oh-four.vue';
 import home from '@/components/home.vue';
 import otherPage from '@/components/other-page.vue';
+import scrollBehavior from '@/helpers/scroll-behavior';
 
 import VueRouter from 'vue-router';
 
@@ -44,7 +45,8 @@ describe('router', () => {
           name: 'fourOhFour',
           component: fourOhFour
         }
-      ]
+      ],
+      scrollBehavior
     });
   });
 
