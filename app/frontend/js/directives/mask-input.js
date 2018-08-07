@@ -19,13 +19,23 @@ const formats = {
 
 function mask(element, type) {
   const isDeleting = element.value.length < element.dataset.oldValue.length;
-  const strippedValue = element.value.replace(/[^0-9]/g, '');
+  let strippedValue = element.value.replace(/[^0-9]/g, '');
   let maskedValue = '';
   let position = 0;
   let format;
 
   if (typeof type === 'string') {
     format = formats[type];
+
+    // Prepend a "0" to the front of certain inputs (turns 3/12 in to 03/12 automatically):
+
+    if (!isDeleting) {
+      if (type === 'cardExpiration') {
+        if (strippedValue && strippedValue[0] !== '1' && strippedValue[0] !== '0') {
+          strippedValue = `0${strippedValue}`;
+        }
+      }
+    }
   }
 
   else {

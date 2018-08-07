@@ -154,6 +154,24 @@ describe('directive - maskInput', () => {
         expect(wrapper.element.value).toEqual('06/18');
         expect(wrapper.vm.myValue).toEqual('06/18');
       });
+
+      it('prepends a 0 if needed', () => {
+        wrapper.setData({
+          myValue: '6/18'
+        });
+
+        expect(wrapper.element.value).toEqual('06/18');
+        expect(wrapper.vm.myValue).toEqual('06/18');
+      });
+
+      it('does not prepend a 0 when not needed', () => {
+        wrapper.setData({
+          myValue: '12/20'
+        });
+
+        expect(wrapper.element.value).toEqual('12/20');
+        expect(wrapper.vm.myValue).toEqual('12/20');
+      });
     });
   });
 
