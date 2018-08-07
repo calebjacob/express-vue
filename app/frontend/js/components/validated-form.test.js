@@ -85,6 +85,10 @@ describe('component - validatedForm', () => {
     expect(validatedForm.inject.$validator.from).toEqual('$validator');
   });
 
+  it('renders a view', () => {
+    expect(wrapper.html().length).toBeGreaterThan(0);
+  });
+
 
 
   describe('mounted()', () => {

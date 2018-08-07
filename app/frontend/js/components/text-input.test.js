@@ -104,6 +104,10 @@ describe('component - textInput', () => {
     expect(textInput.inject.validatedForm.default()).toEqual({});
   });
 
+  it('renders a view', () => {
+    expect(wrapper.html().length).toBeGreaterThan(0);
+  });
+
 
 
   describe('computed.scopedInputName', () => {

@@ -22,8 +22,10 @@ function createWrapper() {
 // tests:
 
 describe('component - inputError', () => {
+  let wrapper;
+
   beforeEach(() => {
-    createWrapper();
+    wrapper = createWrapper();
   });
 
   it('correctly named', () => {
@@ -40,5 +42,9 @@ describe('component - inputError', () => {
       type: String,
       default: null
     });
+  });
+
+  it('renders a view', () => {
+    expect(wrapper.html().length).toBeGreaterThan(0);
   });
 });
