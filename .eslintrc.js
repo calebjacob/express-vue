@@ -27,6 +27,7 @@ module.exports = {
     'max-len': ['off'],
     'no-alert': ['off'],
     'no-console': ['off'],
+    'no-else-return': ['off'],
     'no-multiple-empty-lines': ['error', {
         max: 3,
         maxEOF: 1
