@@ -32,7 +32,7 @@ describe('component - home', () => {
   let wrapper;
 
   beforeEach(() => {
-    weather.current.mockClear();
+    jest.clearAllMocks();
 
     wrapper = createWrapper();
   });

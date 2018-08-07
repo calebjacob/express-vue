@@ -20,10 +20,7 @@ jest.mock('@/services/storage');
 
 describe('service - session', () => {
   beforeEach(() => {
-    events.$emit.mockClear();
-
-    storage.local.get.mockClear();
-    storage.local.set.mockClear();
+    jest.clearAllMocks();
   });
 
 

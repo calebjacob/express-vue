@@ -20,7 +20,7 @@ jest.mock('@/services/http');
 
 describe('service - weather', () => {
   beforeEach(() => {
-    http.get.mockClear();
+    jest.clearAllMocks();
   });
 
   describe('current()', () => {

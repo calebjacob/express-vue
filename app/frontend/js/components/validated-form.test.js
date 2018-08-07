@@ -47,6 +47,8 @@ describe('component - validatedForm', () => {
   let wrapper;
 
   beforeEach(() => {
+    jest.clearAllMocks();
+
     wrapper = createWrapper();
   });
 
@@ -316,8 +318,6 @@ describe('component - validatedForm', () => {
 
     describe('when $validator.validateAll() resolves with true', () => {
       beforeEach(() => {
-        validSubmit.mockClear();
-
         $validator.validateAll.mockResolvedValue(true);
 
         return wrapper.vm.submit(submitEvent);
@@ -343,7 +343,7 @@ describe('component - validatedForm', () => {
       });
 
       it('does not call passed in validSubmit() function', () => {
-        expect(validSubmit).toHaveBeenCalledTimes(0);
+        expect(validSubmit).not.toHaveBeenCalled();
       });
 
       it('focuses first invalid input', () => {

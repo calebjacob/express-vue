@@ -43,6 +43,8 @@ describe('directive - entrapFocus', () => {
   let wrapper;
 
   beforeEach(() => {
+    jest.clearAllMocks();
+
     wrapper = createWrapper();
 
     firstInput = wrapper.element.querySelector('#first');
@@ -71,8 +73,6 @@ describe('directive - entrapFocus', () => {
       keydownEvent = new Event('keydown');
       keydownEvent.keyCode = 9;
       keydownEvent.shiftKey = false;
-
-      firstInput.focus.mockClear();
 
       jest.spyOn(keydownEvent, 'preventDefault');
     });
@@ -116,7 +116,7 @@ describe('directive - entrapFocus', () => {
       keydownEvent.keyCode = 9;
       keydownEvent.shiftKey = true;
 
-      firstInput.focus.mockClear();
+      jest.clearAllMocks();
 
       jest.spyOn(keydownEvent, 'preventDefault');
     });

@@ -47,7 +47,7 @@ describe('component - textInput', () => {
   let wrapper;
 
   beforeEach(() => {
-    $emit.mockClear();
+    jest.clearAllMocks();
 
     wrapper = createWrapper();
   });
