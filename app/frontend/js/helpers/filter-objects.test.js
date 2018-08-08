@@ -37,7 +37,7 @@ const searchKeys = ['name', 'state', 'appearance.hairColor'];
 
 // tests:
 
-describe('helpers - filterObjects', () => {
+describe('helpers - filterObjects()', () => {
   describe('when searchTerm is null', () => {
     it('no objects are filtered out', () => {
       const results = filterObjects(null, searchKeys, objects);

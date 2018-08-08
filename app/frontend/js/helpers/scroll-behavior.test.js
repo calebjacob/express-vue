@@ -6,7 +6,7 @@ import scrollBehavior from '@/helpers/scroll-behavior';
 
 // tests:
 
-describe('helpers - scrollBehavior', () => {
+describe('helpers - scrollBehavior()', () => {
   it('returns savedPosition if passed', () => {
     expect(scrollBehavior({}, {}, {
       x: 7,
