@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 
 const config = require('./config');
 const routes = require('./routes');
-const debug = require('./routes/middleware/debug');
+const debug = require('./helpers/debug');
 
 
 

@@ -19,7 +19,7 @@ global.console = {
 
 // tests:
 
-describe('middleware - debug', () => {
+describe('helpers - debug', () => {
   beforeEach(() => {
     req = nodeMocksHttp.createRequest();
     res = nodeMocksHttp.createResponse();

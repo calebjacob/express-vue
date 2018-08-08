@@ -11,7 +11,7 @@ const compression = require('compression');
 const express = require('express');
 
 const config = require('./config');
-const debug = require('./routes/middleware/debug');
+const debug = require('./helpers/debug');
 const routes = require('./routes');
 
 
@@ -32,7 +32,7 @@ jest.mock('./routes', () => {
   return jest.fn();
 });
 
-jest.mock('./routes/middleware/debug', () => {
+jest.mock('./helpers/debug', () => {
   return 'debug middleware';
 });
 
