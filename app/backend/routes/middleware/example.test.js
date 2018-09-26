@@ -16,9 +16,10 @@ let res;
 
 describe('middleware - example', () => {
   beforeEach(() => {
+    jest.clearAllMocks();
+
     req = nodeMocksHttp.createRequest();
     res = nodeMocksHttp.createResponse();
-    next.mockClear();
 
     jest.spyOn(res, 'json');
 

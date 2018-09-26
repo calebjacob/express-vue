@@ -24,7 +24,7 @@ const routers = {
 
 describe('middleware', () => {
   beforeEach(() => {
-    routers.public.use.mockClear();
+    jest.clearAllMocks();
 
     middleware(routers);
   });

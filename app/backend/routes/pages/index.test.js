@@ -24,7 +24,7 @@ const routers = {
 
 describe('pages', () => {
   beforeEach(() => {
-    routers.public.get.mockClear();
+    jest.clearAllMocks();
 
     pages(routers);
   });

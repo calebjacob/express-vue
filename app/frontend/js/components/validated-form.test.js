@@ -332,7 +332,7 @@ describe('component - validatedForm', () => {
       let invalidInput;
 
       beforeEach(() => {
-        validSubmit.mockClear();
+        jest.clearAllMocks();
 
         invalidInput = wrapper.element.querySelector('#invalid');
         jest.spyOn(invalidInput, 'focus');
