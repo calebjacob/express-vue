@@ -49,8 +49,6 @@
     "vue-template-compiler": "^2.5.13"
   },
   "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
+    "since 2014"
   ]
 }
