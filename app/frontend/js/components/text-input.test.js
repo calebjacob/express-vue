@@ -56,10 +56,6 @@ describe('component - textInput', () => {
     expect(textInput.name).toEqual('TextInput');
   });
 
-  it('defaults model values', () => {
-    expect(textInput.data().phoneRegex).toEqual(/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/);
-  });
-
   it('allows props', () => {
     expect(textInput.props.label).toEqual({
       type: String,
@@ -110,6 +106,109 @@ describe('component - textInput', () => {
 
 
 
+  describe('computed.allValidations', () => {
+    beforeEach(() => {
+      wrapper.setProps({
+        validations: {
+          foo: true,
+          bar: 2
+        }
+      });
+    });
+
+    describe('get()', () => {
+      describe('when input type is "dollars"', () => {
+        beforeEach(() => {
+          wrapper.setProps({
+            type: 'dollars'
+          });
+        });
+
+        it('returns validations with defaults', () => {
+          expect(wrapper.vm.allValidations).toEqual({
+            foo: true,
+            bar: 2,
+            decimal: 2
+          });
+        });
+      });
+
+      describe('when input type is "email"', () => {
+        beforeEach(() => {
+          wrapper.setProps({
+            type: 'email'
+          });
+        });
+
+        it('returns validations with defaults', () => {
+          expect(wrapper.vm.allValidations).toEqual({
+            foo: true,
+            bar: 2,
+            email: true
+          });
+        });
+      });
+
+      describe('when input type is "phone"', () => {
+        beforeEach(() => {
+          wrapper.setProps({
+            type: 'phone'
+          });
+        });
+
+        it('returns validations with defaults', () => {
+          expect(wrapper.vm.allValidations).toEqual({
+            foo: true,
+            bar: 2,
+            regex: /^[0-9]{3}-[0-9]{3}-[0-9]{4}$/
+          });
+        });
+      });
+
+      describe('when input type is anything else', () => {
+        beforeEach(() => {
+          wrapper.setProps({
+            type: 'text'
+          });
+        });
+
+        it('returns validations with defaults', () => {
+          expect(wrapper.vm.allValidations).toEqual({
+            foo: true,
+            bar: 2
+          });
+        });
+      });
+    });
+  });
+
+
+
+  describe('computed.attributes', () => {
+    describe('get()', () => {
+      beforeEach(() => {
+        wrapper.setProps({
+          label: 'My Crazy Input',
+          name: 'myCrazyInput',
+          placeholder: 'Fill something here...',
+          value: 12
+        });
+      });
+
+      it('returns all attributes that should be bound for input', () => {
+        expect(wrapper.vm.attributes).toEqual({
+          'data-vv-as': 'my crazy input',
+          id: 'myCrazyInput',
+          name: 'myCrazyInput',
+          placeholder: 'Fill something here...',
+          value: 12
+        });
+      });
+    });
+  });
+
+
+
   describe('computed.scopedInputName', () => {
     describe('get()', () => {
       describe('when input is nested inside a <validated-form> scope', () => {
@@ -144,60 +243,144 @@ describe('component - textInput', () => {
 
 
 
-  describe('computed.val', () => {
-    describe('get()', () => {
+  describe('methods.blurHandler()', () => {
+    describe('when input value is an empty string', () => {
       beforeEach(() => {
-        wrapper.setProps({
-          value: 7
+        wrapper.vm.blurHandler({
+          target: {
+            value: ''
+          }
         });
       });
 
-      it('returns value', () => {
-        expect(wrapper.vm.val).toEqual(7);
+      it('sets model value to null', () => {
+        expect($emit).toHaveBeenCalledWith('input', null);
       });
     });
 
-    describe('set()', () => {
+    describe('when input value is not an empty string', () => {
       beforeEach(() => {
-        wrapper.setData({
-          val: 'some text'
+        wrapper.vm.blurHandler({
+          target: {
+            value: '1'
+          }
         });
       });
 
-      it('emit input event with new value', () => {
-        expect($emit).toHaveBeenCalledWith('input', 'some text');
+      it('does not update model', () => {
+        expect($emit).not.toHaveBeenCalled();
       });
     });
   });
 
 
 
-  describe('methods.blurHandler()', () => {
-    describe('when value is currently an empty string', () => {
+  describe('methods.inputHandler()', () => {
+    describe('when input type is "dollars"', () => {
       beforeEach(() => {
         wrapper.setProps({
-          value: ''
+          type: 'dollars'
         });
-
-        wrapper.vm.blurHandler();
       });
 
-      it('sets value to null', () => {
-        expect($emit).toHaveBeenCalledWith('input', null);
+      describe('when input has a value', () => {
+        beforeEach(() => {
+          wrapper.vm.inputHandler({
+            target: {
+              value: '12.32'
+            }
+          });
+        });
+
+        it('updates model with parsed number', () => {
+          expect($emit).toHaveBeenCalledWith('input', 12.32);
+        });
+      });
+
+      describe('when input does not have a value', () => {
+        beforeEach(() => {
+          wrapper.vm.inputHandler({
+            target: {
+              value: ''
+            }
+          });
+        });
+
+        it('updates model with raw value', () => {
+          expect($emit).toHaveBeenCalledWith('input', '');
+        });
       });
     });
 
-    describe('when value is not currently an empty string', () => {
+    describe('when input type is "number"', () => {
       beforeEach(() => {
         wrapper.setProps({
-          value: 'some text'
+          type: 'number'
         });
-
-        wrapper.vm.blurHandler();
       });
 
-      it('does not set value to null', () => {
-        expect($emit).toHaveBeenCalledTimes(0);
+      describe('when input has a value', () => {
+        beforeEach(() => {
+          wrapper.vm.inputHandler({
+            target: {
+              value: '5.2'
+            }
+          });
+        });
+
+        it('updates model with parsed number', () => {
+          expect($emit).toHaveBeenCalledWith('input', 5.2);
+        });
+      });
+
+      describe('when input does not have a value', () => {
+        beforeEach(() => {
+          wrapper.vm.inputHandler({
+            target: {
+              value: ''
+            }
+          });
+        });
+
+        it('updates model with raw value', () => {
+          expect($emit).toHaveBeenCalledWith('input', '');
+        });
+      });
+    });
+
+    describe('when input type is anything else', () => {
+      beforeEach(() => {
+        wrapper.setProps({
+          type: 'text'
+        });
+      });
+
+      describe('when input has a value', () => {
+        beforeEach(() => {
+          wrapper.vm.inputHandler({
+            target: {
+              value: '5.2'
+            }
+          });
+        });
+
+        it('updates model with raw value', () => {
+          expect($emit).toHaveBeenCalledWith('input', '5.2');
+        });
+      });
+
+      describe('when input does not have a value', () => {
+        beforeEach(() => {
+          wrapper.vm.inputHandler({
+            target: {
+              value: ''
+            }
+          });
+        });
+
+        it('updates model with raw value', () => {
+          expect($emit).toHaveBeenCalledWith('input', '');
+        });
       });
     });
   });

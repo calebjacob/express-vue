@@ -25,8 +25,7 @@ const routers = {
 
 describe('api', () => {
   beforeEach(() => {
-    routers.public.get.mockClear();
-    routers.public.post.mockClear();
+    jest.clearAllMocks();
 
     api(routers);
   });

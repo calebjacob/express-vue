@@ -45,7 +45,7 @@ const app = express();
 
 describe('routes', () => {
   beforeEach(() => {
-    app.use.mockClear();
+    jest.clearAllMocks();
 
     mockInitializationCallOrder = [];
 

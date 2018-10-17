@@ -21,12 +21,10 @@ global.console = {
 
 describe('helpers - debug', () => {
   beforeEach(() => {
+    jest.clearAllMocks();
+
     req = nodeMocksHttp.createRequest();
     res = nodeMocksHttp.createResponse();
-    next.mockClear();
-
-    jest.spyOn(res, 'json');
-    jest.spyOn(res, 'status');
 
     debug(error, req, res, next);
   });
@@ -38,11 +36,7 @@ describe('helpers - debug', () => {
     });
   });
 
-  it('sets status to 500', () => {
-    expect(res.status).toHaveBeenCalledWith(500);
-  });
-
-  it('sends empty json response', () => {
-    expect(res.json).toHaveBeenCalledWith({});
+  it('passes error along to next()', () => {
+    expect(next).toHaveBeenCalledWith(error);
   });
 });
