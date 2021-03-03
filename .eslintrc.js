@@ -1,61 +1,25 @@
 module.exports = {
-  extends: [
-    'plugin:vue/recommended',
-    'plugin:jest/recommended',
-    '@vue/airbnb'
-  ],
-
+  root: true,
   env: {
-    jest: true
+    node: true
   },
-
-  globals: {
-    appRoot: true,
-    createLocalVue: true,
-    mount: true,
-    nodeMocksHttp: true,
-    shallowMount: true
+  extends: ["plugin:vue/vue3-essential", "eslint:recommended", "@vue/prettier"],
+  parserOptions: {
+    parser: "babel-eslint"
   },
-
-  plugins: ['jest'],
-
   rules: {
-    'arrow-body-style': ['error', 'always'],
-    'comma-dangle': ['error', 'never'],
-    'brace-style': ['error', 'stroustrup'],
-    'global-require': ['off'],
-    'max-len': ['off'],
-    'no-alert': ['off'],
-    'no-console': ['off'],
-    'no-else-return': ['off'],
-    'no-multiple-empty-lines': ['error', {
-        max: 3,
-        maxEOF: 1
-      }
-    ],
-    'no-param-reassign': ['off'],
-    'no-plusplus': ['off'],
-    'no-use-before-define': ['error', {
-        functions: false
-      }
-    ],
-    'prefer-destructuring': ['off'],
-
-    'jest/consistent-test-it': ['error', {
-        fn: 'it',
-        withinDescribe: 'it'
-      }
-    ],
-
-    'vue/attributes-order': 'never',
-    'vue/max-attributes-per-line': 'never',
-
-    'indent': 'off',
-    'vue/script-indent': ['error', 2, {
-        baseIndent: 1
-      }
-    ]
+    "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
+    "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off"
   },
-
-  root: true
+  overrides: [
+    {
+      files: [
+        "**/__tests__/*.{j,t}s?(x)",
+        "**/tests/unit/**/*.spec.{j,t}s?(x)"
+      ],
+      env: {
+        jest: true
+      }
+    }
+  ]
 };
