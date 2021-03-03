@@ -1,33 +1,10 @@
-import globals from '@/globals';
-import layout from '@/components/layout.vue';
-import router from '@/router';
-import Vue from 'vue';
+import { createApp } from "vue";
+import app from "@/components/app.vue";
+// import globals from '@/globals';
+import router from "@/router";
+import store from "@/store";
 
-
-
-// global vue configurations:
-
-Vue.config.productionTip = false;
-
-
-
-// initialize global vue plugins, components, directives, filters, and mixins:
-
-globals.initialize();
-
-
-
-// confgiure vue instance and router:
-
-const app = new Vue({
-  router,
-  render(createElement) {
-    return createElement(layout);
-  }
-});
-
-app.$mount('#app');
-
-
-
-export default app;
+createApp(app)
+  .use(store)
+  .use(router)
+  .mount("#app");
