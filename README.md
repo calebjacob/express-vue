@@ -1,6 +1,6 @@
 # Express Vue
 
-A simple, Node starter project built with [Express](https://expressjs.com/) and [Vue](https://vuejs.org/), which is integrated with [Vue CLI](https://github.com/vuejs/vue-cli).
+A simple, Node starter project built with [Express](https://expressjs.com/), [Vue 3](https://vuejs.org/), [Vuex](https://vuex.vuejs.org/), [Vue CLI](https://github.com/vuejs/vue-cli), and [Sass (Indented Syntax)](https://sass-lang.com/documentation/syntax#the-indented-syntax).
 
 ## Getting Started
 

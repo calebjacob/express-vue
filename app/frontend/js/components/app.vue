@@ -5,5 +5,5 @@
 
 
 <style lang="sass">
-@import '../../styles/main'
+  @import '../../styles/main'
 </style>

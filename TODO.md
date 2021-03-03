@@ -1,13 +1,13 @@
 # TODO
 
 - [X] Implement basic SASS styles and atomic folder structure. Use native CSS variables.
+- [X] Implement some global components and sort out `js/globals.js`
+- [] npm run lint doesn't seem to actually lint? When you commit, the linter is catching more errors
 - [] Add basic services like axios, error handling, logging, etc
-- [] Implement some global components and sort out `js/globals.js`
-  - Add plugins like `vue-meta` and some type of form validation
 - [] Implement a `js/modules` folder with an example of using composition API
 - [] Add basic vuex store pattern for handling loading/errors
 - [] Refactor/simplify any BE code
-- [] Write updated tests for all BE/FE and reformat test layout (deps first)
+- [] Write updated tests for all BE/FE and reformat test layout (deps first) (do we still need __mocks__ folders?)
 - [] Leverage vue cli hot reload and proxy for local dev.
 - [] Make sure all NPM `script` commands are defined for build process.
 - [] Update README with new commands and flows
