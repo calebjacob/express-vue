@@ -11,6 +11,7 @@
 - [] Leverage vue cli hot reload and proxy for local dev.
 - [] Make sure all NPM `script` commands are defined for build process.
 - [] Update README with new commands and flows
+- [] Sort out `.eslintrc.js` file - why is prettier behaving weird?
 - [] Figure out what this means in `.eslintrc.js` - does it need to be updated?
     ```overrides: [
       {
