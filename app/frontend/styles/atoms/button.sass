@@ -1,0 +1,33 @@
+.button
+  display: block
+  width: 100%
+  position: relative
+  height: var(--input-height)
+  padding: 0 var(--spacing-double)
+  margin: 0 0 var(--spacing)
+  border: none
+  border-radius: 100rem
+  cursor: pointer
+  font-size: var(--font-size-body-1)
+  line-height: var(--input-height)
+  font-weight: 700
+  white-space: nowrap
+  text-align: center
+  color: var(--color-button-text)
+  background-color: var(--color-brand-primary)
+  user-select: none
+  transition: all 150ms
+  flex-shrink: 0
+
+  &:hover,
+  &:active
+    background-color: var(--color-dark)
+
+  &:focus:not([tabindex="-1"])
+    box-shadow: var(--focus-glow)
+
+  &[disabled]
+    background-color: var(--color-gray) !important
+    color: var(--color-light) !important
+    pointer-events: none !important
+    border: none !important

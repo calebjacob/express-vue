@@ -1,8 +1,9 @@
+const config = require('./app/backend/config');
 const path = require('path');
 
 module.exports = {
   devServer: {
-    proxy: 'http://localhost:1234'
+    proxy: `http://localhost:${config.port}`
   },
 
   chainWebpack: config => {
@@ -26,5 +27,7 @@ module.exports = {
     }
   },
 
-  outputDir: 'app/public/dist'
+  outputDir: 'app/public/dist',
+
+  lintOnSave: false
 };

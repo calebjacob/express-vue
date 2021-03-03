@@ -7,12 +7,17 @@
     "url": "https://github.com/iamceege/express-vue"
   },
   "scripts": {
-    "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
     "nodemon": "nodemon --ext js,swig,json --ignore app/frontend/js/ --ignore app/dist/ app/backend/index.js",
-    "start:backend": "npm run nodemon"
+    "production": "npm run build && NODE_ENV='production' node app/backend/index.js",
+    "start:backend": "npm run nodemon",
+    "start:frontend": "vue-cli-service serve",
+    "test": "npm run test:backend && npm run test:frontend",
+    "test:backend": "vue-cli-service test:unit --projects ./jest.backend.config.js",
+    "test:backend:watch": "vue-cli-service test:unit --watch --projects ./jest.backend.config.js",
+    "test:frontend": "vue-cli-service test:unit --projects ./jest.frontend.config.js",
+    "test:frontend:watch": "vue-cli-service test:unit --watch --projects ./jest.frontend.config.js"
   },
   "dependencies": {
     "app-root-path": "^3.0.0",

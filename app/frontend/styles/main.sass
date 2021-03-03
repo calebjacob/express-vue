@@ -1,8 +1,23 @@
-@import 'globals/variables'
-@import 'globals/functions'
-@import 'globals/animations'
-@import 'globals/reset'
-@import 'globals/defaults'
+// Globals:
 
-@import 'atoms/*'
-@import 'molecules/*'
+@use 'globals/variables'
+@use 'globals/animations'
+@use 'globals/reset'
+@use 'globals/defaults'
+
+
+
+// Atoms:
+
+@use 'atoms/button'
+@use 'atoms/link'
+@use 'atoms/loader'
+@use 'atoms/title'
+@use 'atoms/utils'
+
+
+
+// Molecules:
+
+@use 'molecules/container'
+@use 'molecules/layout'
