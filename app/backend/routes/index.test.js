@@ -2,16 +2,12 @@
 
 const routes = require('./index');
 
-
-
 // dependencies:
 
 const express = require('express');
 const api = require('./api');
 const middleware = require('./middleware');
 const pages = require('./pages');
-
-
 
 // mocks:
 
@@ -38,8 +34,6 @@ jest.mock('./pages', () => {
 });
 
 const app = express();
-
-
 
 // tests:
 

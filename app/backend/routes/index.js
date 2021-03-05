@@ -3,8 +3,6 @@ const api = require('./api');
 const middleware = require('./middleware');
 const pages = require('./pages');
 
-
-
 function routes(app) {
   const routers = {
     public: express.Router()
@@ -16,7 +14,5 @@ function routes(app) {
 
   app.use('/', routers.public);
 }
-
-
 
 module.exports = routes;

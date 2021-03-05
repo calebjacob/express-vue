@@ -2,13 +2,9 @@
 
 const middleware = require('./index');
 
-
-
 // dependencies:
 
 const example = require('./example');
-
-
 
 // mocks:
 
@@ -17,8 +13,6 @@ const routers = {
     use: jest.fn()
   }
 };
-
-
 
 // tests:
 

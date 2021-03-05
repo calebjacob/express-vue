@@ -2,15 +2,11 @@
 
 const example = require('./example');
 
-
-
 // mocks:
 
 const next = jest.fn();
 let req;
 let res;
-
-
 
 // tests:
 

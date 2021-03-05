@@ -3,32 +3,26 @@ module.exports = {
   env: {
     node: true
   },
-  // extends: ['plugin:vue/vue3-essential', 'eslint:recommended', '@vue/prettier'],
-  extends: ['plugin:vue/vue3-essential', 'eslint:recommended'],
+  extends: ['plugin:vue/vue3-essential', 'eslint:recommended', '@vue/prettier'],
+  globals: {
+    appRoot: true,
+    nodeMocksHttp: true
+  },
   parserOptions: {
     parser: 'babel-eslint'
   },
   rules: {
-    // 'prettier/prettier': ['error', { singleQuote: true }],
-    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'prettier/prettier': ['error', { singleQuote: true, vueIndentScriptAndStyle: true }],
+    'no-console': 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'vue/script-indent': [
-      'error',
-      2,
-      {
-        baseIndent: 1
-      }
-    ]
+    'vue/script-indent': 'off'
   },
-  // overrides: [
-  //   {
-  //     files: [
-  //       '**/__tests__/*.{j,t}s?(x)',
-  //       '**/tests/unit/**/*.spec.{j,t}s?(x)'
-  //     ],
-  //     env: {
-  //       jest: true
-  //     }
-  //   }
-  // ]
+  overrides: [
+    {
+      files: ['**/*.test.{j,t}s?(x)'],
+      env: {
+        jest: true
+      }
+    }
+  ]
 };

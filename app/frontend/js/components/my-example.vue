@@ -2,8 +2,6 @@
   <p>This is an example component! Here's some text: {{ someText }}</p>
 </template>
 
-
-
 <script>
   export default {
     name: 'MyExample',
@@ -14,5 +12,5 @@
         required: true
       }
     }
-  }
+  };
 </script>

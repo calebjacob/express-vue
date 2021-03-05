@@ -2,13 +2,9 @@
 
 const pages = require('./index');
 
-
-
 // dependencies:
 
 const vue = require('./vue');
-
-
 
 // mocks:
 
@@ -17,8 +13,6 @@ const routers = {
     get: jest.fn()
   }
 };
-
-
 
 // tests:
 

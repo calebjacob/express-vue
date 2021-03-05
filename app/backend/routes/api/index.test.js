@@ -2,13 +2,9 @@
 
 const api = require('./index');
 
-
-
 // dependencies:
 
 const example = require('./example');
-
-
 
 // mocks:
 
@@ -18,8 +14,6 @@ const routers = {
     post: jest.fn()
   }
 };
-
-
 
 // tests:
 
@@ -31,10 +25,16 @@ describe('api', () => {
   });
 
   it('example.get() is configured', () => {
-    expect(routers.public.get).toHaveBeenCalledWith('/api/example', example.get);
+    expect(routers.public.get).toHaveBeenCalledWith(
+      '/api/example',
+      example.get
+    );
   });
 
   it('example.post() is configured', () => {
-    expect(routers.public.post).toHaveBeenCalledWith('/api/example', example.post);
+    expect(routers.public.post).toHaveBeenCalledWith(
+      '/api/example',
+      example.post
+    );
   });
 });

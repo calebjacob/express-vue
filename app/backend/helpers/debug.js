@@ -7,6 +7,4 @@ function debug(error, req, res, next) {
   next(error);
 }
 
-
-
 module.exports = debug;

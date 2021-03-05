@@ -5,8 +5,6 @@ function returnNewConfig() {
   return require('./config');
 }
 
-
-
 // tests:
 
 describe('config', () => {
@@ -50,4 +48,3 @@ describe('config', () => {
     });
   });
 });
-

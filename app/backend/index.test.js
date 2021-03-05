@@ -2,8 +2,6 @@
 
 const app = require('./index');
 
-
-
 // dependencies:
 
 const bodyParser = require('body-parser');
@@ -13,8 +11,6 @@ const express = require('express');
 const config = require('./config');
 const debug = require('./helpers/debug');
 const routes = require('./routes');
-
-
 
 // mocks:
 
@@ -35,8 +31,6 @@ jest.mock('./routes', () => {
 jest.mock('./helpers/debug', () => {
   return 'debug middleware';
 });
-
-
 
 // tests:
 
@@ -65,8 +59,12 @@ describe('app', () => {
     expect(express.static).toHaveBeenCalledWith(`${appRoot}/app/public`);
     expect(express.static).toHaveBeenCalledWith(`${appRoot}/app/public/dist`);
 
-    expect(app.use).toHaveBeenCalledWith(`express static - ${appRoot}/app/public`);
-    expect(app.use).toHaveBeenCalledWith(`express static - ${appRoot}/app/public/dist`);
+    expect(app.use).toHaveBeenCalledWith(
+      `express static - ${appRoot}/app/public`
+    );
+    expect(app.use).toHaveBeenCalledWith(
+      `express static - ${appRoot}/app/public/dist`
+    );
   });
 
   it('initializes all routes with express app', () => {

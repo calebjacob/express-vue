@@ -7,15 +7,11 @@ function get(req, res) {
   });
 }
 
-
-
 function post(req, res) {
   res.json({
     id: 1
   });
 }
-
-
 
 module.exports = {
   get,

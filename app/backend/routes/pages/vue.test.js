@@ -2,14 +2,10 @@
 
 const vue = require('./vue');
 
-
-
 // mocks:
 
 let req;
 let res;
-
-
 
 // tests:
 
@@ -26,7 +22,9 @@ describe('page - vue', () => {
     });
 
     it('renders base Vue HTML file', () => {
-      expect(res.sendFile).toHaveBeenCalledWith(`${appRoot}/app/public/dist/index.html`);
+      expect(res.sendFile).toHaveBeenCalledWith(
+        `${appRoot}/app/public/dist/index.html`
+      );
     });
   });
 });

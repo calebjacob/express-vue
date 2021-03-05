@@ -15,8 +15,9 @@ const environmentSpecificConfig = {
   }
 };
 
-const config = Object.assign(globalConfig, environmentSpecificConfig[environment]);
-
-
+const config = Object.assign(
+  globalConfig,
+  environmentSpecificConfig[environment]
+);
 
 module.exports = config;

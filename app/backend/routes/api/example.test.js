@@ -2,14 +2,10 @@
 
 const example = require('./example');
 
-
-
 // mocks:
 
 let req;
 let res;
-
-
 
 // tests:
 
