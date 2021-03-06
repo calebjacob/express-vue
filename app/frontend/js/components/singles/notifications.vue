@@ -11,7 +11,9 @@
         v-for="notification in notifications"
         :key="notification.id"
       >
-        <p>{{ notification.message }}</p>
+        <div class="notifications__content">
+          <p>{{ notification.message }}</p>
+        </div>
       </div>
     </div>
   </div>
@@ -21,7 +23,7 @@
   import useNotifications from '@/composables/notifications';
 
   export default {
-    name: 'TheNotifications',
+    name: 'Notifications',
 
     setup() {
       const { notifications } = useNotifications();

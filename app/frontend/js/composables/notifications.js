@@ -17,9 +17,7 @@ export default function useNotifications() {
     };
 
     notifications.value.push(notification);
-
     await timer(5000);
-
     hideNotification(notification);
   }
 

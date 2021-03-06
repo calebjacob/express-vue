@@ -20,17 +20,52 @@
               name: 'another'
             }"
           >
-            Button One
+            View a Page
           </router-link>
+        </div>
+      </section>
 
-          <router-link
-            class="button button--auto-width button--secondary"
-            :to="{
-              name: 'another'
-            }"
+      <section class="section center">
+        <h3 class="title title--3">Notifications</h3>
+
+        <div class="layout layout--horizontal layout--justify-center">
+          <button
+            class="link success"
+            type="button"
+            @click="
+              showNotification({
+                type: 'success',
+                message: 'This was great!'
+              })
+            "
           >
-            Button Two
-          </router-link>
+            Success
+          </button>
+
+          <button
+            class="link danger"
+            type="button"
+            @click="
+              showNotification({
+                type: 'error',
+                message: 'Oops! That was not so great.'
+              })
+            "
+          >
+            Error
+          </button>
+
+          <button
+            class="link"
+            type="button"
+            @click="
+              showNotification({
+                message: 'This is very regular.'
+              })
+            "
+          >
+            Regular
+          </button>
         </div>
       </section>
     </div>
@@ -38,7 +73,17 @@
 </template>
 
 <script>
+  import useNotifications from '@/composables/notifications';
+
   export default {
-    name: 'HomePage'
+    name: 'HomePage',
+
+    setup() {
+      const { showNotification } = useNotifications();
+
+      return {
+        showNotification
+      };
+    }
   };
 </script>

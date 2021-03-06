@@ -7,3 +7,24 @@
 
 .notifications__wrapper
   padding: var(--spacing)
+  text-align: right
+
+
+
+.notifications__notification
+  margin: 0 0 var(--spacing)
+
+
+
+.notifications__content
+  display: inline-block
+  padding: var(--spacing) var(--spacing) 0
+  border-radius: 6px
+  background: var(--color-10-contrast)
+  color: var(--color-100-contrast)
+
+  .notifications__notification--error &
+    background: var(--color-danger)
+
+  .notifications__notification--success &
+    background: var(--color-success)
