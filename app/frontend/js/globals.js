@@ -1,4 +1,4 @@
-import myExampleComponent from '@/components/my-example.vue';
+import myExampleComponent from '@/components/globals/my-example.vue';
 import router from '@/router';
 import store from '@/store';
 
