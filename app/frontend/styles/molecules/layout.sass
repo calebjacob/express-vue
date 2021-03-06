@@ -1,24 +1,19 @@
 .layout
+  --layout-spacing: var(--spacing)
   display: flex
   flex-wrap: wrap
   position: relative
 
-.layout--align-end
-  align-items: flex-end
-
-.layout--align-start
-  align-items: flex-start
+.layout--double-spacing
+  --layout-spacing: var(--spacing-double)
 
 .layout--horizontal
   justify-content: space-between
   align-items: center
   flex-wrap: nowrap
 
-  .button--auto-width
-    flex-shrink: 0
-
   > *:not(:last-child)
-    margin-right: var(--spacing)
+    margin-right: var(--layout-spacing)
 
 .layout--horizontal-equal
   > *
@@ -26,9 +21,31 @@
     width: auto
     min-width: 0
 
-.layout--horizontal-extra-space
+.layout--icon
+  justify-content: flex-start
+  align-items: center
+  flex-wrap: nowrap
+  margin: 0 0 var(--spacing)
+
+  .icon
+    flex-grow: unset
+    min-width: 1.5rem
+    text-align: center
+
+  *
+    margin: 0
+
+  > *
+    flex-grow: 1
+
   > *:not(:last-child)
-    margin-right: var(--spacing-double)
+    margin-right: var(--spacing-half)
+
+.layout--align-end
+  align-items: flex-end
+
+.layout--align-start
+  align-items: flex-start
 
 .layout--inline
   display: inline-flex
@@ -65,3 +82,13 @@
 
 .layout__grow
   flex-grow: 100
+
+
+
+@media (max-width: 600px)
+  .layout--stack-600
+    flex-direction: column
+
+    > *
+      margin-bottom: var(--spacing)
+      margin-right: 0

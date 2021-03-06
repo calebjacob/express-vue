@@ -2,10 +2,13 @@
   position: fixed
   top: 0
   right: 0
+  left: 0
+  z-index: 1000
 
 
 
 .notifications__wrapper
+  width: 100%
   padding: var(--spacing)
   text-align: right
 
@@ -20,11 +23,19 @@
   display: inline-block
   padding: var(--spacing) var(--spacing) 0
   border-radius: 6px
-  background: var(--color-10-contrast)
+  background: var(--color-brand-primary)
   color: var(--color-100-contrast)
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5)
+  text-align: left
+
+  p
+    color: var(--color-100-contrast)
 
   .notifications__notification--error &
     background: var(--color-danger)
 
   .notifications__notification--success &
     background: var(--color-success)
+
+  @media (max-width: 600px)
+    width: 100%

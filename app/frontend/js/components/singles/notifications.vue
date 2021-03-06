@@ -1,20 +1,34 @@
 <template>
   <div class="notifications">
     <div class="notifications__wrapper">
-      <div
-        class="notifications__notification"
-        :class="{
-          'notifications__notification--error': notification.type === 'error',
-          'notifications__notification--success':
-            notification.type === 'success'
-        }"
-        v-for="notification in notifications"
-        :key="notification.id"
-      >
-        <div class="notifications__content">
-          <p>{{ notification.message }}</p>
+      <transition-group name="notification">
+        <div
+          class="notifications__notification"
+          :class="{
+            'notifications__notification--error': notification.type === 'error',
+            'notifications__notification--success':
+              notification.type === 'success'
+          }"
+          v-for="notification in notifications"
+          :key="notification.id"
+          @click="hideNotification(notification)"
+          @touchstart="hideNotification(notification)"
+        >
+          <div class="notifications__content">
+            <div class="layout layout--icon">
+              <span
+                class="icon fa"
+                :class="{
+                  'fa-exclamation-circle': notification.type === 'error',
+                  'fa-info-circle': notification.type === 'general',
+                  'fa-check-circle': notification.type === 'success'
+                }"
+              ></span>
+              <p>{{ notification.message }}</p>
+            </div>
+          </div>
         </div>
-      </div>
+      </transition-group>
     </div>
   </div>
 </template>
@@ -26,9 +40,10 @@
     name: 'Notifications',
 
     setup() {
-      const { notifications } = useNotifications();
+      const { hideNotification, notifications } = useNotifications();
 
       return {
+        hideNotification,
         notifications
       };
     }

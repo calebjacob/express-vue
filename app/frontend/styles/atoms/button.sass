@@ -41,5 +41,22 @@
   display: inline-block
   width: unset
 
+.button--loading
+  color: rgba(0, 0, 0, 0) !important
+  pointer-events: none
+  -webkit-appearance: none !important
+
+  .icon
+    color: rgba(0, 0, 0, 0) !important
+
+  &:before
+    @include loader(1rem)
+    position: absolute
+    top: 50%
+    left: 0
+    right: 0
+    margin: -0.5rem auto 0
+    border-color: transparent var(--color-button-text) var(--color-button-text)
+
 .button--secondary
   --color-button-background-color: var(--color-brand-secondary-rgb)

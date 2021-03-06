@@ -9,8 +9,8 @@
   "scripts": {
     "build": "vue-cli-service build",
     "lint": "npm run lint:backend && npm run lint:frontend",
-    "lint:backend": "vue-cli-service lint --ext .js ./app/backend/** --fix",
-    "lint:frontend": "vue-cli-service lint --ext .js,.vue ./app/frontend/js/** --fix",
+    "lint:backend": "vue-cli-service lint --ext .js ./app/backend/ --fix",
+    "lint:frontend": "vue-cli-service lint --ext .js,.vue ./app/frontend/js/ --fix",
     "nodemon": "nodemon --ext js,swig,json --ignore app/frontend/js/ --ignore app/dist/ app/backend/index.js",
     "production": "npm run build && NODE_ENV='production' node app/backend/index.js",
     "start:backend": "npm run nodemon",
@@ -32,8 +32,7 @@
     "node-mocks-http": "^1.10.1",
     "nodemon": "^2.0.7",
     "vue": "^3.0.0",
-    "vue-router": "^4.0.0-0",
-    "vuex": "^4.0.0-0"
+    "vue-router": "^4.0.0-0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

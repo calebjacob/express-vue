@@ -13,15 +13,16 @@ export default function useNotifications() {
     const notification = {
       id: Date.now(),
       message: options.message,
-      type: options.type
+      type: options.type || 'general'
     };
 
     notifications.value.unshift(notification);
-    await timer(5000);
+    await timer(4000);
     hideNotification(notification);
   }
 
   return {
+    hideNotification,
     notifications,
     showNotification
   };

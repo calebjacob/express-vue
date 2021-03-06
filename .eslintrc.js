@@ -15,6 +15,7 @@ module.exports = {
     'prettier/prettier': ['error', { singleQuote: true, vueIndentScriptAndStyle: true }],
     'no-console': 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-useless-catch': 'off',
     'vue/script-indent': 'off'
   },
   overrides: [
