@@ -16,7 +16,7 @@ export default function useNotifications() {
       type: options.type
     };
 
-    notifications.value.push(notification);
+    notifications.value.unshift(notification);
     await timer(5000);
     hideNotification(notification);
   }

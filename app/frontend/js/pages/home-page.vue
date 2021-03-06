@@ -11,6 +11,8 @@
       </section>
 
       <section class="section center">
+        <h3 class="title title--3">Here's Some Stuff</h3>
+
         <my-example some-text="hot dog" />
 
         <div class="layout layout--horizontal layout--justify-center">
