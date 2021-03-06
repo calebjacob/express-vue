@@ -1,20 +1,24 @@
-// subject:
-
-const app = require('./index');
-
 // dependencies:
 
 const bodyParser = require('body-parser');
 const compression = require('compression');
-const express = require('express');
-
 const config = require('./config');
-const debug = require('./helpers/debug');
+const debug = require('./routes/middleware/debug');
+const express = require('express');
 const routes = require('./routes');
 
 // mocks:
 
-jest.mock('body-parser');
+jest.mock('body-parser', () => {
+  return {
+    json: jest.fn(() => {
+      return 'bodyParser.json()';
+    }),
+    urlencoded: jest.fn(() => {
+      return 'bodyParser.urlencoded()';
+    })
+  };
+});
 jest.mock('compression');
 jest.mock('express');
 
@@ -28,9 +32,13 @@ jest.mock('./routes', () => {
   return jest.fn();
 });
 
-jest.mock('./helpers/debug', () => {
+jest.mock('./routes/middleware/debug', () => {
   return 'debug middleware';
 });
+
+// subject:
+
+const app = require('./index');
 
 // tests:
 

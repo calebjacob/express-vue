@@ -78,7 +78,9 @@
       <section class="section">
         <h3 class="title title--3">Here's Some Actions</h3>
 
-        <div class="layout layout--horizontal layout--justify-start">
+        <div
+          class="layout layout--horizontal layout--justify-start layout--wrap"
+        >
           <button
             class="button button--auto-width"
             :class="{
@@ -87,7 +89,7 @@
             type="button"
             @click="load"
           >
-            Load Good Data
+            Load Data
           </button>
 
           <button
@@ -100,7 +102,13 @@
         </div>
 
         <p v-if="exampleData.someData">
-          Here's some loaded data: {{ exampleData.someData }}
+          Here's some loaded data.
+          <br />
+          Thing: {{ exampleData.someData.thing }}
+          <br />
+          Color: {{ exampleData.someData.color }}
+          <br />
+          Miles: {{ exampleData.someData.miles }}
         </p>
       </section>
     </div>

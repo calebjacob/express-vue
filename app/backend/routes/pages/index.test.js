@@ -1,7 +1,3 @@
-// subject:
-
-const pages = require('./index');
-
 // dependencies:
 
 const vue = require('./vue');
@@ -13,6 +9,10 @@ const routers = {
     get: jest.fn()
   }
 };
+
+// subject:
+
+const pages = require('./index');
 
 // tests:
 

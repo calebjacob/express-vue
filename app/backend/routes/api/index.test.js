@@ -1,7 +1,3 @@
-// subject:
-
-const api = require('./index');
-
 // dependencies:
 
 const example = require('./example');
@@ -14,6 +10,10 @@ const routers = {
     post: jest.fn()
   }
 };
+
+// subject:
+
+const api = require('./index');
 
 // tests:
 

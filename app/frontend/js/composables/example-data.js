@@ -9,10 +9,8 @@ export default function useExampleData() {
   async function loadExampleData() {
     try {
       state.someDataIsLoading = true;
-      const response = await http.get(
-        'https://jsonplaceholder.typicode.com/todos/1'
-      );
-      state.someData = response.data.title;
+      const response = await http.get('/api/example');
+      state.someData = response.data;
     } catch (error) {
       throw error;
     } finally {

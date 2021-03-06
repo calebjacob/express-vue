@@ -1,7 +1,3 @@
-// subject:
-
-const middleware = require('./index');
-
 // dependencies:
 
 const example = require('./example');
@@ -13,6 +9,10 @@ const routers = {
     use: jest.fn()
   }
 };
+
+// subject:
+
+const middleware = require('./index');
 
 // tests:
 

@@ -1,12 +1,12 @@
-// subject:
-
-const example = require('./example');
-
 // mocks:
 
 const next = jest.fn();
 let req;
 let res;
+
+// subject:
+
+const example = require('./example');
 
 // tests:
 

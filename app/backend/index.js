@@ -1,13 +1,12 @@
 // Require all dependencies:
 
 const appRoot = require('app-root-path');
-const express = require('express');
-const compression = require('compression');
 const bodyParser = require('body-parser');
-
+const compression = require('compression');
 const config = require('./config');
+const debug = require('./routes/middleware/debug');
+const express = require('express');
 const routes = require('./routes');
-const debug = require('./helpers/debug');
 
 // Create express app instance:
 

@@ -1,7 +1,3 @@
-// subject:
-
-const debug = require('./debug');
-
 // mocks:
 
 const error = new Error('Something exploded!');
@@ -12,6 +8,10 @@ let res;
 global.console = {
   dir: jest.fn()
 };
+
+// subject:
+
+const debug = require('./debug');
 
 // tests:
 

@@ -1,11 +1,11 @@
-// subject:
-
-const vue = require('./vue');
-
 // mocks:
 
 let req;
 let res;
+
+// subject:
+
+const vue = require('./vue');
 
 // tests:
 
