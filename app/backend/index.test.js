@@ -1,12 +1,3 @@
-// dependencies:
-
-const bodyParser = require('body-parser');
-const compression = require('compression');
-const config = require('./config');
-const debug = require('./routes/middleware/debug');
-const express = require('express');
-const routes = require('./routes');
-
 // mocks:
 
 jest.mock('body-parser', () => {
@@ -35,6 +26,15 @@ jest.mock('./routes', () => {
 jest.mock('./routes/middleware/debug', () => {
   return 'debug middleware';
 });
+
+// dependencies:
+
+const bodyParser = require('body-parser');
+const compression = require('compression');
+const config = require('./config');
+const debug = require('./routes/middleware/debug');
+const express = require('express');
+const routes = require('./routes');
 
 // subject:
 

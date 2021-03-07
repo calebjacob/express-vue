@@ -1,24 +1,25 @@
 module.exports = {
   displayName: 'frontend',
 
+  preset: '@vue/cli-plugin-unit-jest',
+
   moduleFileExtensions: ['js', 'jsx', 'json', 'vue'],
 
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/app/frontend/js/$1'
   },
 
-  snapshotSerializers: ['jest-serializer-vue'],
-
-  testEnvironment: 'jsdom',
-
   testMatch: ['<rootDir>/app/frontend/js/**/*.test.js'],
 
   transform: {
     '^.+\\.vue$': 'vue-jest',
-    '.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
+    '.+\\.(css|styl|less|sass|scss|png|svg|jpg|ttf|woff|woff2)$':
       'jest-transform-stub',
     '^.+\\.jsx?$': 'babel-jest'
   },
+
+  verbose: false,
+  silent: false,
 
   watchPathIgnorePatterns: ['<rootDir>/app/backend/']
 };

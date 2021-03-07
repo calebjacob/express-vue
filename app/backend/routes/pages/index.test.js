@@ -1,7 +1,3 @@
-// dependencies:
-
-const vue = require('./vue');
-
 // mocks:
 
 const routers = {
@@ -9,6 +5,10 @@ const routers = {
     get: jest.fn()
   }
 };
+
+// dependencies:
+
+const vue = require('./vue');
 
 // subject:
 

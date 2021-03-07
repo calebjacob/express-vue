@@ -1,7 +1,3 @@
-// dependencies:
-
-const example = require('./example');
-
 // mocks:
 
 const routers = {
@@ -9,6 +5,10 @@ const routers = {
     use: jest.fn()
   }
 };
+
+// dependencies:
+
+const example = require('./example');
 
 // subject:
 

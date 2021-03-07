@@ -1,6 +1,4 @@
 import useNotifications from '@/composables/notifications';
-import { ref } from 'vue';
-const errors = ref([]);
 
 export default function useErrors() {
   const { showNotification } = useNotifications();
@@ -17,8 +15,12 @@ export default function useErrors() {
     });
   }
 
+  function handleErrorQuietly(error) {
+    console.error(error);
+  }
+
   return {
-    errors,
-    handleError
+    handleError,
+    handleErrorQuietly
   };
 }

@@ -19,6 +19,7 @@
     "test:backend": "vue-cli-service test:unit --projects ./jest.backend.config.js",
     "test:backend:watch": "vue-cli-service test:unit --watch --projects ./jest.backend.config.js",
     "test:frontend": "vue-cli-service test:unit --projects ./jest.frontend.config.js",
+    "test:frontend:debug": "node --inspect-brk node_modules/.bin/jest --runInBand --projects ./jest.frontend.config.js",
     "test:frontend:watch": "vue-cli-service test:unit --watch --projects ./jest.frontend.config.js"
   },
   "dependencies": {
