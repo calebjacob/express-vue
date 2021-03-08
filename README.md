@@ -2,7 +2,7 @@
 
 A simple, Node starter project built with [Express](https://expressjs.com/), [Vue 3](https://vuejs.org/), [Vue CLI](https://github.com/vuejs/vue-cli), and [Sass (Indented Syntax)](https://sass-lang.com/documentation/syntax#the-indented-syntax).
 
-*NOTE: Vuex is purposefully not included in this starter project. Vue 3's Composition API allows for a much simpler approach to global state management going forward. However, much larger projects might still benefit from Vuex. Also, keep an eye out for Vuex 5 - it will introduce big changes for Vuex according to [this article](https://www.smashingmagazine.com/2020/12/vuex-library/).*
+*NOTE: Vuex is purposefully not included in this starter project. Vue 3's Composition API allows for a much simpler approach to global state management going forward. However, much larger projects might still benefit from Vuex. Also, keep an eye out for Vuex 5 - it will introduce big changes for Vuex according to [this RFC](https://github.com/kiaking/rfcs/blob/vuex-5/active-rfcs/0000-vuex-5.md).*
 
 ## Getting Started
 
