@@ -21,25 +21,25 @@ jest.mock('@/globals', () => {
 // dependencies:
 
 import { createApp } from 'vue';
-import app from '@/components/app.vue';
+import App from '@/components/app.vue';
 import globals from '@/globals';
 
 // subject:
 
-import vue from './index.js';
+import vm from './index.js';
 
 // tests:
 
-describe('vue', () => {
-  it('creates a vue app instance', () => {
-    expect(createApp).toHaveBeenCalledWith(app);
+describe('index', () => {
+  it('creates a vue instance with the primary App component', () => {
+    expect(createApp).toHaveBeenCalledWith(App);
   });
 
   it('globals are initialized with vue instance', () => {
-    expect(globals.initialize).toHaveBeenCalledWith(vue);
+    expect(globals.initialize).toHaveBeenCalledWith(vm);
   });
 
   it('mounts the app', () => {
-    expect(vue.mount).toHaveBeenCalledWith('#app');
+    expect(vm.mount).toHaveBeenCalledWith('#app');
   });
 });

@@ -1,9 +1,9 @@
 import { createApp } from 'vue';
-import app from '@/components/app.vue';
+import App from '@/components/app.vue';
 import globals from '@/globals';
 
-const vue = createApp(app);
-globals.initialize(vue);
-vue.mount('#app');
+const vm = createApp(App);
+globals.initialize(vm);
+vm.mount('#app');
 
-export default vue;
+export default vm;

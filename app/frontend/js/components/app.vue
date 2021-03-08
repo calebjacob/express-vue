@@ -11,17 +11,17 @@
 </template>
 
 <script>
-  import mainFooterComponent from '@/components/singles/main-footer';
-  import mainHeaderComponent from '@/components/singles/main-header';
-  import notificationsComponent from '@/components/singles/notifications';
+  import MainFooter from '@/components/singles/main-footer';
+  import MainHeader from '@/components/singles/main-header';
+  import Notifications from '@/components/singles/notifications';
 
   export default {
     name: 'App',
 
     components: {
-      mainFooter: mainFooterComponent,
-      mainHeader: mainHeaderComponent,
-      notifications: notificationsComponent
+      MainFooter,
+      MainHeader,
+      Notifications
     }
   };
 </script>

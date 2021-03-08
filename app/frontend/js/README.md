@@ -26,7 +26,7 @@ A component shared throughout the app and can have multiple instances at any one
 
 #### Pages (js/components/pages)
 
-A component used as a router/view component, it belongs in this folder (home page, product page, etc).
+A component used as a router/view component (home page, product page, etc). All components should use the `-page` file postfix and `Page` component name postfix to avoid naming collisions with non-page components. For example: `pages/home-page.js > HomePage`.
 
 #### Singles (js/components/singles)
 

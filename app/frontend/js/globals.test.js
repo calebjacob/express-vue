@@ -8,14 +8,14 @@ jest.mock('@/router', () => {
   return 'router instance';
 });
 
-const vue = {
+const vm = {
   component: jest.fn(),
   use: jest.fn()
 };
 
 // dependencies:
 
-import myExampleComponent from '@/components/globals/my-example.vue';
+import MyExample from '@/components/globals/my-example.vue';
 import router from '@/router';
 
 // subject:
@@ -31,25 +31,22 @@ describe('globals', () => {
 
   describe('initialize()', () => {
     beforeEach(() => {
-      globals.initialize(vue);
+      globals.initialize(vm);
     });
 
     describe('plugins()', () => {
       it('configures the router', () => {
-        expect(vue.use).toHaveBeenCalledWith(router);
+        expect(vm.use).toHaveBeenCalledWith(router);
       });
     });
 
     describe('components()', () => {
       it('registers the correct amount of components', () => {
-        expect(vue.component).toHaveBeenCalledTimes(1);
+        expect(vm.component).toHaveBeenCalledTimes(1);
       });
 
-      it('registers the myExample component', () => {
-        expect(vue.component).toHaveBeenCalledWith(
-          'myExample',
-          myExampleComponent
-        );
+      it('registers the MyExample component', () => {
+        expect(vm.component).toHaveBeenCalledWith('MyExample', MyExample);
       });
     });
   });

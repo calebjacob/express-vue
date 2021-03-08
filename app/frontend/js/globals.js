@@ -1,18 +1,18 @@
-import myExampleComponent from '@/components/globals/my-example.vue';
+import MyExample from '@/components/globals/my-example.vue';
 import router from '@/router';
 
-function components(vue) {
-  vue.component('myExample', myExampleComponent);
+function components(vm) {
+  vm.component('MyExample', MyExample);
 }
 
-function plugins(vue) {
-  vue.use(router);
+function plugins(vm) {
+  vm.use(router);
 }
 
 const globals = {
-  initialize(vue) {
-    plugins(vue);
-    components(vue);
+  initialize(vm) {
+    plugins(vm);
+    components(vm);
   }
 };
 

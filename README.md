@@ -36,7 +36,9 @@ When running the frontend dev server via Vue CLI, all changes will be hot loaded
 
 ## Testing
 
-The [Jest](https://facebook.github.io/jest/) testing framework is used to unit test all backend & frontend code. To run the backend and frontend test suite once:
+The [Jest](https://facebook.github.io/jest/) testing framework is used to unit test all backend & frontend code. To learn more about writing effective Vue unit tests, please refer to the [Vue Testing Handbook](https://lmiller1990.github.io/vue-testing-handbook/v3/#what-is-this-guide). Also, check out this [YouTube Playlist](https://www.youtube.com/playlist?list=PLC2LZCNWKL9ahK1IoODqYxKu5aA9T5IOA) to get a beginner focused intro to unit testing Vue 3 components.
+
+To run the backend and frontend test suite once:
 
 ```
 npm test
