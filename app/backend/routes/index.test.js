@@ -22,14 +22,14 @@ jest.mock('./pages', () => {
   });
 });
 
-const app = express();
-
 // dependencies:
 
 const express = require('express');
 const api = require('./api');
 const middleware = require('./middleware');
 const pages = require('./pages');
+
+const app = express();
 
 // subject:
 

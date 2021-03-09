@@ -9,7 +9,7 @@ module.exports = {
     '^@/(.*)$': '<rootDir>/app/frontend/js/$1'
   },
 
-  testMatch: ['<rootDir>/app/frontend/js/**/*.test.js'],
+  testMatch: ['<rootDir>/app/frontend/js/**/*.test.{j,t}s?(x)'],
 
   transform: {
     '^.+\\.vue$': 'vue-jest',
