@@ -16,10 +16,16 @@ module.exports = {
     parser: 'babel-eslint'
   },
   rules: {
-    'prettier/prettier': ['error', { singleQuote: true, vueIndentScriptAndStyle: true }],
     'no-console': 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-useless-catch': 'off',
+    'prettier/prettier': ['error', { singleQuote: true, vueIndentScriptAndStyle: true }],
+    'vue/attribute-hyphenation': ['error'],
+    'vue/component-name-in-template-casing': ['error', 'kebab-case', {
+      'registeredComponentsOnly': false,
+      'ignores': []
+    }],
+    'vue/prop-name-casing': ['error', 'camelCase'],
     'vue/script-indent': 'off'
   },
   overrides: [
