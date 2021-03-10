@@ -1,3 +1,15 @@
+@mixin icon($character)
+  -moz-osx-font-smoothing: grayscale
+  -webkit-font-smoothing: antialiased
+  display: block
+  font-style: normal
+  font-variant: normal
+  text-rendering: auto
+  line-height: 1
+  font-family: 'Font Awesome 5 Free'
+  font-weight: 700
+  content: $character
+  
 @mixin loader($size: 2rem)
   content: ''
   display: block

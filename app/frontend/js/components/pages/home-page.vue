@@ -18,7 +18,7 @@
             <my-example some-text="hot dog" />
 
             <router-link
-              class="button button--auto-width"
+              class="button"
               :to="{
                 name: 'another'
               }"
@@ -82,7 +82,7 @@
           class="layout layout--horizontal layout--justify-start layout--wrap"
         >
           <button
-            class="button button--auto-width"
+            class="button"
             :class="{
               'button--loading': exampleData.someDataIsLoading
             }"
@@ -93,7 +93,7 @@
           </button>
 
           <button
-            class="button button--auto-width button--secondary"
+            class="button button--secondary"
             type="button"
             @click="loadWithError"
           >

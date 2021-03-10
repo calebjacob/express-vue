@@ -1,0 +1,133 @@
+.text-input
+  --color-input-border: var(--color-10-contrast)
+  --color-input-background: var(--color-10-contrast)
+  --color-input-text: var(--color-100-contrast)
+  margin: 0 0 var(--spacing)
+  position: relative
+  text-align: left
+
+.text-input--error
+  --color-input-border: var(--color-danger)
+
+
+
+.text-input__input
+  display: block
+  position: relative
+  z-index: 10
+  width: 100%
+  height: var(--input-height-large)
+  margin: 0
+  padding: 1.1rem 0.75rem 0
+  outline: none
+  color: var(--color-input-text)
+  background: var(--color-input-background)
+  border: 1px solid var(--color-input-border)
+  box-shadow: none
+  border-radius: var(--border-radius)
+  cursor: text
+  letter-spacing: 1px
+  -webkit-appearance: none
+
+  &::-webkit-input-placeholder
+    opacity: 0
+    transition: 200ms
+  &:-ms-input-placeholder
+    opacity: 0
+    transition: 200ms
+  &::-moz-placeholder
+    opacity: 0
+    transition: 200ms
+  &:-moz-placeholder
+    opacity: 0
+    transition: 200ms
+
+  &:focus
+    box-shadow: var(--focus-glow)
+    --color-input-border: var(--color-25-contrast)
+
+    &::-webkit-input-placeholder
+      opacity: 1
+    &:-ms-input-placeholder
+      opacity: 1
+    &::-moz-placeholder
+      opacity: 1
+    &:-moz-placeholder
+      opacity: 1
+
+  .text-input--has-icon &
+    padding-left: var(--input-height-large)
+
+
+
+.text-input__label
+  display: inline-block
+  position: absolute
+  z-index: 15
+  top: 0
+  left: 0
+  bottom: 0
+  padding: 0 1rem
+  font-size: var(--font-size-body-1)
+  line-height: var(--input-height-large)
+  font-weight: 400
+  color: var(--color-75-contrast)
+  cursor: text
+  user-select: none
+  pointer-events: none
+  white-space: nowrap
+  transition: transform 200ms, font-size 200ms
+
+  .text-input--has-content &,
+  .text-input__input:focus + &
+    font-size: 0.8rem
+    transform: translateY(-0.6rem) translateX(-0.2rem)
+
+  .text-input--has-icon.text-input--has-content &,
+  .text-input--has-icon .text-input__input:focus + &
+    transform: translateY(-0.6rem) translateX(0.05rem)
+
+  .text-input--has-icon &
+    padding-left: var(--input-height-large)
+
+  .text-input--has-content .text-input__input[aria-invalid=false] + &
+    &:before
+      @include icon('\f00c')
+      position: absolute
+      right: 0
+      bottom: 0
+      top: 0
+      font-size: 0.625rem
+      line-height: var(--input-height-large)
+      animation: growIn 250ms
+      color: var(--color-success)
+
+
+
+.text-input__icon
+  display: none
+  width: var(--input-height-large)
+  height: var(--input-height-large)
+  position: absolute
+  z-index: 15
+  left: 1px
+  top: 1px
+  pointer-events: none
+
+  .text-input--has-icon &
+    display: block
+
+  .icon
+    display: block
+    width: 100%
+    font-size: 1.2rem
+    top: 0
+    line-height: var(--input-height-large)
+    text-align: center
+    color: var(--color-50-contrast)
+
+
+
+.text-input__error
+  padding-top: var(--spacing-half)
+  color: var(--color-danger)

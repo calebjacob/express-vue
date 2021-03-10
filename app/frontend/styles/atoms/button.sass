@@ -2,9 +2,9 @@
   --color-button-background: rgba(var(--color-button-background-color), var(--color-button-background-opacity))
   --color-button-background-color: var(--color-brand-primary-rgb)
   --color-button-background-opacity: 1
-  --color-button-text: var(--color-100-contrast)
-  display: block
-  width: 100%
+  --color-button-text: #fff
+  display: inline-block
+  width: auto
   position: relative
   height: var(--input-height)
   padding: 0 var(--spacing-double)
@@ -37,9 +37,9 @@
     pointer-events: none !important
     border: none !important
   
-.button--auto-width
-  display: inline-block
-  width: unset
+.button--expand
+  display: block
+  width: 100%
 
 .button--loading
   color: rgba(0, 0, 0, 0) !important

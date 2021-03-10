@@ -1,5 +1,6 @@
 # TODO
 
+- [] Finish `// TODO`'s
 - [] Try out Typescript
 - [] Integrate Vee Validate 4 https://vee-validate.logaretm.com/v4
   - Use their Composition API to create <validated-form> and <text-input> components
