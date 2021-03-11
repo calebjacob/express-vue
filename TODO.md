@@ -1,6 +1,7 @@
 # TODO
 
-- [] Finish `// TODO`'s
+- [] Write styles for radio/checkbox inputs
+- [] Hook up example form to example API call
 - [] Try out Typescript
 - [] Integrate Vee Validate 4 https://vee-validate.logaretm.com/v4
   - Use their Composition API to create <validated-form> and <text-input> components

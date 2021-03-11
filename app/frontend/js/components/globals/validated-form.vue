@@ -39,16 +39,24 @@
     },
 
     setup(props, { attrs }) {
-      const element = ref(null);
+      const element = ref();
       const hasSubmitted = ref(false);
       const isDirty = ref(false);
       const isSubmitting = ref(false);
       const { validate, values } = useForm();
 
       function handleInvalidSubmit() {
-        console.log('invalid form submit');
-        console.log(element);
-        // TODO focus first invalid input
+        const firstInvalidInput = element.value.querySelector(
+          '[aria-invalid=true]'
+        );
+
+        if (firstInvalidInput) {
+          firstInvalidInput.focus();
+          firstInvalidInput.scrollIntoView({
+            block: 'center',
+            behavior: 'smooth'
+          });
+        }
       }
 
       function markAsDirty() {
@@ -73,6 +81,7 @@
       }
 
       return {
+        element,
         hasSubmitted,
         isDirty,
         isSubmitting,

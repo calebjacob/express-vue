@@ -32,13 +32,13 @@ A component used as a router/view component (home page, product page, etc). All 
 
 A component that should only ever have a single instance at any one time (main header, main footer, etc).
 
-## Composables
-
-All Vue composistion modules live here. These modules are designed share re-usable code and state throughout the whole codebase.
-
 ## Helpers
 
 Simple and reusable helper methods can live here. For example, you might have a `dollars()` helper method, which would format a number in to a US dollar format `dollars(4.2) > "$4.20"`.
+
+## Modules
+
+All Vue composistion modules live here. These modules are designed share re-usable code and state throughout the whole codebase.
 
 ## Services
 

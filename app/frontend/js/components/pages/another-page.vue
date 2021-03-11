@@ -19,7 +19,7 @@
               required: true,
               min: 8
             }"
-            v-model="email"
+            v-model="userDetails.email"
           />
 
           <text-input
@@ -30,32 +30,43 @@
               required: true,
               min: 8
             }"
-            v-model="password"
+            v-model="userDetails.password"
           />
 
-          <text-input
-            name="passwordConfirm"
-            label="Confirm Password"
-            icon-class="fa-key"
+          <radio-input
+            name="favoriteThing"
+            v-model="userDetails.favoriteThing"
+            :options="favoriteThingOptions"
             :validations="{
-              required: true,
-              confirmed: '@password'
+              required: true
             }"
-            v-model="passwordConfirm"
           />
 
-          <p>
-            Field One: {{ email }}
-            <br />
-            Field Two: {{ password }}
-          </p>
+          <checkbox-input
+            name="acceptedTerms"
+            v-model="userDetails.acceptedTerms"
+            :validations="{
+              required: true
+            }"
+          >
+            I agree to the crazy terms.
+          </checkbox-input>
+
+          <hr />
+
+          <p>Email: {{ userDetails.email }}</p>
+          <p>Password: {{ userDetails.password }}</p>
+          <p>Favorite Thing: {{ userDetails.favoriteThing }}</p>
+          <p>Accepted Terms: {{ userDetails.acceptedTerms }}</p>
+
+          <hr />
 
           <button class="button" type="submit">Submit</button>
 
           <br />
 
           <router-link
-            class="link light spacing"
+            class="link spacing"
             :to="{
               name: 'home'
             }"
@@ -69,27 +80,52 @@
 </template>
 
 <script>
-  import { ref } from 'vue';
+  import { onMounted, ref, reactive } from 'vue';
   import timer from '@/helpers/timer';
 
   export default {
     name: 'AnotherPage',
 
     setup() {
-      const email = ref('');
-      const password = ref('');
-      const passwordConfirm = ref('');
+      const userDetails = reactive({
+        acceptedTerms: false,
+        email: '',
+        favoriteThing: '',
+        password: ''
+      });
 
-      async function myFormSubmitHandler(a, b, c) {
+      const favoriteThingOptions = ref([
+        {
+          display: 'Broncos',
+          value: 'broncos'
+        },
+        {
+          display: 'Food',
+          value: 'food'
+        },
+        {
+          display: 'Family',
+          value: 'family'
+        }
+      ]);
+
+      async function myFormSubmitHandler(values) {
+        console.log('Submit start...', values);
         await timer(1000);
-        console.log(a, b, c);
+        console.log('Submit finish!');
       }
 
+      // onMounted(async () => {
+      //   await timer(2000);
+      //   userDetails.email = 'asdf@asdf.com';
+      //   userDetails.acceptedTerms = true;
+      //   userDetails.favoriteThing = 'food';
+      // });
+
       return {
-        email,
-        password,
-        passwordConfirm,
-        myFormSubmitHandler
+        favoriteThingOptions,
+        myFormSubmitHandler,
+        userDetails
       };
     }
   };

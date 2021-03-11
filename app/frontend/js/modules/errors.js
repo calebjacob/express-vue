@@ -1,4 +1,4 @@
-import useNotifications from '@/composables/notifications';
+import useNotifications from '@/modules/notifications';
 
 export default function useErrors() {
   const { showNotification } = useNotifications();

@@ -15,7 +15,7 @@
           <div>
             <h3 class="title title--3">Here's Some Stuff</h3>
 
-            <my-example some-text="hot dog" />
+            <p>Hmmm... This is a nice paragraph right here.</p>
 
             <router-link
               class="button"
@@ -116,9 +116,9 @@
 </template>
 
 <script>
-  import useErrors from '@/composables/errors';
-  import useExampleData from '@/composables/example-data';
-  import useNotifications from '@/composables/notifications';
+  import useErrors from '@/modules/errors';
+  import useExampleData from '@/modules/example-data';
+  import useNotifications from '@/modules/notifications';
 
   export default {
     name: 'HomePage',

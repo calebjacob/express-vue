@@ -34,7 +34,7 @@
 </template>
 
 <script>
-  import useNotifications from '@/composables/notifications';
+  import useNotifications from '@/modules/notifications';
 
   export default {
     name: 'Notifications',

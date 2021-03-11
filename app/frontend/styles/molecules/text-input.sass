@@ -7,7 +7,12 @@
   text-align: left
 
 .text-input--error
-  --color-input-border: var(--color-danger)
+  .form--submitted &
+    .text-input__input
+      border-color: var(--color-danger)
+
+    .text-input__error
+      display: block
 
 
 
@@ -43,8 +48,8 @@
     transition: 200ms
 
   &:focus
-    box-shadow: var(--focus-glow)
     --color-input-border: var(--color-25-contrast)
+    box-shadow: var(--focus-glow)
 
     &::-webkit-input-placeholder
       opacity: 1
@@ -129,5 +134,6 @@
 
 
 .text-input__error
+  display: none
   padding-top: var(--spacing-half)
   color: var(--color-danger)

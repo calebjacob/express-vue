@@ -17,18 +17,20 @@
       <span :class="['icon', 'fa', iconClass]" v-if="iconClass" />
     </div>
 
-    <p class="text-input__error" v-if="errorMessage">
+    <p class="text-input__error">
       {{ errorMessage }}
     </p>
   </div>
 </template>
 
 <script>
-  import { computed, ref, watch } from 'vue';
+  import { computed, toRef, watch } from 'vue';
   import { useField } from 'vee-validate';
 
   export default {
     name: 'TextInput',
+
+    inheritAttrs: false,
 
     props: {
       iconClass: {
@@ -39,12 +41,12 @@
         type: String,
         required: true
       },
-      name: {
-        type: String,
-        required: true
-      },
       modelValue: {
         type: [String, Number],
+        required: true
+      },
+      name: {
+        type: String,
         required: true
       },
       type: {
@@ -60,21 +62,25 @@
     },
 
     setup(props, { attrs }) {
-      const { value, errorMessage } = useField(props.name, props.validations, {
+      const modelValue = toRef(props, 'modelValue');
+      const { errorMessage, value } = useField(props.name, props.validations, {
         initialValue: props.modelValue,
-        label: props.label
+        label: props.label,
+        validateOnMount: true
       });
 
       const inputAttributes = computed(() => {
-        const attributes = {
-          id: props.name,
+        return {
           ...attrs,
-          'aria-invalid': !!errorMessage.value
+          'aria-invalid': !!errorMessage.value,
+          id: attrs.id || props.name
         };
+      });
 
-        delete attributes.value;
-
-        return attributes;
+      watch(modelValue, newModelValue => {
+        if (newModelValue !== value.value) {
+          value.value = newModelValue;
+        }
       });
 
       return {
