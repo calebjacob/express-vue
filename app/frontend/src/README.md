@@ -10,25 +10,25 @@ In the root `js` folder, we have a few special files.
 
 ## Components
 
-All Vue components belong in `js/components`. The `app.vue` component lives all on its own since it's unique. It's the base component that wraps the entire project. This can be a good place to initiate logic that's required for the entire app (user session and auth, fetching global data, etc).
+All Vue components belong in `src/components`. The `app.vue` component lives all on its own since it's unique. It's the base component that wraps the entire project. This can be a good place to initiate logic that's required for the entire app (user session and auth, fetching global data, etc).
 
 If a parent/child component design is required, a subfolder could be necessary in any of the corresponding folders. For example, if you were working on a `ShoppingCart` component, the structure might look like this:
 
 ```
-js/components/singles/shopping-cart/index.vue
-js/components/singles/shopping-cart/items.vue
-js/components/singles/shopping-cart/payment.vue
+src/components/singles/shopping-cart/index.vue
+src/components/singles/shopping-cart/items.vue
+src/components/singles/shopping-cart/payment.vue
 ```
 
-#### Globals (js/components/globals)
+#### Globals (src/components/globals)
 
 A component shared throughout the app and can have multiple instances at any one time (buttons, inputs, etc).
 
-#### Pages (js/components/pages)
+#### Pages (src/components/pages)
 
 A component used as a router/view component (home page, product page, etc). All components should use the `-page` file postfix and `Page` component name postfix to avoid naming collisions with non-page components. For example: `pages/home-page.js > HomePage`.
 
-#### Singles (js/components/singles)
+#### Singles (src/components/singles)
 
 A component that should only ever have a single instance at any one time (main header, main footer, etc).
 

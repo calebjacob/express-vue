@@ -15,14 +15,14 @@ module.exports = {
 
   configureWebpack: {
     entry: {
-      app: './app/frontend/js/index.js'
+      app: './app/frontend/src/index'
     },
 
     performance: false,
 
     resolve: {
       alias: {
-        '@': path.resolve('./app/frontend/js')
+        '@': path.resolve('./app/frontend/src')
       }
     }
   },

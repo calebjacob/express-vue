@@ -6,10 +6,10 @@ module.exports = {
   moduleFileExtensions: ['js', 'jsx', 'json', 'vue'],
 
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/app/frontend/js/$1'
+    '^@/(.*)$': '<rootDir>/app/frontend/src/$1'
   },
 
-  testMatch: ['<rootDir>/app/frontend/js/**/*.test.{j,t}s?(x)'],
+  testMatch: ['<rootDir>/app/frontend/src/**/*.test.{j,t}s?(x)'],
 
   transform: {
     '^.+\\.vue$': 'vue-jest',
