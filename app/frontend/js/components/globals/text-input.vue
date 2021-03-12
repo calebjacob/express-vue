@@ -17,7 +17,7 @@
       <span :class="['icon', 'fa', iconClass]" v-if="iconClass" />
     </div>
 
-    <p class="text-input__error">
+    <p class="input-error" role="alert" v-if="errorMessage">
       {{ errorMessage }}
     </p>
   </div>

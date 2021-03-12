@@ -1,86 +1,109 @@
 <template>
   <div class="layout layout--vertical-align">
-    <div class="section">
-      <div class="container center max-width-mobile">
-        <h1 class="title title--2">Here's a fancy form.</h1>
-
-        <p>Try submitting something nice.</p>
-
-        <hr />
-
-        <validated-form @submit="myFormSubmitHandler">
-          <text-input
-            name="email"
-            label="Email"
-            icon-class="fa-envelope"
-            type="email"
-            :validations="{
-              email: true,
-              required: true,
-              min: 8
-            }"
-            v-model="userDetails.email"
-          />
-
-          <text-input
-            name="password"
-            label="Password"
-            icon-class="fa-key"
-            :validations="{
-              required: true,
-              min: 8
-            }"
-            v-model="userDetails.password"
-          />
-
-          <radio-input
-            name="favoriteThing"
-            v-model="userDetails.favoriteThing"
-            :options="favoriteThingOptions"
-            :validations="{
-              required: true
-            }"
-          />
-
-          <checkbox-input
-            name="acceptedTerms"
-            v-model="userDetails.acceptedTerms"
-            :validations="{
-              required: true
-            }"
-          >
-            I agree to the crazy terms.
-          </checkbox-input>
+    <section class="section">
+      <div class="container max-width-mobile">
+        <validated-form
+          @submit="myFormSubmitHandler"
+          v-slot="{ validatedForm }"
+        >
+          <div class="group center">
+            <h1 class="title title--2">Here's a fancy form.</h1>
+          </div>
 
           <hr />
 
-          <p>Email: {{ userDetails.email }}</p>
-          <p>Password: {{ userDetails.password }}</p>
-          <p>Favorite Thing: {{ userDetails.favoriteThing }}</p>
-          <p>Accepted Terms: {{ userDetails.acceptedTerms }}</p>
+          <div class="group">
+            <text-input
+              name="email"
+              label="Email"
+              icon-class="fa-envelope"
+              type="email"
+              :validations="{
+                email: true,
+                required: true
+              }"
+              v-model="userDetails.email"
+            />
+
+            <text-input
+              name="password"
+              label="Password"
+              icon-class="fa-key"
+              :validations="{
+                required: true,
+                min: 8
+              }"
+              v-model="userDetails.password"
+            />
+          </div>
+
+          <div class="group">
+            <template v-if="userDetails.favoriteThingShow">
+              <p class="title title--5">What's your favorite thing?</p>
+
+              <radio-input
+                name="favoriteThing"
+                v-model="userDetails.favoriteThing"
+                :options="favoriteThingOptions"
+                :validations="{
+                  required: true
+                }"
+              />
+            </template>
+
+            <button
+              class="link primary spacing"
+              type="button"
+              @click="toggleFavoriteThingQuestion"
+            >
+              {{ userDetails.favoriteThingShow ? 'Hide' : 'Show' }} Question
+            </button>
+          </div>
+
+          <div class="group">
+            <p class="title title--5">Terms & Conditions</p>
+            <checkbox-input
+              name="acceptedTerms"
+              v-model="userDetails.acceptedTerms"
+              :validations="{
+                required: true
+              }"
+            >
+              I agree to the crazy terms.
+            </checkbox-input>
+          </div>
 
           <hr />
 
-          <button class="button" type="submit">Submit</button>
+          <div class="group layout layout--horizontal">
+            <router-link
+              class="link primary spacing"
+              :to="{
+                name: 'home'
+              }"
+            >
+              Cancel
+            </router-link>
 
-          <br />
-
-          <router-link
-            class="link spacing"
-            :to="{
-              name: 'home'
-            }"
-          >
-            Cancel
-          </router-link>
+            <button
+              class="button"
+              :class="{
+                'button--loading': validatedForm.isSubmitting
+              }"
+              type="submit"
+            >
+              Submit
+              <span class="icon fa fa-arrow-right"></span>
+            </button>
+          </div>
         </validated-form>
       </div>
-    </div>
+    </section>
   </div>
 </template>
 
 <script>
-  import { onMounted, ref, reactive } from 'vue';
+  import { ref, reactive } from 'vue';
   import timer from '@/helpers/timer';
 
   export default {
@@ -91,6 +114,7 @@
         acceptedTerms: false,
         email: '',
         favoriteThing: '',
+        favoriteThingShow: true,
         password: ''
       });
 
@@ -110,21 +134,18 @@
       ]);
 
       async function myFormSubmitHandler(values) {
-        console.log('Submit start...', values);
         await timer(1000);
-        console.log('Submit finish!');
+        window.alert(JSON.stringify(values));
       }
 
-      // onMounted(async () => {
-      //   await timer(2000);
-      //   userDetails.email = 'asdf@asdf.com';
-      //   userDetails.acceptedTerms = true;
-      //   userDetails.favoriteThing = 'food';
-      // });
+      function toggleFavoriteThingQuestion() {
+        userDetails.favoriteThingShow = !userDetails.favoriteThingShow;
+      }
 
       return {
         favoriteThingOptions,
         myFormSubmitHandler,
+        toggleFavoriteThingQuestion,
         userDetails
       };
     }

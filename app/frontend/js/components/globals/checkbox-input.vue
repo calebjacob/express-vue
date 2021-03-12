@@ -1,5 +1,10 @@
 <template>
-  <div class="checkbox-input">
+  <div
+    class="checkbox-input"
+    :class="{
+      'checkbox-input--error': !!errorMessage
+    }"
+  >
     <div class="checkbox-input__option">
       <input
         class="checkbox-input__input"
@@ -14,11 +19,11 @@
         </span>
       </label>
     </div>
-  </div>
 
-  <p class="checkbox-input__error">
-    {{ errorMessage }}
-  </p>
+    <p class="input-error" role="alert" v-if="errorMessage">
+      This checkbox is required
+    </p>
+  </div>
 </template>
 
 <script>

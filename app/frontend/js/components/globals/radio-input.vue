@@ -1,5 +1,10 @@
 <template>
-  <div class="checkbox-input checkbox-input--radio">
+  <div
+    class="checkbox-input checkbox-input--radio"
+    :class="{
+      'checkbox-input--error': !!errorMessage
+    }"
+  >
     <div class="checkbox-input__options">
       <div
         class="checkbox-input__option"
@@ -13,18 +18,22 @@
           @change="onChange(option)"
         />
 
-        <label class="checkbox-input__label" :for="inputAttributes(index).id">
+        <label
+          class="checkbox-input__label"
+          :for="inputAttributes(index).id"
+          @click="onLabelClick(option, inputAttributes(index).id, $event)"
+        >
           <span class="checkbox-input__label-text">
             {{ option.display }}
           </span>
         </label>
       </div>
     </div>
-  </div>
 
-  <p class="checkbox-input__error">
-    {{ errorMessage }}
-  </p>
+    <p class="input-error" role="alert" v-if="errorMessage">
+      {{ errorMessage }}
+    </p>
+  </div>
 </template>
 
 <script>
@@ -78,6 +87,15 @@
         }
       }
 
+      function onLabelClick(option, inputId, event) {
+        if (option.value === value.value) {
+          event.preventDefault();
+          onChange(null);
+          const input = document.getElementById(inputId);
+          input.focus();
+        }
+      }
+
       function inputAttributes(index) {
         const option = props.options[index];
 
@@ -112,6 +130,7 @@
         errorMessage,
         inputAttributes,
         onChange,
+        onLabelClick,
         value
       };
     }

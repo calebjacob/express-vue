@@ -1,0 +1,91 @@
+.checkbox-input
+  margin: -0.5rem 0 0
+  padding-bottom: 0.5rem
+  user-select: none
+
+
+
+.checkbox-input__options
+  display: flex
+  flex-wrap: wrap
+
+  .checkbox-input__option
+    margin-right: var(--spacing-double)
+
+    &:last-child
+      margin-right: 0
+
+
+
+.checkbox-input__input
+  &:focus + .checkbox-input__label
+    &:before
+      box-shadow: var(--focus-glow)
+
+  &:checked + .checkbox-input__label
+    &:before
+      content: '\f00c'
+      border: none
+      background: var(--color-brand-secondary)
+      color: #fff
+
+
+
+.checkbox-input__label
+  text-align: left
+  display: block
+  align-items: center
+  position: relative
+  padding: var(--spacing-half) 0 var(--spacing-half) calc(1.2rem + var(--spacing-half))
+  cursor: pointer
+
+  &:before
+    @include icon('')
+    display: block
+    width: 1.2rem
+    height: 1.2rem
+    line-height: 1.2rem
+    font-size: 0.7rem
+    text-align: center
+    position: absolute
+    top: 50%
+    left: 0
+    margin-top: -0.6rem
+    border: 2px solid var(--color-50-contrast)
+    border-radius: 2px
+    background: var(--color-10-contrast)
+    transition: transform 100ms, border-color 100ms
+
+  &:active
+    &:before
+      transform: scale(0.5, 0.5)
+      transition: none
+
+  &:hover
+    &:before
+      border-color: var(--color-75-contrast)
+
+  .form--submitted .checkbox-input--error &
+    &:before
+      border-color: var(--color-danger)
+
+  .checkbox-input--radio &
+    &:before
+      border-radius: 100px
+
+
+
+.checkbox-input__label-text
+  display: block
+  color: var(--color-100-contrast)
+  font-size: var(--font-size-body-1)
+  line-height: 1.4em
+  font-weight: 400
+
+
+
+.checkbox-input__input
+  opacity: 0
+  width: 2px
+  height: 2px
+  position: absolute

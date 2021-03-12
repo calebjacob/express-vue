@@ -2,24 +2,27 @@
   <form
     class="form"
     :class="{
-      'form--dirty': isDirty,
-      'form--disabled': isDisabled,
-      'form--submitted': hasSubmitted
+      'form--dirty': form.isDirty,
+      'form--disabled': form.isDisabled,
+      'form--submitted': form.hasSubmitted
     }"
     @change="markAsDirty"
     @input="markAsDirty"
-    @submit="submit"
+    @submit.prevent="submit"
     ref="element"
     novalidate
   >
-    <fieldset class="form__wrapper" :disabled="isDisabled || isProcessing">
-      <slot />
+    <fieldset
+      class="form__wrapper"
+      :disabled="form.isDisabled || form.isProcessing"
+    >
+      <slot :validated-form="form" />
     </fieldset>
   </form>
 </template>
 
 <script>
-  import { ref } from 'vue';
+  import { ref, reactive } from 'vue';
   import { useForm } from 'vee-validate';
 
   export default {
@@ -31,18 +34,16 @@
       isDisabled: {
         type: Boolean,
         default: false
-      },
-      isProcessing: {
-        type: Boolean,
-        default: false
       }
     },
 
     setup(props, { attrs }) {
       const element = ref();
-      const hasSubmitted = ref(false);
-      const isDirty = ref(false);
-      const isSubmitting = ref(false);
+      const form = reactive({
+        hasSubmitted: false,
+        isDirty: false,
+        isSubmitting: false
+      });
       const { validate, values } = useForm();
 
       function handleInvalidSubmit() {
@@ -60,14 +61,12 @@
       }
 
       function markAsDirty() {
-        isDirty.value = true;
+        form.isDirty = true;
       }
 
-      async function submit(event) {
-        event.preventDefault();
-
-        hasSubmitted.value = true;
-        isSubmitting.value = true;
+      async function submit() {
+        form.hasSubmitted = true;
+        form.isSubmitting = true;
 
         const { valid } = await validate();
 
@@ -77,14 +76,12 @@
           handleInvalidSubmit();
         }
 
-        isSubmitting.value = false;
+        form.isSubmitting = false;
       }
 
       return {
         element,
-        hasSubmitted,
-        isDirty,
-        isSubmitting,
+        form,
         markAsDirty,
         submit
       };
