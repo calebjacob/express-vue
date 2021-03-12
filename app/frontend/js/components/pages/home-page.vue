@@ -13,9 +13,9 @@
           class="layout layout--horizontal layout--horizontal-equal layout--double-spacing layout--align-start layout--stack-600"
         >
           <div>
-            <h3 class="title title--3">Here's Some Stuff</h3>
+            <h3 class="title title--3">Want to see a form?</h3>
 
-            <p>Hmmm... This is a nice paragraph right here.</p>
+            <p>Great! Just click the button below.</p>
 
             <router-link
               class="button"
@@ -23,7 +23,8 @@
                 name: 'another'
               }"
             >
-              View a Page
+              View Form
+              <span class="icon fa fa-arrow-right"></span>
             </router-link>
           </div>
 
