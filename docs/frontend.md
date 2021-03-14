@@ -1,8 +1,8 @@
-# JS
+# Frontend Structure
 
 We have a few folders that act as the most common separators of application logic. Adding more specific folders/subfolders may be appropriate as the app scales.
 
-In the root `js` folder, we have a few special files.
+In the root `frontend/src` folder, we have a few special files.
 
 - `index.js` is the main entry point for the app where we instantiate our Vue instance.
 - `globals.js` is used to register global plugins, components, directives, or mixins on our Vue instance.

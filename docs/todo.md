@@ -1,7 +1,8 @@
 # TODO
 
 - [] Try out Typescript
-- [] Should we encourage behavioral testing vs implementation detail testing?
 - [] Try out end to end testing
+  - Create an app/e2e-tests folder
+  - Create a basic example test with Cypress IO
 - [] Write updated tests for all FE
 - [] Update README with any command changes
