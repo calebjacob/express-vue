@@ -18,3 +18,9 @@ yarn-error.log*
 *.ntvs*
 *.njsproj
 *.sln
+
+# E2E testing
+
+e2e/downloads
+e2e/screenshots
+e2e/videos

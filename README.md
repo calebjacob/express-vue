@@ -44,9 +44,11 @@ When running the frontend dev server via Vue CLI, all changes will be hot loaded
 
 ## Testing
 
-The [Jest](https://facebook.github.io/jest/) testing framework is used to unit test all backend & frontend code. To learn more about testing conventions and methodologies, check out our [Testing Methodologies](docs/testing.md) documentation.
+To learn more about testing conventions and methodologies, check out our [Testing Methodologies](docs/testing.md) documentation.
 
 ### Unit/Integration Tests
+
+The [Jest](https://facebook.github.io/jest/) testing framework is used to test all backend & frontend code.
 
 To run the backend and frontend test suite once:
 
@@ -61,6 +63,22 @@ npm run test:backend
 npm run test:backend:watch
 npm run test:frontend
 npm run test:frontend:watch
+```
+
+### E2E Testing
+
+The [Cypress](https://www.cypress.io/) testing framework is used to handle end to end testing.
+
+To run the E2E test suite once in headless mode:
+
+```
+npm run test:e2e
+```
+
+To run the E2E test suite in GUI/dev mode:
+
+```
+npm run test:e2e:gui
 ```
 
 ## Linting

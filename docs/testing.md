@@ -42,8 +42,8 @@ In general, focus only on critical flows (sign in, checkout, etc) instead of wor
 
 #### Structure
 
-Since E2E testing is a unique beast compared to unit/integration testing, we'll have a special folder dedicated just for E2E tests: `/e2e-tests`
+Since E2E testing is a unique beast compared to unit/integration testing, we'll have a special folder dedicated just for E2E tests: `/e2e`
 
-Inside this folder, you might have 3 files testing the most critical flows of your app: `checkout.e2e.js`, `sign-in.e2e.js`, and `browse-items.e2e.js`.
+Inside this folder, you might have 3 files testing the most critical flows of your app: `e2e/tests/checkout.e2e.js`, `e2e/tests/sign-in.e2e.js`, and `e2e/tests/browse-items.e2e.js`.
 
 Note the `.e2e.js` naming convention to differentiate from other tests.
