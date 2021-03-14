@@ -1,7 +1,6 @@
 // Require all dependencies:
 
 const appRoot = require('app-root-path');
-const bodyParser = require('body-parser');
 const compression = require('compression');
 const config = require('./config');
 const debug = require('./routes/middleware/debug');
@@ -14,9 +13,9 @@ const app = express();
 
 // Configure general app settings and functionality:
 
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(
-  bodyParser.urlencoded({
+  express.urlencoded({
     extended: true
   })
 );

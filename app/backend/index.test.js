@@ -1,15 +1,5 @@
 // mocks:
 
-jest.mock('body-parser', () => {
-  return {
-    json: jest.fn(() => {
-      return 'bodyParser.json()';
-    }),
-    urlencoded: jest.fn(() => {
-      return 'bodyParser.urlencoded()';
-    })
-  };
-});
 jest.mock('compression');
 jest.mock('express');
 
@@ -29,7 +19,6 @@ jest.mock('./routes/middleware/debug', () => {
 
 // dependencies:
 
-const bodyParser = require('body-parser');
 const compression = require('compression');
 const config = require('./config');
 const debug = require('./routes/middleware/debug');
@@ -48,15 +37,15 @@ describe('app', () => {
   });
 
   it('sets up json body parsing', () => {
-    expect(app.use).toHaveBeenCalledWith(bodyParser.json());
+    expect(app.use).toHaveBeenCalledWith(express.json());
   });
 
   it('sets up urlencoded body parsing', () => {
-    expect(bodyParser.urlencoded).toHaveBeenCalledWith({
+    expect(express.urlencoded).toHaveBeenCalledWith({
       extended: true
     });
 
-    expect(app.use).toHaveBeenCalledWith(bodyParser.urlencoded());
+    expect(app.use).toHaveBeenCalledWith(express.urlencoded());
   });
 
   it('sets up gzip compression', () => {
