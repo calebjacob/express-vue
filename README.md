@@ -44,7 +44,7 @@ When running the frontend dev server via Vue CLI, all changes will be hot loaded
 
 ## Testing
 
-The [Jest](https://facebook.github.io/jest/) testing framework is used to unit test all backend & frontend code. To learn more about testing conventions and methodologies, check out this project's `docs/testing.md` documentation.
+The [Jest](https://facebook.github.io/jest/) testing framework is used to unit test all backend & frontend code. To learn more about testing conventions and methodologies, check out our [Testing Methodologies](docs/testing.md) documentation.
 
 ### Unit/Integration Tests
 
