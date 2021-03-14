@@ -1,6 +1,5 @@
 # TODO
 
-- [] Try out Typescript
 - [] Try out end to end testing
   - Create an `/e2e-tests` folder using `.e2e.js` naming convention
   - Create a basic example test with Cypress IO
