@@ -1,16 +1,21 @@
 module.exports = {
   root: true,
+
   env: {
     node: true
   },
+
   extends: ['plugin:vue/vue3-essential', 'eslint:recommended', '@vue/prettier'],
+
   globals: {
     appRoot: true,
     nodeMocksHttp: true
   },
+
   parserOptions: {
-    parser: 'babel-eslint'
+    parser: '@typescript-eslint/parser'
   },
+
   rules: {
     'no-console': 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
@@ -31,6 +36,7 @@ module.exports = {
     'vue/prop-name-casing': ['error', 'camelCase'],
     'vue/script-indent': 'off'
   },
+
   overrides: [
     {
       files: ['**/*.test.{j,t}s?(x)'],
@@ -38,5 +44,12 @@ module.exports = {
         jest: true
       }
     }
+  ],
+
+  'extends': [
+    'plugin:vue/vue3-essential',
+    'eslint:recommended',
+    '@vue/prettier',
+    '@vue/typescript'
   ]
 };

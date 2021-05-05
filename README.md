@@ -30,7 +30,7 @@ nvm use
 Now install all of the project's dependencies via NPM:
 
 ```
-npm install
+npm ci
 ```
 
 To get started with local development, boot up the backend server and frontend compilers/watchers:
