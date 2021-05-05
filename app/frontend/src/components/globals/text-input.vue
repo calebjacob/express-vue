@@ -65,7 +65,7 @@
       const modelValue = toRef(props, 'modelValue');
       const { errorMessage, value } = useField(props.name, props.validations, {
         initialValue: props.modelValue,
-        label: props.label,
+        label: `"${props.label}"`,
         validateOnMount: true
       });
 

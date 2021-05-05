@@ -1,9 +1,13 @@
 import useNotifications from '@/modules/notifications';
 
+interface HandleErrorOptions {
+  message?: String;
+}
+
 export default function useErrors() {
   const { showNotification } = useNotifications();
 
-  function handleError(error, options = {}) {
+  function handleError(error: Error, options: HandleErrorOptions = {}) {
     console.error(error);
 
     showNotification({
@@ -15,7 +19,7 @@ export default function useErrors() {
     });
   }
 
-  function handleErrorQuietly(error) {
+  function handleErrorQuietly(error: Error) {
     console.error(error);
   }
 

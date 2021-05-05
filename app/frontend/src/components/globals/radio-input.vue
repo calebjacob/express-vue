@@ -31,7 +31,7 @@
     </div>
 
     <p class="input-error" role="alert" v-if="errorMessage">
-      {{ errorMessage }}
+      A selection is required
     </p>
   </div>
 </template>
