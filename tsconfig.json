@@ -31,9 +31,7 @@
   "include": [
     "app/frontend/src/**/*.ts",
     "app/frontend/src/**/*.tsx",
-    "app/frontend/src/**/*.vue",
-    "app/frontend/tests/**/*.ts",
-    "app/frontend/tests/**/*.tsx"
+    "app/frontend/src/**/*.vue"
   ],
   "exclude": [
     "node_modules"

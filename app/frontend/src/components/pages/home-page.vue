@@ -116,12 +116,13 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+  import { defineComponent } from 'vue';
   import useErrors from '@/modules/errors';
   import useExampleData from '@/modules/example-data';
   import useNotifications from '@/modules/notifications';
 
-  export default {
+  export default defineComponent({
     name: 'HomePage',
 
     setup() {
@@ -152,5 +153,5 @@
         showNotification
       };
     }
-  };
+  });
 </script>

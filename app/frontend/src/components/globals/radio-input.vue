@@ -36,11 +36,17 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+  import { defineComponent, PropType } from 'vue';
   import { toRef, watch } from 'vue';
   import { useField } from 'vee-validate';
 
-  export default {
+  interface Option {
+    display: string;
+    value: string | number;
+  }
+
+  export default defineComponent({
     name: 'RadioInput',
 
     inheritAttrs: false,
@@ -54,12 +60,12 @@
         required: true
       },
       options: {
-        type: Array,
+        type: Array as PropType<Option[]>,
         required: true
       },
       validations: {
         type: Object,
-        default() {
+        default: () => {
           return {};
         }
       }
@@ -77,7 +83,7 @@
         }
       );
 
-      function onChange(option) {
+      function onChange(option: Option | null | undefined) {
         if (option) {
           handleChange(option.value);
           emit('update:modelValue', option.value);
@@ -87,16 +93,18 @@
         }
       }
 
-      function onLabelClick(option, inputId, event) {
+      function onLabelClick(option: Option, inputId: string, event: Event) {
         if (option.value === value.value) {
           event.preventDefault();
           onChange(null);
           const input = document.getElementById(inputId);
-          input.focus();
+          if (input) {
+            input.focus();
+          }
         }
       }
 
-      function inputAttributes(index) {
+      function inputAttributes(index: number) {
         const option = props.options[index];
 
         return {
@@ -134,5 +142,5 @@
         value
       };
     }
-  };
+  });
 </script>

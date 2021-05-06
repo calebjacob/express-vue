@@ -10,12 +10,13 @@
   <notifications />
 </template>
 
-<script>
-  import MainFooter from '@/components/singles/main-footer';
-  import MainHeader from '@/components/singles/main-header';
-  import Notifications from '@/components/singles/notifications';
+<script lang="ts">
+  import { defineComponent } from 'vue';
+  import MainFooter from '@/components/singles/main-footer.vue';
+  import MainHeader from '@/components/singles/main-header.vue';
+  import Notifications from '@/components/singles/notifications.vue';
 
-  export default {
+  export default defineComponent({
     name: 'App',
 
     components: {
@@ -23,7 +24,7 @@
       MainHeader,
       Notifications
     }
-  };
+  });
 </script>
 
 <style lang="sass">

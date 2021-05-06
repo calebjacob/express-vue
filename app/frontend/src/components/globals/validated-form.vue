@@ -8,7 +8,7 @@
     }"
     @change="markAsDirty"
     @input="markAsDirty"
-    @submit.prevent="submit"
+    @submit.prevent="submitHandler"
     ref="element"
     novalidate
   >
@@ -21,11 +21,12 @@
   </form>
 </template>
 
-<script>
+<script lang="ts">
+  import { defineComponent } from 'vue';
   import { ref, reactive } from 'vue';
   import { useForm } from 'vee-validate';
 
-  export default {
+  export default defineComponent({
     name: 'ValidatedForm',
 
     inheritAttrs: false,
@@ -34,10 +35,14 @@
       isDisabled: {
         type: Boolean,
         default: false
+      },
+      submit: {
+        type: Function,
+        required: true
       }
     },
 
-    setup(props, { attrs }) {
+    setup(props) {
       const element = ref();
       const form = reactive({
         hasSubmitted: false,
@@ -64,14 +69,14 @@
         form.isDirty = true;
       }
 
-      async function submit() {
+      async function submitHandler() {
         form.hasSubmitted = true;
         form.isSubmitting = true;
 
         const { valid } = await validate();
 
         if (valid) {
-          await attrs.onSubmit(values);
+          await props.submit(values);
         } else {
           handleInvalidSubmit();
         }
@@ -83,8 +88,8 @@
         element,
         form,
         markAsDirty,
-        submit
+        submitHandler
       };
     }
-  };
+  });
 </script>

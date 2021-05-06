@@ -23,11 +23,12 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+  import { defineComponent } from 'vue';
   import { computed, toRef, watch } from 'vue';
   import { useField } from 'vee-validate';
 
-  export default {
+  export default defineComponent({
     name: 'TextInput',
 
     inheritAttrs: false,
@@ -55,7 +56,7 @@
       },
       validations: {
         type: Object,
-        default() {
+        default: () => {
           return {};
         }
       }
@@ -89,5 +90,5 @@
         value
       };
     }
-  };
+  });
 </script>

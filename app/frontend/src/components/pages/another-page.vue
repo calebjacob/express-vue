@@ -3,7 +3,7 @@
     <section class="section">
       <div class="container max-width-mobile">
         <validated-form
-          @submit="myFormSubmitHandler"
+          :submit="myFormSubmitHandler"
           v-slot="{ validatedForm }"
         >
           <div class="group center">
@@ -102,11 +102,12 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+  import { defineComponent } from 'vue';
   import { ref, reactive } from 'vue';
   import timer from '@/helpers/timer';
 
-  export default {
+  export default defineComponent({
     name: 'AnotherPage',
 
     setup() {
@@ -133,7 +134,8 @@
         }
       ]);
 
-      async function myFormSubmitHandler(values) {
+      async function myFormSubmitHandler(values: object) {
+        console.log('bye');
         await timer(1000);
         window.alert(JSON.stringify(values));
       }
@@ -149,5 +151,5 @@
         userDetails
       };
     }
-  };
+  });
 </script>

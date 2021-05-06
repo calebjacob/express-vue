@@ -33,10 +33,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+  import { defineComponent } from 'vue';
   import useNotifications from '@/modules/notifications';
 
-  export default {
+  export default defineComponent({
     name: 'Notifications',
 
     setup() {
@@ -47,5 +48,5 @@
         notifications
       };
     }
-  };
+  });
 </script>
