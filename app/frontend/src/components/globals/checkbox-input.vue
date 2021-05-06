@@ -76,7 +76,7 @@
         };
       });
 
-      watch(modelValue, newModelValue => {
+      watch(modelValue, (newModelValue) => {
         if (newModelValue !== value.value) {
           value.value = newModelValue;
         }

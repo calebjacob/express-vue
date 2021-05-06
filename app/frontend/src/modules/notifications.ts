@@ -1,27 +1,33 @@
 import timer from '@/helpers/timer';
 import { ref, Ref } from 'vue';
 
-interface Notification {
-  id: Number;
-  message: String;
-  type: String;
+interface NotificationsModule {
+  hideNotification(notification: Notification): void;
+  showNotification(options: ShowNotificationOptions): void;
+  notifications: Ref<Notification[]>;
 }
 
-interface NotificationOptions {
-  message: String;
-  type: String;
+interface Notification {
+  id: number;
+  message: string;
+  type: string;
+}
+
+interface ShowNotificationOptions {
+  message: string;
+  type: string;
 }
 
 const notifications: Ref<Notification[]> = ref([]);
 
-export default function useNotifications() {
+export default function useNotifications(): NotificationsModule {
   function hideNotification(notification: Notification) {
-    notifications.value = notifications.value.filter(n => {
+    notifications.value = notifications.value.filter((n) => {
       return n.id !== notification.id;
     });
   }
 
-  async function showNotification(options: NotificationOptions) {
+  async function showNotification(options: ShowNotificationOptions) {
     const notification = {
       id: Date.now(),
       message: options.message,

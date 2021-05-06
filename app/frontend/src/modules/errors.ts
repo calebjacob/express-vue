@@ -1,7 +1,7 @@
 import useNotifications from '@/modules/notifications';
 
 interface HandleErrorOptions {
-  message?: String;
+  message?: string;
 }
 
 export default function useErrors() {

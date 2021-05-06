@@ -1,7 +1,7 @@
 # TODO
 
 - [] Typescript FE
-  - Revisit vue components. They aren't inheritting TS for some reason yet. Do we need to use DefineComponent()?
+  - Play around with enabling vetur preview feature for template interpolation
 - [] Typescript BE
 - [] Is there a better alternative to Vee Validate?
 - [] Think about having .env file example for secrets

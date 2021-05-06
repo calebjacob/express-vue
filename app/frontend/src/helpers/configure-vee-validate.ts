@@ -18,7 +18,7 @@ export default function configureVeeValidate() {
     })
   });
 
-  Object.keys(rules).forEach(rule => {
+  Object.keys(rules).forEach((rule) => {
     defineRule(rule, rules[rule]);
   });
 }

@@ -117,8 +117,8 @@
 
       watch(
         options,
-        newOptions => {
-          const selectedOption = newOptions.find(option => {
+        (newOptions) => {
+          const selectedOption = newOptions.find((option) => {
             return option.value === value.value;
           });
           onChange(selectedOption);
@@ -128,7 +128,7 @@
         }
       );
 
-      watch(modelValue, newModelValue => {
+      watch(modelValue, (newModelValue) => {
         if (newModelValue !== value.value) {
           value.value = newModelValue;
         }

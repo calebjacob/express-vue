@@ -5,7 +5,17 @@ module.exports = {
     node: true
   },
 
-  extends: ['plugin:vue/vue3-essential', 'eslint:recommended', '@vue/prettier'],
+  extends: [
+    'plugin:vue/vue3-essential',
+    'eslint:recommended',
+    '@vue/typescript/recommended',
+    '@vue/prettier',
+    '@vue/prettier/@typescript-eslint'
+  ],
+
+  parserOptions: {
+    ecmaVersion: 2020,
+  },
 
   globals: {
     appRoot: true,
@@ -22,7 +32,11 @@ module.exports = {
     'no-useless-catch': 'off',
     'prettier/prettier': [
       'error',
-      { singleQuote: true, vueIndentScriptAndStyle: true }
+      {
+        singleQuote: true,
+        trailingComma: 'none',
+        vueIndentScriptAndStyle: true
+      }
     ],
     'vue/attribute-hyphenation': ['error'],
     'vue/component-name-in-template-casing': [
@@ -44,12 +58,5 @@ module.exports = {
         jest: true
       }
     }
-  ],
-
-  'extends': [
-    'plugin:vue/vue3-essential',
-    'eslint:recommended',
-    '@vue/prettier',
-    '@vue/typescript'
   ]
 };
