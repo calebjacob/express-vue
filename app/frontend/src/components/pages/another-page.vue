@@ -134,8 +134,7 @@
         }
       ]);
 
-      async function myFormSubmitHandler(values: object) {
-        console.log('bye');
+      async function myFormSubmitHandler(values: Record<string, any>) {
         await timer(1000);
         window.alert(JSON.stringify(values));
       }

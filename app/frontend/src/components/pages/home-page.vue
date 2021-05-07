@@ -39,7 +39,7 @@
                 type="button"
                 @click="
                   showNotification({
-                    type: 'success',
+                    type: NotificationType.SUCCESS,
                     message: 'This was great!'
                   })
                 "
@@ -52,7 +52,7 @@
                 type="button"
                 @click="
                   showNotification({
-                    type: 'error',
+                    type: NotificationType.ERROR,
                     message: 'Oops! That was not so great.'
                   })
                 "
@@ -65,6 +65,7 @@
                 type="button"
                 @click="
                   showNotification({
+                    type: NotificationType.GENERIC,
                     message: 'This is very regular.'
                   })
                 "
@@ -118,9 +119,9 @@
 
 <script lang="ts">
   import { defineComponent } from 'vue';
-  import useErrors from '@/modules/errors';
-  import useExampleData from '@/modules/example-data';
-  import useNotifications from '@/modules/notifications';
+  import { useErrors } from '@/modules/errors';
+  import { useExampleData } from '@/modules/example-data';
+  import { useNotifications, NotificationType } from '@/modules/notifications';
 
   export default defineComponent({
     name: 'HomePage',
@@ -147,6 +148,7 @@
       }
 
       return {
+        NotificationType,
         exampleData,
         load,
         loadWithError,

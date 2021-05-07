@@ -19,7 +19,7 @@ function plugins(vm: App) {
 }
 
 const globals = {
-  initialize(vm: App) {
+  initialize(vm: App): void {
     plugins(vm);
     components(vm);
   }

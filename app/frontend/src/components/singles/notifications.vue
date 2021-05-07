@@ -5,9 +5,10 @@
         <div
           class="notifications__notification"
           :class="{
-            'notifications__notification--error': notification.type === 'error',
+            'notifications__notification--error':
+              notification.type === NotificationType.ERROR,
             'notifications__notification--success':
-              notification.type === 'success'
+              notification.type === NotificationType.SUCCESS
           }"
           v-for="notification in notifications"
           :key="notification.id"
@@ -19,9 +20,12 @@
               <span
                 class="icon fa"
                 :class="{
-                  'fa-exclamation-circle': notification.type === 'error',
-                  'fa-info-circle': notification.type === 'general',
-                  'fa-check-circle': notification.type === 'success'
+                  'fa-exclamation-circle':
+                    notification.type === NotificationType.ERROR,
+                  'fa-info-circle':
+                    notification.type === NotificationType.GENERIC,
+                  'fa-check-circle':
+                    notification.type === NotificationType.SUCCESS
                 }"
               ></span>
               <p>{{ notification.message }}</p>
@@ -35,7 +39,7 @@
 
 <script lang="ts">
   import { defineComponent } from 'vue';
-  import useNotifications from '@/modules/notifications';
+  import { useNotifications, NotificationType } from '@/modules/notifications';
 
   export default defineComponent({
     name: 'Notifications',
@@ -44,6 +48,7 @@
       const { hideNotification, notifications } = useNotifications();
 
       return {
+        NotificationType,
         hideNotification,
         notifications
       };

@@ -48,7 +48,11 @@ module.exports = {
       }
     ],
     'vue/prop-name-casing': ['error', 'camelCase'],
-    'vue/script-indent': 'off'
+    'vue/script-indent': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': [
+      'error'
+    ],
+    '@typescript-eslint/no-explicit-any': 'off'
   },
 
   overrides: [

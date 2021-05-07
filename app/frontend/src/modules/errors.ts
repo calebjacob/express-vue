@@ -1,17 +1,22 @@
-import useNotifications from '@/modules/notifications';
+import { useNotifications, NotificationType } from '@/modules/notifications';
+
+interface ErrorsModule {
+  handleError(error: Error, options?: HandleErrorOptions): void;
+  handleErrorQuietly(error: Error): void;
+}
 
 interface HandleErrorOptions {
   message?: string;
 }
 
-export default function useErrors() {
+function useErrors(): ErrorsModule {
   const { showNotification } = useNotifications();
 
   function handleError(error: Error, options: HandleErrorOptions = {}) {
     console.error(error);
 
     showNotification({
-      type: 'error',
+      type: NotificationType.ERROR,
       message:
         options.message ||
         error.message ||
@@ -28,3 +33,5 @@ export default function useErrors() {
     handleErrorQuietly
   };
 }
+
+export { useErrors };

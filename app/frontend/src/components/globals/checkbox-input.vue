@@ -26,11 +26,11 @@
   </div>
 </template>
 
-<script>
-  import { computed, toRef, watch } from 'vue';
+<script lang="ts">
+  import { computed, defineComponent, toRef, watch } from 'vue';
   import { useField } from 'vee-validate';
 
-  export default {
+  export default defineComponent({
     name: 'CheckboxInput',
 
     inheritAttrs: false,
@@ -46,7 +46,7 @@
       },
       validations: {
         type: Object,
-        default() {
+        default: () => {
           return {};
         }
       }
@@ -63,8 +63,9 @@
         }
       );
 
-      function onChange(event) {
-        handleChange(event.target.checked);
+      function onChange(event: Event) {
+        const target = event.target as HTMLInputElement;
+        handleChange(target.checked);
         emit('update:modelValue', value.value);
       }
 
@@ -89,5 +90,5 @@
         value
       };
     }
-  };
+  });
 </script>

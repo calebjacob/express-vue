@@ -1,9 +1,9 @@
 function get(req, res) {
   res.json({
-    thing: 'car',
     color: 'blue',
+    foobar: req.foobar,
     miles: 7000,
-    foobar: req.foobar
+    thing: 'car'
   });
 }
 

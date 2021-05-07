@@ -3,24 +3,30 @@ import { ref, Ref } from 'vue';
 
 interface NotificationsModule {
   hideNotification(notification: Notification): void;
-  showNotification(options: ShowNotificationOptions): void;
   notifications: Ref<Notification[]>;
+  showNotification(options: ShowNotificationOptions): void;
 }
 
 interface Notification {
   id: number;
   message: string;
-  type: string;
+  type: NotificationType;
 }
 
 interface ShowNotificationOptions {
   message: string;
-  type: string;
+  type: NotificationType;
+}
+
+enum NotificationType {
+  ERROR = 'Error',
+  GENERIC = 'Generic',
+  SUCCESS = 'Success'
 }
 
 const notifications: Ref<Notification[]> = ref([]);
 
-export default function useNotifications(): NotificationsModule {
+function useNotifications(): NotificationsModule {
   function hideNotification(notification: Notification) {
     notifications.value = notifications.value.filter((n) => {
       return n.id !== notification.id;
@@ -31,7 +37,7 @@ export default function useNotifications(): NotificationsModule {
     const notification = {
       id: Date.now(),
       message: options.message,
-      type: options.type || 'general'
+      type: options.type
     };
 
     notifications.value.unshift(notification);
@@ -45,3 +51,5 @@ export default function useNotifications(): NotificationsModule {
     showNotification
   };
 }
+
+export { useNotifications, NotificationType };

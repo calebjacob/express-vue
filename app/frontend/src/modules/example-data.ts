@@ -1,15 +1,33 @@
 import http from '@/services/http';
 import { reactive } from 'vue';
-const state = reactive({
+
+interface ExampleDataModule {
+  exampleData: ExampleDataState;
+  loadExampleData(): void;
+}
+
+interface ExampleDataState {
+  someData: SomeData | null;
+  someDataIsLoading: boolean;
+}
+
+interface SomeData {
+  color: string;
+  foobar: string;
+  miles: number;
+  thing: string;
+}
+
+const state: ExampleDataState = reactive({
   someData: null,
   someDataIsLoading: false
 });
 
-export default function useExampleData() {
+function useExampleData(): ExampleDataModule {
   async function loadExampleData() {
     try {
       state.someDataIsLoading = true;
-      const response = await http.get('/api/example');
+      const response = await http.get<SomeData>('/api/example');
       state.someData = response.data;
     } catch (error) {
       throw error;
@@ -23,3 +41,5 @@ export default function useExampleData() {
     loadExampleData
   };
 }
+
+export { useExampleData };

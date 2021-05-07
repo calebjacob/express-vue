@@ -3,7 +3,7 @@ import { localize } from '@vee-validate/i18n';
 import en from '@vee-validate/i18n/dist/locale/en.json';
 import rules from '@vee-validate/rules';
 
-export default function configureVeeValidate() {
+export default function configureVeeValidate(): void {
   configure({
     generateMessage: localize({
       en
