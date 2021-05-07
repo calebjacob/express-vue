@@ -3,7 +3,7 @@ import { reactive } from 'vue';
 
 interface ExampleDataModule {
   exampleData: ExampleDataState;
-  loadExampleData(): void;
+  loadExampleData(): Promise<void>;
 }
 
 interface ExampleDataState {

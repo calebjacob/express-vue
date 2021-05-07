@@ -43,7 +43,7 @@
 
   interface Option {
     display: string;
-    value: string | number;
+    value: string | number | boolean;
   }
 
   export default defineComponent({
