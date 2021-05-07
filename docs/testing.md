@@ -18,13 +18,13 @@ For example, prefer using `mount()` over `shallowMount()` when testing Vue compo
 
 #### Structure
 
-Each module of code (JS file) should have a test file living alonside it in the same folder. This gives us easy access to our tests and makes it obvious when a module doesn't have any tests yet. Also, any relative dependencies won't need to have their paths altered. For example, this folder/file structure would look like:
+Each module of code (JS/TS file) should have a test file living alonside it in the same folder. This gives us easy access to our tests and makes it obvious when a module doesn't have any tests yet. Also, any relative dependencies won't need to have their paths altered. For example, this folder/file structure would look like:
 
 ```
 app/src/components/globals/main-header.vue
-app/src/components/globals/main-header.test.js
-app/src/helpers/timer.js
-app/src/helpers/timer.test.js
+app/src/components/globals/main-header.test.ts
+app/src/helpers/timer.ts
+app/src/helpers/timer.test.ts
 ```
 
 The other approach is having a completely separate folder where all your tests live. I've found that approach causes the following headaches:

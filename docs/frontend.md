@@ -4,9 +4,9 @@ We have a few folders that act as the most common separators of application logi
 
 In the root `frontend/src` folder, we have a few special files.
 
-- `index.js` is the main entry point for the app where we instantiate our Vue instance.
-- `globals.js` is used to register global plugins, components, directives, or mixins on our Vue instance.
-- `router.js` is used to configure and register all `VueRouter` routes/pages and corresponding components.
+- `index.ts` is the main entry point for the app where we instantiate our Vue instance.
+- `globals.ts` is used to register global plugins, components, directives, or mixins on our Vue instance.
+- `router.ts` is used to configure and register all `VueRouter` routes/pages and corresponding components.
 
 ## Components
 
@@ -26,7 +26,7 @@ A component shared throughout the app and can have multiple instances at any one
 
 #### Pages (src/components/pages)
 
-A component used as a router/view component (home page, product page, etc). All components should use the `-page` file postfix and `Page` component name postfix to avoid naming collisions with non-page components. For example: `pages/home-page.js > HomePage`.
+A component used as a router/view component (home page, product page, etc). All components should use the `-page` file postfix and `Page` component name postfix to avoid naming collisions with non-page components. For example: `pages/home-page.ts > HomePage`.
 
 #### Singles (src/components/singles)
 
