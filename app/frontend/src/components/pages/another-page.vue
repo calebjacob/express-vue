@@ -103,9 +103,10 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent } from 'vue';
-  import { ref, reactive } from 'vue';
   import timer from '@/helpers/timer';
+  import { RadioOption } from '@/components/globals/radio-input.vue';
+  import { defineComponent } from 'vue';
+  import { ref, Ref, reactive } from 'vue';
 
   export default defineComponent({
     name: 'AnotherPage',
@@ -119,7 +120,7 @@
         password: ''
       });
 
-      const favoriteThingOptions = ref([
+      const favoriteThingOptions: Ref<RadioOption[]> = ref([
         {
           display: 'Broncos',
           value: 'broncos'

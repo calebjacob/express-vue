@@ -38,7 +38,7 @@
 
 <script lang="ts">
   import { defineComponent, PropType } from 'vue';
-  import { toRef, watch } from 'vue';
+  import { watch } from 'vue';
   import { useField } from 'vee-validate';
 
   interface RadioOption {
@@ -72,8 +72,6 @@
     },
 
     setup(props, { emit }) {
-      const modelValue = toRef(props, 'modelValue');
-      const options = toRef(props, 'options');
       const { errorMessage, handleChange, value } = useField(
         props.name,
         props.validations,
@@ -120,7 +118,7 @@
       }
 
       watch(
-        options,
+        () => props.options,
         (newOptions) => {
           const selectedOption = newOptions.find((option) => {
             return option.value === value.value;
@@ -132,11 +130,14 @@
         }
       );
 
-      watch(modelValue, (newModelValue) => {
-        if (newModelValue !== value.value) {
-          value.value = newModelValue;
+      watch(
+        () => props.modelValue,
+        (newModelValue) => {
+          if (newModelValue !== value.value) {
+            value.value = newModelValue;
+          }
         }
-      });
+      );
 
       return {
         errorMessage,
@@ -147,4 +148,6 @@
       };
     }
   });
+
+  export { RadioOption };
 </script>

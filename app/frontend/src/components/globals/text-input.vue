@@ -25,7 +25,7 @@
 
 <script lang="ts">
   import { defineComponent } from 'vue';
-  import { computed, toRef, watch } from 'vue';
+  import { computed, watch } from 'vue';
   import { useField } from 'vee-validate';
 
   export default defineComponent({
@@ -63,7 +63,6 @@
     },
 
     setup(props, { attrs }) {
-      const modelValue = toRef(props, 'modelValue');
       const { errorMessage, value } = useField(props.name, props.validations, {
         initialValue: props.modelValue,
         label: `"${props.label}"`,
@@ -78,11 +77,14 @@
         };
       });
 
-      watch(modelValue, (newModelValue) => {
-        if (newModelValue !== value.value) {
-          value.value = newModelValue;
+      watch(
+        () => props.modelValue,
+        (newModelValue) => {
+          if (newModelValue !== value.value) {
+            value.value = newModelValue;
+          }
         }
-      });
+      );
 
       return {
         errorMessage,
