@@ -41,7 +41,7 @@
   import { toRef, watch } from 'vue';
   import { useField } from 'vee-validate';
 
-  interface Option {
+  interface RadioOption {
     display: string;
     value: string | number | boolean;
   }
@@ -60,7 +60,7 @@
         required: true
       },
       options: {
-        type: Array as PropType<Option[]>,
+        type: Array as PropType<RadioOption[]>,
         required: true
       },
       validations: {
@@ -83,7 +83,7 @@
         }
       );
 
-      function onChange(option: Option | null | undefined) {
+      function onChange(option: RadioOption | null | undefined) {
         if (option) {
           handleChange(option.value);
           emit('update:modelValue', option.value);
@@ -93,7 +93,11 @@
         }
       }
 
-      function onLabelClick(option: Option, inputId: string, event: Event) {
+      function onLabelClick(
+        option: RadioOption,
+        inputId: string,
+        event: Event
+      ) {
         if (option.value === value.value) {
           event.preventDefault();
           onChange(null);
