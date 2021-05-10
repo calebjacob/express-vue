@@ -1,9 +1,8 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "module": "esnext",
+    "module": "commonjs",
     "strict": true,
-    "jsx": "preserve",
     "importHelpers": true,
     "moduleResolution": "node",
     "skipLibCheck": true,
@@ -13,25 +12,21 @@
     "baseUrl": ".",
     "resolveJsonModule": true,
     "types": [
-      "webpack-env",
-      "jest"
+      "jest",
+      "node"
     ],
     "paths": {
       "@/*": [
-        "app/frontend/src/*"
+        "./*"
       ]
     },
     "lib": [
-      "esnext",
-      "dom",
-      "dom.iterable",
-      "scripthost"
-    ]
+      "esnext"
+    ],
+    "outDir": "dist"
   },
   "include": [
-    "app/frontend/src/**/*.ts",
-    "app/frontend/src/**/*.tsx",
-    "app/frontend/src/**/*.vue"
+    "**/*.ts"
   ],
   "exclude": [
     "node_modules"

@@ -1,11 +1,16 @@
+// Enable aliases:
+// https://rockyj.in/2019/06/29/path-alias-typescript.html
+
+import 'module-alias/register';
+
 // Require all dependencies:
 
-const appRoot = require('app-root-path');
-const compression = require('compression');
-const config = require('./config');
-const debug = require('./routes/middleware/debug');
-const express = require('express');
-const routes = require('./routes');
+import appRoot from 'app-root-path';
+import compression from 'compression';
+import config from '@/config';
+import debug from '@/routes/middleware/debug';
+import express from 'express';
+import routes from '@/routes';
 
 // Create express app instance:
 
@@ -42,4 +47,4 @@ if (config.environment === 'local') {
 
 // Export the app:
 
-module.exports = app;
+export default app;
