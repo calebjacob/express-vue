@@ -9,7 +9,6 @@ A simple, Node starter project built with [Typescript](https://www.typescriptlan
 - [Frontend](docs/frontend.md)
 - [Styles](docs/styles.md)
 - [Testing](docs/testing.md)
-- [Modules & Mocking](docs/modules-and-mocking.md)
 - [Deploying With Dokku](docs/dokku.md)
 
 ## Getting Started
@@ -31,6 +30,12 @@ Now install all of the project's dependencies via NPM:
 
 ```
 npm ci
+```
+
+You'll need to set up a local `.env` file to declare our required environment variables. You can copy the example file to get up and running locally:
+
+```
+cp .env.example .env
 ```
 
 To get started with local development, boot up the backend server and frontend compilers/watchers:
@@ -107,5 +112,3 @@ npm run build
 ```
 
 This will generate a `app/public/dist` folder with all frontend assets compiled - ready to be served by the Express app.
-
-

@@ -1,7 +1,10 @@
 // Enable aliases:
 // https://rockyj.in/2019/06/29/path-alias-typescript.html
 
-import 'module-alias/register';
+/* eslint-disable */
+import moduleAlias from 'module-alias';
+moduleAlias.addAlias('@', __dirname);
+/* eslint-enable */
 
 // Require all dependencies:
 

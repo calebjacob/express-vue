@@ -1,8 +1,10 @@
 /* eslint-disable */
 const path = require('path');
+const dotenv = require('dotenv');
 /* eslint-enable */
 
-const port = process.env.PORT || '1234';
+const config = dotenv.config();
+const port = config.parsed.PORT;
 
 module.exports = {
   devServer: {

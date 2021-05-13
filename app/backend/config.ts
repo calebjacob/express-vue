@@ -1,7 +1,8 @@
-const environment = process.env.NODE_ENV || 'local';
-const port = process.env.PORT || '1234';
+import dotenv from 'dotenv';
+
+const { parsed = {} } = dotenv.config();
 
 export default {
-  environment,
-  port
+  environment: parsed.ENVIRONMENT,
+  port: parsed.PORT
 };

@@ -1,8 +1,8 @@
 module.exports = {
   projects: [
     {
-      root: './',
-      globalComponents: ['./app/frontend/src/components/globals/*.vue']
+      root: './app/frontend',
+      globalComponents: ['src/components/globals/*.vue']
     }
   ]
 };
