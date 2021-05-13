@@ -3,6 +3,8 @@
     <div class="notifications__wrapper">
       <transition-group name="notification">
         <div
+          v-for="notification in notifications"
+          :key="notification.id"
           class="notifications__notification"
           :class="{
             'notifications__notification--error':
@@ -10,8 +12,6 @@
             'notifications__notification--success':
               notification.type === NotificationType.SUCCESS
           }"
-          v-for="notification in notifications"
-          :key="notification.id"
           @click="hideNotification(notification)"
           @touchstart="hideNotification(notification)"
         >
@@ -27,7 +27,7 @@
                   'fa-check-circle':
                     notification.type === NotificationType.SUCCESS
                 }"
-              ></span>
+              />
               <p>{{ notification.message }}</p>
             </div>
           </div>

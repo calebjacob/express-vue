@@ -24,7 +24,7 @@
               }"
             >
               View Form
-              <span class="icon fa fa-arrow-right"></span>
+              <span class="icon fa fa-arrow-right" />
             </router-link>
           </div>
 

@@ -6,10 +6,11 @@ module.exports = {
   },
 
   extends: [
-    'plugin:vue/vue3-essential',
+    // 'plugin:vue/vue3-essential',
+    'plugin:vue/vue3-recommended',
+    '@vue/prettier',
     'eslint:recommended',
     '@vue/typescript/recommended',
-    '@vue/prettier',
     '@vue/prettier/@typescript-eslint'
   ],
 
@@ -49,6 +50,15 @@ module.exports = {
     ],
     'vue/prop-name-casing': ['error', 'camelCase'],
     'vue/script-indent': 'off',
+    'vue/html-self-closing': ['error', {
+      'html': {
+        'void': 'always',
+        'normal': 'always',
+        'component': 'always'
+      },
+      'svg': 'always',
+      'math': 'always'
+    }],
     '@typescript-eslint/explicit-module-boundary-types': [
       'error'
     ],

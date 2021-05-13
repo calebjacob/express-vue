@@ -1,16 +1,16 @@
 <template>
   <form
+    ref="element"
     class="form"
     :class="{
       'form--dirty': form.isDirty,
       'form--disabled': form.isDisabled,
       'form--submitted': form.hasSubmitted
     }"
+    novalidate
     @change="markAsDirty"
     @input="markAsDirty"
     @submit.prevent="submitHandler"
-    ref="element"
-    novalidate
   >
     <fieldset
       class="form__wrapper"

@@ -7,9 +7,9 @@
   >
     <div class="checkbox-input__options">
       <div
-        class="checkbox-input__option"
         v-for="(option, index) in options"
         :key="option.value"
+        class="checkbox-input__option"
       >
         <input
           class="checkbox-input__input"
@@ -30,7 +30,7 @@
       </div>
     </div>
 
-    <p class="input-error" role="alert" v-if="errorMessage">
+    <p v-if="errorMessage" class="input-error" role="alert">
       A selection is required
     </p>
   </div>
@@ -53,6 +53,7 @@
 
     props: {
       modelValue: {
+        type: [String, Number, Boolean],
         required: true
       },
       name: {
@@ -70,6 +71,8 @@
         }
       }
     },
+
+    emits: ['update:modelValue'],
 
     setup(props, { emit }) {
       const { errorMessage, handleChange, value } = useField(

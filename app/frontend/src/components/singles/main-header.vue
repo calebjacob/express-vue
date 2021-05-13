@@ -1,6 +1,6 @@
 <template>
   <header class="main-header">
-    <div class="icon icon--medium icon--block fa fa-rocket"></div>
+    <div class="icon icon--medium icon--block fa fa-rocket" />
   </header>
 </template>
 

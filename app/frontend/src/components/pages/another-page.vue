@@ -3,8 +3,8 @@
     <section class="section">
       <div class="container max-width-mobile">
         <validated-form
-          :submit="myFormSubmitHandler"
           v-slot="{ validatedForm }"
+          :submit="myFormSubmitHandler"
         >
           <div class="group center">
             <h1 class="title title--2">Here's a fancy form.</h1>
@@ -14,6 +14,7 @@
 
           <div class="group">
             <text-input
+              v-model="userDetails.email"
               name="email"
               label="Email"
               icon-class="fa-envelope"
@@ -22,10 +23,10 @@
                 email: true,
                 required: true
               }"
-              v-model="userDetails.email"
             />
 
             <text-input
+              v-model="userDetails.password"
               name="password"
               label="Password"
               icon-class="fa-key"
@@ -33,7 +34,6 @@
                 required: true,
                 min: 8
               }"
-              v-model="userDetails.password"
             />
           </div>
 
@@ -42,8 +42,8 @@
               <p class="title title--5">What's your favorite thing?</p>
 
               <radio-input
-                name="favoriteThing"
                 v-model="userDetails.favoriteThing"
+                name="favoriteThing"
                 :options="favoriteThingOptions"
                 :validations="{
                   required: true
@@ -63,8 +63,8 @@
           <div class="group">
             <p class="title title--5">Terms & Conditions</p>
             <checkbox-input
-              name="acceptedTerms"
               v-model="userDetails.acceptedTerms"
+              name="acceptedTerms"
               :validations="{
                 required: true
               }"
@@ -93,7 +93,7 @@
               type="submit"
             >
               Submit
-              <span class="icon fa fa-arrow-right"></span>
+              <span class="icon fa fa-arrow-right" />
             </button>
           </div>
         </validated-form>

@@ -20,7 +20,7 @@
       </label>
     </div>
 
-    <p class="input-error" role="alert" v-if="errorMessage">
+    <p v-if="errorMessage" class="input-error" role="alert">
       This checkbox is required
     </p>
   </div>
@@ -51,6 +51,8 @@
         }
       }
     },
+
+    emits: ['update:modelValue'],
 
     setup(props, { emit }) {
       const { errorMessage, handleChange, value } = useField(

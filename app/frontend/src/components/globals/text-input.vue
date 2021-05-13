@@ -7,17 +7,17 @@
       'text-input--has-icon': !!iconClass
     }"
   >
-    <input class="text-input__input" v-bind="inputAttributes" v-model="value" />
+    <input v-model="value" class="text-input__input" v-bind="inputAttributes" />
 
     <label class="text-input__label" :for="inputAttributes.id">
       {{ label }}
     </label>
 
     <div class="text-input__icon" aria-hidden="true">
-      <span :class="['icon', 'fa', iconClass]" v-if="iconClass" />
+      <span v-if="iconClass" :class="['icon', 'fa', iconClass]" />
     </div>
 
-    <p class="input-error" role="alert" v-if="errorMessage">
+    <p v-if="errorMessage" class="input-error" role="alert">
       {{ errorMessage }}
     </p>
   </div>
