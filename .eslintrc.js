@@ -72,5 +72,7 @@ module.exports = {
         jest: true
       }
     }
-  ]
+  ],
+
+  ignorePatterns: ['dist/**/*'],
 };
