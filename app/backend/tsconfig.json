@@ -17,7 +17,7 @@
     ],
     "paths": {
       "@/*": [
-        "./*"
+        "./src/*"
       ]
     },
     "lib": [
@@ -26,9 +26,10 @@
     "outDir": "dist"
   },
   "include": [
-    "**/*.ts"
+    "./src/**/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "dist"
   ]
 }

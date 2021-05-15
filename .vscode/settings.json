@@ -1,5 +1,8 @@
 {
   "vetur.validation.templateProps": true,
   "vetur.completion.autoImport": false,
-  "vetur.validation.template": false
+  "vetur.validation.template": false,
+  "search.exclude": {
+    "**/dist": true
+  }
 }

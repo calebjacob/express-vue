@@ -29,8 +29,16 @@ app.use(
 );
 app.use(compression());
 
-app.use(express.static(`${appRoot}/app/public`));
-app.use(express.static(`${appRoot}/app/public/dist`));
+app.use(
+  express.static(`${appRoot}/app/public`, {
+    index: false
+  })
+);
+app.use(
+  express.static(`${appRoot}/app/frontend/dist`, {
+    index: false
+  })
+);
 
 // Set up the routes:
 
@@ -45,7 +53,7 @@ app.use(debug);
 app.listen(config.port);
 
 if (config.environment === 'local') {
-  console.log(`App running at: localhost:${config.port}`);
+  console.log(`App running at: http://localhost:${config.port}`);
 }
 
 // Export the app:

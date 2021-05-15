@@ -37,7 +37,7 @@ module.exports = {
     }
   },
 
-  outputDir: 'app/public/dist',
+  outputDir: 'app/frontend/dist',
 
   lintOnSave: false
 };

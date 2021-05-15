@@ -1,3 +1,13 @@
+// subject:
+
+import vm from './index';
+
+// dependencies:
+
+import { createApp } from 'vue';
+import App from '@/components/app.vue';
+import globals from '@/globals';
+
 // mocks:
 
 jest.mock('vue', () => {
@@ -17,16 +27,6 @@ jest.mock('@/globals', () => {
     initialize: jest.fn()
   };
 });
-
-// dependencies:
-
-import { createApp } from 'vue';
-import App from '@/components/app.vue';
-import globals from '@/globals';
-
-// subject:
-
-import vm from './index.js';
 
 // tests:
 

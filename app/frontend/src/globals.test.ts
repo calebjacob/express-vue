@@ -1,16 +1,11 @@
-// mocks:
+// subject:
 
-jest.mock('@/helpers/configure-vee-validate', () => {
-  return jest.fn();
-});
-
-const vm = {
-  component: jest.fn(),
-  use: jest.fn()
-};
+import globals from '@/globals';
 
 // dependencies:
 
+import { mock } from 'jest-mock-extended';
+import { App } from 'vue';
 import CheckboxInput from '@/components/globals/checkbox-input.vue';
 import RadioInput from '@/components/globals/radio-input.vue';
 import TextInput from '@/components/globals/text-input.vue';
@@ -18,15 +13,29 @@ import ValidatedForm from '@/components/globals/validated-form.vue';
 import configureVeeValidate from '@/helpers/configure-vee-validate';
 import router from '@/router';
 
-// subject:
+// mocks:
 
-import globals from '@/globals';
+jest.mock('@/router', () => {
+  return 'mocked router object';
+});
+
+jest.mock('@/helpers/configure-vee-validate', () => {
+  return jest.fn();
+});
 
 // tests:
 
 describe('globals', () => {
+  let vm: App;
+
   beforeEach(() => {
+    vm = mock<App>();
+
     jest.clearAllMocks();
+  });
+
+  it('is true', () => {
+    expect(true).toEqual(true);
   });
 
   describe('initialize()', () => {
