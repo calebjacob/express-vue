@@ -20,10 +20,9 @@ export default defineConfig({
   server: {
     port: config.PORT_DEV_FE,
     proxy: {
-      '^/.*': {
+      '^/(api|images)': {
         target: `http://localhost:${config.PORT}`,
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\//, '')
+        changeOrigin: true
       }
     }
   }

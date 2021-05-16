@@ -62,6 +62,8 @@ npm run start:frontend
 
 When running the frontend dev server via Vite, all changes will be hot loaded to your browser - eliminating the need to refresh manually after each change.
 
+*NOTE: The dev server proxy settings inside `vite.config.js` might need to change per use case. It's set up to proxy all `/images` and `/api` requests through to the local backend server (Express backend app) by default.*
+
 ## Testing
 
 To learn more about testing conventions and methodologies, check out our [Testing Methodologies](docs/testing.md) documentation.
@@ -120,6 +122,16 @@ Other lint commands
 ```
 npm run lint:backend
 npm run lint:frontend
+```
+
+## Verify Typescript Code
+
+To verify that all Typescript code will compile (without generating any artifacts):
+
+```
+npm run verify
+npm run verify:backend
+npm run verify:frontend
 ```
 
 ## Production Build

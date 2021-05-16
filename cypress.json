@@ -3,9 +3,9 @@
   "downloadsFolder": "e2e/downloads",
   "fixturesFolder": "e2e/fixtures",
   "integrationFolder": "e2e/tests",
-  "pluginsFile": "e2e/plugins/index.ts",
+  "pluginsFile": "e2e/plugins/index.js",
   "screenshotsFolder": "e2e/screenshots",
-  "supportFile": "e2e/support/index.ts",
+  "supportFile": "e2e/support/index.js",
   "testFiles": "**/*.*",
   "videosFolder": "e2e/videos"
 }

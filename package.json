@@ -19,7 +19,10 @@
     "test:e2e:gui": "cypress open",
     "test:frontend": "jest --projects ./app/frontend/jest.config.js",
     "test:frontend:debug": "node --inspect-brk node_modules/.bin/jest --runInBand --projects ./app/frontend/jest.config.js",
-    "test:frontend:watch": "jest --watch --projects ./app/frontend/jest.config.js"
+    "test:frontend:watch": "jest --watch --projects ./app/frontend/jest.config.js",
+    "verify": "npm run verify:backend && npm run verify:frontend",
+    "verify:backend": "tsc --project ./app/backend/tsconfig.json --noEmit",
+    "verify:frontend": "vue-tsc --noEmit"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.2",
@@ -73,7 +76,7 @@
     "vue-tsc": "^0.0.24"
   },
   "gitHooks": {
-    "pre-commit": "lint-staged"
+    "pre-commit": "lint-staged && npm run verify"
   },
   "lint-staged": {
     "*.{js,jsx,vue}": [
