@@ -14,7 +14,7 @@
   >
     <fieldset
       class="form__wrapper"
-      :disabled="form.isDisabled || form.isProcessing"
+      :disabled="form.isDisabled || form.isSubmitting"
     >
       <slot :validated-form="form" />
     </fieldset>
@@ -47,6 +47,7 @@
       const form = reactive({
         hasSubmitted: false,
         isDirty: false,
+        isDisabled: false,
         isSubmitting: false
       });
       const { validate, values } = useForm();

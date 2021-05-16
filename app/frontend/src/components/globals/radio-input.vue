@@ -43,7 +43,7 @@
 
   interface RadioOption {
     display: string;
-    value: string | number | boolean;
+    value: string | number;
   }
 
   export default defineComponent({

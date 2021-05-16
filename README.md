@@ -1,6 +1,21 @@
-# Express Vue
+# Express Your Vue
 
-A simple, Node starter project built with [Typescript](https://www.typescriptlang.org/), [Express](https://expressjs.com/), [Vue 3](https://vuejs.org/), [Vue CLI](https://github.com/vuejs/vue-cli), and [Sass (Indented Syntax)](https://sass-lang.com/documentation/syntax#the-indented-syntax).
+A starter project ready to rock and roll!
+
+- [Node](https://nodejs.org/en/)
+- [Typescript](https://www.typescriptlang.org/)
+- [Express](https://expressjs.com/)
+- [Vue 3](https://vuejs.org/)
+- [Vite](https://vitejs.dev/)
+- [Sass (Indented Syntax)](https://sass-lang.com/documentation/syntax#the-indented-syntax)
+- [Font Awesome 5](https://fontawesome.com/icons?d=gallery&p=2).
+
+It also includes the following linting & testing integrations:
+
+- [ESLint](https://eslint.org/)
+- [Prettier](https://prettier.io/)
+- [Jest](https://jestjs.io/)
+- [Cypress](https://www.cypress.io/)
 
 *NOTE: Vuex is purposefully not included in this starter project. Vue 3's Composition API allows for a much simpler approach to global state management going forward. However, much larger projects might still benefit from Vuex. Also, keep an eye out for Vuex 5 - it will introduce big changes for Vuex according to [this RFC](https://github.com/kiaking/rfcs/blob/vuex-5/active-rfcs/0000-vuex-5.md).*
 
@@ -45,7 +60,7 @@ npm run start:backend
 npm run start:frontend
 ```
 
-When running the frontend dev server via Vue CLI, all changes will be hot loaded to your browser - eliminating the need to refresh manually after each change.
+When running the frontend dev server via Vite, all changes will be hot loaded to your browser - eliminating the need to refresh manually after each change.
 
 ## Testing
 
@@ -72,15 +87,19 @@ npm run test:frontend:watch
 
 ### E2E Testing
 
-The [Cypress](https://www.cypress.io/) testing framework is used to handle end to end testing.
+The [Cypress](https://www.cypress.io/) testing framework is used to handle end to end testing. Before you run the test suite, you'll need to make sure you have the app running in production mode:
 
-To run the E2E test suite once in headless mode:
+```
+npm run production
+```
+
+To run the E2E test suite once in headless mode (`cypress run`):
 
 ```
 npm run test:e2e
 ```
 
-To run the E2E test suite in GUI/dev mode:
+To run the E2E test suite in GUI mode (`cypress open`):
 
 ```
 npm run test:e2e:gui
@@ -88,7 +107,7 @@ npm run test:e2e:gui
 
 ## Linting
 
-All backend and frontend code is automatically linted and fixed on commit. Linting uses a combo of Vue CLI, ESlint, and Prettier.
+All backend and frontend code is automatically linted and fixed on commit. Linting uses a combo of ESlint and Prettier.
 
 To lint and fix all code:
 
@@ -111,4 +130,4 @@ Create a production ready build:
 npm run build
 ```
 
-This will generate a `app/public/dist` folder with all frontend assets compiled - ready to be served by the Express app.
+This will generate an `app/backend/dist` and `app/frontend/dist` folder ready to be executed by Node and served by Express.

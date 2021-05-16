@@ -73,7 +73,7 @@
         return {
           ...attrs,
           'aria-invalid': !!errorMessage.value,
-          id: attrs.id || props.name
+          id: (attrs.id as string) || props.name
         };
       });
 

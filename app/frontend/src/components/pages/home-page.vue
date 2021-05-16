@@ -10,7 +10,14 @@
 
       <section class="section">
         <div
-          class="layout layout--horizontal layout--horizontal-equal layout--double-spacing layout--align-start layout--stack-600"
+          class="
+            layout
+            layout--horizontal
+            layout--horizontal-equal
+            layout--double-spacing
+            layout--align-start
+            layout--stack-600
+          "
         >
           <div>
             <h3 class="title title--3">Want to see a form?</h3>

@@ -1,21 +1,16 @@
 module.exports = {
   displayName: 'frontend',
 
-  preset: '@vue/cli-plugin-unit-jest/presets/typescript-and-babel',
-
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1'
   },
 
+  moduleFileExtensions: ['js', 'ts', 'json', 'vue'],
+
   testMatch: ['<rootDir>/src/**/*.test.ts?(x)'],
 
   transform: {
-    '^.+\\.vue$': 'vue-jest'
-  },
-
-  globals: {
-    'ts-jest': {
-      diagnostics: false
-    }
+    '^.+\\.vue$': 'vue-jest',
+    '^.+\\.tsx?$': 'ts-jest'
   }
 };
