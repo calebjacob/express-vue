@@ -1,55 +1,24 @@
+// subject:
+
+import { useNotifications, NotificationType } from './notifications';
+
+// dependencies:
+
 import timer from '@/helpers/timer';
 import { ref, Ref } from 'vue';
 
-interface NotificationsModule {
-  hideNotification(notification: Notification): void;
-  notifications: Ref<Notification[]>;
-  showNotification(options: ShowNotificationOptions): void;
-}
+// mocks:
 
-interface Notification {
-  id: number;
-  message: string;
-  type: NotificationType;
-}
+jest.mock('@/helpers/timer');
 
-interface ShowNotificationOptions {
-  message: string;
-  type: NotificationType;
-}
+// tests:
 
-enum NotificationType {
-  ERROR = 'Error',
-  GENERIC = 'Generic',
-  SUCCESS = 'Success'
-}
+describe('notifications', () => {
+  let module;
 
-const notifications: Ref<Notification[]> = ref([]);
+  beforeEach(() => {
+    module = useNotifications();
+  });
 
-function useNotifications(): NotificationsModule {
-  function hideNotification(notification: Notification) {
-    notifications.value = notifications.value.filter((n) => {
-      return n.id !== notification.id;
-    });
-  }
-
-  async function showNotification(options: ShowNotificationOptions) {
-    const notification = {
-      id: Date.now(),
-      message: options.message,
-      type: options.type
-    };
-
-    notifications.value.unshift(notification);
-    await timer(4000);
-    hideNotification(notification);
-  }
-
-  return {
-    hideNotification,
-    notifications,
-    showNotification
-  };
-}
-
-export { useNotifications, NotificationType };
+  describe('Name of the group', () => {});
+});
