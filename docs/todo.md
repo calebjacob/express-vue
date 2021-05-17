@@ -3,7 +3,6 @@
 - [X] Use Vite for FE
 - [X] Typescript FE
 - [X] Typescript BE
-- [] Improve Vite dev proxy - can we proxy all unknown requests? Make sure all commands work
 - [] Write updated tests for all BE (Typescript?)
 - [] Is there a better alternative to Vee Validate?
 - [] Write updated tests for all FE (Typescript?)

@@ -1,3 +1,13 @@
+// subject:
+
+import router from '@/router';
+
+// dependencies:
+
+import { createRouter, createWebHistory } from 'vue-router';
+import AnotherPage from '@/components/pages/another-page.vue';
+import HomePage from '@/components/pages/home-page.vue';
+
 // mocks:
 
 jest.mock('vue-router', () => {
@@ -6,16 +16,6 @@ jest.mock('vue-router', () => {
     createWebHistory: jest.fn().mockReturnValue('mock web history instance')
   };
 });
-
-// dependencies:
-
-import { createRouter, createWebHistory } from 'vue-router';
-import AnotherPage from '@/components/pages/another-page.vue';
-import HomePage from '@/components/pages/home-page.vue';
-
-// subject:
-
-import router from '@/router';
 
 // tests:
 

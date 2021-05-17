@@ -1,9 +1,9 @@
 import timer from '@/helpers/timer';
-import { computed, ComputedRef, ref, Ref } from 'vue';
+import { ref, Ref } from 'vue';
 
 interface NotificationsModule {
   hideNotification(notification: Notification): void;
-  notifications: ComputedRef<Ref<Notification[]>>;
+  notifications: Ref<Notification[]>;
   showNotification(options: ShowNotificationOptions): void;
 }
 
@@ -41,15 +41,13 @@ function useNotifications(): NotificationsModule {
     };
 
     notifications.value.unshift(notification);
-
     await timer(4000);
-
     hideNotification(notification);
   }
 
   return {
     hideNotification,
-    notifications: computed(() => notifications),
+    notifications,
     showNotification
   };
 }
