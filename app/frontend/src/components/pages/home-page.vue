@@ -39,7 +39,10 @@
             <h3 class="title title--3">Notifications</h3>
 
             <div
-              class="layout layout--horizontal layout--justify-start spacing"
+              class="
+                layout layout--horizontal layout--justify-start
+                margin-bottom
+              "
             >
               <button
                 class="link success"

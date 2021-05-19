@@ -12,8 +12,6 @@
             'notifications__notification--success':
               notification.type === NotificationType.SUCCESS
           }"
-          @click="hideNotification(notification)"
-          @touchstart="hideNotification(notification)"
         >
           <div class="notifications__content">
             <div class="layout layout--icon">
@@ -28,7 +26,17 @@
                     notification.type === NotificationType.SUCCESS
                 }"
               />
+
               <p>{{ notification.message }}</p>
+
+              <button
+                v-if="!notification.autoHide"
+                type="button"
+                class="link"
+                @click="hideNotification(notification)"
+              >
+                OK
+              </button>
             </div>
           </div>
         </div>

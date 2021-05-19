@@ -17,6 +17,7 @@ function useErrors(): ErrorsModule {
 
     showNotification({
       type: NotificationType.ERROR,
+      autoHide: false,
       message:
         options.message ||
         error.message ||

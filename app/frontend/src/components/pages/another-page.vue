@@ -52,7 +52,7 @@
             </template>
 
             <button
-              class="link primary spacing"
+              class="link primary margin-bottom"
               type="button"
               @click="toggleFavoriteThingQuestion"
             >
@@ -77,7 +77,7 @@
 
           <div class="group layout layout--horizontal">
             <router-link
-              class="link primary spacing"
+              class="link primary margin-bottom"
               :to="{
                 name: 'home'
               }"

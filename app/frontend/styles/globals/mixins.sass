@@ -24,3 +24,12 @@
 
 @mixin no-margin-collapse()
   padding-bottom: 0.01px
+
+@mixin no-wrap-ellipsis-multi-line($lineCount: 2)
+  -webkit-line-clamp: $lineCount
+  display: block
+  display: -webkit-box
+  -webkit-box-orient: vertical
+  overflow: hidden
+  word-break: break-word
+  text-overflow: ellipsis

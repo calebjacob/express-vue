@@ -14,11 +14,12 @@ jest.mock('@/helpers/timer');
 // tests:
 
 describe('notifications', () => {
-  let module;
+  describe('useNotifications()', () => {
+    it('defaults notifications to an empty array', () => {
+      const { notifications } = useNotifications();
+      expect(notifications.value).toEqual([]);
+    });
 
-  beforeEach(() => {
-    module = useNotifications();
+    describe('showing notifications', () => {});
   });
-
-  describe('Name of the group', () => {});
 });
