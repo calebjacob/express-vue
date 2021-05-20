@@ -2,9 +2,12 @@
 
 import globals from '@/globals';
 
-// dependencies:
+// utils:
 
 import { mock } from 'jest-mock-extended';
+
+// dependencies:
+
 import { App } from 'vue';
 import CheckboxInput from '@/components/globals/checkbox-input.vue';
 import RadioInput from '@/components/globals/radio-input.vue';

@@ -1,15 +1,17 @@
 import timer from '@/helpers/timer';
 import { computed, ComputedRef, ref, Ref } from 'vue';
+import { v4 as uuid } from 'uuid';
 
 interface NotificationsModule {
   hideNotification(notification: Notification): void;
   notifications: ComputedRef<Notification[]>;
+  resetState(): void;
   showNotification(options: ShowNotificationOptions): void;
 }
 
 interface Notification {
   autoHide: boolean;
-  id: number;
+  id: string;
   message: string;
   type: NotificationType;
 }
@@ -35,6 +37,10 @@ function useNotifications(): NotificationsModule {
     });
   }
 
+  function resetState(): void {
+    notifications.value = [];
+  }
+
   async function showNotification({
     autoHide = true,
     message,
@@ -42,7 +48,7 @@ function useNotifications(): NotificationsModule {
   }: ShowNotificationOptions) {
     const notification = {
       autoHide,
-      id: Date.now(),
+      id: uuid(),
       message,
       type
     };
@@ -58,8 +64,9 @@ function useNotifications(): NotificationsModule {
   return {
     hideNotification,
     notifications: computed(() => notifications.value),
+    resetState,
     showNotification
   };
 }
 
-export { useNotifications, NotificationType };
+export { useNotifications, NotificationsModule, NotificationType };
