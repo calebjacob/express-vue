@@ -1,10 +1,10 @@
 import timer from '@/helpers/timer';
-import { computed, ComputedRef, ref, Ref } from 'vue';
+import { readonly, ref, Ref } from 'vue';
 import { v4 as uuid } from 'uuid';
 
 interface NotificationsModule {
   hideNotification(notification: Notification): void;
-  notifications: ComputedRef<Notification[]>;
+  notifications: Ref<readonly Notification[]>;
   resetState(): void;
   showNotification(options: ShowNotificationOptions): void;
 }
@@ -63,7 +63,7 @@ function useNotifications(): NotificationsModule {
 
   return {
     hideNotification,
-    notifications: computed(() => notifications.value),
+    notifications: readonly(notifications),
     resetState,
     showNotification
   };

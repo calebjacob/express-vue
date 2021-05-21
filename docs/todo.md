@@ -3,6 +3,8 @@
 - [X] Use Vite for FE
 - [X] Typescript FE
 - [X] Typescript BE
+- [] Can FE code be made simpler or improved?
+- [] https://medium.com/@mario.brendel1990/vue-3-the-new-store-a7569d4a546f
 - [] Create a provide/inject Vue example
     https://logaretm.com/blog/2020-12-23-type-safe-provide-inject/
     https://next.vuex.vuejs.org/guide/typescript-support.html#typing-store-property-in-vue-component
