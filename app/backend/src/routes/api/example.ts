@@ -11,7 +11,9 @@ function get(req: Request, res: Response): void {
 
 function post(req: Request, res: Response): void {
   res.json({
-    id: 1
+    email: 'frodo@baggins.com',
+    fullName: 'Frodo Baggins',
+    id: '12345'
   });
 }
 

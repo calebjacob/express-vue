@@ -87,41 +87,20 @@
         </div>
       </section>
 
-      <section class="section">
-        <h3 class="title title--3">Here's Some Actions</h3>
+      <section v-if="session.currentUser" class="section">
+        <h3 class="title title--3">Here's Your Account:</h3>
 
-        <div
-          class="layout layout--horizontal layout--justify-start layout--wrap"
-        >
-          <button
-            class="button"
-            :class="{
-              'button--loading': exampleData.someDataIsLoading
-            }"
-            type="button"
-            @click="load"
-          >
-            Load Data
-          </button>
-
-          <button
-            class="button button--secondary"
-            type="button"
-            @click="loadWithError"
-          >
-            Load Bad Data
-          </button>
-        </div>
-
-        <p v-if="exampleData.someData">
-          Here's some loaded data.
-          <br />
-          Thing: {{ exampleData.someData.thing }}
-          <br />
-          Color: {{ exampleData.someData.color }}
-          <br />
-          Miles: {{ exampleData.someData.miles }}
-        </p>
+        <ul>
+          <li>
+            <p>Full Name: {{ session.currentUser.fullName }}</p>
+          </li>
+          <li>
+            <p>Email: {{ session.currentUser.email }}</p>
+          </li>
+          <li>
+            <p>ID: {{ session.currentUser.id }}</p>
+          </li>
+        </ul>
       </section>
     </div>
   </div>
@@ -129,39 +108,20 @@
 
 <script lang="ts">
   import { defineComponent } from 'vue';
-  import { useErrors } from '@/modules/errors';
-  import { useExampleData } from '@/modules/example-data';
+  import injectStrict from '@/helpers/inject-strict';
+  import { SessionModuleKey } from '@/modules/session';
   import { useNotifications, NotificationType } from '@/modules/notifications';
 
   export default defineComponent({
     name: 'HomePage',
 
     setup() {
-      const { loadExampleData, exampleData } = useExampleData();
-      const { handleError } = useErrors();
+      const { session } = injectStrict(SessionModuleKey);
       const { showNotification } = useNotifications();
-
-      async function load() {
-        try {
-          await loadExampleData();
-        } catch (error) {
-          handleError(error);
-        }
-      }
-
-      async function loadWithError() {
-        try {
-          throw new Error('This request failed on purpose.');
-        } catch (error) {
-          handleError(error);
-        }
-      }
 
       return {
         NotificationType,
-        exampleData,
-        load,
-        loadWithError,
+        session,
         showNotification
       };
     }

@@ -64,13 +64,13 @@ describe('notifications', () => {
         });
 
         expect(notifications.value.length).toEqual(2);
-        expect(notifications.value[0].message).toEqual('Goodbye world!');
-        expect(notifications.value[1].message).toEqual('Hello world!');
+        expect(notifications.value[0].message).toEqual('Hello world!');
+        expect(notifications.value[1].message).toEqual('Goodbye world!');
 
         hideNotification(notifications.value[1]);
 
         expect(notifications.value.length).toEqual(1);
-        expect(notifications.value[0].message).toEqual('Goodbye world!');
+        expect(notifications.value[0].message).toEqual('Hello world!');
 
         hideNotification(notifications.value[0]);
 
@@ -123,7 +123,7 @@ describe('notifications', () => {
         });
       });
 
-      it('shows multiple notifications at once, placing newest notification at the front of the array', async () => {
+      it('shows multiple notifications at once', async () => {
         const { notifications, showNotification } = useNotifications();
 
         showNotification({
@@ -137,8 +137,8 @@ describe('notifications', () => {
         });
 
         expect(notifications.value.length).toEqual(2);
-        expect(notifications.value[0].message).toEqual('Goodbye world!');
-        expect(notifications.value[1].message).toEqual('Hello world!');
+        expect(notifications.value[0].message).toEqual('Hello world!');
+        expect(notifications.value[1].message).toEqual('Goodbye world!');
         await flushPromises();
         expect(notifications.value.length).toEqual(0);
       });
@@ -149,14 +149,14 @@ describe('notifications', () => {
         const { notifications, showNotification } = useNotifications();
 
         showNotification({
-          autoHide: false,
-          message: 'I stay forever!',
+          autoHide: true,
+          message: 'I am but dust in the wind!',
           type: NotificationType.SUCCESS
         });
 
         showNotification({
-          autoHide: true,
-          message: 'I am but dust in the wind!',
+          autoHide: false,
+          message: 'I stay forever!',
           type: NotificationType.SUCCESS
         });
 

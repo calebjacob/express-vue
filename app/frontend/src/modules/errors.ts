@@ -9,9 +9,9 @@ interface HandleErrorOptions {
   message?: string;
 }
 
-function useErrors(): ErrorsModule {
-  const { showNotification } = useNotifications();
+const { showNotification } = useNotifications();
 
+function useErrors(): ErrorsModule {
   function handleError(error: Error, options: HandleErrorOptions = {}) {
     console.error(error);
 

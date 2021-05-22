@@ -11,7 +11,8 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent } from 'vue';
+  import { defineComponent, provide } from 'vue';
+  import { useSession, SessionModuleKey } from '@/modules/session';
   import MainFooter from '@/components/singles/main-footer.vue';
   import MainHeader from '@/components/singles/main-header.vue';
   import Notifications from '@/components/singles/notifications.vue';
@@ -23,6 +24,13 @@
       MainFooter,
       MainHeader,
       Notifications
+    },
+
+    setup() {
+      const session = useSession();
+      session.load();
+
+      provide(SessionModuleKey, session);
     }
   });
 </script>

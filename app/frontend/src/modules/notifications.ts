@@ -53,7 +53,7 @@ function useNotifications(): NotificationsModule {
       type
     };
 
-    notifications.value.unshift(notification);
+    notifications.value.push(notification);
 
     if (autoHide) {
       await timer(4000);
