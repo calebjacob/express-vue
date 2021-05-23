@@ -24,7 +24,17 @@
           Sign Out
         </button>
 
-        <button v-else class="link" type="button" @click="signIn">
+        <button
+          v-else
+          class="link"
+          type="button"
+          @click="
+            signIn({
+              email: 'frodo@baggins.com',
+              password: 'MyPassword!'
+            })
+          "
+        >
           Sign In
         </button>
       </div>

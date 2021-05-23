@@ -18,6 +18,9 @@
     "paths": {
       "@/*": [
         "./src/*"
+      ],
+      "shared/*": [
+        "../shared/*"
       ]
     },
     "lib": [
@@ -26,7 +29,8 @@
     "outDir": "dist"
   },
   "include": [
-    "./src/**/*.ts"
+    "./src/**/*.ts",
+    "../shared/**/*.ts"
   ],
   "exclude": [
     "node_modules",

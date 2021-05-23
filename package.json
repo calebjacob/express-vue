@@ -1,6 +1,10 @@
 {
   "name": "express-vue",
   "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iamceege/express-vue"
+  },
   "private": true,
   "scripts": {
     "build": "npm run build:backend && npm run build:frontend",
@@ -9,7 +13,7 @@
     "lint": "npm run lint:backend && npm run lint:frontend",
     "lint:backend": "eslint --ext .js,.ts ./app/backend/ --fix",
     "lint:frontend": "eslint --ext .js,.jsx,.ts,.vue ./app/frontend/src/ --fix",
-    "production": "npm run build && NODE_ENV='production' node app/backend/dist/index.js",
+    "production": "npm run build && NODE_ENV='production' node app/backend/dist/backend/src/index.js",
     "start:backend": "TS_NODE_PROJECT='./app/backend/tsconfig.json' ts-node-dev --files -r tsconfig-paths/register ./app/backend/src/index.ts",
     "start:frontend": "vite",
     "test": "npm run test:backend && npm run test:frontend",
@@ -31,6 +35,7 @@
     "app-root-path": "^3.0.0",
     "axios": "^0.21.1",
     "compression": "^1.7.4",
+    "cookie-parser": "^1.4.5",
     "core-js": "^3.6.5",
     "dotenv": "^9.0.2",
     "express": "^4.17.1",
@@ -44,6 +49,7 @@
   "devDependencies": {
     "@types/app-root-path": "^1.2.4",
     "@types/compression": "^1.7.0",
+    "@types/cookie-parser": "^1.4.2",
     "@types/express": "^4.17.11",
     "@types/jest": "^24.0.19",
     "@types/module-alias": "^2.0.0",
@@ -81,13 +87,9 @@
     "pre-commit": "lint-staged && npm run verify"
   },
   "lint-staged": {
-    "*.{js,jsx,vue}": [
+    "*.{ts,js,jsx,vue}": [
       "npm run lint",
       "git add"
     ]
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/iamceege/express-vue"
   }
 }

@@ -2,7 +2,8 @@ module.exports = {
   displayName: 'backend',
 
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/src/$1'
+    '^@/(.*)$': '<rootDir>/src/$1',
+    '^shared/(.*)$': `${process.cwd()}/app/shared/$1`
   },
 
   moduleFileExtensions: ['js', 'ts', 'json'],

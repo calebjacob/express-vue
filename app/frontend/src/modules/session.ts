@@ -2,6 +2,7 @@ import http from '@/services/http';
 import { InjectionKey, reactive, readonly } from 'vue';
 import { useErrors } from '@/modules/errors';
 import { useNotifications, NotificationType } from '@/modules/notifications';
+import { CurrentUser, SignInBody } from 'shared/api-types';
 
 const SessionModuleKey: InjectionKey<SessionModule> = Symbol('SessionModule');
 
@@ -15,12 +16,6 @@ interface SessionModule {
 interface Session {
   currentUser: CurrentUser | null;
   isSigningIn: boolean;
-}
-
-interface CurrentUser {
-  email: string;
-  fullName: string;
-  id: string;
 }
 
 interface SignInOptions {
@@ -45,10 +40,15 @@ function useSession(): SessionModule {
     try {
       session.isSigningIn = true;
 
-      const response = await http.post<CurrentUser>('/api/example', {
+      const signInBody: SignInBody = {
         email,
         password
-      });
+      };
+
+      const response = await http.post<CurrentUser>(
+        '/api/auth/sign-in',
+        signInBody
+      );
 
       session.currentUser = response.data;
 
@@ -72,7 +72,7 @@ function useSession(): SessionModule {
         type: NotificationType.SUCCESS
       });
 
-      await http.post('/api/example');
+      await http.post('/api/auth/sign-out');
     } catch (error) {
       handleErrorQuietly(error);
     }

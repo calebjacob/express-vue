@@ -13,6 +13,10 @@ export default defineConfig({
       {
         find: /^@\/(.*)$/,
         replacement: `${process.cwd()}/app/frontend/src/$1`
+      },
+      {
+        find: /^shared\/(.*)$/,
+        replacement: `${process.cwd()}/app/shared/$1`
       }
     ]
   },
