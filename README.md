@@ -115,7 +115,7 @@ npm run test:e2e:gui
 
 ## Linting
 
-All backend and frontend code is automatically linted and fixed on commit. Linting uses a combo of ESlint and Prettier.
+*NOTE: All backend and frontend code is automatically linted and fixed on pre-commit. Linting uses a combo of ESlint and Prettier.*
 
 To lint and fix all code:
 
@@ -123,16 +123,13 @@ To lint and fix all code:
 npm run lint
 ```
 
-Other lint commands
-
-```
-npm run lint:backend
-npm run lint:frontend
-```
-
 ## Verify Typescript Code
 
-To verify that all Typescript code will compile (without generating any artifacts):
+*NOTE: All backend and frontend code is automatically type checked and verified on pre-commit.*
+
+Due to the development server watch/build process being focused on speedy compile times, not all type errors will come through when files are modified (especially for the frontend, which uses Vite). For the most part, your IDE should be able to help you catch type errors as you modify code.
+
+To verify that all Typescript code will compile and no type errors exist (without generating any artifacts):
 
 ```
 npm run verify
