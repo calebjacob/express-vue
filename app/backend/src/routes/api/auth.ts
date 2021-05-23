@@ -9,6 +9,7 @@ function clearCookies(res: Response) {
   res.clearCookie('accessToken');
   res.clearCookie('isSignedIn');
   res.clearCookie('refreshToken');
+  res.clearCookie('refreshToken');
 }
 
 function saveCookies(accessToken: string, refreshToken: string, res: Response) {
