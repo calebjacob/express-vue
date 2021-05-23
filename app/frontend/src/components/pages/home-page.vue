@@ -113,7 +113,7 @@
   import { useNotifications, NotificationType } from '@/modules/notifications';
 
   export default defineComponent({
-    name: 'HomePage',
+    name: 'HomePagez',
 
     setup() {
       const { session } = injectStrict(SessionModuleKey);
