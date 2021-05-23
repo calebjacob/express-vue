@@ -47,6 +47,12 @@ Now install all of the project's dependencies via NPM:
 npm ci
 ```
 
+Initialize git hooks:
+
+```
+npm run husky
+```
+
 You'll need to set up a local `.env` file to declare our required environment variables. You can copy the example file to get up and running locally:
 
 ```

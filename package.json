@@ -10,6 +10,7 @@
     "build": "npm run build:backend && npm run build:frontend",
     "build:backend": "tsc --project ./app/backend/tsconfig.json",
     "build:frontend": "vue-tsc --noEmit && vite build",
+    "husky": "husky install",
     "lint": "npm run lint:backend && npm run lint:frontend",
     "lint:backend": "eslint --ext .js,.ts ./app/backend/ --fix",
     "lint:frontend": "eslint --ext .js,.jsx,.ts,.vue ./app/frontend/src/ --fix",
