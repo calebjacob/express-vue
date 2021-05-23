@@ -14,7 +14,7 @@
     "lint": "npm run lint:backend && npm run lint:frontend",
     "lint:backend": "eslint --ext .js,.ts ./app/backend/ --fix",
     "lint:frontend": "eslint --ext .js,.jsx,.ts,.vue ./app/frontend/src/ --fix",
-    "pre-commit": "lint-staged && npm run verify",
+    "pre-commit": "npm run lint && npm run verify",
     "production": "npm run build && NODE_ENV='production' node app/backend/dist/backend/src/index.js",
     "start:backend": "TS_NODE_PROJECT='./app/backend/tsconfig.json' ts-node-dev --files -r tsconfig-paths/register ./app/backend/src/index.ts",
     "start:frontend": "vite",
@@ -73,7 +73,6 @@
     "husky": "^6.0.0",
     "jest": "^26.6.3",
     "jest-mock-extended": "^1.0.14",
-    "lint-staged": "^9.5.0",
     "module-alias": "^2.2.2",
     "node-mocks-http": "^1.10.1",
     "prettier": "^2.2.1",
@@ -85,11 +84,5 @@
     "vite": "^2.3.0",
     "vue-jest": "^5.0.0-0",
     "vue-tsc": "^0.0.24"
-  },
-  "lint-staged": {
-    "*.{ts,js,jsx,vue}": [
-      "npm run lint",
-      "git add"
-    ]
   }
 }
