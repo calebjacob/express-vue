@@ -2,7 +2,7 @@ import http from '@/services/http';
 import { InjectionKey, reactive, readonly } from 'vue';
 import { useErrors } from '@/modules/errors';
 import { useNotifications, NotificationType } from '@/modules/notifications';
-import { CurrentUser, SignInBody } from 'shared/api-types';
+import { SignInBody, SignInResponse } from 'shared/types';
 
 const SessionModuleKey: InjectionKey<SessionModule> = Symbol('SessionModule');
 
@@ -14,7 +14,7 @@ interface SessionModule {
 }
 
 interface Session {
-  currentUser: CurrentUser | null;
+  currentUser: SignInResponse | null;
   isSigningIn: boolean;
 }
 
@@ -45,7 +45,7 @@ function useSession(): SessionModule {
         password
       };
 
-      const response = await http.post<CurrentUser>(
+      const response = await http.post<SignInResponse>(
         '/api/auth/sign-in',
         signInBody
       );

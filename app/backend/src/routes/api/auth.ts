@@ -3,7 +3,7 @@ import timer from '@/helpers/timer';
 import logger from '@/services/logger';
 import { apiErrorHandler } from '@/services/errors';
 import { Request, Response } from 'express';
-import { CurrentUser, SignInBody } from 'shared/api-types';
+import { SignInBody, SignInResponse } from 'shared/types';
 
 function clearCookies(res: Response) {
   res.clearCookie('accessToken');
@@ -31,7 +31,7 @@ function saveCookies(accessToken: string, refreshToken: string, res: Response) {
 
 async function signIn(
   req: Request<undefined, undefined, SignInBody>,
-  res: Response<CurrentUser>
+  res: Response<SignInResponse>
 ): Promise<void> {
   try {
     const accessToken = 'ACCESS_TOKEN_123';
