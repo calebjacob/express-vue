@@ -3,10 +3,11 @@
 - [X] Use Vite for FE
 - [X] Typescript FE
 - [X] Typescript BE
-- [] Can API be abstracted in to a class that shares the interface/response/request details to FE and BE? URL, body, response, HTTP method, etc.
-- [] Edit in shared types does not cause reload for dev
-- [] Create FE sign in page
+- [] Don't pass around `res` object in BE services (auth mainly) - should split that out to helpers if needed for setting cookies, etc
+- [] Create FE sign in page and register page
 - [] Create FE session auth load method to refresh tokens if signed in
+- [] Support Vue Dev tools (manual enable for v3?)
+- [] Nice error page served from BE using styles index.html with template renderer (ERB)?
 - [] Can FE code be made simpler or improved?
 - [] https://medium.com/@mario.brendel1990/vue-3-the-new-store-a7569d4a546f
 - [] Write updated tests for all BE (Typescript?)

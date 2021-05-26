@@ -13,9 +13,8 @@ import appRoot from 'app-root-path';
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import config from '@/config';
-import debug from '@/routes/middleware/debug';
 import express from 'express';
-import logger from '@/services/logger';
+import { logInfo } from '@/services/logger';
 import routes from '@/routes';
 
 // Create express app instance:
@@ -52,16 +51,12 @@ app.use(cookieParser(config.cookieSecret));
 
 routes(app);
 
-// Set up error handling and debug logging:
-
-app.use(debug);
-
 // Run the app:
 
 app.listen(config.port);
 
 if (config.environment === 'local') {
-  logger.info(`App running at: http://localhost:${config.port}`);
+  logInfo(`App running at: http://localhost:${config.port}`);
 }
 
 // Export the app:

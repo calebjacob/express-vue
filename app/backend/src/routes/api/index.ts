@@ -1,13 +1,35 @@
 import auth from './auth';
+import authRequired from '@/routes/middleware/auth-required';
 import example from './example';
-import { Routers } from '@/routes';
+import { Route } from '@/routes/types';
 
-function api(routers: Routers): void {
-  routers.public.post('/api/auth/sign-in', auth.signIn);
-  routers.public.post('/api/auth/sign-out', auth.signOut);
+const routes: Route[] = [
+  {
+    handler: auth.register,
+    method: 'post',
+    path: '/api/auth/register'
+  },
+  {
+    handler: auth.signIn,
+    method: 'post',
+    path: '/api/auth/sign-in'
+  },
+  {
+    handler: auth.signOut,
+    method: 'post',
+    path: '/api/auth/sign-out'
+  },
+  {
+    handler: example.somethingPublic,
+    method: 'get',
+    path: '/api/something-public'
+  },
+  {
+    handler: example.somethingPrivate,
+    method: 'get',
+    path: '/api/something-private',
+    middleware: [authRequired]
+  }
+];
 
-  routers.public.get('/api/example', example.get);
-  routers.public.post('/api/example', example.post);
-}
-
-export default api;
+export default routes;

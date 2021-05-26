@@ -1,5 +1,5 @@
-import logger from '@/services/logger';
-import { Response } from 'express';
+import { logError } from '@/services/logger';
+import { Response } from '@/routes/types';
 
 interface DataResponse {
   errors: DataResponseError[];
@@ -18,13 +18,19 @@ interface ApiError {
 }
 
 interface ApiErrorHandlerOptions {
+  code?: string;
+  error?: Error;
   errors?: ApiError[];
+  message?: string;
   res: Response;
   status?: number;
 }
 
-function apiErrorHandler({
+export function apiErrorHandler({
+  code: singleErrorCode,
+  error: singleError,
   errors = [],
+  message: singleErrorMessage,
   res,
   status = 500
 }: ApiErrorHandlerOptions): void {
@@ -33,14 +39,24 @@ function apiErrorHandler({
     status
   };
 
-  errors.forEach(
+  const allErrors = [...errors];
+
+  if (singleErrorCode || singleError || singleErrorMessage) {
+    allErrors.push({
+      code: singleErrorCode,
+      error: singleError,
+      message: singleErrorMessage
+    });
+  }
+
+  allErrors.forEach(
     ({
       code = 'UNKNOWN',
       error,
       message = 'Oops! An unknown error occurred. Please try again later.'
     }) => {
       if (error) {
-        logger.error(error);
+        logError(error);
       }
 
       data.errors.push({
@@ -54,4 +70,4 @@ function apiErrorHandler({
   res.json(data);
 }
 
-export { apiErrorHandler };
+export default { apiErrorHandler };

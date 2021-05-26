@@ -1,23 +1,31 @@
-import { Request, Response } from 'express';
+import { Handler, Response, Request } from '@/routes/types';
+import {
+  SomethingPublicResponse,
+  SomethingPrivateResponse
+} from 'shared/types';
 
-function get(req: Request, res: Response): void {
+const somethingPrivate: Handler = (
+  req: Request,
+  res: Response<SomethingPrivateResponse>
+): void => {
   res.json({
-    color: 'blue',
-    foobar: req.foobar,
-    miles: 7000,
-    thing: 'car'
+    address: '1234 Hobbit Ln, Shire',
+    age: 51,
+    birthday: '9/22/2968'
   });
-}
+};
 
-function post(req: Request, res: Response): void {
+const somethingPublic: Handler = (
+  req: Request,
+  res: Response<SomethingPublicResponse>
+): void => {
   res.json({
-    email: 'frodo@baggins.com',
-    fullName: 'Frodo Baggins',
-    id: '12345'
+    lovesFood: true,
+    name: 'Frodo'
   });
-}
+};
 
 export default {
-  get,
-  post
+  somethingPublic,
+  somethingPrivate
 };

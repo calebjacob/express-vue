@@ -1,82 +1,85 @@
-import config from '@/config';
-import timer from '@/helpers/timer';
-import logger from '@/services/logger';
+import { Handler, Response, Request } from '@/routes/types';
+import {
+  RegisterBody,
+  RegisterResponse,
+  SignInBody,
+  SignInResponse
+} from 'shared/types';
 import { apiErrorHandler } from '@/services/errors';
-import { Request, Response } from 'express';
-import { SignInBody, SignInResponse } from 'shared/types';
+import { logError } from '@/services/logger';
+import authService, { AuthErrors } from '@/services/auth';
 
-function clearCookies(res: Response) {
-  res.clearCookie('accessToken');
-  res.clearCookie('isSignedIn');
-  res.clearCookie('refreshToken');
-}
-
-function saveCookies(accessToken: string, refreshToken: string, res: Response) {
-  res.cookie('accessToken', accessToken, {
-    httpOnly: true,
-    sameSite: config.environment !== 'local',
-    secure: config.environment !== 'local',
-    signed: true
-  });
-
-  res.cookie('refreshToken', refreshToken, {
-    httpOnly: true,
-    sameSite: config.environment !== 'local',
-    secure: config.environment !== 'local',
-    signed: true
-  });
-
-  res.cookie('isSignedIn', 'true');
-}
-
-async function signIn(
-  req: Request<undefined, undefined, SignInBody>,
-  res: Response<SignInResponse>
-): Promise<void> {
+const register: Handler = async (
+  req: Request<RegisterBody>,
+  res: Response<RegisterResponse>
+): Promise<void> => {
   try {
-    const accessToken = 'ACCESS_TOKEN_123';
-    const refreshToken = 'REFRESH_TOKEN_123';
-
-    logger.info('Sign in attempted with credentials:', {
-      email: req.body.email,
-      password: req.body.password
+    const user = await authService.register({
+      body: req.body,
+      res
     });
 
-    await timer(300);
-
-    saveCookies(accessToken, refreshToken, res);
-
-    res.json({
-      email: 'frodo@baggins.com',
-      fullName: 'Frodo Baggins',
-      id: '12345'
-    });
+    res.json(user);
   } catch (error) {
-    apiErrorHandler({
-      errors: [
-        {
-          error,
-          message: 'Your email or password is invalid.'
-        }
-      ],
-      res,
-      status: 401
-    });
+    if (error.message === AuthErrors.CONFLICT) {
+      apiErrorHandler({
+        error,
+        message: 'Failed to create your account.',
+        res,
+        status: 409
+      });
+    } else {
+      apiErrorHandler({
+        error,
+        res
+      });
+    }
   }
-}
+};
 
-async function signOut(req: Request, res: Response): Promise<void> {
+const signIn: Handler = async (
+  req: Request<SignInBody>,
+  res: Response<SignInResponse>
+): Promise<void> => {
   try {
-    clearCookies(res);
-    await timer(300);
+    const user = await authService.signIn({
+      email: req.body.email,
+      password: req.body.email,
+      res
+    });
+
+    res.json(user);
   } catch (error) {
-    logger.error(error);
+    if (error.message === AuthErrors.INVALID) {
+      apiErrorHandler({
+        error,
+        message: 'The email or password you entered is incorrect.',
+        res,
+        status: 400
+      });
+    } else {
+      apiErrorHandler({
+        error,
+        res
+      });
+    }
+  }
+};
+
+const signOut: Handler = async (req: Request, res: Response): Promise<void> => {
+  try {
+    await authService.signOut({
+      res
+    });
+  } catch (error) {
+    logError(error);
   }
 
   res.json({});
-}
+};
 
 export default {
+  register,
   signIn,
   signOut
 };

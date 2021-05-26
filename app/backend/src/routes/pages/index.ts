@@ -1,8 +1,12 @@
 import vue from './vue';
-import { Routers } from '@/routes';
+import { Route } from '@/routes/types';
 
-function pages(routers: Routers): void {
-  routers.public.get(/^(?!\/api).*/, vue.get);
-}
+const routes: Route[] = [
+  {
+    handler: vue.get,
+    method: 'get',
+    path: /^(?!\/api).*/
+  }
+];
 
-export default pages;
+export default routes;
