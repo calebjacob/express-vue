@@ -1,8 +1,8 @@
-import { Handler, Response, Request } from '@/routes/types';
 import {
   SomethingPublicResponse,
   SomethingPrivateResponse
-} from 'shared/types';
+} from 'shared/types/api';
+import { Handler, Response, Request } from '@/types/routes';
 
 const somethingPrivate: Handler = (
   req: Request,

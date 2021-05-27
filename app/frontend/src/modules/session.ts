@@ -1,8 +1,8 @@
-import http from '@/services/http';
+import { SignInBody, SignInResponse } from 'shared/types/api';
 import { InjectionKey, reactive, readonly } from 'vue';
 import { useErrors } from '@/modules/errors';
 import { useNotifications, NotificationType } from '@/modules/notifications';
-import { SignInBody, SignInResponse } from 'shared/types';
+import http from '@/services/http';
 
 const SessionModuleKey: InjectionKey<SessionModule> = Symbol('SessionModule');
 

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { logError } from '@/services/logger';
-import { MiddlewareDebug, Next, Response, Request } from '@/routes/types';
+import { MiddlewareDebug, Next, Response, Request } from '@/types/routes';
+import logger from '@/services/logger';
 
 const debug: MiddlewareDebug = (
   error: Error,
@@ -9,7 +9,7 @@ const debug: MiddlewareDebug = (
   res: Response,
   next: Next
 ): void => {
-  logError(error);
+  logger.error(error);
   res.status(500);
   res.send('500 - INTERNAL ERROR');
 };

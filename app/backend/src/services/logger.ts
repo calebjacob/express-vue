@@ -1,8 +1,8 @@
-export function logError(e: Error): void {
+function error(e: Error): void {
   console.error(e);
 }
 
-export function logInfo(message: string, data?: Record<string, unknown>): void {
+function info(message: string, data?: Record<string, unknown>): void {
   console.log(`[INFO] ${message}`);
 
   if (data) {
@@ -12,4 +12,4 @@ export function logInfo(message: string, data?: Record<string, unknown>): void {
   }
 }
 
-export default { logError, logInfo };
+export default { error, info };

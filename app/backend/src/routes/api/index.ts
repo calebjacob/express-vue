@@ -1,7 +1,7 @@
 import auth from './auth';
 import authRequired from '@/routes/middleware/auth-required';
 import example from './example';
-import { Route } from '@/routes/types';
+import { Route } from '@/types/routes';
 
 const routes: Route[] = [
   {
@@ -18,6 +18,12 @@ const routes: Route[] = [
     handler: auth.signOut,
     method: 'post',
     path: '/api/auth/sign-out'
+  },
+  {
+    handler: auth.currentUser,
+    method: 'get',
+    path: '/api/auth/current',
+    middleware: [authRequired]
   },
   {
     handler: example.somethingPublic,

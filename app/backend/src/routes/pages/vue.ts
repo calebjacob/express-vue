@@ -1,4 +1,4 @@
-import { Handler, Response, Request } from '@/routes/types';
+import { Handler, Response, Request } from '@/types/routes';
 import appRoot from 'app-root-path';
 
 const get: Handler = (req: Request, res: Response): void => {

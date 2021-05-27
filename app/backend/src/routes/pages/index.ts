@@ -1,5 +1,5 @@
+import { Route } from '@/types/routes';
 import vue from './vue';
-import { Route } from '@/routes/types';
 
 const routes: Route[] = [
   {

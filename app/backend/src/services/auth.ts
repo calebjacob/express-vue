@@ -1,143 +1,105 @@
-import config from '@/config';
+import { RegisterBody } from 'shared/types/api';
+import { User } from 'shared/types/models';
+import logger from '@/services/logger';
 import timer from '@/helpers/timer';
-import { Response } from '@/routes/types';
-import { RegisterBody, RegisterResponse, SignInResponse } from 'shared/types';
 
 export enum AuthErrors {
-  CONFLICT = 'Conflict',
-  INVALID = 'Invalid'
+  CONFLICT = 'Email Registration Conflict',
+  INVALID = 'Invalid Auth Credentials'
 }
 
-interface RefreshOptions {
-  currentRefreshToken: string;
-  res: Response;
+export interface AuthTokens {
+  accessToken: string | null | undefined;
+  refreshToken: string | null | undefined;
 }
 
 interface RegisterOptions {
-  body: RegisterBody;
-  res: Response;
+  data: RegisterBody;
 }
 
 interface SignInOptions {
   email: string;
   password: string;
-  res: Response;
+}
+
+interface SignInSuccess {
+  tokens: AuthTokens;
+  user: User;
 }
 
 interface SignOutOptions {
-  res: Response;
+  tokens: AuthTokens;
 }
 
-function clearCookies(res: Response) {
-  res.clearCookie('accessToken');
-  res.clearCookie('isSignedIn');
-  res.clearCookie('refreshToken');
+interface VerifyOptions {
+  tokens: AuthTokens;
 }
 
-function saveCookies(accessToken: string, refreshToken: string, res: Response) {
-  res.cookie('accessToken', accessToken, {
-    httpOnly: true,
-    sameSite: config.environment !== 'local',
-    secure: config.environment !== 'local',
-    signed: true
-  });
-
-  res.cookie('refreshToken', refreshToken, {
-    httpOnly: true,
-    sameSite: config.environment !== 'local',
-    secure: config.environment !== 'local',
-    signed: true
-  });
-
-  res.cookie('isSignedIn', 'true');
+interface VerifySuccess {
+  tokens: AuthTokens;
+  user: User;
 }
 
-export async function refresh({
-  currentRefreshToken,
-  res
-}: RefreshOptions): Promise<SignInResponse> {
+const mockUser = {
+  email: 'frodo@baggins.com',
+  fullName: 'Frodo Baggins',
+  id: '12345'
+};
+
+async function register({ data }: RegisterOptions): Promise<SignInSuccess> {
   try {
+    /*
+      NOTE: This logic is just for demo purposes and should be replaced with an 
+      actual user registration flow that uses something like bcrypt to hash
+      the user's password.
+    */
+
     await timer(150);
 
-    if (currentRefreshToken) {
-      /*
-        NOTE: This logic is just for demo purposes and should be replaced with an 
-        actual refresh auth token flow.
-      */
+    logger.info(
+      'Registering new user. The following info should be saved to their new account:',
+      {
+        ...data
+      }
+    );
 
-      const accessToken = 'NEW_ACCESS_TOKEN_123';
-      const refreshToken = 'NEW_REFRESH_TOKEN_123';
-
-      saveCookies(accessToken, refreshToken, res);
-
-      return {
-        email: 'frodo@baggins.com',
-        fullName: 'Frodo Baggins',
-        id: '12345'
-      };
-    } else {
-      throw new Error(AuthErrors.INVALID);
-    }
-  } catch (error) {
-    throw error;
-  }
-}
-
-export async function register({
-  body,
-  res
-}: RegisterOptions): Promise<RegisterResponse> {
-  try {
-    await timer(150);
-
-    if (body.email !== 'gandalf@grey.com') {
-      /*
-        NOTE: This logic is just for demo purposes and should be replaced with an 
-        actual email conflict lookup and password encryption flow using something
-        like bcrypt.
-      */
-
-      const accessToken = 'ACCESS_TOKEN_123';
-      const refreshToken = 'REFRESH_TOKEN_123';
-
-      saveCookies(accessToken, refreshToken, res);
-
-      return {
-        email: body.email,
-        fullName: body.fullName,
-        id: '12345'
-      };
-    } else {
+    if (data.email === 'bilbo@baggins.com') {
       throw new Error(AuthErrors.CONFLICT);
     }
+
+    return await signIn({
+      email: data.email,
+      password: data.password
+    });
   } catch (error) {
     throw error;
   }
 }
 
-export async function signIn({
+async function signIn({
   email,
-  password,
-  res
-}: SignInOptions): Promise<SignInResponse> {
+  password
+}: SignInOptions): Promise<SignInSuccess> {
   try {
+    /*
+      NOTE: This logic is just for demo purposes and should be replaced with an 
+      actual email/password/user lookup auth flow using something like bcrypt.
+    */
+
     await timer(150);
 
-    if (email && password === 'shire') {
-      /*
-        NOTE: This logic is just for demo purposes and should be replaced with an 
-        actual email/password lookup auth flow using something like bcrypt.
-      */
+    logger.info('Signing user in with the following credentials:', {
+      email,
+      password
+    });
 
-      const accessToken = 'ACCESS_TOKEN_123';
-      const refreshToken = 'REFRESH_TOKEN_123';
-
-      saveCookies(accessToken, refreshToken, res);
-
+    if (email === 'frodo@baggins.com' && password === 'shire') {
       return {
-        email: 'frodo@baggins.com',
-        fullName: 'Frodo Baggins',
-        id: '12345'
+        tokens: {
+          accessToken: 'ACCESS_TOKEN_123',
+          refreshToken: 'REFRESH_TOKEN_123'
+        },
+        user: mockUser
       };
     } else {
       throw new Error(AuthErrors.INVALID);
@@ -147,13 +109,49 @@ export async function signIn({
   }
 }
 
-export async function signOut({ res }: SignOutOptions): Promise<void> {
+async function signOut({ tokens }: SignOutOptions): Promise<void> {
   try {
-    clearCookies(res);
+    /*
+      NOTE: This logic is just for demo purposes and should be replaced with 
+      logic that actually invalidates the passed tokens.
+    */
+
     await timer(150);
+
+    logger.info(
+      'Signing out user. The following tokens should be invalidated:',
+      {
+        ...tokens
+      }
+    );
   } catch (error) {
     throw error;
   }
 }
 
-export default { refresh, register, signIn, signOut };
+async function verify({ tokens }: VerifyOptions): Promise<VerifySuccess> {
+  try {
+    await timer(150);
+
+    /*
+      NOTE: This logic is just for demo purposes and should be replaced with an 
+      actual access token verification, refresh token, and user fetch flow.
+    */
+
+    if (tokens.accessToken) {
+      return {
+        tokens: {
+          accessToken: 'ACCESS_TOKEN_123',
+          refreshToken: 'REFRESH_TOKEN_123'
+        },
+        user: mockUser
+      };
+    }
+
+    throw new Error(AuthErrors.INVALID);
+  } catch (error) {
+    throw error;
+  }
+}
+
+export default { register, signIn, signOut, verify };

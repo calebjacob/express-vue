@@ -31,7 +31,7 @@
           @click="
             signIn({
               email: 'frodo@baggins.com',
-              password: 'MyPassword!'
+              password: 'shire'
             })
           "
         >

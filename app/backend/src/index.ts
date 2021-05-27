@@ -10,11 +10,11 @@ moduleAlias.addAlias('shared', __dirname.replace('backend/src', 'shared'));
 // Require all dependencies:
 
 import appRoot from 'app-root-path';
-import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import config from '@/config';
+import cookieParser from 'cookie-parser';
 import express from 'express';
-import { logInfo } from '@/services/logger';
+import logger from '@/services/logger';
 import routes from '@/routes';
 
 // Create express app instance:
@@ -56,7 +56,7 @@ routes(app);
 app.listen(config.port);
 
 if (config.environment === 'local') {
-  logInfo(`App running at: http://localhost:${config.port}`);
+  logger.info(`App running at: http://localhost:${config.port}`);
 }
 
 // Export the app:

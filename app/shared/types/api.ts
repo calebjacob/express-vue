@@ -1,8 +1,6 @@
-/* ------------------- */
-/* ------- API ------- */
-/* ------------------- */
+import { User } from './models';
 
-// Auth
+/* ---- Auth ---- */
 
 export type CurrentUserResponse = SignInResponse;
 
@@ -19,13 +17,9 @@ export interface SignInBody {
   password: string;
 }
 
-export interface SignInResponse {
-  email: string;
-  fullName: string;
-  id: string;
-}
+export type SignInResponse = User;
 
-// Example
+/* ---- Example ---- */
 
 export interface SomethingPublicResponse {
   lovesFood: boolean;
@@ -36,16 +30,4 @@ export interface SomethingPrivateResponse {
   address: string;
   age: number;
   birthday: string;
-}
-
-/* ---------------------- */
-/* ------- Models ------- */
-/* ---------------------- */
-
-// Users
-
-export interface User {
-  email: string;
-  fullName: string;
-  id: string;
 }

@@ -1,5 +1,5 @@
-import { logError } from '@/services/logger';
-import { Response } from '@/routes/types';
+import { Response } from '@/types/routes';
+import logger from '@/services/logger';
 
 interface DataResponse {
   errors: DataResponseError[];
@@ -26,7 +26,7 @@ interface ApiErrorHandlerOptions {
   status?: number;
 }
 
-export function apiErrorHandler({
+export default function apiErrorHandler({
   code: singleErrorCode,
   error: singleError,
   errors = [],
@@ -56,7 +56,7 @@ export function apiErrorHandler({
       message = 'Oops! An unknown error occurred. Please try again later.'
     }) => {
       if (error) {
-        logError(error);
+        logger.error(error);
       }
 
       data.errors.push({
@@ -69,5 +69,3 @@ export function apiErrorHandler({
   res.status(status);
   res.json(data);
 }
-
-export default { apiErrorHandler };
