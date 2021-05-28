@@ -93,7 +93,7 @@
               type="submit"
             >
               Submit
-              <span class="icon fa fa-arrow-right" />
+              <span class="icon fa fa-arrow-right"></span>
             </button>
           </div>
         </validated-form>

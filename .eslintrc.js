@@ -51,8 +51,8 @@ module.exports = {
     "vue/script-indent": "off",
     "vue/html-self-closing": ["error", {
       "html": {
-        "void": "always",
-        "normal": "always",
+        "void": "any",
+        "normal": "any",
         "component": "always"
       },
       "svg": "always",
