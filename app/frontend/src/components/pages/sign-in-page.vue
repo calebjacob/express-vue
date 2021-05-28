@@ -9,7 +9,7 @@
 
           <div class="group">
             <text-input
-              v-model="credentials.email"
+              v-model="state.email"
               name="email"
               label="Email"
               icon-class="fa-envelope"
@@ -21,7 +21,7 @@
             />
 
             <text-input
-              v-model="credentials.password"
+              v-model="state.password"
               name="password"
               label="Password"
               icon-class="fa-key"
@@ -33,10 +33,10 @@
           </div>
 
           <div class="group layout layout--horizontal">
-            <p class="smaller">
+            <p>
               Don't have an account?
               <router-link
-                class="link primary"
+                class="link secondary"
                 :to="{
                   name: 'createAccount'
                 }"
@@ -77,14 +77,17 @@
       const { handleError } = useErrors();
       const router = useRouter();
 
-      const credentials = reactive({
+      const state = reactive({
         email: 'frodo@baggins.com',
         password: 'shire'
       });
 
       async function submit() {
         try {
-          await signIn(credentials);
+          await signIn({
+            email: state.email,
+            password: state.password
+          });
           router.push({
             name: 'home'
           });
@@ -94,7 +97,7 @@
       }
 
       return {
-        credentials,
+        state,
         submit
       };
     }

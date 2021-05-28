@@ -47,6 +47,11 @@ export interface ApiErrorResponse {
 }
 
 export interface ApiErrorChildResponse {
-  code?: string;
+  code?: ApiErrorCode;
   message: string;
+}
+
+export enum ApiErrorCode {
+  EMAIL_CONFLICT = 'EMAIL_CONFLICT',
+  INVALID_AUTH = 'INVALID_AUTH'
 }

@@ -1,12 +1,7 @@
-import { CreateAccountBody } from 'shared/types/api';
+import { ApiErrorCode, CreateAccountBody } from 'shared/types/api';
 import { User } from 'shared/types/models';
 import logger from '@/services/logger';
 import timer from '@/helpers/timer';
-
-export enum AuthErrors {
-  CONFLICT = 'Email Registration Conflict',
-  INVALID = 'Invalid Auth Credentials'
-}
 
 export interface AuthTokens {
   accessToken: string | null | undefined;
@@ -65,8 +60,8 @@ async function createAccount({
       }
     );
 
-    if (data.email === 'bilbo@baggins.com') {
-      throw new Error(AuthErrors.CONFLICT);
+    if (data.email === 'frodo@baggins.com') {
+      throw new Error(ApiErrorCode.EMAIL_CONFLICT);
     }
 
     return await signIn({
@@ -104,7 +99,7 @@ async function signIn({
         user: mockUser
       };
     } else {
-      throw new Error(AuthErrors.INVALID);
+      throw new Error(ApiErrorCode.INVALID_AUTH);
     }
   } catch (error) {
     throw error;
@@ -150,7 +145,7 @@ async function verify({ tokens }: VerifyOptions): Promise<VerifySuccess> {
       };
     }
 
-    throw new Error(AuthErrors.INVALID);
+    throw new Error(ApiErrorCode.INVALID_AUTH);
   } catch (error) {
     throw error;
   }

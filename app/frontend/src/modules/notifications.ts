@@ -24,9 +24,9 @@ interface ShowNotificationOptions {
 }
 
 enum NotificationType {
-  ERROR = 'Error',
-  GENERIC = 'Generic',
-  SUCCESS = 'Success'
+  ERROR = 'ERROR',
+  GENERIC = 'GENERIC',
+  SUCCESS = 'SUCCESS'
 }
 
 const notifications: Ref<Notification[]> = ref([]);

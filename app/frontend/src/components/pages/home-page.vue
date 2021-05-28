@@ -16,7 +16,7 @@
             layout--horizontal-equal
             layout--double-spacing
             layout--align-start
-            layout--stack-600
+            layout--stack-tablet
           "
         >
           <div>

@@ -8,10 +8,11 @@
     }"
   >
     <input
+      v-bind="inputAttributes"
+      ref="input"
       v-model="value"
       :type="type"
       class="text-input__input"
-      v-bind="inputAttributes"
     />
 
     <label class="text-input__label" :for="inputAttributes.id">
@@ -30,7 +31,7 @@
 
 <script lang="ts">
   import { defineComponent } from 'vue';
-  import { computed, watch } from 'vue';
+  import { computed, ref, watch } from 'vue';
   import { useField } from 'vee-validate';
 
   export default defineComponent({
@@ -39,6 +40,10 @@
     inheritAttrs: false,
 
     props: {
+      error: {
+        type: String,
+        default: null
+      },
       iconClass: {
         type: String,
         default: null
@@ -68,11 +73,17 @@
     },
 
     setup(props, { attrs }) {
-      const { errorMessage, value } = useField(props.name, props.validations, {
-        initialValue: props.modelValue,
-        label: `"${props.label}"`,
-        validateOnMount: true
-      });
+      const input = ref<HTMLCanvasElement | null>(null);
+
+      const { errorMessage, setErrors, value } = useField(
+        props.name,
+        props.validations,
+        {
+          initialValue: props.modelValue,
+          label: `"${props.label}"`,
+          validateOnMount: true
+        }
+      );
 
       const inputAttributes = computed(() => {
         return {
@@ -91,8 +102,23 @@
         }
       );
 
+      watch(
+        () => props.error,
+        (error) => {
+          if (error) {
+            setErrors(error);
+
+            if (input.value) {
+              console.log(input.value);
+              input.value.focus(); // not working
+            }
+          }
+        }
+      );
+
       return {
         errorMessage,
+        input,
         inputAttributes,
         value
       };

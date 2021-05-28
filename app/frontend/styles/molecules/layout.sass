@@ -39,6 +39,9 @@
   > *:not(:last-child)
     margin-right: var(--spacing-half)
 
+  .button
+    margin-left: var(--spacing-half)
+
 .layout--align-end
   align-items: flex-end
 
@@ -73,8 +76,8 @@
 
 
 
-@media (max-width: 600px)
-  .layout--stack-600
+@media (max-width: $tablet-breakpoint)
+  .layout--stack-tablet
     flex-direction: column
 
     > *

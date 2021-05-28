@@ -1,15 +1,15 @@
-import { ApiErrorResponse } from 'shared/types/api';
+import { ApiErrorCode, ApiErrorResponse } from 'shared/types/api';
 import { Response } from '@/types/routes';
 import logger from '@/services/logger';
 
 interface ApiError {
-  code?: string;
+  code?: ApiErrorCode;
   error?: Error;
   message?: string;
 }
 
 interface ApiErrorHandlerOptions {
-  code?: string;
+  code?: ApiErrorCode;
   error?: Error;
   errors?: ApiError[];
   message?: string;

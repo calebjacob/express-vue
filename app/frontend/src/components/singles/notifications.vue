@@ -32,7 +32,7 @@
               <button
                 v-if="!notification.autoHide"
                 type="button"
-                class="link"
+                class="button button--small button--border"
                 @click="hideNotification(notification)"
               >
                 OK
