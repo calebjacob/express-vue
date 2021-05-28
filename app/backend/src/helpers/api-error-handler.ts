@@ -1,15 +1,6 @@
+import { ApiErrorResponse } from 'shared/types/api';
 import { Response } from '@/types/routes';
 import logger from '@/services/logger';
-
-interface DataResponse {
-  errors: DataResponseError[];
-  status: number;
-}
-
-interface DataResponseError {
-  code: string;
-  message: string;
-}
 
 interface ApiError {
   code?: string;
@@ -34,8 +25,9 @@ export default function apiErrorHandler({
   res,
   status = 500
 }: ApiErrorHandlerOptions): void {
-  const data: DataResponse = {
+  const data: ApiErrorResponse = {
     errors: [],
+    isApiError: true,
     status
   };
 
@@ -51,7 +43,7 @@ export default function apiErrorHandler({
 
   allErrors.forEach(
     ({
-      code = 'UNKNOWN',
+      code,
       error,
       message = 'Oops! An unknown error occurred. Please try again later.'
     }) => {

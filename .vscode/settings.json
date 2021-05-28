@@ -3,6 +3,6 @@
   "vetur.completion.autoImport": false,
   "vetur.validation.template": false,
   "search.exclude": {
-    "**/dist": true
+    "dist/**": true
   }
 }

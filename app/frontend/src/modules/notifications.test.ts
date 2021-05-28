@@ -46,6 +46,37 @@ describe('notifications', () => {
       expect(notifications2.value.length).toEqual(1);
     });
 
+    describe('closeAllErrorNotifications()', () => {
+      it('closes all error notifications', () => {
+        const { closeAllErrorNotifications, notifications, showNotification } =
+          useNotifications();
+        showNotification({
+          autoHide: false,
+          message: 'Goodbye world 1!',
+          type: NotificationType.ERROR
+        });
+
+        showNotification({
+          autoHide: false,
+          message: 'Hello world!',
+          type: NotificationType.GENERIC
+        });
+
+        showNotification({
+          autoHide: false,
+          message: 'Goodbye world 2!',
+          type: NotificationType.ERROR
+        });
+
+        expect(notifications.value.length).toEqual(3);
+
+        closeAllErrorNotifications();
+
+        expect(notifications.value.length).toEqual(1);
+        expect(notifications.value[0].message).toEqual('Hello world!');
+      });
+    });
+
     describe('hideNotification()', () => {
       it('hides notification with matching id', () => {
         const { hideNotification, notifications, showNotification } =

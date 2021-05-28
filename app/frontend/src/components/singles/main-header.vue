@@ -24,38 +24,33 @@
           Sign Out
         </button>
 
-        <button
+        <router-link
           v-else
           class="link"
-          type="button"
-          @click="
-            signIn({
-              email: 'frodo@baggins.com',
-              password: 'shire'
-            })
-          "
+          :to="{
+            name: 'signIn'
+          }"
         >
           Sign In
-        </button>
+        </router-link>
       </div>
     </div>
   </header>
 </template>
 
 <script lang="ts">
+  import { SessionModuleKey } from '@/modules/session';
   import { defineComponent } from 'vue';
   import injectStrict from '@/helpers/inject-strict';
-  import { SessionModuleKey } from '@/modules/session';
 
   export default defineComponent({
     name: 'MainHeader',
 
     setup() {
-      const { session, signIn, signOut } = injectStrict(SessionModuleKey);
+      const { session, signOut } = injectStrict(SessionModuleKey);
 
       return {
         session,
-        signIn,
         signOut
       };
     }

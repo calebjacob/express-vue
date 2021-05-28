@@ -1,65 +1,88 @@
-import { SignInBody, SignInResponse } from 'shared/types/api';
+import {
+  CreateAccountBody,
+  CreateAccountResponse,
+  CurrentUserResponse,
+  SignInBody,
+  SignInResponse
+} from 'shared/types/api';
+import { User } from 'shared/types/models';
 import { InjectionKey, reactive, readonly } from 'vue';
 import { useErrors } from '@/modules/errors';
 import { useNotifications, NotificationType } from '@/modules/notifications';
 import http from '@/services/http';
+import cookies from 'js-cookie';
 
 const SessionModuleKey: InjectionKey<SessionModule> = Symbol('SessionModule');
 
 interface SessionModule {
   load(): Promise<void>;
+  createAccount(body: CreateAccountBody): Promise<void>;
   session: Session;
-  signIn(options: SignInOptions): Promise<void>;
+  signIn(body: SignInBody): Promise<void>;
   signOut(): Promise<void>;
 }
 
 interface Session {
-  currentUser: SignInResponse | null;
-  isSigningIn: boolean;
-}
-
-interface SignInOptions {
-  email: string;
-  password: string;
+  currentUser: User | null;
+  isLoadingCurrentUser: boolean;
 }
 
 const session: Session = reactive({
   currentUser: null,
-  isSigningIn: false
+  isLoadingCurrentUser: false
 });
 
-const { handleError, handleErrorQuietly } = useErrors();
+const { handleErrorQuietly } = useErrors();
 const { showNotification } = useNotifications();
 
 function useSession(): SessionModule {
-  async function load() {
-    // TODO
+  async function createAccount(body: CreateAccountBody) {
+    try {
+      const response = await http.post<CreateAccountResponse>(
+        '/api/auth/create',
+        body
+      );
+      session.currentUser = response.data.user;
+
+      showNotification({
+        message: 'Welcome! Your account has been created.',
+        type: NotificationType.SUCCESS
+      });
+    } catch (error) {
+      throw error;
+    }
   }
 
-  async function signIn({ email, password }: SignInOptions) {
+  async function load() {
     try {
-      session.isSigningIn = true;
+      if (!cookies.get('isSignedIn')) {
+        return;
+      }
 
-      const signInBody: SignInBody = {
-        email,
-        password
-      };
+      session.isLoadingCurrentUser = true;
+      const response = await http.get<CurrentUserResponse>('/api/auth/current');
+      session.currentUser = response.data.user;
+    } catch (error) {
+      handleErrorQuietly(error);
+    } finally {
+      session.isLoadingCurrentUser = true;
+    }
+  }
 
+  async function signIn(body: SignInBody) {
+    try {
       const response = await http.post<SignInResponse>(
         '/api/auth/sign-in',
-        signInBody
+        body
       );
-
-      session.currentUser = response.data;
+      session.currentUser = response.data.user;
 
       showNotification({
         message: 'You have signed in!',
         type: NotificationType.SUCCESS
       });
     } catch (error) {
-      handleError(error);
-    } finally {
-      session.isSigningIn = false;
+      throw error;
     }
   }
 
@@ -79,6 +102,7 @@ function useSession(): SessionModule {
   }
 
   return {
+    createAccount,
     load,
     session: readonly(session),
     signIn,

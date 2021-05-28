@@ -25,6 +25,7 @@
   import { defineComponent } from 'vue';
   import { ref, reactive } from 'vue';
   import { useForm } from 'vee-validate';
+  import { useNotifications } from '@/modules/notifications';
 
   export default defineComponent({
     name: 'ValidatedForm',
@@ -51,6 +52,7 @@
         isSubmitting: false
       });
       const { validate, values } = useForm();
+      const { closeAllErrorNotifications } = useNotifications();
 
       function handleInvalidSubmit() {
         const firstInvalidInput = element.value.querySelector(
@@ -71,6 +73,8 @@
       }
 
       async function submitHandler() {
+        closeAllErrorNotifications();
+
         form.hasSubmitted = true;
         form.isSubmitting = true;
 

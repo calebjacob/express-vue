@@ -1,4 +1,4 @@
-import { RegisterBody } from 'shared/types/api';
+import { CreateAccountBody } from 'shared/types/api';
 import { User } from 'shared/types/models';
 import logger from '@/services/logger';
 import timer from '@/helpers/timer';
@@ -13,8 +13,8 @@ export interface AuthTokens {
   refreshToken: string | null | undefined;
 }
 
-interface RegisterOptions {
-  data: RegisterBody;
+interface CreateAccountOptions {
+  data: CreateAccountBody;
 }
 
 interface SignInOptions {
@@ -46,7 +46,9 @@ const mockUser = {
   id: '12345'
 };
 
-async function register({ data }: RegisterOptions): Promise<SignInSuccess> {
+async function createAccount({
+  data
+}: CreateAccountOptions): Promise<SignInSuccess> {
   try {
     /*
       NOTE: This logic is just for demo purposes and should be replaced with an 
@@ -57,7 +59,7 @@ async function register({ data }: RegisterOptions): Promise<SignInSuccess> {
     await timer(150);
 
     logger.info(
-      'Registering new user. The following info should be saved to their new account:',
+      'Creating new user. The following info should be saved to their new account:',
       {
         ...data
       }
@@ -154,4 +156,4 @@ async function verify({ tokens }: VerifyOptions): Promise<VerifySuccess> {
   }
 }
 
-export default { register, signIn, signOut, verify };
+export default { createAccount, signIn, signOut, verify };

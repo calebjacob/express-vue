@@ -6,7 +6,10 @@ import router from '@/router';
 
 import { createRouter, createWebHistory } from 'vue-router';
 import AnotherPage from '@/components/pages/another-page.vue';
+import CreateAccountPage from '@/components/pages/create-account-page.vue';
+import ErrorPage from '@/components/pages/error-page.vue';
 import HomePage from '@/components/pages/home-page.vue';
+import SignInPage from '@/components/pages/sign-in-page.vue';
 
 // mocks:
 
@@ -34,6 +37,21 @@ describe('router', () => {
           path: '/another',
           name: 'another',
           component: AnotherPage
+        },
+        {
+          path: '/create-account',
+          name: 'createAccount',
+          component: CreateAccountPage
+        },
+        {
+          path: '/sign-in',
+          name: 'signIn',
+          component: SignInPage
+        },
+        {
+          path: '/:pathMatch(.*)*',
+          name: 'error',
+          component: ErrorPage
         }
       ]
     });

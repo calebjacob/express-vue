@@ -1,8 +1,6 @@
 # TODO
 
-- [] Create FE sign in page and register page
-- [] Create FE session auth load method to refresh tokens if signed in
-- [] Support Vue Dev tools (manual enable for v3?)
+- [] Create account page
 - [] Nice error page served from BE using styles index.html with template renderer (ERB)?
 - [] Can FE code be made simpler or improved?
 - [] https://medium.com/@mario.brendel1990/vue-3-the-new-store-a7569d4a546f

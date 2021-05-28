@@ -12,6 +12,8 @@ export default function updateAuthCookies({
   tokens
 }: UpdateAuthCookiesOptions): void {
   if (tokens && tokens.accessToken && tokens.refreshToken) {
+    res.cookie('isSignedIn', 'true');
+
     res.cookie('accessToken', tokens.accessToken, {
       httpOnly: true,
       sameSite: config.environment !== 'local',
@@ -26,8 +28,8 @@ export default function updateAuthCookies({
       signed: true
     });
   } else {
-    res.clearCookie('accessToken');
     res.clearCookie('isSignedIn');
+    res.clearCookie('accessToken');
     res.clearCookie('refreshToken');
   }
 }

@@ -1,7 +1,7 @@
 import {
   CurrentUserResponse,
-  RegisterBody,
-  RegisterResponse,
+  CreateAccountBody,
+  CreateAccountResponse,
   SignInBody,
   SignInResponse
 } from 'shared/types/api';
@@ -11,30 +11,12 @@ import authService, { AuthErrors } from '@/services/auth';
 import logger from '@/services/logger';
 import updateAuthCookies from '@/helpers/update-auth-cookies';
 
-const currentUser: Handler = async (
-  req: Request,
-  res: Response<CurrentUserResponse>
+const createAccount: Handler = async (
+  req: Request<CreateAccountBody>,
+  res: Response<CreateAccountResponse>
 ): Promise<void> => {
   try {
-    if (req.currentUser) {
-      res.json(req.currentUser);
-    } else {
-      throw new Error('Current user not found.');
-    }
-  } catch (error) {
-    apiErrorHandler({
-      error,
-      res
-    });
-  }
-};
-
-const register: Handler = async (
-  req: Request<RegisterBody>,
-  res: Response<RegisterResponse>
-): Promise<void> => {
-  try {
-    const { tokens, user } = await authService.register({
+    const { tokens, user } = await authService.createAccount({
       data: req.body
     });
 
@@ -43,7 +25,9 @@ const register: Handler = async (
       res
     });
 
-    res.json(user);
+    res.json({
+      user
+    });
   } catch (error) {
     if (error.message === AuthErrors.CONFLICT) {
       apiErrorHandler({
@@ -57,6 +41,26 @@ const register: Handler = async (
         res
       });
     }
+  }
+};
+
+const currentUser: Handler = async (
+  req: Request,
+  res: Response<CurrentUserResponse>
+): Promise<void> => {
+  try {
+    if (req.currentUser) {
+      res.json({
+        user: req.currentUser
+      });
+    } else {
+      throw new Error('Current user not found.');
+    }
+  } catch (error) {
+    apiErrorHandler({
+      error,
+      res
+    });
   }
 };
 
@@ -75,7 +79,9 @@ const signIn: Handler = async (
       res
     });
 
-    res.json(user);
+    res.json({
+      user
+    });
   } catch (error) {
     if (error.message === AuthErrors.INVALID) {
       apiErrorHandler({
@@ -113,8 +119,8 @@ const signOut: Handler = async (req: Request, res: Response): Promise<void> => {
 };
 
 export default {
+  createAccount,
   currentUser,
-  register,
   signIn,
   signOut
 };

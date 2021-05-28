@@ -2,22 +2,28 @@ import { User } from './models';
 
 /* ---- Auth ---- */
 
-export type CurrentUserResponse = SignInResponse;
+export interface CurrentUserResponse {
+  user: User;
+}
 
-export interface RegisterBody {
+export interface CreateAccountBody {
   email: string;
   fullName: string;
   password: string;
 }
 
-export type RegisterResponse = SignInResponse;
+export interface CreateAccountResponse {
+  user: User;
+}
 
 export interface SignInBody {
   email: string;
   password: string;
 }
 
-export type SignInResponse = User;
+export interface SignInResponse {
+  user: User;
+}
 
 /* ---- Example ---- */
 
@@ -30,4 +36,17 @@ export interface SomethingPrivateResponse {
   address: string;
   age: number;
   birthday: string;
+}
+
+/* ---- Errors ---- */
+
+export interface ApiErrorResponse {
+  errors: ApiErrorChildResponse[];
+  isApiError?: true;
+  status: number;
+}
+
+export interface ApiErrorChildResponse {
+  code?: string;
+  message: string;
 }

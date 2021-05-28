@@ -3,6 +3,7 @@ import { readonly, ref, Ref } from 'vue';
 import { v4 as uuid } from 'uuid';
 
 interface NotificationsModule {
+  closeAllErrorNotifications(): void;
   hideNotification(notification: Notification): void;
   notifications: Ref<readonly Notification[]>;
   resetState(): void;
@@ -31,6 +32,12 @@ enum NotificationType {
 const notifications: Ref<Notification[]> = ref([]);
 
 function useNotifications(): NotificationsModule {
+  function closeAllErrorNotifications(): void {
+    notifications.value = notifications.value.filter((n) => {
+      return n.type !== NotificationType.ERROR;
+    });
+  }
+
   function hideNotification(notification: Notification) {
     notifications.value = notifications.value.filter((n) => {
       return n.id !== notification.id;
@@ -62,6 +69,7 @@ function useNotifications(): NotificationsModule {
   }
 
   return {
+    closeAllErrorNotifications,
     hideNotification,
     notifications: readonly(notifications),
     resetState,

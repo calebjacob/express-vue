@@ -7,7 +7,12 @@
       'text-input--has-icon': !!iconClass
     }"
   >
-    <input v-model="value" class="text-input__input" v-bind="inputAttributes" />
+    <input
+      v-model="value"
+      :type="type"
+      class="text-input__input"
+      v-bind="inputAttributes"
+    />
 
     <label class="text-input__label" :for="inputAttributes.id">
       {{ label }}

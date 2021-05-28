@@ -6,13 +6,13 @@
 
 export type CurrentUserResponse = SignInResponse;
 
-export interface RegisterBody {
+export interface CreateAccountBody {
   email: string;
   fullName: string;
   password: string;
 }
 
-export type RegisterResponse = SignInResponse;
+export type CreateAccountResponse = SignInResponse;
 
 export interface SignInBody {
   email: string;

@@ -5,9 +5,15 @@ import { Route } from '@/types/routes';
 
 const routes: Route[] = [
   {
-    handler: auth.register,
+    handler: auth.createAccount,
     method: 'post',
-    path: '/api/auth/register'
+    path: '/api/auth/create'
+  },
+  {
+    handler: auth.currentUser,
+    method: 'get',
+    path: '/api/auth/current',
+    middleware: [authRequired]
   },
   {
     handler: auth.signIn,
@@ -18,12 +24,6 @@ const routes: Route[] = [
     handler: auth.signOut,
     method: 'post',
     path: '/api/auth/sign-out'
-  },
-  {
-    handler: auth.currentUser,
-    method: 'get',
-    path: '/api/auth/current',
-    middleware: [authRequired]
   },
   {
     handler: example.somethingPublic,
