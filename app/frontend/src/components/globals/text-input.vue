@@ -31,7 +31,7 @@
 
 <script lang="ts">
   import { defineComponent } from 'vue';
-  import { computed, ref, watch } from 'vue';
+  import { computed, nextTick, ref, watch } from 'vue';
   import { useField } from 'vee-validate';
 
   export default defineComponent({
@@ -104,13 +104,15 @@
 
       watch(
         () => props.error,
-        (error) => {
+        async (error) => {
           if (error) {
+            await nextTick(); // NOTE: Without waiting 2 ticks, the form would still be disabled and the focus() wouldn't work
+            await nextTick();
+
             setErrors(error);
 
             if (input.value) {
-              console.log(input.value);
-              input.value.focus(); // not working
+              input.value.focus();
             }
           }
         }

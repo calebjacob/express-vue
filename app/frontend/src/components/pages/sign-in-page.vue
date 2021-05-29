@@ -36,7 +36,7 @@
             <p>
               Don't have an account?
               <router-link
-                class="link secondary"
+                class="link"
                 :to="{
                   name: 'createAccount'
                 }"

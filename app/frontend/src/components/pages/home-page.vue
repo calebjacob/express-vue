@@ -19,20 +19,49 @@
             layout--stack-tablet
           "
         >
-          <div>
-            <h3 class="title title--3">Want to see a form?</h3>
+          <div v-if="session.currentUser">
+            <h3 class="title title--3">Here's Your Account:</h3>
 
-            <p>Great! Just click the button below.</p>
+            <ul>
+              <li>
+                <p>Full Name: {{ session.currentUser.fullName }}</p>
+              </li>
+              <li>
+                <p>Email: {{ session.currentUser.email }}</p>
+              </li>
+              <li>
+                <p>ID: {{ session.currentUser.id }}</p>
+              </li>
+            </ul>
+          </div>
 
-            <router-link
-              class="button"
-              :to="{
-                name: 'another'
-              }"
-            >
-              View Form
-              <span class="icon fa fa-arrow-right" />
-            </router-link>
+          <div v-else>
+            <h3 class="title title--3">You are not signed in.</h3>
+
+            <p>
+              Account info won't be saved on registration. The auth flow is
+              mocked on the backend.
+            </p>
+
+            <div class="layout layout--horizontal layout--justify-start">
+              <router-link
+                class="button"
+                :to="{
+                  name: 'signIn'
+                }"
+              >
+                Sign In
+              </router-link>
+
+              <router-link
+                class="button button--secondary"
+                :to="{
+                  name: 'createAccount'
+                }"
+              >
+                Register
+              </router-link>
+            </div>
           </div>
 
           <div>
@@ -85,22 +114,6 @@
             </div>
           </div>
         </div>
-      </section>
-
-      <section v-if="session.currentUser" class="section">
-        <h3 class="title title--3">Here's Your Account:</h3>
-
-        <ul>
-          <li>
-            <p>Full Name: {{ session.currentUser.fullName }}</p>
-          </li>
-          <li>
-            <p>Email: {{ session.currentUser.email }}</p>
-          </li>
-          <li>
-            <p>ID: {{ session.currentUser.id }}</p>
-          </li>
-        </ul>
       </section>
     </div>
   </div>

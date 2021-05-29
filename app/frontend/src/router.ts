@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import AnotherPage from '@/components/pages/another-page.vue';
 import CreateAccountPage from '@/components/pages/create-account-page.vue';
 import ErrorPage from '@/components/pages/error-page.vue';
 import HomePage from '@/components/pages/home-page.vue';
@@ -10,11 +9,6 @@ const routes = [
     path: '/',
     name: 'home',
     component: HomePage
-  },
-  {
-    path: '/another',
-    name: 'another',
-    component: AnotherPage
   },
   {
     path: '/create-account',

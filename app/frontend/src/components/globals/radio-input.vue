@@ -37,14 +37,10 @@
 </template>
 
 <script lang="ts">
+  import { RadioOption } from '@/types/props';
   import { defineComponent, PropType } from 'vue';
   import { watch } from 'vue';
   import { useField } from 'vee-validate';
-
-  interface RadioOption {
-    display: string;
-    value: string | number;
-  }
 
   export default defineComponent({
     name: 'RadioInput',
@@ -151,6 +147,4 @@
       };
     }
   });
-
-  export { RadioOption };
 </script>

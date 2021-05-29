@@ -45,6 +45,29 @@
           </div>
 
           <div class="group">
+            <template v-if="state.showFavoriteThing">
+              <p class="title title--5">What's your favorite thing?</p>
+
+              <radio-input
+                v-model="state.favoriteThing"
+                name="favoriteThing"
+                :options="favoriteThingOptions"
+                :validations="{
+                  required: true
+                }"
+              />
+            </template>
+
+            <button
+              class="link primary margin-bottom"
+              type="button"
+              @click="toggleFavoriteThingQuestion"
+            >
+              {{ state.showFavoriteThing ? 'Hide' : 'Show' }} Question
+            </button>
+          </div>
+
+          <div class="group">
             <checkbox-input
               v-model="state.acceptedTerms"
               name="acceptedTerms"
@@ -53,7 +76,7 @@
               }"
             >
               I agree to the crazy
-              <a href="#" class="link regular">Terms & Conditions</a>
+              <a href="#" class="link">Terms & Conditions</a>
             </checkbox-input>
           </div>
 
@@ -63,7 +86,7 @@
             <p>
               Already have an account?
               <router-link
-                class="link secondary"
+                class="link"
                 :to="{
                   name: 'signIn'
                 }"
@@ -91,11 +114,12 @@
 
 <script lang="ts">
   import { ApiErrorCode } from 'shared/types/api';
-  import { defineComponent } from 'vue';
-  import { reactive } from 'vue';
+  import { defineComponent, ref } from 'vue';
+  import { reactive, Ref } from 'vue';
   import { useErrors } from '@/modules/errors';
   import { useRouter } from 'vue-router';
   import { useSession } from '@/modules/session';
+  import { RadioOption } from '@/types/props';
 
   export default defineComponent({
     name: 'CreateAccountPage',
@@ -109,9 +133,26 @@
         acceptedTerms: true,
         email: '',
         emailError: '',
+        favoriteThing: '',
         fullName: '',
-        password: ''
+        password: '',
+        showFavoriteThing: true
       });
+
+      const favoriteThingOptions: Ref<RadioOption[]> = ref([
+        {
+          display: 'Broncos',
+          value: 'broncos'
+        },
+        {
+          display: 'Food',
+          value: 'food'
+        },
+        {
+          display: 'Family',
+          value: 'family'
+        }
+      ]);
 
       async function submit() {
         try {
@@ -139,9 +180,15 @@
         }
       }
 
+      function toggleFavoriteThingQuestion() {
+        state.showFavoriteThing = !state.showFavoriteThing;
+      }
+
       return {
+        favoriteThingOptions,
         state,
-        submit
+        submit,
+        toggleFavoriteThingQuestion
       };
     }
   });

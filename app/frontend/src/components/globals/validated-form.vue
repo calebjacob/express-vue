@@ -4,7 +4,6 @@
     class="form"
     :class="{
       'form--dirty': form.isDirty,
-      'form--disabled': form.isDisabled,
       'form--submitted': form.hasSubmitted
     }"
     novalidate
@@ -12,10 +11,7 @@
     @input="markAsDirty"
     @submit.prevent="submitHandler"
   >
-    <fieldset
-      class="form__wrapper"
-      :disabled="form.isDisabled || form.isSubmitting"
-    >
+    <fieldset class="form__wrapper" :disabled="form.isSubmitting">
       <slot :validated-form="form" />
     </fieldset>
   </form>
@@ -23,7 +19,7 @@
 
 <script lang="ts">
   import { defineComponent } from 'vue';
-  import { ref, reactive } from 'vue';
+  import { nextTick, ref, reactive } from 'vue';
   import { useForm } from 'vee-validate';
   import { useNotifications } from '@/modules/notifications';
 
@@ -33,10 +29,6 @@
     inheritAttrs: false,
 
     props: {
-      isDisabled: {
-        type: Boolean,
-        default: false
-      },
       submit: {
         type: Function,
         required: true
@@ -48,13 +40,14 @@
       const form = reactive({
         hasSubmitted: false,
         isDirty: false,
-        isDisabled: false,
         isSubmitting: false
       });
       const { validate, values } = useForm();
       const { closeAllErrorNotifications } = useNotifications();
 
-      function handleInvalidSubmit() {
+      async function handleInvalidSubmit() {
+        await nextTick(); // NOTE: Without waiting a tick, the form would still be disabled and the focus() wouldn't work
+
         const firstInvalidInput = element.value.querySelector(
           '[aria-invalid=true]'
         );
@@ -82,11 +75,11 @@
 
         if (valid) {
           await props.submit(values);
+          form.isSubmitting = false;
         } else {
+          form.isSubmitting = false;
           handleInvalidSubmit();
         }
-
-        form.isSubmitting = false;
       }
 
       return {
