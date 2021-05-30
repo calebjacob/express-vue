@@ -6,7 +6,6 @@ import vm from './index';
 
 import { createApp } from 'vue';
 import App from '@/components/app.vue';
-import globals from '@/globals';
 
 // mocks:
 
@@ -33,10 +32,6 @@ jest.mock('@/globals', () => {
 describe('index', () => {
   it('creates a vue instance with the primary App component', () => {
     expect(createApp).toHaveBeenCalledWith(App);
-  });
-
-  it('globals are initialized with vue instance', () => {
-    expect(globals.initialize).toHaveBeenCalledWith(vm);
   });
 
   it('mounts the app', () => {

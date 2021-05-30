@@ -5,6 +5,14 @@
         <validated-form v-slot="{ validatedForm }" :submit="submit">
           <div class="group">
             <h1 class="title title--2">Sign In</h1>
+
+            <p class="smaller">
+              <i>
+                <b>NOTE:</b> The auth service is currently mocked. To sign in
+                successfully, use "frodo@baggins.com" for the email and
+                "the_shire" as the password.
+              </i>
+            </p>
           </div>
 
           <div class="group">
@@ -68,9 +76,14 @@
   import { useErrors } from '@/modules/errors';
   import { useRouter } from 'vue-router';
   import { useSession } from '@/modules/session';
+  import sharedComponents from '@/components/shared';
 
   export default defineComponent({
     name: 'SignInPage',
+
+    components: {
+      ...sharedComponents
+    },
 
     setup() {
       const { signIn } = useSession();
@@ -79,7 +92,7 @@
 
       const state = reactive({
         email: 'frodo@baggins.com',
-        password: 'shire'
+        password: 'the_shire'
       });
 
       async function submit() {

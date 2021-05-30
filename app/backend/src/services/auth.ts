@@ -60,7 +60,7 @@ async function createAccount({
       }
     );
 
-    if (data.email === 'frodo@baggins.com') {
+    if (data.email === 'bilbo@baggins.com') {
       throw new Error(ApiErrorCode.EMAIL_CONFLICT);
     }
 
@@ -90,7 +90,7 @@ async function signIn({
       password
     });
 
-    if (email === 'frodo@baggins.com' && password === 'shire') {
+    if (email === 'frodo@baggins.com' && password === 'the_shire') {
       return {
         tokens: {
           accessToken: 'ACCESS_TOKEN_123',

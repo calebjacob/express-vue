@@ -4,9 +4,9 @@ We have a few folders that act as the most common separators of application logi
 
 In the root `frontend/src` folder, we have a few special files.
 
-- `index.ts` is the main entry point for the app where we instantiate our Vue instance.
-- `globals.ts` is used to register global plugins, components, directives, or mixins on our Vue instance.
+- `index.ts` is the main entry point for the app where we instantiate our Vue instance and configure any plugins.
 - `router.ts` is used to configure and register all `VueRouter` routes/pages and corresponding components.
+- `globals.d.ts` is a declaration file required by Volar for component/prop type checking when using global components inside templates.
 
 ## Components
 
@@ -20,17 +20,25 @@ src/components/singles/shopping-cart/items.vue
 src/components/singles/shopping-cart/payment.vue
 ```
 
-#### Globals (src/components/globals)
-
-A component shared throughout the app and can have multiple instances at any one time (buttons, inputs, etc).
-
 #### Pages (src/components/pages)
 
 A component used as a router/view component (home page, product page, etc). All components should use the `-page` file postfix and `Page` component name postfix to avoid naming collisions with non-page components. For example: `pages/home-page.ts > HomePage`.
 
+#### Shared (src/components/shared)
+
+A component shared throughout the app and can have multiple instances at any one time (buttons, inputs, etc).
+
+Here are a few additional notes to keep in mind:
+
+1. Whenever adding a new shared component, don't forget to export it in the `index.ts` file. This will allow other components to easily import all shared components.
+
+2. As your project grows, it might be smart to have namespaced exports inside the shared folder. Maybe you'd have a `Base` group with very generic components (buttons, titles, icons, etc) and another `Form` group with all components related to forms (inputs, radios, checkboxes, etc).
+
+3. A shared component itself should never import `@/components/shared`, as this would cause a circular dependency. If a shared component depends upon another shared component, it should import that component directly.
+
 #### Singles (src/components/singles)
 
-A component that should only ever have a single instance at any one time (main header, main footer, etc).
+A component that should only ever have a single instance rendered at any one time (main header, main footer, etc).
 
 ## Helpers
 
@@ -38,8 +46,12 @@ Simple and reusable helper methods can live here. For example, you might have a 
 
 ## Modules
 
-All Vue composistion modules live here. These modules are designed share re-usable code and state throughout the whole codebase.
+All Vue composistion modules live here. These modules are designed to share re-usable code and state throughout the app.
 
 ## Services
 
 This is a fairly broad category that could contain singletons, HTTP/API abstractions, and third party library instances.
+
+## Types
+
+Contains files that export frontend specific types that are shared throughout the app. For example, custom component prop types could live inside a `types/props.ts` file.

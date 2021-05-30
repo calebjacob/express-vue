@@ -5,11 +5,5 @@
     "**/node_modules": true,
     "**/tmp": true
   },
-  "vetur.validation.templateProps": true,
-  "vetur.completion.autoImport": false,
-  "vetur.validation.template": false,
-  "vetur.validation.script": true,
-  "vetur.validation.style": false,
-  "vetur.completion.tagCasing": "kebab",
-  "vetur.format.enable": false
+  "volar.tsPlugin": true
 }

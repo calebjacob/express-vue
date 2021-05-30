@@ -17,11 +17,21 @@ It also includes the following linting & testing integrations:
 - [Jest](https://jestjs.io/)
 - [Cypress](https://www.cypress.io/)
 
-*NOTE: Vuex is purposefully not included in this starter project. Vue 3's Composition API allows for a much simpler approach to global state management going forward. However, much larger projects might still benefit from Vuex. Also, keep an eye out for Vuex 5 - it will introduce big changes for Vuex according to [this RFC](https://github.com/kiaking/rfcs/blob/vuex-5/active-rfcs/0000-vuex-5.md).*
+*NOTE: Vuex is purposefully not included in this starter project. Vue 3's Composition API allows for a much simpler approach to global state management that can benefit greatly using TypeScript. However, much larger projects might still benefit from Vuex. Also, keep an eye out for Vuex 5 - it will introduce big changes for Vuex according to [this RFC](https://github.com/kiaking/rfcs/blob/vuex-5/active-rfcs/0000-vuex-5.md).*
+
+## IDE
+
+VS Code in combination with the [Volar](https://github.com/johnsoncodehk/volar) extension is the recommended IDE setup for Vue 3 + TypeScript. This will give you great features like component/prop type validation and code autocompletion inside SFC templates. [WebStorm](https://www.jetbrains.com/webstorm/) is also another great choice. If you have the Vetur VS Code extension installed, you'll need to disable it - or it will conflict with Volar.
+
+If you are using VS Code, all recommended extensions are defined in `.vscode/extensions.json`.
+
+At this point in time (5/29/2021), Vetur has far too many bugs to work properly with Vue 3 + TypeScript. Vetur also tries to do too much (linting/formatting is already handled by eslint). It seems like Volar will be taking over as the new standard Vue extension in the future.
 
 ## Conventions & Documentation
 
+- [Backend](docs/backend.md)
 - [Frontend](docs/frontend.md)
+- [Shared](docs/shared.md)
 - [Styles](docs/styles.md)
 - [Testing](docs/testing.md)
 - [Deploying With Dokku](docs/dokku.md)
@@ -139,10 +149,10 @@ npm run verify:frontend
 
 ## Production Build
 
-Create a production ready build:
+Create a production ready build and start the service:
 
 ```
 npm run build
 ```
 
-This will generate an `app/backend/dist` and `app/frontend/dist` folder ready to be executed by Node and served by Express.
+This will generate an `app/backend/dist` and `app/frontend/dist` folder and start up the Node process configured via `.env` variables.
