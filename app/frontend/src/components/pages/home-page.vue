@@ -67,49 +67,72 @@
           <div>
             <h3 class="title title--3">Notifications</h3>
 
-            <div
-              class="
-                layout layout--horizontal layout--justify-start
-                margin-bottom
-              "
-            >
-              <button
-                class="link success"
-                type="button"
-                @click="
-                  showNotification({
-                    type: NotificationType.SUCCESS,
-                    message: 'This was great!'
-                  })
+            <div class="group">
+              <div
+                class="
+                  layout layout--horizontal layout--justify-start
+                  margin-bottom
                 "
               >
-                Success
-              </button>
+                <button
+                  class="link success"
+                  type="button"
+                  @click="
+                    showNotification({
+                      type: NotificationType.SUCCESS,
+                      message: 'This was great!'
+                    })
+                  "
+                >
+                  Success
+                </button>
 
-              <button
-                class="link danger"
-                type="button"
-                @click="
-                  showNotification({
-                    type: NotificationType.ERROR,
-                    message: 'Oops! That was not so great.'
-                  })
-                "
-              >
-                Error
-              </button>
+                <button
+                  class="link danger"
+                  type="button"
+                  @click="
+                    showNotification({
+                      type: NotificationType.ERROR,
+                      message: 'Oops! That was not so great.'
+                    })
+                  "
+                >
+                  Error
+                </button>
 
+                <button
+                  class="link"
+                  type="button"
+                  @click="
+                    showNotification({
+                      type: NotificationType.GENERIC,
+                      message: 'This is very regular.'
+                    })
+                  "
+                >
+                  Regular
+                </button>
+              </div>
+            </div>
+
+            <h3 class="title title--3">Actions</h3>
+
+            <div class="layout layout--horizontal layout--justify-start">
               <button
-                class="link"
                 type="button"
-                @click="
-                  showNotification({
-                    type: NotificationType.GENERIC,
-                    message: 'This is very regular.'
-                  })
-                "
+                class="button button--small"
+                @click="somethingPublic"
               >
-                Regular
+                <span class="icon fa fa-globe"></span>
+                Public
+              </button>
+              <button
+                type="button"
+                class="button button--small button--secondary"
+                @click="somethingPrivate"
+              >
+                <span class="icon fa fa-lock"></span>
+                Private
               </button>
             </div>
           </div>
@@ -120,10 +143,12 @@
 </template>
 
 <script lang="ts">
+  import http from '@/services/http';
   import { defineComponent } from 'vue';
   import injectStrict from '@/helpers/inject-strict';
   import { SessionModuleKey } from '@/modules/session';
   import { useNotifications, NotificationType } from '@/modules/notifications';
+  import { useErrors } from '@/modules/errors';
 
   export default defineComponent({
     name: 'HomePage',
@@ -131,11 +156,40 @@
     setup() {
       const { session } = injectStrict(SessionModuleKey);
       const { showNotification } = useNotifications();
+      const { handleError } = useErrors();
+
+      async function somethingPrivate() {
+        try {
+          await http.get('/api/something-private');
+
+          showNotification({
+            type: NotificationType.SUCCESS,
+            message: 'A private API was accessed!'
+          });
+        } catch (error) {
+          handleError(error);
+        }
+      }
+
+      async function somethingPublic() {
+        try {
+          await http.get('/api/something-public');
+
+          showNotification({
+            type: NotificationType.SUCCESS,
+            message: 'A public API was accessed!'
+          });
+        } catch (error) {
+          handleError(error);
+        }
+      }
 
       return {
         NotificationType,
         session,
-        showNotification
+        showNotification,
+        somethingPrivate,
+        somethingPublic
       };
     }
   });

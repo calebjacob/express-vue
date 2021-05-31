@@ -29,6 +29,7 @@
 
   .icon
     flex-grow: unset
+    flex-shrink: 0
     min-width: 1.5rem
     text-align: center
 
@@ -81,5 +82,7 @@
     flex-direction: column
 
     > *
-      margin-bottom: var(--spacing)
       margin-right: 0
+
+    > *:not(:last-child)
+      margin-bottom: var(--spacing)

@@ -1,7 +1,5 @@
 # TODO
 
-- [] Update `frontend/index.ts` tests
-- [] Create account page
 - [] Nice error page served from BE using styles index.html with template renderer (ERB)?
 - [] Can FE code be made simpler or improved?
 - [] https://medium.com/@mario.brendel1990/vue-3-the-new-store-a7569d4a546f

@@ -6,32 +6,45 @@ import vm from './index';
 
 import { createApp } from 'vue';
 import App from '@/components/app.vue';
+import configureVeeValidate from '@/helpers/configure-vee-validate';
+import router from '@/router';
 
 // mocks:
 
 jest.mock('vue', () => {
   return {
     createApp: jest.fn().mockReturnValue({
-      mount: jest.fn()
+      mount: jest.fn(),
+      use: jest.fn()
     })
   };
+});
+
+jest.mock('@/router', () => {
+  return 'router config';
 });
 
 jest.mock('@/components/app.vue', () => {
   return 'app component';
 });
 
-jest.mock('@/globals', () => {
-  return {
-    initialize: jest.fn()
-  };
+jest.mock('@/helpers/configure-vee-validate', () => {
+  return jest.fn();
 });
 
 // tests:
 
 describe('index', () => {
+  it('configures vee validate', () => {
+    expect(configureVeeValidate).toHaveBeenCalled();
+  });
+
   it('creates a vue instance with the primary App component', () => {
     expect(createApp).toHaveBeenCalledWith(App);
+  });
+
+  it('registers router', () => {
+    expect(vm.use).toHaveBeenCalledWith(router);
   });
 
   it('mounts the app', () => {

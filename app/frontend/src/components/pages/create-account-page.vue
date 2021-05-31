@@ -6,14 +6,15 @@
           <div class="group">
             <h1 class="title title--2">Create an Account</h1>
 
-            <p class="smaller">
-              <i>
-                <b>NOTE:</b> The auth service is currently mocked. To register
-                successfully, use "frodo@baggins.com" for the email and
-                "the_shire" as the password. To trigger an email conflict, use
-                "bilbo@baggins.com" as the email.
-              </i>
-            </p>
+            <div class="bubble layout layout--icon">
+              <span class="icon fa fa-info"></span>
+              <p class="smaller">
+                <b>The auth service is mocked.</b> To register successfully, use
+                "frodo@baggins.com" as the email and "the_shire" as the
+                password. To trigger an email conflict, use "bilbo@baggins.com"
+                as the email.
+              </p>
+            </div>
           </div>
 
           <div class="group">
@@ -105,7 +106,7 @@
             </p>
 
             <button
-              class="button"
+              class="button button--icon-end"
               :class="{
                 'button--loading': validatedForm.isSubmitting
               }"

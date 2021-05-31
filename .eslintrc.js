@@ -58,6 +58,11 @@ module.exports = {
       "svg": "always",
       "math": "always"
     }],
+    'vue/html-button-has-type': ['error', {
+      'button': true,
+      'submit': true,
+      'reset': true
+    }],
     "@typescript-eslint/explicit-module-boundary-types": [
       "error"
     ],
