@@ -143,12 +143,16 @@
 </template>
 
 <script lang="ts">
-  import http from '@/services/http';
   import { defineComponent } from 'vue';
-  import injectStrict from '@/helpers/inject-strict';
   import { SessionModuleKey } from '@/modules/session';
   import { useNotifications, NotificationType } from '@/modules/notifications';
   import { useErrors } from '@/modules/errors';
+  import {
+    SomethingPublicResponse,
+    SomethingPrivateResponse
+  } from 'shared/types/api';
+  import http from '@/services/http';
+  import injectStrict from '@/helpers/inject-strict';
 
   export default defineComponent({
     name: 'HomePage',
@@ -160,7 +164,11 @@
 
       async function somethingPrivate() {
         try {
-          await http.get('/api/something-private');
+          const response = await http.get<SomethingPrivateResponse>(
+            '/api/something-private'
+          );
+
+          console.log('Private Info:', response.data);
 
           showNotification({
             type: NotificationType.SUCCESS,
@@ -173,7 +181,11 @@
 
       async function somethingPublic() {
         try {
-          await http.get('/api/something-public');
+          const response = await http.get<SomethingPublicResponse>(
+            '/api/something-public'
+          );
+
+          console.log('Public Info:', response.data);
 
           showNotification({
             type: NotificationType.SUCCESS,
