@@ -24,7 +24,7 @@
               label="Full Name"
               icon-class="fa-user"
               :validations="{
-                required: true
+                required: state.fullNameIsRequired
               }"
             />
 
@@ -54,27 +54,17 @@
             />
           </div>
 
-          <div class="group">
-            <template v-if="state.showFavoriteThing">
-              <p class="title title--5">What's your favorite thing?</p>
+          <div v-if="state.showFavoriteThing" class="group">
+            <p class="title title--5">What's your favorite thing?</p>
 
-              <radio-input
-                v-model="state.favoriteThing"
-                name="favoriteThing"
-                :options="favoriteThingOptions"
-                :validations="{
-                  required: true
-                }"
-              />
-            </template>
-
-            <button
-              class="link primary margin-bottom"
-              type="button"
-              @click="toggleFavoriteThingQuestion"
-            >
-              {{ state.showFavoriteThing ? 'Hide' : 'Show' }} Question
-            </button>
+            <radio-input
+              v-model="state.favoriteThing"
+              name="favoriteThing"
+              :options="favoriteThingOptions"
+              :validations="{
+                required: true
+              }"
+            />
           </div>
 
           <div class="group">
@@ -116,6 +106,32 @@
               <span class="icon fa fa-arrow-right" />
             </button>
           </div>
+
+          <hr />
+
+          <div
+            class="
+              group
+              layout layout--horizontal layout--justify-start layout--wrap
+            "
+          >
+            <button
+              class="button button--border button--small"
+              type="button"
+              @click="toggleFavoriteThingQuestion"
+            >
+              {{ state.showFavoriteThing ? 'Hide' : 'Show' }} Question
+            </button>
+
+            <button
+              class="button button--border button--small"
+              type="button"
+              @click="toggleFullNameIsRequired"
+            >
+              Make Full Name
+              {{ state.fullNameIsRequired ? 'Optional' : 'Required' }}
+            </button>
+          </div>
         </validated-form>
       </div>
     </section>
@@ -150,6 +166,7 @@
         emailError: '',
         favoriteThing: '',
         fullName: '',
+        fullNameIsRequired: true,
         password: '',
         showFavoriteThing: true
       });
@@ -199,11 +216,16 @@
         state.showFavoriteThing = !state.showFavoriteThing;
       }
 
+      function toggleFullNameIsRequired() {
+        state.fullNameIsRequired = !state.fullNameIsRequired;
+      }
+
       return {
         favoriteThingOptions,
         state,
         submit,
-        toggleFavoriteThingQuestion
+        toggleFavoriteThingQuestion,
+        toggleFullNameIsRequired
       };
     }
   });

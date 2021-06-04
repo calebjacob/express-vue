@@ -74,13 +74,17 @@
 .button--border
   color: currentColor
   border: 2px solid currentColor
-  --color-button-background-color: 0, 0, 0
+  --color-button-background-color: 255, 255, 255
   --color-button-background-opacity: 0
   --button-line-height-adjustment: -4px
 
+  &.button--small
+    border-width: 1px
+    --button-line-height-adjustment: -2px
+
   &:hover,
   &:active
-    --color-button-background-opacity: 0.1
+    --color-button-background-opacity: 0.2
 
 .button--icon-end
   .icon

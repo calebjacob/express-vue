@@ -29,7 +29,6 @@
     setup() {
       const session = useSession();
       session.load();
-
       provide(SessionModuleKey, session);
     }
   });

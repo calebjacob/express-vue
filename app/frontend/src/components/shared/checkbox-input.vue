@@ -27,13 +27,12 @@
 </template>
 
 <script lang="ts">
-  import { computed, defineComponent, watch } from 'vue';
+  import { CheckboxValidations } from '@/types/props';
+  import { computed, defineComponent, PropType, toRef, watch } from 'vue';
   import { useField } from 'vee-validate';
 
   export default defineComponent({
     name: 'CheckboxInput',
-
-    inheritAttrs: false,
 
     props: {
       modelValue: {
@@ -45,7 +44,7 @@
         required: true
       },
       validations: {
-        type: Object,
+        type: Object as PropType<CheckboxValidations>,
         default: () => {
           return {};
         }
@@ -55,9 +54,10 @@
     emits: ['update:modelValue'],
 
     setup(props, { emit }) {
+      const validations = toRef(props, 'validations');
       const { errorMessage, handleChange, value } = useField(
         props.name,
-        props.validations,
+        validations,
         {
           initialValue: props.modelValue,
           validateOnMount: true

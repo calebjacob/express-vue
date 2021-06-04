@@ -1,18 +1,21 @@
 # Testing Methodologies
 
-First off, give this great article a read: [Static vs Unit vs Integration vs E2E Testing for Frontend Apps](https://kentcdodds.com/blog/unit-vs-integration-vs-e2e-tests)
+First off, give these great articles a read:
+
+- [Static vs Unit vs Integration vs E2E Testing for Frontend Apps](https://kentcdodds.com/blog/unit-vs-integration-vs-e2e-tests)
+- [The Practical Test Pyramid](https://martinfowler.com/articles/practical-test-pyramid.html)
+- [Testing Behavior vs. Testing Implementation](https://teamgaslight.com/blog/testing-behavior-vs-testing-implementation)
+- [Why I Never Use Shallow Rendering](https://kentcdodds.com/blog/why-i-never-use-shallow-rendering)
 
 To learn more about writing effective tests for Vue in particular, please refer to the [Vue Testing Handbook](https://lmiller1990.github.io/vue-testing-handbook/v3/#what-is-this-guide). Also, check out this [YouTube Playlist](https://www.youtube.com/playlist?list=PLC2LZCNWKL9ahK1IoODqYxKu5aA9T5IOA) to get a beginner focused intro to testing Vue 3 components.
 
 ## Unit/Integration Testing
 
-A mistake I made early on in my career was favoring pure, isolated unit tests over any other form of testing - thinking it was "THE right way" to do things. This article does a great job illustrating why isolated unit tests aren't all that helpful: [Why I Never Use Shallow Rendering](https://kentcdodds.com/blog/why-i-never-use-shallow-rendering).
-
-Another mistake I made early on was testing implementation details instead of behavior. For a good read on this, check out [Testing Behavior vs. Testing Implementation](https://teamgaslight.com/blog/testing-behavior-vs-testing-implementation).
+A mistake I made early on in my career was only focusing on pure, isolated unit tests over any other form of testing - thinking it was "THE right way" to do things. Another mistake I made early on was testing implementation details instead of behavior.
 
 The goal is to have tests that mimic the real world as much as possible. In this way, you'll notice your tests trend more towards integration testing - more so than pure, isolated unit testing.
 
-For example, prefer using `mount()` over `shallowMount()` when testing Vue components. You'll end up with a more realistic/helpful test due to the actual components interacting with each other. There will be times when certain dependencies need to be mocked, but in general, try to stay away from mocking dependencies (exceptions being things like network requests).
+For example, prefer using `mount()` over `shallowMount()` when testing Vue components. You'll end up with a more realistic/helpful test due to the actual components interacting with each other. There will be times when certain dependencies need to be mocked, but in general, try to stay away from mocking dependencies when possible.
 
 **In summary, don't worry too much about "unit" vs "integration" testing. Good testing tests behavior (not implementation details) in real world conditions (as few mocks/stubs as possible).**
 

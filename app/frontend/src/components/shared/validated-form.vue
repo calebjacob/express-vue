@@ -26,8 +26,6 @@
   export default defineComponent({
     name: 'ValidatedForm',
 
-    inheritAttrs: false,
-
     props: {
       submit: {
         type: Function,

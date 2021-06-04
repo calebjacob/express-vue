@@ -1,11 +1,14 @@
 <template>
   <div
     class="text-input"
-    :class="{
-      'text-input--error': !!errorMessage,
-      'text-input--has-content': !!value || value === 0,
-      'text-input--has-icon': !!iconClass
-    }"
+    :class="[
+      {
+        'text-input--error': !!errorMessage,
+        'text-input--has-content': !!value || value === 0,
+        'text-input--has-icon': !!iconClass
+      },
+      extraClasses
+    ]"
   >
     <input
       v-bind="inputAttributes"
@@ -30,8 +33,9 @@
 </template>
 
 <script lang="ts">
+  import { TextInputValidations } from '@/types/props';
   import { defineComponent } from 'vue';
-  import { computed, nextTick, ref, watch } from 'vue';
+  import { computed, nextTick, PropType, ref, toRef, watch } from 'vue';
   import { useField } from 'vee-validate';
 
   export default defineComponent({
@@ -65,7 +69,7 @@
         default: 'text'
       },
       validations: {
-        type: Object,
+        type: Object as PropType<TextInputValidations>,
         default: () => {
           return {};
         }
@@ -74,10 +78,11 @@
 
     setup(props, { attrs }) {
       const input = ref<HTMLCanvasElement | null>(null);
+      const validations = toRef(props, 'validations');
 
       const { errorMessage, setErrors, value } = useField(
         props.name,
-        props.validations,
+        validations,
         {
           initialValue: props.modelValue,
           label: `"${props.label}"`,
@@ -88,6 +93,7 @@
       const inputAttributes = computed(() => {
         return {
           ...attrs,
+          class: undefined,
           'aria-invalid': !!errorMessage.value,
           id: (attrs.id as string) || props.name
         };
@@ -120,6 +126,7 @@
 
       return {
         errorMessage,
+        extraClasses: attrs.class,
         input,
         inputAttributes,
         value

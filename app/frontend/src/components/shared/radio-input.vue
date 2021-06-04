@@ -37,15 +37,13 @@
 </template>
 
 <script lang="ts">
-  import { RadioOption } from '@/types/props';
+  import { RadioOption, RadioValidations } from '@/types/props';
   import { defineComponent, PropType } from 'vue';
-  import { watch } from 'vue';
+  import { toRef, watch } from 'vue';
   import { useField } from 'vee-validate';
 
   export default defineComponent({
     name: 'RadioInput',
-
-    inheritAttrs: false,
 
     props: {
       modelValue: {
@@ -61,7 +59,7 @@
         required: true
       },
       validations: {
-        type: Object,
+        type: Object as PropType<RadioValidations>,
         default: () => {
           return {};
         }
@@ -71,9 +69,10 @@
     emits: ['update:modelValue'],
 
     setup(props, { emit }) {
+      const validations = toRef(props, 'validations');
       const { errorMessage, handleChange, value } = useField(
         props.name,
-        props.validations,
+        validations,
         {
           initialValue: props.modelValue,
           validateOnMount: true
