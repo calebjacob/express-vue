@@ -1,10 +1,6 @@
 .button
   --button-height: var(--input-height)
   --button-line-height-adjustment: 0px
-  --color-button-background: rgba(var(--color-button-background-color), var(--color-button-background-opacity))
-  --color-button-background-color: var(--color-brand-primary-rgb)
-  --color-button-background-opacity: 1
-  --color-button-text: #fff
   display: inline-block
   width: auto
   position: relative
@@ -19,8 +15,8 @@
   font-weight: 700
   white-space: nowrap
   text-align: center
-  color: var(--color-button-text)
-  background: var(--color-button-background)
+  color: var(--color-text-1)
+  background: var(--color-brand-primary)
   user-select: none
   transition: all 150ms
   flex-shrink: 0
@@ -28,19 +24,48 @@
   .icon
     margin-right: var(--spacing-half)
 
+  &:focus
+    box-shadow: var(--focus-glow)
+
   &:hover,
   &:active
-    --color-button-background-opacity: 0.85
-
-  &:focus:not([tabindex="-1"])
-    box-shadow: var(--focus-glow)
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.2)
 
   &[disabled]
     text-decoration: line-through
-    background-color: var(--color-10-contrast) !important
-    color: var(--color-0-contrast) !important
+    background-color: var(--color-surface-3) !important
+    color: var(--color-text-4) !important
     pointer-events: none !important
     border: none !important
+    cursor: default
+
+.button--secondary
+  background: var(--color-surface-4)
+
+.button--transparent
+  color: currentColor !important
+  background: rgba(0, 0, 0, 0.2)
+
+  &:hover,
+  &:active,
+  &:focus
+    box-shadow: none
+    background: rgba(0, 0, 0, 0.3)
+
+.button--border
+  color: var(--color-text-1)
+  border: 2px solid var(--color-surface-4)
+  background: none
+  --button-line-height-adjustment: -4px
+
+  &:hover,
+  &:active
+    box-shadow: none
+    background: var(--color-surface-4)
+
+  &:focus
+    box-shadow: none
+    border-color: var(--color-brand-primary)
   
 .button--small
   --button-height: var(--input-height-small)
@@ -66,25 +91,7 @@
     left: 0
     right: 0
     margin: -0.5rem auto 0
-    border-color: transparent var(--color-button-text) var(--color-button-text)
-
-.button--secondary
-  --color-button-background-color: var(--color-brand-secondary-rgb)
-
-.button--border
-  color: currentColor
-  border: 2px solid currentColor
-  --color-button-background-color: 255, 255, 255
-  --color-button-background-opacity: 0
-  --button-line-height-adjustment: -4px
-
-  &.button--small
-    border-width: 1px
-    --button-line-height-adjustment: -2px
-
-  &:hover,
-  &:active
-    --color-button-background-opacity: 0.2
+    border-color: transparent var(--button-text-color) var(--button-text-color)
 
 .button--icon-end
   .icon

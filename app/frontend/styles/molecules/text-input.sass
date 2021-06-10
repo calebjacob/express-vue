@@ -1,15 +1,15 @@
 .text-input
-  --color-input-border: var(--color-10-contrast)
-  --color-input-background: var(--color-10-contrast)
-  --color-input-text: var(--color-100-contrast)
+  --color-input-border: var(--color-surface-4)
+  --color-input-background: var(--color-surface-3)
+  --color-input-text: var(--color-text-1)
   margin: 0 0 var(--spacing)
   position: relative
   text-align: left
 
 .text-input--error
   .form--submitted &
-    .text-input__input
-      border-color: var(--color-danger)
+    .text-input__label
+      color: var(--color-danger)
 
 
 
@@ -25,12 +25,13 @@
   outline: none
   color: var(--color-input-text)
   background: var(--color-input-background)
-  border: 1px solid var(--color-input-border)
+  border: 2px solid var(--color-input-border)
   box-shadow: none
   border-radius: var(--border-radius)
   cursor: text
   letter-spacing: 1px
   -webkit-appearance: none
+  transition: all 150ms
 
   &::-webkit-input-placeholder
     opacity: 0
@@ -45,7 +46,11 @@
     opacity: 0
     transition: 200ms
 
+  &:hover
+    --color-input-background: var(--color-surface-4)
+
   &:focus
+    --color-input-background: var(--color-surface-4)
     box-shadow: var(--focus-glow)
 
     &::-webkit-input-placeholder
@@ -73,7 +78,7 @@
   font-size: var(--font-size-body-1)
   line-height: var(--input-height-large)
   font-weight: 400
-  color: var(--color-75-contrast)
+  color: var(--color-text-2)
   cursor: text
   user-select: none
   pointer-events: none
@@ -126,4 +131,10 @@
     top: 0
     line-height: var(--input-height-large)
     text-align: center
-    color: var(--color-50-contrast)
+    color: var(--color-text-4)
+    transition: all 150ms
+
+  .text-input__input:hover ~ &,
+  .text-input__input:focus ~ &
+    .icon
+      color: var(--color-text-3)

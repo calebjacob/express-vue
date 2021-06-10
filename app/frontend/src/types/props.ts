@@ -24,6 +24,7 @@ export interface TextInputValidations {
   alpha_dash?: boolean;
   alpha_num?: boolean;
   alpha_spaces?: boolean;
+  backend_error?: string;
   between?: {
     min: number;
     max: number;

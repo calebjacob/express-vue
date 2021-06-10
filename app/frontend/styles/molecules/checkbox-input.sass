@@ -21,12 +21,13 @@
   &:focus + .checkbox-input__label
     &:before
       box-shadow: var(--focus-glow)
+      background: var(--color-surface-4)
 
   &:checked + .checkbox-input__label
     &:before
       content: '\f00c'
       border: none
-      background: var(--color-brand-secondary)
+      background: var(--color-brand-primary)
       color: #fff
 
 
@@ -51,10 +52,10 @@
     top: 50%
     left: 0
     margin-top: -0.6rem
-    border: 2px solid var(--color-50-contrast)
+    border: 2px solid var(--color-surface-4)
     border-radius: 2px
-    background: var(--color-10-contrast)
-    transition: transform 100ms, border-color 100ms
+    background: var(--color-surface-3)
+    transition: all 150ms
 
   &:active
     &:before
@@ -63,11 +64,7 @@
 
   &:hover
     &:before
-      border-color: var(--color-75-contrast)
-
-  .form--submitted .checkbox-input--error &
-    &:before
-      border-color: var(--color-danger)
+      background: var(--color-surface-4)
 
   .checkbox-input--radio &
     &:before
@@ -77,10 +74,13 @@
 
 .checkbox-input__label-text
   display: block
-  color: var(--color-100-contrast)
+  color: var(--color-text-1)
   font-size: var(--font-size-body-1)
   line-height: 1.4em
   font-weight: 400
+
+  .form--submitted .checkbox-input--error &
+    color: var(--color-danger)
 
 
 

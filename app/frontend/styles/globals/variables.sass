@@ -8,21 +8,31 @@ $mobile-breakpoint: 450px
 
   // Colors:
 
-  --color-brand-primary-rgb: 28, 125, 244
-  --color-brand-primary: rgb(var(--color-brand-primary-rgb))
-  --color-brand-secondary-rgb: 255, 85, 54
-  --color-brand-secondary: rgb(var(--color-brand-secondary-rgb))
-  --color-background-primary: #17181c
-  --color-background-secondary: #080809
-  --color-0-contrast: #17181c
-  --color-5-contrast: #23252b
-  --color-10-contrast: #3f414a
-  --color-25-contrast: #505050
-  --color-50-contrast: #7b7b7b
-  --color-75-contrast: #a8a8a8
-  --color-100-contrast: #fff
-  --color-danger: #F44040
-  --color-success: #4AC074
+  --color-brand-primary-hue: 218
+  --color-brand-primary-saturation: 100%
+  --color-brand-primary-lightness: 50%
+  --color-brand-primary: hsl(var(--color-brand-primary-hue), var(--color-brand-primary-saturation), var(--color-brand-primary-lightness))
+  
+  --color-surface-1: hsl(var(--color-brand-primary-hue), 30%, 5%)
+  --color-surface-2: hsl(var(--color-brand-primary-hue), 30%, 10%)
+  --color-surface-3: hsl(var(--color-brand-primary-hue), 30%, 15%)
+  --color-surface-4: hsl(var(--color-brand-primary-hue), 30%, 20%)
+  --color-surface-5: hsl(var(--color-brand-primary-hue), 30%, 25%)
+
+  --color-text-1: hsl(var(--color-brand-primary-hue), 30%, 98%)
+  --color-text-2: hsl(var(--color-brand-primary-hue), 30%, 70%)
+  --color-text-3: hsl(var(--color-brand-primary-hue), 20%, 50%)
+  --color-text-4: hsl(var(--color-brand-primary-hue), 15%, 30%)
+
+  --color-success-hue: 141
+  --color-success-saturation: 50%
+  --color-success-lightness: 50%
+  --color-success: hsl(var(--color-success-hue), var(--color-success-saturation), var(--color-success-lightness))
+
+  --color-danger-hue: 0
+  --color-danger-saturation: 80%
+  --color-danger-lightness: 60%
+  --color-danger: hsl(var(--color-danger-hue), var(--color-danger-saturation), var(--color-danger-lightness))
 
   // Fonts:
 
@@ -43,10 +53,11 @@ $mobile-breakpoint: 450px
   // Other:
     
   --border-radius: 6px
-  --focus-glow: 0 0 14px 2px rgba(255, 255, 255, 0.1)
+  --focus-glow: 0 0 14px 2px hsl(var(--color-brand-primary-hue), 20%, 15%)
+  --focus-glow: 0 0 0 2px hsl(var(--color-brand-primary-hue), var(--color-brand-primary-saturation), var(--color-brand-primary-lightness))
   --input-height-large: 3.125rem
   --input-height: 2.75rem
-  --input-height-small: 1.875rem
+  --input-height-small: 2rem
   --max-container-width: 1200px
   --spacing: 1rem
   --spacing-double: 2rem

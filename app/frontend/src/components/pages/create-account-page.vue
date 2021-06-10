@@ -5,14 +5,16 @@
         <validated-form v-slot="{ validatedForm }" :submit="submit">
           <div class="group">
             <h1 class="title title--2">Create an Account</h1>
+          </div>
 
+          <div class="group">
             <div class="bubble layout layout--icon">
-              <span class="icon fa fa-info"></span>
+              <span class="icon fa fa-lock"></span>
               <p class="smaller">
-                <b>The auth service is mocked.</b> To register successfully, use
-                "frodo@baggins.com" as the email and "the_shire" as the
-                password. To trigger an email conflict, use "bilbo@baggins.com"
-                as the email.
+                <b class="color-text-1">The auth service is mocked.</b> To
+                register successfully, use "frodo@baggins.com" as the email and
+                "the_shire" as the password. To trigger an email conflict, use
+                "bilbo@baggins.com" as the email.
               </p>
             </div>
           </div>
@@ -188,6 +190,8 @@
 
       async function submit() {
         try {
+          state.emailError = '';
+
           await createAccount({
             email: state.email,
             fullName: state.fullName,

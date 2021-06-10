@@ -5,13 +5,15 @@
         <validated-form v-slot="{ validatedForm }" :submit="submit">
           <div class="group">
             <h1 class="title title--2">Sign In</h1>
+          </div>
 
+          <div class="group">
             <div class="bubble layout layout--icon">
-              <span class="icon fa fa-info"></span>
+              <span class="icon fa fa-lock"></span>
               <p class="smaller">
-                <b>The auth service is mocked.</b> To sign in successfully, use
-                "frodo@baggins.com" for the email and "the_shire" as the
-                password.
+                <b class="color-text-1">The auth service is mocked.</b> To sign
+                in successfully, use "frodo@baggins.com" for the email and
+                "the_shire" as the password.
               </p>
             </div>
           </div>

@@ -2,7 +2,7 @@
   <div class="layout layout--vertical-align">
     <div class="container">
       <section class="section center">
-        <h1 class="title title--1 primary">Express Your Vue</h1>
+        <h1 class="title title--1 color-primary">Express Your Vue</h1>
         <h2 class="title title--2">
           Can't beat that new car smell. Time to get coding!
         </h2>
@@ -75,7 +75,7 @@
                 "
               >
                 <button
-                  class="link success"
+                  class="link color-success"
                   type="button"
                   @click="
                     showNotification({
@@ -88,7 +88,7 @@
                 </button>
 
                 <button
-                  class="link danger"
+                  class="link color-danger"
                   type="button"
                   @click="
                     showNotification({
@@ -120,7 +120,7 @@
             <div class="layout layout--horizontal layout--justify-start">
               <button
                 type="button"
-                class="button button--small"
+                class="button button--border button--small"
                 @click="somethingPublic"
               >
                 <span class="icon fa fa-globe"></span>
@@ -128,7 +128,7 @@
               </button>
               <button
                 type="button"
-                class="button button--small button--secondary"
+                class="button button--border button--small"
                 @click="somethingPrivate"
               >
                 <span class="icon fa fa-lock"></span>
