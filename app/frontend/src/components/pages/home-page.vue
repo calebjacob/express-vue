@@ -2,8 +2,8 @@
   <div class="layout layout--vertical-align">
     <div class="container">
       <section class="section center">
-        <h1 class="title title--1 color-primary">Express Your Vue</h1>
-        <h2 class="title title--2">
+        <h1 class="title title--1">Express Your Vue</h1>
+        <h2 class="title title--2 color-text-2">
           Can't beat that new car smell. Time to get coding!
         </h2>
       </section>

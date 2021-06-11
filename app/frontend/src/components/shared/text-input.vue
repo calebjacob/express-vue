@@ -35,7 +35,7 @@
 <script lang="ts">
   import { TextInputValidations } from '@/types/props';
   import { defineComponent } from 'vue';
-  import { computed, nextTick, PropType, ref, toRef, watch } from 'vue';
+  import { computed, PropType, ref, toRef, watch } from 'vue';
   import { useField } from 'vee-validate';
 
   export default defineComponent({
