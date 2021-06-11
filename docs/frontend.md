@@ -38,7 +38,7 @@ Here are a few additional notes to keep in mind:
 
 #### Singles (src/components/singles)
 
-A component that should only ever have a single instance rendered at any one time (main header, main footer, etc).
+A component that should only ever have a single instance rendered at any one time (main header, main footer, etc). Single components should follow a `the-x` naming convention. The keyword `the` helps make it obvious when a component is meant to be used as a single.
 
 ## Helpers
 
@@ -47,6 +47,14 @@ Simple and reusable helper methods can live here. For example, you might have a 
 ## Modules
 
 All Vue composistion modules live here. These modules are designed to share re-usable code and state throughout the app.
+
+Some modules might need to export a single instance (singleton) that's shared throughout the whole codebase. However, other modules might need to be designed to create a new instance each time it's used. We can very easily support both of these module "flavors" with the following folder/file structure. Let's use a `session` module as an example:
+
+- `modules/session/index.ts`: The entry point for the module that exposes the public API (the `useX()` module method, public types, etc). If a module should share a single instance each time it's used, that can be accomplished by creating a private module instance and returning it via a `useTheSession()` naming convention. If a module should create a new instance each time it's used, you'd simply export the hook via the `useSession()` naming convention (without the `The`).
+
+- `modules/session/session.ts`: The module logic itself which exports a `useSession()` method to generate a module instance. This file could be broken down in to multiple subfiles if a module is becoming too large. The redundant folder and file name makes searching for the file much easier as the project grows.
+
+- `modules/session/types.ts`: Any types/interfaces will be defined and exported here for the `session` module. Some of these might be exposed in the `index.ts` file if they should be public. This will help cut down on clutter inside the main module logic file `session.ts`.
 
 ## Services
 

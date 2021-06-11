@@ -47,13 +47,16 @@
 
 <script lang="ts">
   import { defineComponent } from 'vue';
-  import { useNotifications, NotificationType } from '@/modules/notifications';
+  import {
+    useTheNotifications,
+    NotificationType
+  } from '@/modules/notifications';
 
   export default defineComponent({
-    name: 'Notifications',
+    name: 'TheNotifications',
 
     setup() {
-      const { hideNotification, notifications } = useNotifications();
+      const { hideNotification, notifications } = useTheNotifications();
 
       return {
         NotificationType,

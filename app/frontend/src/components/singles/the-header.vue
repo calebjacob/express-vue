@@ -1,20 +1,20 @@
 <template>
-  <header class="main-header">
+  <header class="header">
     <div class="container">
       <button
-        class="main-header__hamburger icon icon--medium fa fa-bars"
+        class="header__hamburger icon icon--medium fa fa-bars"
         type="button"
       />
 
       <router-link
-        class="main-header__logo"
+        class="header__logo"
         :to="{
           name: 'home'
         }"
         >APP</router-link
       >
 
-      <div class="main-header__right">
+      <div class="header__right">
         <button
           v-if="session.currentUser"
           class="link"
@@ -39,15 +39,14 @@
 </template>
 
 <script lang="ts">
-  import { SessionModuleKey } from '@/modules/session';
+  import { useTheSession } from '@/modules/session';
   import { defineComponent } from 'vue';
-  import injectStrict from '@/helpers/inject-strict';
 
   export default defineComponent({
-    name: 'MainHeader',
+    name: 'TheHeader',
 
     setup() {
-      const { session, signOut } = injectStrict(SessionModuleKey);
+      const { session, signOut } = useTheSession();
 
       return {
         session,

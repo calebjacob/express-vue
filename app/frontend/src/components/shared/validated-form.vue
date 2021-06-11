@@ -21,7 +21,7 @@
   import { defineComponent } from 'vue';
   import { nextTick, ref, reactive } from 'vue';
   import { useForm } from 'vee-validate';
-  import { useNotifications } from '@/modules/notifications';
+  import { useTheNotifications } from '@/modules/notifications';
 
   export default defineComponent({
     name: 'ValidatedForm',
@@ -41,7 +41,7 @@
         isSubmitting: false
       });
       const { validate, values } = useForm();
-      const { closeAllErrorNotifications } = useNotifications();
+      const { closeAllErrorNotifications } = useTheNotifications();
 
       async function handleInvalidSubmit() {
         await nextTick(); // NOTE: Without waiting a tick, the form would still be disabled and the focus() wouldn't work

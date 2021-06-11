@@ -1,37 +1,16 @@
 import timer from '@/helpers/timer';
 import { readonly, ref, Ref } from 'vue';
 import { v4 as uuid } from 'uuid';
+import {
+  NotificationsModule,
+  Notification,
+  ShowNotificationOptions,
+  NotificationType
+} from './types';
 
-interface NotificationsModule {
-  closeAllErrorNotifications(): void;
-  hideNotification(notification: Notification): void;
-  notifications: Ref<readonly Notification[]>;
-  resetState(): void;
-  showNotification(options: ShowNotificationOptions): void;
-}
+export function useNotifications(): NotificationsModule {
+  const notifications: Ref<Notification[]> = ref([]);
 
-interface Notification {
-  autoHide: boolean;
-  id: string;
-  message: string;
-  type: NotificationType;
-}
-
-interface ShowNotificationOptions {
-  autoHide?: boolean;
-  message: string;
-  type: NotificationType;
-}
-
-enum NotificationType {
-  ERROR = 'ERROR',
-  GENERIC = 'GENERIC',
-  SUCCESS = 'SUCCESS'
-}
-
-const notifications: Ref<Notification[]> = ref([]);
-
-function useNotifications(): NotificationsModule {
   function closeAllErrorNotifications(): void {
     notifications.value = notifications.value.filter((n) => {
       return n.type !== NotificationType.ERROR;
@@ -76,5 +55,3 @@ function useNotifications(): NotificationsModule {
     showNotification
   };
 }
-
-export { useNotifications, NotificationsModule, NotificationType };

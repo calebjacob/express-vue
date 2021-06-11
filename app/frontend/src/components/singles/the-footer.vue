@@ -1,5 +1,5 @@
 <template>
-  <footer class="main-footer">
+  <footer class="footer">
     <p>This is some footer content.</p>
   </footer>
 </template>
@@ -8,6 +8,6 @@
   import { defineComponent } from 'vue';
 
   export default defineComponent({
-    name: 'MainFooter'
+    name: 'TheFooter'
   });
 </script>

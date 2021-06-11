@@ -1,33 +1,16 @@
 import { ApiErrorCode, ApiErrorResponse } from 'shared/types/api';
 import { AxiosError } from 'axios';
-import { useNotifications, NotificationType } from '@/modules/notifications';
+import { useTheNotifications, NotificationType } from '@/modules/notifications';
+import {
+  ErrorsModule,
+  HandleErrorOptions,
+  ParsedError,
+  ParsedErrors
+} from './types';
 
-interface ErrorsModule {
-  handleError(error: AxiosError, options?: HandleErrorOptions): ParsedErrors;
-  handleErrorManually(
-    error: AxiosError,
-    options?: HandleErrorOptions
-  ): ParsedErrors;
-  handleErrorQuietly(error: AxiosError): void;
-}
+const { showNotification } = useTheNotifications();
 
-interface HandleErrorOptions {
-  message?: string;
-}
-
-interface ParsedError {
-  code?: ApiErrorCode;
-  message: string;
-}
-
-interface ParsedErrors {
-  codes: ApiErrorCode[];
-  errors: ParsedError[];
-}
-
-const { showNotification } = useNotifications();
-
-function useErrors(): ErrorsModule {
+export function useErrors(): ErrorsModule {
   function handleError(
     error: AxiosError,
     options: HandleErrorOptions = {}
@@ -99,5 +82,3 @@ function useErrors(): ErrorsModule {
     handleErrorQuietly
   };
 }
-
-export { useErrors };

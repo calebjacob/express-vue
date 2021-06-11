@@ -1,4 +1,4 @@
-.main-header
+.header
   --header-height: 5rem
   height: var(--header-height)
   background: var(--color-surface-3)
@@ -11,7 +11,7 @@
 
 
 
-.main-header__hamburger
+.header__hamburger
   padding: 0 var(--spacing)
   margin-left: calc(var(--spacing) * -1)
   line-height: var(--header-height)
@@ -29,7 +29,7 @@
 
 
 
-.main-header__logo
+.header__logo
   display: block
   position: absolute
   left: 0
@@ -56,16 +56,16 @@
 
 
 
-.main-header__right
+.header__right
   display: flex
   align-items: center
 
 
 
 @media (max-width: $tablet-breakpoint)
-  .main-header
+  .header
     --header-height: 4rem
     padding: 0 var(--spacing)
 
-    .main-header__hamburger
+    .header__hamburger
       padding: 0 var(--spacing)

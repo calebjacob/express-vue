@@ -144,22 +144,26 @@
 
 <script lang="ts">
   import { defineComponent } from 'vue';
-  import { SessionModuleKey } from '@/modules/session';
-  import { useNotifications, NotificationType } from '@/modules/notifications';
+  import { useTheSession } from '@/modules/session';
+  import {
+    useTheNotifications,
+    NotificationType
+  } from '@/modules/notifications';
   import { useErrors } from '@/modules/errors';
   import {
     SomethingPublicResponse,
     SomethingPrivateResponse
   } from 'shared/types/api';
   import http from '@/services/http';
-  import injectStrict from '@/helpers/inject-strict';
+  // import injectStrict from '@/helpers/inject-strict';
 
   export default defineComponent({
     name: 'HomePage',
 
     setup() {
-      const { session } = injectStrict(SessionModuleKey);
-      const { showNotification } = useNotifications();
+      // const { session } = injectStrict(SessionModuleKey);
+      const { session } = useTheSession();
+      const { showNotification } = useTheNotifications();
       const { handleError } = useErrors();
 
       async function somethingPrivate() {

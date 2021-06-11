@@ -5,37 +5,22 @@ import {
   SignInBody,
   SignInResponse
 } from 'shared/types/api';
-import { User } from 'shared/types/models';
-import { InjectionKey, reactive, readonly } from 'vue';
+import { Session, SessionModule } from './types';
+import { reactive, readonly } from 'vue';
 import { useErrors } from '@/modules/errors';
-import { useNotifications, NotificationType } from '@/modules/notifications';
+import { useTheNotifications, NotificationType } from '@/modules/notifications';
 import http from '@/services/http';
 import cookies from 'js-cookie';
 
-const SessionModuleKey: InjectionKey<SessionModule> = Symbol('SessionModule');
+export function useSession(): SessionModule {
+  const { handleErrorQuietly } = useErrors();
+  const { showNotification } = useTheNotifications();
 
-interface SessionModule {
-  load(): Promise<void>;
-  createAccount(body: CreateAccountBody): Promise<void>;
-  session: Session;
-  signIn(body: SignInBody): Promise<void>;
-  signOut(): Promise<void>;
-}
+  const session: Session = reactive({
+    currentUser: null,
+    isLoadingCurrentUser: false
+  });
 
-interface Session {
-  currentUser: User | null;
-  isLoadingCurrentUser: boolean;
-}
-
-const session: Session = reactive({
-  currentUser: null,
-  isLoadingCurrentUser: false
-});
-
-const { handleErrorQuietly } = useErrors();
-const { showNotification } = useNotifications();
-
-function useSession(): SessionModule {
   async function createAccount(body: CreateAccountBody) {
     try {
       const response = await http.post<CreateAccountResponse>(
@@ -109,5 +94,3 @@ function useSession(): SessionModule {
     signOut
   };
 }
-
-export { useSession, SessionModule, SessionModuleKey };

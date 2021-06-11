@@ -80,15 +80,11 @@
       const input = ref<HTMLCanvasElement | null>(null);
       const validations = toRef(props, 'validations');
 
-      const { errorMessage, setErrors, value } = useField(
-        props.name,
-        validations,
-        {
-          initialValue: props.modelValue,
-          label: `"${props.label}"`,
-          validateOnMount: true
-        }
-      );
+      const { errorMessage, value } = useField(props.name, validations, {
+        initialValue: props.modelValue,
+        label: `"${props.label}"`,
+        validateOnMount: true
+      });
 
       const inputAttributes = computed(() => {
         return {
@@ -104,22 +100,6 @@
         (newModelValue) => {
           if (newModelValue !== value.value) {
             value.value = newModelValue;
-          }
-        }
-      );
-
-      watch(
-        () => props.error,
-        async (error) => {
-          if (error) {
-            await nextTick(); // NOTE: Without waiting 2 ticks, the form would still be disabled and the focus() wouldn't work
-            await nextTick();
-
-            setErrors(error);
-
-            if (input.value) {
-              input.value.focus();
-            }
           }
         }
       );

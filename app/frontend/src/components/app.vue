@@ -1,35 +1,36 @@
 <template>
-  <main-header />
+  <the-header />
 
   <div class="wrapper__content">
     <router-view />
   </div>
 
-  <main-footer />
+  <the-footer />
 
-  <notifications />
+  <the-notifications />
 </template>
 
 <script lang="ts">
   import { defineComponent, provide } from 'vue';
-  import { useSession, SessionModuleKey } from '@/modules/session';
-  import MainFooter from '@/components/singles/main-footer.vue';
-  import MainHeader from '@/components/singles/main-header.vue';
-  import Notifications from '@/components/singles/notifications.vue';
+  import { useTheSession } from '@/modules/session';
+  import TheFooter from '@/components/singles/the-footer.vue';
+  import TheHeader from '@/components/singles/the-header.vue';
+  import TheNotifications from '@/components/singles/the-notifications.vue';
 
   export default defineComponent({
     name: 'App',
 
     components: {
-      MainFooter,
-      MainHeader,
-      Notifications
+      TheFooter,
+      TheHeader,
+      TheNotifications
     },
 
     setup() {
-      const session = useSession();
+      const session = useTheSession();
       session.load();
-      provide(SessionModuleKey, session);
+      // const SessionModuleKey: InjectionKey<SessionModule> = Symbol('SessionModule');
+      // provide(SessionModuleKey, session);
     }
   });
 </script>

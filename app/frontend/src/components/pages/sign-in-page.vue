@@ -9,7 +9,7 @@
 
           <div class="group">
             <div class="bubble layout layout--icon">
-              <span class="icon fa fa-lock"></span>
+              <span class="icon fa fa-lock color-secondary"></span>
               <p class="smaller">
                 <b class="color-text-1">The auth service is mocked.</b> To sign
                 in successfully, use "frodo@baggins.com" for the email and
@@ -78,7 +78,7 @@
   import { reactive } from 'vue';
   import { useErrors } from '@/modules/errors';
   import { useRouter } from 'vue-router';
-  import { useSession } from '@/modules/session';
+  import { useTheSession } from '@/modules/session';
   import sharedComponents from '@/components/shared';
 
   export default defineComponent({
@@ -89,7 +89,7 @@
     },
 
     setup() {
-      const { signIn } = useSession();
+      const { signIn } = useTheSession();
       const { handleError } = useErrors();
       const router = useRouter();
 

@@ -9,7 +9,7 @@
 
           <div class="group">
             <div class="bubble layout layout--icon">
-              <span class="icon fa fa-lock"></span>
+              <span class="icon fa fa-lock color-secondary"></span>
               <p class="smaller">
                 <b class="color-text-1">The auth service is mocked.</b> To
                 register successfully, use "frodo@baggins.com" as the email and
@@ -36,7 +36,6 @@
               label="Email"
               icon-class="fa-envelope"
               type="email"
-              :error="state.emailError"
               :validations="{
                 email: true,
                 required: true
@@ -146,7 +145,7 @@
   import { reactive, Ref } from 'vue';
   import { useErrors } from '@/modules/errors';
   import { useRouter } from 'vue-router';
-  import { useSession } from '@/modules/session';
+  import { useTheSession } from '@/modules/session';
   import { RadioOption } from '@/types/props';
   import sharedComponents from '@/components/shared';
 
@@ -158,14 +157,13 @@
     },
 
     setup() {
-      const { createAccount } = useSession();
-      const { handleError, handleErrorManually } = useErrors();
+      const { createAccount } = useTheSession();
+      const { handleError } = useErrors();
       const router = useRouter();
 
       const state = reactive({
         acceptedTerms: true,
         email: '',
-        emailError: '',
         favoriteThing: '',
         fullName: '',
         fullNameIsRequired: true,
@@ -190,8 +188,6 @@
 
       async function submit() {
         try {
-          state.emailError = '';
-
           await createAccount({
             email: state.email,
             fullName: state.fullName,
@@ -202,16 +198,16 @@
             name: 'home'
           });
         } catch (error) {
-          const { errors } = handleErrorManually(error);
+          const { errors } = handleError(error);
 
           const emailConflictError = errors.find(
             (e) => e.code === ApiErrorCode.EMAIL_CONFLICT
           );
 
           if (emailConflictError) {
-            state.emailError = emailConflictError.message;
-          } else {
-            handleError(error);
+            console.log(
+              'Email conflict was detected. Exra logic could be run here to handle this specific error'
+            );
           }
         }
       }
