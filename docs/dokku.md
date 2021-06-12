@@ -6,6 +6,10 @@ The easiest way to get any Node app running is to use Dokku. Spin up a Dokku dro
 
 Here are some miscellaneous tips:
 
+##### Configure .env File
+
+TODO: Need to figure out how to set up `.env` file via Dokku. Should contain `NODE_ENV=production`...
+
 ##### Add Git Remote to Deploy:
 
 ```

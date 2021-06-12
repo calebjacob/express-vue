@@ -1,12 +1,7 @@
 import timer from '@/helpers/timer';
 import { readonly, ref, Ref } from 'vue';
 import { v4 as uuid } from 'uuid';
-import {
-  NotificationsModule,
-  Notification,
-  ShowNotificationOptions,
-  NotificationType
-} from './types';
+import { NotificationsModule, Notification, ShowNotificationOptions, NotificationType } from './types';
 
 export function useNotifications(): NotificationsModule {
   const notifications: Ref<Notification[]> = ref([]);
@@ -27,11 +22,7 @@ export function useNotifications(): NotificationsModule {
     notifications.value = [];
   }
 
-  async function showNotification({
-    autoHide = true,
-    message,
-    type
-  }: ShowNotificationOptions) {
+  async function showNotification({ autoHide = true, message, type }: ShowNotificationOptions) {
     const notification = {
       autoHide,
       id: uuid(),

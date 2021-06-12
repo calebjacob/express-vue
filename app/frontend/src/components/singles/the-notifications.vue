@@ -7,10 +7,8 @@
           :key="notification.id"
           class="notifications__notification"
           :class="{
-            'notifications__notification--error':
-              notification.type === NotificationType.ERROR,
-            'notifications__notification--success':
-              notification.type === NotificationType.SUCCESS
+            'notifications__notification--error': notification.type === NotificationType.ERROR,
+            'notifications__notification--success': notification.type === NotificationType.SUCCESS
           }"
         >
           <div class="notifications__content">
@@ -18,12 +16,9 @@
               <span
                 class="icon fa"
                 :class="{
-                  'fa-exclamation-circle':
-                    notification.type === NotificationType.ERROR,
-                  'fa-info-circle':
-                    notification.type === NotificationType.GENERIC,
-                  'fa-check-circle':
-                    notification.type === NotificationType.SUCCESS
+                  'fa-exclamation-circle': notification.type === NotificationType.ERROR,
+                  'fa-info-circle': notification.type === NotificationType.GENERIC,
+                  'fa-check-circle': notification.type === NotificationType.SUCCESS
                 }"
               />
 
@@ -47,10 +42,7 @@
 
 <script lang="ts">
   import { defineComponent } from 'vue';
-  import {
-    useTheNotifications,
-    NotificationType
-  } from '@/modules/notifications';
+  import { useTheNotifications, NotificationType } from '@/modules/notifications';
 
   export default defineComponent({
     name: 'TheNotifications',

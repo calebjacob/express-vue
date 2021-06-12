@@ -3,10 +3,7 @@ import { AxiosError } from 'axios';
 
 export interface ErrorsModule {
   handleError(error: AxiosError, options?: HandleErrorOptions): ParsedErrors;
-  handleErrorManually(
-    error: AxiosError,
-    options?: HandleErrorOptions
-  ): ParsedErrors;
+  handleErrorManually(error: AxiosError, options?: HandleErrorOptions): ParsedErrors;
   handleErrorQuietly(error: AxiosError): void;
 }
 

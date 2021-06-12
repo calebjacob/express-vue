@@ -3,9 +3,7 @@
     <div class="container">
       <section class="section center">
         <h1 class="title title--1">Express Your Vue</h1>
-        <h2 class="title title--2 color-text-2">
-          Can't beat that new car smell. Time to get coding!
-        </h2>
+        <h2 class="title title--2 color-text-2">Can't beat that new car smell. Time to get coding!</h2>
       </section>
 
       <section class="section">
@@ -38,10 +36,7 @@
           <div v-else>
             <h3 class="title title--3">You are not signed in.</h3>
 
-            <p>
-              Account info won't be saved on registration. The auth flow is
-              mocked on the backend.
-            </p>
+            <p>Account info won't be saved on registration. The auth flow is mocked on the backend.</p>
 
             <div class="layout layout--horizontal layout--justify-start">
               <router-link
@@ -68,12 +63,7 @@
             <h3 class="title title--3">Notifications</h3>
 
             <div class="group">
-              <div
-                class="
-                  layout layout--horizontal layout--justify-start
-                  margin-bottom
-                "
-              >
+              <div class="layout layout--horizontal layout--justify-start margin-bottom">
                 <button
                   class="link color-success"
                   type="button"
@@ -118,19 +108,11 @@
             <h3 class="title title--3">Actions</h3>
 
             <div class="layout layout--horizontal layout--justify-start">
-              <button
-                type="button"
-                class="button button--border button--small"
-                @click="somethingPublic"
-              >
+              <button type="button" class="button button--border button--small" @click="somethingPublic">
                 <span class="icon fa fa-globe"></span>
                 Public
               </button>
-              <button
-                type="button"
-                class="button button--border button--small"
-                @click="somethingPrivate"
-              >
+              <button type="button" class="button button--border button--small" @click="somethingPrivate">
                 <span class="icon fa fa-lock"></span>
                 Private
               </button>
@@ -138,39 +120,36 @@
           </div>
         </div>
       </section>
+
+      <section class="section">
+        <p>{{ message }}</p>
+      </section>
     </div>
   </div>
 </template>
 
 <script lang="ts">
   import { defineComponent } from 'vue';
+  import { ExampleModuleKey } from '@/modules/example';
   import { useTheSession } from '@/modules/session';
-  import {
-    useTheNotifications,
-    NotificationType
-  } from '@/modules/notifications';
+  import { useTheNotifications, NotificationType } from '@/modules/notifications';
   import { useErrors } from '@/modules/errors';
-  import {
-    SomethingPublicResponse,
-    SomethingPrivateResponse
-  } from 'shared/types/api';
+  import { SomethingPublicResponse, SomethingPrivateResponse } from 'shared/types/api';
   import http from '@/services/http';
-  // import injectStrict from '@/helpers/inject-strict';
+  import injectStrict from '@/helpers/inject-strict';
 
   export default defineComponent({
     name: 'HomePage',
 
     setup() {
-      // const { session } = injectStrict(SessionModuleKey);
+      const example = injectStrict(ExampleModuleKey);
       const { session } = useTheSession();
       const { showNotification } = useTheNotifications();
       const { handleError } = useErrors();
 
       async function somethingPrivate() {
         try {
-          const response = await http.get<SomethingPrivateResponse>(
-            '/api/something-private'
-          );
+          const response = await http.get<SomethingPrivateResponse>('/api/something-private');
 
           console.log('Private Info:', response.data);
 
@@ -185,9 +164,7 @@
 
       async function somethingPublic() {
         try {
-          const response = await http.get<SomethingPublicResponse>(
-            '/api/something-public'
-          );
+          const response = await http.get<SomethingPublicResponse>('/api/something-public');
 
           console.log('Public Info:', response.data);
 
@@ -201,6 +178,7 @@
       }
 
       return {
+        message: example.message,
         NotificationType,
         session,
         showNotification,

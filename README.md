@@ -10,7 +10,7 @@ A starter project ready to rock and roll!
 - [Sass (Indented Syntax)](https://sass-lang.com/documentation/syntax#the-indented-syntax)
 - [Font Awesome 5](https://fontawesome.com/icons?d=gallery&p=2).
 
-It also includes the following linting & testing integrations:
+The following linting & testing integrations are included:
 
 - [ESLint](https://eslint.org/)
 - [Prettier](https://prettier.io/)
@@ -152,7 +152,7 @@ npm run verify:frontend
 Create a production ready build and start the service:
 
 ```
-npm run build
+npm run production
 ```
 
 This will generate an `app/backend/dist` and `app/frontend/dist` folder and start up the Node process configured via `.env` variables.

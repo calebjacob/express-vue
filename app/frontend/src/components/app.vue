@@ -12,6 +12,7 @@
 
 <script lang="ts">
   import { defineComponent, provide } from 'vue';
+  import { ExampleModuleKey, useExample } from '@/modules/example';
   import { useTheSession } from '@/modules/session';
   import TheFooter from '@/components/singles/the-footer.vue';
   import TheHeader from '@/components/singles/the-header.vue';
@@ -29,8 +30,10 @@
     setup() {
       const session = useTheSession();
       session.load();
-      // const SessionModuleKey: InjectionKey<SessionModule> = Symbol('SessionModule');
-      // provide(SessionModuleKey, session);
+
+      const example = useExample();
+      example.message.value = 'This is an example of using a provide/inject pattern.';
+      provide(ExampleModuleKey, example);
     }
   });
 </script>

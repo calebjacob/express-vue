@@ -46,10 +46,7 @@ const createAccount: Handler = async (
   }
 };
 
-const currentUser: Handler = async (
-  req: Request,
-  res: Response<CurrentUserResponse>
-): Promise<void> => {
+const currentUser: Handler = async (req: Request, res: Response<CurrentUserResponse>): Promise<void> => {
   try {
     if (req.currentUser) {
       res.json({
@@ -66,10 +63,7 @@ const currentUser: Handler = async (
   }
 };
 
-const signIn: Handler = async (
-  req: Request<SignInBody>,
-  res: Response<SignInResponse>
-): Promise<void> => {
+const signIn: Handler = async (req: Request<SignInBody>, res: Response<SignInResponse>): Promise<void> => {
   try {
     const { tokens, user } = await authService.signIn({
       email: req.body.email,

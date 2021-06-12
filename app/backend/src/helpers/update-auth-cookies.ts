@@ -7,10 +7,7 @@ interface UpdateAuthCookiesOptions {
   tokens: AuthTokens | null;
 }
 
-export default function updateAuthCookies({
-  res,
-  tokens
-}: UpdateAuthCookiesOptions): void {
+export default function updateAuthCookies({ res, tokens }: UpdateAuthCookiesOptions): void {
   if (tokens && tokens.accessToken && tokens.refreshToken) {
     res.cookie('isSignedIn', 'true');
 

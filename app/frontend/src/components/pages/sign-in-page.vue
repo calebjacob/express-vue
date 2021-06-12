@@ -11,9 +11,8 @@
             <div class="bubble layout layout--icon">
               <span class="icon fa fa-lock color-secondary"></span>
               <p class="smaller">
-                <b class="color-text-1">The auth service is mocked.</b> To sign
-                in successfully, use "frodo@baggins.com" for the email and
-                "the_shire" as the password.
+                <b class="color-text-1">The auth service is mocked.</b> To sign in successfully, use "frodo@baggins.com"
+                for the email and "the_shire" as the password.
               </p>
             </div>
           </div>

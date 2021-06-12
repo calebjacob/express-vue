@@ -1,20 +1,12 @@
 import { ApiErrorCode, ApiErrorResponse } from 'shared/types/api';
 import { AxiosError } from 'axios';
 import { useTheNotifications, NotificationType } from '@/modules/notifications';
-import {
-  ErrorsModule,
-  HandleErrorOptions,
-  ParsedError,
-  ParsedErrors
-} from './types';
+import { ErrorsModule, HandleErrorOptions, ParsedError, ParsedErrors } from './types';
 
 const { showNotification } = useTheNotifications();
 
 export function useErrors(): ErrorsModule {
-  function handleError(
-    error: AxiosError,
-    options: HandleErrorOptions = {}
-  ): ParsedErrors {
+  function handleError(error: AxiosError, options: HandleErrorOptions = {}): ParsedErrors {
     console.error(error);
 
     const parsed = parseErrors(error, options);
@@ -30,10 +22,7 @@ export function useErrors(): ErrorsModule {
     return parsed;
   }
 
-  function handleErrorManually(
-    error: AxiosError,
-    options: HandleErrorOptions = {}
-  ): ParsedErrors {
+  function handleErrorManually(error: AxiosError, options: HandleErrorOptions = {}): ParsedErrors {
     const parsed = parseErrors(error, options);
     return parsed;
   }
@@ -42,10 +31,7 @@ export function useErrors(): ErrorsModule {
     console.error(error);
   }
 
-  function parseErrors(
-    error: AxiosError,
-    options: HandleErrorOptions = {}
-  ): ParsedErrors {
+  function parseErrors(error: AxiosError, options: HandleErrorOptions = {}): ParsedErrors {
     const codes: ApiErrorCode[] = [];
     const errors: ParsedError[] = [];
 
@@ -65,8 +51,7 @@ export function useErrors(): ErrorsModule {
 
     if (errors.length === 0) {
       errors.push({
-        message:
-          options.message || 'Oops! Something went wrong. Try again later.'
+        message: options.message || 'Oops! Something went wrong. Try again later.'
       });
     }
 

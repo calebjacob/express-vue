@@ -23,10 +23,7 @@ export function useSession(): SessionModule {
 
   async function createAccount(body: CreateAccountBody) {
     try {
-      const response = await http.post<CreateAccountResponse>(
-        '/api/auth/create',
-        body
-      );
+      const response = await http.post<CreateAccountResponse>('/api/auth/create', body);
       session.currentUser = response.data.user;
 
       showNotification({
@@ -56,10 +53,7 @@ export function useSession(): SessionModule {
 
   async function signIn(body: SignInBody) {
     try {
-      const response = await http.post<SignInResponse>(
-        '/api/auth/sign-in',
-        body
-      );
+      const response = await http.post<SignInResponse>('/api/auth/sign-in', body);
       session.currentUser = response.data.user;
 
       showNotification({

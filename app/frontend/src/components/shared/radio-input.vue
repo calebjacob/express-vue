@@ -6,17 +6,8 @@
     }"
   >
     <div class="checkbox-input__options">
-      <div
-        v-for="(option, index) in options"
-        :key="option.value"
-        class="checkbox-input__option"
-      >
-        <input
-          class="checkbox-input__input"
-          type="radio"
-          v-bind="inputAttributes(index)"
-          @change="onChange(option)"
-        />
+      <div v-for="(option, index) in options" :key="option.value" class="checkbox-input__option">
+        <input class="checkbox-input__input" type="radio" v-bind="inputAttributes(index)" @change="onChange(option)" />
 
         <label
           class="checkbox-input__label"
@@ -30,9 +21,7 @@
       </div>
     </div>
 
-    <p v-if="errorMessage" class="input-error" role="alert">
-      A selection is required
-    </p>
+    <p v-if="errorMessage" class="input-error" role="alert">A selection is required</p>
   </div>
 </template>
 
@@ -70,14 +59,10 @@
 
     setup(props, { emit }) {
       const validations = toRef(props, 'validations');
-      const { errorMessage, handleChange, value } = useField(
-        props.name,
-        validations,
-        {
-          initialValue: props.modelValue,
-          validateOnMount: true
-        }
-      );
+      const { errorMessage, handleChange, value } = useField(props.name, validations, {
+        initialValue: props.modelValue,
+        validateOnMount: true
+      });
 
       function onChange(option: RadioOption | null | undefined) {
         if (option) {
@@ -89,11 +74,7 @@
         }
       }
 
-      function onLabelClick(
-        option: RadioOption,
-        inputId: string,
-        event: Event
-      ) {
+      function onLabelClick(option: RadioOption, inputId: string, event: Event) {
         if (option.value === value.value) {
           event.preventDefault();
           onChange(null);

@@ -10,13 +10,7 @@
       extraClasses
     ]"
   >
-    <input
-      v-bind="inputAttributes"
-      ref="input"
-      v-model="value"
-      :type="type"
-      class="text-input__input"
-    />
+    <input v-bind="inputAttributes" ref="input" v-model="value" :type="type" class="text-input__input" />
 
     <label class="text-input__label" :for="inputAttributes.id">
       {{ label }}

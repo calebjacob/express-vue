@@ -11,9 +11,8 @@
             <div class="bubble layout layout--icon">
               <span class="icon fa fa-lock color-secondary"></span>
               <p class="smaller">
-                <b class="color-text-1">The auth service is mocked.</b> To
-                register successfully, use "frodo@baggins.com" as the email and
-                "the_shire" as the password. To trigger an email conflict, use
+                <b class="color-text-1">The auth service is mocked.</b> To register successfully, use
+                "frodo@baggins.com" as the email and "the_shire" as the password. To trigger an email conflict, use
                 "bilbo@baggins.com" as the email.
               </p>
             </div>
@@ -110,25 +109,12 @@
 
           <hr />
 
-          <div
-            class="
-              group
-              layout layout--horizontal layout--justify-start layout--wrap
-            "
-          >
-            <button
-              class="button button--border button--small"
-              type="button"
-              @click="toggleFavoriteThingQuestion"
-            >
+          <div class="group layout layout--horizontal layout--justify-start layout--wrap">
+            <button class="button button--border button--small" type="button" @click="toggleFavoriteThingQuestion">
               {{ state.showFavoriteThing ? 'Hide' : 'Show' }} Question
             </button>
 
-            <button
-              class="button button--border button--small"
-              type="button"
-              @click="toggleFullNameIsRequired"
-            >
+            <button class="button button--border button--small" type="button" @click="toggleFullNameIsRequired">
               Make Full Name
               {{ state.fullNameIsRequired ? 'Optional' : 'Required' }}
             </button>
@@ -200,14 +186,10 @@
         } catch (error) {
           const { errors } = handleError(error);
 
-          const emailConflictError = errors.find(
-            (e) => e.code === ApiErrorCode.EMAIL_CONFLICT
-          );
+          const emailConflictError = errors.find((e) => e.code === ApiErrorCode.EMAIL_CONFLICT);
 
           if (emailConflictError) {
-            console.log(
-              'Email conflict was detected. Exra logic could be run here to handle this specific error'
-            );
+            console.log('Email conflict was detected. Exra logic could be run here to handle this specific error');
           }
         }
       }

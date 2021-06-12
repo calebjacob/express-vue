@@ -6,12 +6,7 @@
     }"
   >
     <div class="checkbox-input__option">
-      <input
-        class="checkbox-input__input"
-        type="checkbox"
-        v-bind="inputAttributes"
-        @change="onChange"
-      />
+      <input class="checkbox-input__input" type="checkbox" v-bind="inputAttributes" @change="onChange" />
 
       <label class="checkbox-input__label" :for="inputAttributes.id">
         <span class="checkbox-input__label-text">
@@ -20,9 +15,7 @@
       </label>
     </div>
 
-    <p v-if="errorMessage" class="input-error" role="alert">
-      This checkbox is required
-    </p>
+    <p v-if="errorMessage" class="input-error" role="alert">This checkbox is required</p>
   </div>
 </template>
 
@@ -55,14 +48,10 @@
 
     setup(props, { emit }) {
       const validations = toRef(props, 'validations');
-      const { errorMessage, handleChange, value } = useField(
-        props.name,
-        validations,
-        {
-          initialValue: props.modelValue,
-          validateOnMount: true
-        }
-      );
+      const { errorMessage, handleChange, value } = useField(props.name, validations, {
+        initialValue: props.modelValue,
+        validateOnMount: true
+      });
 
       function onChange(event: Event) {
         const target = event.target as HTMLInputElement;

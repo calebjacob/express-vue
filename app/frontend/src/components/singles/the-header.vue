@@ -1,10 +1,7 @@
 <template>
   <header class="header">
     <div class="container">
-      <button
-        class="header__hamburger icon icon--medium fa fa-bars"
-        type="button"
-      />
+      <button class="header__hamburger icon icon--medium fa fa-bars" type="button" />
 
       <router-link
         class="header__logo"
@@ -15,14 +12,7 @@
       >
 
       <div class="header__right">
-        <button
-          v-if="session.currentUser"
-          class="link"
-          type="button"
-          @click="signOut"
-        >
-          Sign Out
-        </button>
+        <button v-if="session.currentUser" class="link" type="button" @click="signOut">Sign Out</button>
 
         <router-link
           v-else

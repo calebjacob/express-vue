@@ -46,9 +46,7 @@
       async function handleInvalidSubmit() {
         await nextTick(); // NOTE: Without waiting a tick, the form would still be disabled and the focus() wouldn't work
 
-        const firstInvalidInput = element.value.querySelector(
-          '[aria-invalid=true]'
-        );
+        const firstInvalidInput = element.value.querySelector('[aria-invalid=true]');
 
         if (firstInvalidInput) {
           firstInvalidInput.focus();

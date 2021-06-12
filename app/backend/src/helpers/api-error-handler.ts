@@ -41,22 +41,16 @@ export default function apiErrorHandler({
     });
   }
 
-  allErrors.forEach(
-    ({
-      code,
-      error,
-      message = 'Oops! An unknown error occurred. Please try again later.'
-    }) => {
-      if (error) {
-        logger.error(error);
-      }
-
-      data.errors.push({
-        code,
-        message
-      });
+  allErrors.forEach(({ code, error, message = 'Oops! An unknown error occurred. Please try again later.' }) => {
+    if (error) {
+      logger.error(error);
     }
-  );
+
+    data.errors.push({
+      code,
+      message
+    });
+  });
 
   res.status(status);
   res.json(data);

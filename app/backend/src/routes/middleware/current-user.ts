@@ -14,11 +14,7 @@ function continueAsGuest(req: Request, res: Response, next: Next) {
   next();
 }
 
-const currentUser: Middleware = async (
-  req: Request,
-  res: Response,
-  next: Next
-): Promise<void> => {
+const currentUser: Middleware = async (req: Request, res: Response, next: Next): Promise<void> => {
   try {
     const accessToken = req.signedCookies.accessToken;
     const refreshToken = req.signedCookies.refreshToken;

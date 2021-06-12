@@ -1,13 +1,7 @@
-import {
-  SomethingPublicResponse,
-  SomethingPrivateResponse
-} from 'shared/types/api';
+import { SomethingPublicResponse, SomethingPrivateResponse } from 'shared/types/api';
 import { Handler, Response, Request } from '@/types/routes';
 
-const somethingPrivate: Handler = (
-  req: Request,
-  res: Response<SomethingPrivateResponse>
-): void => {
+const somethingPrivate: Handler = (req: Request, res: Response<SomethingPrivateResponse>): void => {
   res.json({
     address: '1234 Hobbit Ln, Shire',
     age: 51,
@@ -15,10 +9,7 @@ const somethingPrivate: Handler = (
   });
 };
 
-const somethingPublic: Handler = (
-  req: Request,
-  res: Response<SomethingPublicResponse>
-): void => {
+const somethingPublic: Handler = (req: Request, res: Response<SomethingPublicResponse>): void => {
   res.json({
     lovesFood: true,
     name: 'Frodo'

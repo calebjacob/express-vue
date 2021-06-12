@@ -41,9 +41,7 @@ const mockUser = {
   id: '12345'
 };
 
-async function createAccount({
-  data
-}: CreateAccountOptions): Promise<SignInSuccess> {
+async function createAccount({ data }: CreateAccountOptions): Promise<SignInSuccess> {
   try {
     /*
       NOTE: This logic is just for demo purposes and should be replaced with an 
@@ -53,12 +51,9 @@ async function createAccount({
 
     await timer(150);
 
-    logger.info(
-      'Creating new user. The following info should be saved to their new account:',
-      {
-        ...data
-      }
-    );
+    logger.info('Creating new user. The following info should be saved to their new account:', {
+      ...data
+    });
 
     if (data.email === 'bilbo@baggins.com') {
       throw new Error(ApiErrorCode.EMAIL_CONFLICT);
@@ -73,10 +68,7 @@ async function createAccount({
   }
 }
 
-async function signIn({
-  email,
-  password
-}: SignInOptions): Promise<SignInSuccess> {
+async function signIn({ email, password }: SignInOptions): Promise<SignInSuccess> {
   try {
     /*
       NOTE: This logic is just for demo purposes and should be replaced with an 
@@ -115,12 +107,9 @@ async function signOut({ tokens }: SignOutOptions): Promise<void> {
 
     await timer(150);
 
-    logger.info(
-      'Signing out user. The following tokens should be invalidated:',
-      {
-        ...tokens
-      }
-    );
+    logger.info('Signing out user. The following tokens should be invalidated:', {
+      ...tokens
+    });
   } catch (error) {
     throw error;
   }
