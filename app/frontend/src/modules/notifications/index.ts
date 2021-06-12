@@ -1,10 +1,10 @@
 import { useNotifications } from './notifications';
 import { NotificationsModule, NotificationType } from './types';
 
-const module = useNotifications();
+const notifications = useNotifications();
 
 function useTheNotifications(): NotificationsModule {
-  return module;
+  return notifications;
 }
 
 export { useTheNotifications, NotificationType };

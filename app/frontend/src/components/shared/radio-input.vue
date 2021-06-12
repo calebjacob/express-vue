@@ -26,10 +26,18 @@
 </template>
 
 <script lang="ts">
-  import { RadioOption, RadioValidations } from '@/types/props';
   import { defineComponent, PropType } from 'vue';
   import { toRef, watch } from 'vue';
   import { useField } from 'vee-validate';
+
+  export interface RadioOption {
+    display: string;
+    value: string | number;
+  }
+
+  interface RadioValidations {
+    required?: boolean;
+  }
 
   export default defineComponent({
     name: 'RadioInput',

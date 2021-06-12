@@ -20,9 +20,12 @@
 </template>
 
 <script lang="ts">
-  import { CheckboxValidations } from '@/types/props';
   import { computed, defineComponent, PropType, toRef, watch } from 'vue';
   import { useField } from 'vee-validate';
+
+  interface CheckboxValidations {
+    required?: boolean;
+  }
 
   export default defineComponent({
     name: 'CheckboxInput',

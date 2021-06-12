@@ -1,12 +1,17 @@
-# Frontend Structure
+# Frontend
 
-We have a few folders that act as the most common separators of application logic. Adding more specific folders/subfolders may be appropriate as the app scales.
-
-In the root `frontend/src` folder, we have a few special files.
+In the `app/frontend/src` folder, we have a few special files.
 
 - `index.ts` is the main entry point for the app where we instantiate our Vue instance and configure any plugins.
 - `router.ts` is used to configure and register all `VueRouter` routes/pages and corresponding components.
 - `globals.d.ts` is a declaration file required by Volar for component/prop type checking when using global components inside templates.
+
+Two aliases are configured for the frontend:
+
+- `@/...` = `app/frontend/src/...`
+- `shared/...` = `app/shared/...`
+
+The following folders are a good start to organizing typical application logic. Adding more specific folders/subfolders may be appropriate as the app scales.
 
 ## Components
 
@@ -62,4 +67,4 @@ This is a fairly broad category that could contain singletons, HTTP/API abstract
 
 ## Types
 
-Contains files that export frontend specific types that are shared throughout the app. For example, custom component prop types could live inside a `types/props.ts` file.
+Contains files that export frontend specific types that are shared throughout the app.

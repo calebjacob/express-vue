@@ -1,10 +1,10 @@
 import { useSession } from './session';
 import { SessionModule } from './types';
 
-const module = useSession();
+const session = useSession();
 
 function useTheSession(): SessionModule {
-  return module;
+  return session;
 }
 
 export { useTheSession };

@@ -132,7 +132,7 @@
   import { useErrors } from '@/modules/errors';
   import { useRouter } from 'vue-router';
   import { useTheSession } from '@/modules/session';
-  import { RadioOption } from '@/types/props';
+  import { RadioOption } from '@/components/shared/radio-input.vue';
   import sharedComponents from '@/components/shared';
 
   export default defineComponent({

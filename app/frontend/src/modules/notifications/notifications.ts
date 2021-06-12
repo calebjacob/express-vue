@@ -18,10 +18,6 @@ export function useNotifications(): NotificationsModule {
     });
   }
 
-  function resetState(): void {
-    notifications.value = [];
-  }
-
   async function showNotification({ autoHide = true, message, type }: ShowNotificationOptions) {
     const notification = {
       autoHide,
@@ -42,7 +38,6 @@ export function useNotifications(): NotificationsModule {
     closeAllErrorNotifications,
     hideNotification,
     notifications: readonly(notifications),
-    resetState,
     showNotification
   };
 }

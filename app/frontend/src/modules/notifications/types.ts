@@ -4,7 +4,6 @@ export interface NotificationsModule {
   closeAllErrorNotifications(): void;
   hideNotification(notification: Notification): void;
   notifications: Ref<readonly Notification[]>;
-  resetState(): void;
   showNotification(options: ShowNotificationOptions): void;
 }
 
