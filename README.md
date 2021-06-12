@@ -2,8 +2,8 @@
 
 A starter project ready to rock and roll!
 
+- [TypeScript](https://www.typescriptlang.org/)
 - [Node](https://nodejs.org/en/)
-- [Typescript](https://www.typescriptlang.org/)
 - [Express](https://expressjs.com/)
 - [Vue 3](https://vuejs.org/)
 - [Vite](https://vitejs.dev/)
@@ -133,13 +133,13 @@ To lint and fix all code:
 npm run lint
 ```
 
-## Verify Typescript Code
+## Verify TypeScript Code
 
 *NOTE: All backend and frontend code is automatically type checked and verified on pre-commit.*
 
 Due to the development server watch/build process being focused on speedy compile times, not all type errors will come through when files are modified (especially for the frontend, which uses Vite). For the most part, your IDE should be able to help you catch type errors as you modify code.
 
-To verify that all Typescript code will compile and no type errors exist (without generating any artifacts):
+To verify that all TypeScript code will compile and no type errors exist (without generating any artifacts):
 
 ```
 npm run verify

@@ -4,9 +4,9 @@ In the root `app/shared` folder, we can share reusable code and types between th
 
 ## API Requset/Response Types
 
-A really common challenge is keeping API requirements in sync between the backend and frontend. Inevitably, an existing endpoint will require a new parameter or implement some type of breaking change (relating to either the request or response). This is where using Typescript for the backend and frontend really shines.
+A really common challenge is keeping API requirements in sync between the backend and frontend. Inevitably, an existing endpoint will require a new parameter or implement some type of breaking change (relating to either the request or response). This is where using TypeScript for the backend and frontend really shines.
 
-For every single endpoint, we should define request/response interfaces. These interfaces act as the contract between the backend and frontend. Whenever the contract (interface) needs to change for an endpoint, Typescript will alert us of any backend or frontend changes required to respect those changes.
+For every single endpoint, we should define request/response interfaces. These interfaces act as the contract between the backend and frontend. Whenever the contract (interface) needs to change for an endpoint, TypeScript will alert us of any backend or frontend changes required to respect those changes.
 
 #### Example
 
