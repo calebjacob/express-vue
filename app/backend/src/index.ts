@@ -7,11 +7,14 @@ moduleAlias.addAlias('@', __dirname);
 moduleAlias.addAlias('shared', __dirname.replace('backend/src', 'shared'));
 /* eslint-enable */
 
+// Require config:
+
+import config from '@/config';
+
 // Require all dependencies:
 
 import appRoot from 'app-root-path';
 import compression from 'compression';
-import config from '@/config';
 import cookieParser from 'cookie-parser';
 import express from 'express';
 import logger from '@/services/logger';

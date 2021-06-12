@@ -13,7 +13,7 @@
     "husky": "husky install",
     "lint": "eslint --ext .js,.jsx,.ts,.vue ./app/ --fix",
     "pre-commit": "npm run lint && npm run verify",
-    "production": "npm run build && node app/backend/dist/backend/src/index.js",
+    "production": "NODE_ENV=production npm run build && node app/backend/dist/backend/src/index.js",
     "start:backend": "TS_NODE_PROJECT='./app/backend/tsconfig.json' ts-node-dev --files -r tsconfig-paths/register ./app/backend/src/index.ts",
     "start:frontend": "vite",
     "test": "npm run test:backend && npm run test:frontend",
