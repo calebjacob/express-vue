@@ -1,10 +1,14 @@
 import { useNotifications } from './notifications';
 import { NotificationsModule, NotificationType } from './types';
 
-const notifications = useNotifications();
+let notifications: NotificationsModule;
 
 function useTheNotifications(): NotificationsModule {
+  if (!notifications) {
+    notifications = useNotifications();
+  }
+
   return notifications;
 }
 
-export { useTheNotifications, NotificationType };
+export { useTheNotifications, NotificationsModule, NotificationType };

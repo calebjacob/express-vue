@@ -3,9 +3,9 @@ import { AxiosError } from 'axios';
 import { useTheNotifications, NotificationType } from '@/modules/notifications';
 import { ErrorsModule, HandleErrorOptions, ParsedError, ParsedErrors } from './types';
 
-const { showNotification } = useTheNotifications();
-
 export function useErrors(): ErrorsModule {
+  const { showNotification } = useTheNotifications();
+
   function handleError(error: AxiosError, options: HandleErrorOptions = {}): ParsedErrors {
     console.error(error);
 

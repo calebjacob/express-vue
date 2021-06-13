@@ -15,7 +15,7 @@ import router from '@/router';
 // mocks:
 
 jest.mock('@/router');
-const mockedRouter = mocked(router, true);
+const routerMock = mocked(router, true);
 
 // tests:
 
@@ -47,7 +47,7 @@ describe('http', () => {
 
         responseErrorInterceptor(error).catch((e) => {
           expect(e).toEqual(error);
-          expect(mockedRouter.push).toHaveBeenCalledWith({
+          expect(routerMock.push).toHaveBeenCalledWith({
             name: 'signIn'
           });
         });
@@ -66,7 +66,7 @@ describe('http', () => {
 
         responseErrorInterceptor(error).catch((e) => {
           expect(e).toEqual(error);
-          expect(mockedRouter.push).not.toHaveBeenCalled();
+          expect(routerMock.push).not.toHaveBeenCalled();
         });
       });
     });

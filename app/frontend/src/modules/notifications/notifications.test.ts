@@ -15,13 +15,13 @@ import timer from '@/helpers/timer';
 // mocks:
 
 jest.mock('@/helpers/timer');
-const mockedTimer = mocked(timer, true);
+const timerMock = mocked(timer, true);
 
 // tests:
 
 describe('notifications', () => {
   beforeEach(() => {
-    mockedTimer.mockResolvedValue();
+    timerMock.mockResolvedValue();
     jest.clearAllMocks();
   });
 

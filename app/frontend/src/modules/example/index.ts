@@ -1,4 +1,4 @@
 import { useExample } from './example';
-import { ExampleModuleKey } from './types';
+import { ExampleModule, ExampleModuleKey } from './types';
 
-export { ExampleModuleKey, useExample };
+export { useExample, ExampleModule, ExampleModuleKey };

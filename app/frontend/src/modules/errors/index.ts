@@ -1,3 +1,4 @@
 import { useErrors } from './errors';
+import { ErrorsModule } from './types';
 
-export { useErrors };
+export { useErrors, ErrorsModule };
