@@ -11,4 +11,4 @@ function useTheSession(): SessionModule {
   return session;
 }
 
-export { useTheSession, SessionModule };
+export { useTheSession };

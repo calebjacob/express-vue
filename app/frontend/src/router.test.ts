@@ -23,8 +23,8 @@ jest.mock('vue-router', () => {
 
 describe('router', () => {
   it('creates a router instance', () => {
-    expect(createWebHistory).toHaveBeenCalled();
-    expect(createRouter).toHaveBeenCalledWith({
+    expect(createWebHistory).toBeCalled();
+    expect(createRouter).toBeCalledWith({
       history: 'mock web history instance',
       routes: [
         {

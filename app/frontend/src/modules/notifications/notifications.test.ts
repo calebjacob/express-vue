@@ -130,7 +130,7 @@ describe('notifications', () => {
           message: 'Hello world!',
           type: NotificationType.GENERIC
         });
-        expect(timer).toHaveBeenCalledWith(4000);
+        expect(timer).toBeCalledWith(4000);
         await flushPromises();
         expect(notifications.value.length).toEqual(0);
       });

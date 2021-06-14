@@ -27,6 +27,8 @@ module.exports = {
   },
 
   rules: {
+    "no-empty-function": "off",
+    "@typescript-eslint/no-empty-function": ["off"],
     "no-console": "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
     "no-useless-catch": "off",

@@ -36,18 +36,18 @@ jest.mock('@/helpers/configure-vee-validate', () => {
 
 describe('index', () => {
   it('configures vee validate', () => {
-    expect(configureVeeValidate).toHaveBeenCalled();
+    expect(configureVeeValidate).toBeCalled();
   });
 
   it('creates a vue instance with the primary App component', () => {
-    expect(createApp).toHaveBeenCalledWith(App);
+    expect(createApp).toBeCalledWith(App);
   });
 
   it('registers router', () => {
-    expect(vm.use).toHaveBeenCalledWith(router);
+    expect(vm.use).toBeCalledWith(router);
   });
 
   it('mounts the app', () => {
-    expect(vm.mount).toHaveBeenCalledWith('#app');
+    expect(vm.mount).toBeCalledWith('#app');
   });
 });

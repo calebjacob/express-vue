@@ -5,12 +5,13 @@ import {
   SignInBody,
   SignInResponse
 } from 'shared/types/api';
+import { User } from 'shared/types/models';
 import { Session, SessionModule } from './types';
 import { reactive, readonly } from 'vue';
 import { useErrors } from '@/modules/errors';
 import { useTheNotifications, NotificationType } from '@/modules/notifications';
+import cookies from '@/services/cookies';
 import http from '@/services/http';
-import cookies from 'js-cookie';
 
 export function useSession(): SessionModule {
   const { handleErrorQuietly } = useErrors();
@@ -47,8 +48,12 @@ export function useSession(): SessionModule {
     } catch (error) {
       handleErrorQuietly(error);
     } finally {
-      session.isLoadingCurrentUser = true;
+      session.isLoadingCurrentUser = false;
     }
+  }
+
+  function setCurrentUser(user: User) {
+    session.currentUser = user;
   }
 
   async function signIn(body: SignInBody) {
@@ -57,7 +62,7 @@ export function useSession(): SessionModule {
       session.currentUser = response.data.user;
 
       showNotification({
-        message: 'You have signed in!',
+        message: 'Welcome! You have signed in.',
         type: NotificationType.SUCCESS
       });
     } catch (error) {
@@ -70,7 +75,7 @@ export function useSession(): SessionModule {
       session.currentUser = null;
 
       showNotification({
-        message: 'You have signed out.',
+        message: 'Goodbye! You have signed out.',
         type: NotificationType.SUCCESS
       });
 
@@ -84,6 +89,7 @@ export function useSession(): SessionModule {
     createAccount,
     load,
     session: readonly(session),
+    setCurrentUser,
     signIn,
     signOut
   };

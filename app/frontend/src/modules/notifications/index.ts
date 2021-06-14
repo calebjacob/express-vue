@@ -11,4 +11,4 @@ function useTheNotifications(): NotificationsModule {
   return notifications;
 }
 
-export { useTheNotifications, NotificationsModule, NotificationType };
+export { useTheNotifications, NotificationType };

@@ -47,7 +47,7 @@ describe('http', () => {
 
         responseErrorInterceptor(error).catch((e) => {
           expect(e).toEqual(error);
-          expect(routerMock.push).toHaveBeenCalledWith({
+          expect(routerMock.push).toBeCalledWith({
             name: 'signIn'
           });
         });
@@ -66,7 +66,7 @@ describe('http', () => {
 
         responseErrorInterceptor(error).catch((e) => {
           expect(e).toEqual(error);
-          expect(routerMock.push).not.toHaveBeenCalled();
+          expect(routerMock.push).not.toBeCalled();
         });
       });
     });
