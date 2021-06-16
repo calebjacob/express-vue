@@ -1,5 +1,9 @@
 # TODO
 
+- [] useState()
+  - Add `localStorageSync` boolean option to sync value with local storage on update / reset
+  - Add debug mode that logs all mutations based on environment
+- [] Update `session` module tests to account for `useState()`
 - [] Write updated tests for FE
 - [] Write updated tests for BE
 - [] Merge to master

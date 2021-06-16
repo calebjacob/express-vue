@@ -4,8 +4,7 @@ import { CreateAccountBody, SignInBody } from 'shared/types/api';
 export interface SessionModule {
   load(): Promise<void>;
   createAccount(body: CreateAccountBody): Promise<void>;
-  setCurrentUser(user: User): void;
-  session: Session;
+  session: Readonly<Session>;
   signIn(body: SignInBody): Promise<void>;
   signOut(): Promise<void>;
 }

@@ -5,11 +5,10 @@ import {
   SignInBody,
   SignInResponse
 } from 'shared/types/api';
-import { User } from 'shared/types/models';
 import { Session, SessionModule } from './types';
-import { reactive, readonly } from 'vue';
 import { useErrors } from '@/modules/errors';
 import { useTheNotifications, NotificationType } from '@/modules/notifications';
+import { useState } from '@/modules/state';
 import cookies from '@/services/cookies';
 import http from '@/services/http';
 
@@ -17,7 +16,7 @@ export function useSession(): SessionModule {
   const { handleErrorQuietly } = useErrors();
   const { showNotification } = useTheNotifications();
 
-  const session: Session = reactive({
+  const state = useState<Session>('Session', {
     currentUser: null,
     isLoadingCurrentUser: false
   });
@@ -25,7 +24,10 @@ export function useSession(): SessionModule {
   async function createAccount(body: CreateAccountBody) {
     try {
       const response = await http.post<CreateAccountResponse>('/api/auth/create', body);
-      session.currentUser = response.data.user;
+
+      state.update({
+        currentUser: response.data.user
+      });
 
       showNotification({
         message: 'Welcome! Your account has been created.',
@@ -42,24 +44,31 @@ export function useSession(): SessionModule {
         return;
       }
 
-      session.isLoadingCurrentUser = true;
+      state.update({
+        isLoadingCurrentUser: true
+      });
+
       const response = await http.get<CurrentUserResponse>('/api/auth/current');
-      session.currentUser = response.data.user;
+
+      state.update({
+        currentUser: response.data.user
+      });
     } catch (error) {
       handleErrorQuietly(error);
     } finally {
-      session.isLoadingCurrentUser = false;
+      state.update({
+        isLoadingCurrentUser: false
+      });
     }
-  }
-
-  function setCurrentUser(user: User) {
-    session.currentUser = user;
   }
 
   async function signIn(body: SignInBody) {
     try {
       const response = await http.post<SignInResponse>('/api/auth/sign-in', body);
-      session.currentUser = response.data.user;
+
+      state.update({
+        currentUser: response.data.user
+      });
 
       showNotification({
         message: 'Welcome! You have signed in.',
@@ -72,7 +81,7 @@ export function useSession(): SessionModule {
 
   async function signOut() {
     try {
-      session.currentUser = null;
+      state.reset();
 
       showNotification({
         message: 'Goodbye! You have signed out.',
@@ -88,8 +97,7 @@ export function useSession(): SessionModule {
   return {
     createAccount,
     load,
-    session: readonly(session),
-    setCurrentUser,
+    session: state.state,
     signIn,
     signOut
   };
