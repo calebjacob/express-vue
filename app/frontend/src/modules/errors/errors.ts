@@ -2,12 +2,13 @@ import { ApiErrorCode, ApiErrorResponse } from 'shared/types/api';
 import { AxiosError } from 'axios';
 import { useTheNotifications, NotificationType } from '@/modules/notifications';
 import { ErrorsModule, HandleErrorOptions, ParsedError, ParsedErrors } from './types';
+import logger from '@/services/logger';
 
 export function useErrors(): ErrorsModule {
   const { showNotification } = useTheNotifications();
 
   function handleError(error: AxiosError, options: HandleErrorOptions = {}): ParsedErrors {
-    console.error(error);
+    logger.error(error);
 
     const parsed = parseErrors(error, options);
 
@@ -28,7 +29,7 @@ export function useErrors(): ErrorsModule {
   }
 
   function handleErrorQuietly(error: AxiosError) {
-    console.error(error);
+    logger.error(error);
   }
 
   function parseErrors(error: AxiosError, options: HandleErrorOptions = {}): ParsedErrors {

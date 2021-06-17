@@ -3,7 +3,7 @@
     <div class="notifications__wrapper">
       <transition-group name="notification">
         <div
-          v-for="notification in notifications"
+          v-for="notification in notifications.notifications"
           :key="notification.id"
           class="notifications__notification"
           :class="{

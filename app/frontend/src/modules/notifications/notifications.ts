@@ -1,20 +1,30 @@
 import timer from '@/helpers/timer';
-import { readonly, ref, Ref } from 'vue';
 import { v4 as uuid } from 'uuid';
-import { NotificationsModule, Notification, ShowNotificationOptions, NotificationType } from './types';
+import { NotificationsModule, Notification, Notifications, ShowNotificationOptions, NotificationType } from './types';
+import { useStore } from '@/modules/store';
 
 export function useNotifications(): NotificationsModule {
-  const notifications: Ref<Notification[]> = ref([]);
+  const store = useStore<Notifications>('Notifications', {
+    notifications: []
+  });
 
   function closeAllErrorNotifications(): void {
-    notifications.value = notifications.value.filter((n) => {
+    const notifications = store.state.notifications.filter((n) => {
       return n.type !== NotificationType.ERROR;
+    });
+
+    store.update({
+      notifications
     });
   }
 
   function hideNotification(notification: Notification) {
-    notifications.value = notifications.value.filter((n) => {
+    const notifications = store.state.notifications.filter((n) => {
       return n.id !== notification.id;
+    });
+
+    store.update({
+      notifications
     });
   }
 
@@ -26,7 +36,11 @@ export function useNotifications(): NotificationsModule {
       type
     };
 
-    notifications.value.push(notification);
+    const notifications = [...store.state.notifications, notification];
+
+    store.update({
+      notifications
+    });
 
     if (autoHide) {
       await timer(4000);
@@ -37,7 +51,7 @@ export function useNotifications(): NotificationsModule {
   return {
     closeAllErrorNotifications,
     hideNotification,
-    notifications: readonly(notifications),
+    notifications: store.state,
     showNotification
   };
 }

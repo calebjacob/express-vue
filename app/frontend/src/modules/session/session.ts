@@ -8,24 +8,29 @@ import {
 import { Session, SessionModule } from './types';
 import { useErrors } from '@/modules/errors';
 import { useTheNotifications, NotificationType } from '@/modules/notifications';
-import { useState } from '@/modules/state';
-import cookies from '@/services/cookies';
+import { useStore } from '@/modules/store';
 import http from '@/services/http';
 
 export function useSession(): SessionModule {
   const { handleErrorQuietly } = useErrors();
   const { showNotification } = useTheNotifications();
 
-  const state = useState<Session>('Session', {
-    currentUser: null,
-    isLoadingCurrentUser: false
-  });
+  const store = useStore<Session>(
+    'Session',
+    {
+      currentUser: null,
+      isLoadingCurrentUser: false
+    },
+    {
+      save: 'local'
+    }
+  );
 
   async function createAccount(body: CreateAccountBody) {
     try {
       const response = await http.post<CreateAccountResponse>('/api/auth/create', body);
 
-      state.update({
+      store.update({
         currentUser: response.data.user
       });
 
@@ -40,25 +45,23 @@ export function useSession(): SessionModule {
 
   async function load() {
     try {
-      if (!cookies.get('isSignedIn')) {
+      if (!store.state.currentUser) {
         return;
       }
 
-      state.update({
+      store.update({
         isLoadingCurrentUser: true
       });
 
       const response = await http.get<CurrentUserResponse>('/api/auth/current');
 
-      state.update({
-        currentUser: response.data.user
-      });
-    } catch (error) {
-      handleErrorQuietly(error);
-    } finally {
-      state.update({
+      store.update({
+        currentUser: response.data.user,
         isLoadingCurrentUser: false
       });
+    } catch (error) {
+      store.reset();
+      handleErrorQuietly(error);
     }
   }
 
@@ -66,7 +69,7 @@ export function useSession(): SessionModule {
     try {
       const response = await http.post<SignInResponse>('/api/auth/sign-in', body);
 
-      state.update({
+      store.update({
         currentUser: response.data.user
       });
 
@@ -81,7 +84,7 @@ export function useSession(): SessionModule {
 
   async function signOut() {
     try {
-      state.reset();
+      store.reset();
 
       showNotification({
         message: 'Goodbye! You have signed out.',
@@ -97,7 +100,8 @@ export function useSession(): SessionModule {
   return {
     createAccount,
     load,
-    session: state.state,
+    resetSession: store.reset,
+    session: store.state,
     signIn,
     signOut
   };

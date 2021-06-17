@@ -3,3 +3,7 @@ export interface StateModule<T> {
   state: Readonly<T>;
   update(value: Partial<T>): void;
 }
+
+export interface StateModuleOptions {
+  save?: 'local' | 'session' | null;
+}

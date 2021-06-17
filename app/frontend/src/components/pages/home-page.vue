@@ -136,6 +136,7 @@
   import { useErrors } from '@/modules/errors';
   import { SomethingPublicResponse, SomethingPrivateResponse } from 'shared/types/api';
   import http from '@/services/http';
+  import logger from '@/services/logger';
   import injectStrict from '@/helpers/inject-strict';
 
   export default defineComponent({
@@ -151,7 +152,7 @@
         try {
           const response = await http.get<SomethingPrivateResponse>('/api/something-private');
 
-          console.log('Private Info:', response.data);
+          logger.info('Private Info:', response.data);
 
           showNotification({
             type: NotificationType.SUCCESS,
@@ -166,7 +167,7 @@
         try {
           const response = await http.get<SomethingPublicResponse>('/api/something-public');
 
-          console.log('Public Info:', response.data);
+          logger.info('Public Info:', response.data);
 
           showNotification({
             type: NotificationType.SUCCESS,

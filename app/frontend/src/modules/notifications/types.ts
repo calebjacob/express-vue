@@ -1,9 +1,7 @@
-import { Ref } from 'vue';
-
 export interface NotificationsModule {
   closeAllErrorNotifications(): void;
   hideNotification(notification: Notification): void;
-  notifications: Ref<readonly Notification[]>;
+  notifications: Readonly<Notifications>;
   showNotification(options: ShowNotificationOptions): void;
 }
 
@@ -12,6 +10,10 @@ export interface Notification {
   id: string;
   message: string;
   type: NotificationType;
+}
+
+export interface Notifications {
+  notifications: Notification[];
 }
 
 export interface ShowNotificationOptions {

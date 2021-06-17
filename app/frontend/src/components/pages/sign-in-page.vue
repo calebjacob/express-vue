@@ -7,15 +7,25 @@
             <h1 class="title title--2">Sign In</h1>
           </div>
 
-          <div class="group">
+          <div v-if="state.sessionDidExpire" class="group">
             <div class="bubble layout layout--icon">
               <span class="icon fa fa-lock color-secondary"></span>
-              <p class="smaller">
-                <b class="color-text-1">The auth service is mocked.</b> To sign in successfully, use "frodo@baggins.com"
-                for the email and "the_shire" as the password.
-              </p>
+              <p>Your session has expired. Please sign in to continue.</p>
             </div>
           </div>
+
+          <template v-else>
+            <hr />
+            <div class="group">
+              <div class="layout layout--icon">
+                <span class="icon fa fa-lock color-secondary"></span>
+                <p>
+                  <b class="color-text-1">The auth service is mocked.</b> To sign in successfully, use
+                  "frodo@baggins.com" for the email and "the_shire" as the password.
+                </p>
+              </div>
+            </div>
+          </template>
 
           <div class="group">
             <text-input
@@ -94,7 +104,8 @@
 
       const state = reactive({
         email: 'frodo@baggins.com',
-        password: 'the_shire'
+        password: 'the_shire',
+        sessionDidExpire: router.currentRoute.value.query.expired === 'true'
       });
 
       async function submit() {

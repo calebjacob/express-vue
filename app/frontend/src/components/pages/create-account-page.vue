@@ -7,10 +7,12 @@
             <h1 class="title title--2">Create an Account</h1>
           </div>
 
+          <hr />
+
           <div class="group">
-            <div class="bubble layout layout--icon">
+            <div class="layout layout--icon">
               <span class="icon fa fa-lock color-secondary"></span>
-              <p class="smaller">
+              <p>
                 <b class="color-text-1">The auth service is mocked.</b> To register successfully, use
                 "frodo@baggins.com" as the email and "the_shire" as the password. To trigger an email conflict, use
                 "bilbo@baggins.com" as the email.
@@ -134,6 +136,7 @@
   import { useTheSession } from '@/modules/session';
   import { RadioOption } from '@/components/shared/radio-input.vue';
   import sharedComponents from '@/components/shared';
+  import logger from '@/services/logger';
 
   export default defineComponent({
     name: 'CreateAccountPage',
@@ -189,7 +192,7 @@
           const emailConflictError = errors.find((e) => e.code === ApiErrorCode.EMAIL_CONFLICT);
 
           if (emailConflictError) {
-            console.log('Email conflict was detected. Exra logic could be run here to handle this specific error');
+            logger.info('Email conflict was detected. Exra logic could be run here to handle this specific error');
           }
         }
       }
