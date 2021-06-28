@@ -1,13 +1,14 @@
-// subject:
+// Subject:
 
 import { useSession } from './session';
 
-// utils:
+// Utils:
 
 import { mock, MockProxy } from 'jest-mock-extended';
 import { mocked } from 'ts-jest/utils';
+import { mockStore, StoreModuleMock } from '@/test-utils/mock-store';
 
-// dependencies:
+// Dependencies:
 
 import {
   CreateAccountBody,
@@ -16,17 +17,17 @@ import {
   SignInBody,
   SignInResponse
 } from 'shared/types/api';
-import { User, UserMock } from 'shared/types/models';
-import { SessionModule } from './types';
+import { UserMock } from 'shared/types/models';
+import { Session, SessionModule } from './types';
 import { useErrors } from '@/modules/errors';
 import { ErrorsModule } from '@/modules/errors/types';
 import { useTheNotifications, NotificationType } from '@/modules/notifications';
 import { NotificationsModule } from '@/modules/notifications/types';
-import cookies from '@/services/cookies';
+import { useStore } from '@/modules/store';
 import http from '@/services/http';
 import { AxiosResponse } from 'axios';
 
-// mocks:
+// Mocks:
 
 jest.mock('@/modules/errors');
 const useErrorsMock = mocked(useErrors, true);
@@ -34,18 +35,19 @@ const useErrorsMock = mocked(useErrors, true);
 jest.mock('@/modules/notifications');
 const useTheNotificationsMock = mocked(useTheNotifications, true);
 
-jest.mock('@/services/cookies');
-const cookiesMock = mocked(cookies, true);
+jest.mock('@/modules/store');
+const useStoreMock = mocked(useStore, true);
 
 jest.mock('@/services/http');
 const httpMock = mocked(http, true);
 
-// tests:
+// Tests:
 
 describe('session', () => {
   let errorsModuleMock: MockProxy<ErrorsModule>;
   let notificationsModuleMock: MockProxy<NotificationsModule>;
   let session: SessionModule;
+  let storeMock: StoreModuleMock<Session>;
 
   beforeEach(() => {
     errorsModuleMock = mock<ErrorsModule>();
@@ -54,15 +56,31 @@ describe('session', () => {
     notificationsModuleMock = mock<NotificationsModule>();
     useTheNotificationsMock.mockReturnValue(notificationsModuleMock);
 
+    storeMock = mockStore<Session>('Session', {
+      currentUser: null,
+      isLoadingCurrentUser: false
+    });
+
     session = useSession();
     jest.clearAllMocks();
   });
 
-  it('defaults session values', () => {
-    expect(session.session).toEqual({
-      currentUser: null,
-      isLoadingCurrentUser: false
-    });
+  it('creates and exports a "Session" store', () => {
+    useSession();
+
+    expect(useStoreMock).toBeCalledWith(
+      'Session',
+      {
+        currentUser: null,
+        isLoadingCurrentUser: false
+      },
+      {
+        save: 'local'
+      }
+    );
+
+    expect(session.resetSession).toBe(storeMock.reset);
+    expect(session.session).toBe(storeMock.state);
   });
 
   describe('createAccount()', () => {
@@ -90,8 +108,10 @@ describe('session', () => {
         expect(httpMock.post).toBeCalledWith('/api/auth/create', body);
       });
 
-      it('updates the currentUser value', () => {
-        expect(session.session.currentUser).toEqual(response.data.user);
+      it('updates the store', () => {
+        expect(storeMock.update).toBeCalledWith({
+          currentUser: response.data.user
+        });
       });
 
       it('shows a notification', () => {
@@ -111,21 +131,17 @@ describe('session', () => {
 
       it('throws the error and does nothing else', async () => {
         await expect(session.createAccount(body)).rejects.toThrow(error);
-        expect(session.session.currentUser).toEqual(null);
+        expect(storeMock.update).not.toBeCalled();
         expect(notificationsModuleMock.showNotification).not.toBeCalled();
       });
     });
   });
 
   describe('load()', () => {
-    describe('when isSignedIn cookie is not set', () => {
+    describe('when currentUser is not set', () => {
       beforeEach(async () => {
-        cookiesMock.get.mockReturnValue(undefined);
+        storeMock.state.currentUser = null;
         await session.load();
-      });
-
-      it('fetches the isSignedIn cookie', () => {
-        expect(cookies.get).toBeCalledWith('isSignedIn');
       });
 
       it('does nothing', () => {
@@ -134,20 +150,9 @@ describe('session', () => {
       });
     });
 
-    describe('when isSignedIn cookie is set', () => {
+    describe('when currentUser is set', () => {
       beforeEach(() => {
-        cookiesMock.get.mockReturnValue('true');
-      });
-
-      describe('when request is pending', () => {
-        beforeEach(() => {
-          httpMock.get.mockReturnValue(new Promise(() => {}));
-          session.load();
-        });
-
-        it('sets loading status to true', () => {
-          expect(session.session.isLoadingCurrentUser).toEqual(true);
-        });
+        storeMock.state.currentUser = UserMock();
       });
 
       describe('when request succeeds', () => {
@@ -160,16 +165,21 @@ describe('session', () => {
           await session.load();
         });
 
+        it('updates isLoadingCurrentUser to true', () => {
+          expect(storeMock.update).toBeCalledWith({
+            isLoadingCurrentUser: true
+          });
+        });
+
         it('makes API request to fetch current user', () => {
           expect(http.get).toBeCalledWith('/api/auth/current');
         });
 
-        it('updates the currentUser value', () => {
-          expect(session.session.currentUser).toEqual(response.data.user);
-        });
-
-        it('sets loading status to false', () => {
-          expect(session.session.isLoadingCurrentUser).toEqual(false);
+        it('updates the store', () => {
+          expect(storeMock.update).toBeCalledWith({
+            currentUser: response.data.user,
+            isLoadingCurrentUser: false
+          });
         });
       });
 
@@ -181,31 +191,14 @@ describe('session', () => {
           await session.load();
         });
 
+        it('resets the store', () => {
+          expect(storeMock.reset).toBeCalled();
+        });
+
         it('handles the error', async () => {
           expect(errorsModuleMock.handleErrorQuietly).toBeCalledWith(error);
         });
-
-        it('does not update the currentUser value', () => {
-          expect(session.session.currentUser).toEqual(null);
-        });
-
-        it('sets loading status to false', () => {
-          expect(session.session.isLoadingCurrentUser).toEqual(false);
-        });
       });
-    });
-  });
-
-  describe('setCurrentUser()', () => {
-    let user: User;
-
-    beforeEach(() => {
-      user = UserMock();
-      session.setCurrentUser(user);
-    });
-
-    it('updates the currentUser value', () => {
-      expect(session.session.currentUser).toEqual(user);
     });
   });
 
@@ -233,8 +226,10 @@ describe('session', () => {
         expect(httpMock.post).toBeCalledWith('/api/auth/sign-in', body);
       });
 
-      it('updates the currentUser value', () => {
-        expect(session.session.currentUser).toEqual(response.data.user);
+      it('updates the store', () => {
+        expect(storeMock.update).toBeCalledWith({
+          currentUser: response.data.user
+        });
       });
 
       it('shows a notification', () => {
@@ -254,17 +249,13 @@ describe('session', () => {
 
       it('throws the error and does nothing else', async () => {
         await expect(session.signIn(body)).rejects.toThrow(error);
-        expect(session.session.currentUser).toEqual(null);
+        expect(storeMock.update).not.toBeCalled();
         expect(notificationsModuleMock.showNotification).not.toBeCalled();
       });
     });
   });
 
   describe('signOut()', () => {
-    beforeEach(() => {
-      session.setCurrentUser(UserMock());
-    });
-
     describe('when request succeeds', () => {
       let response: MockProxy<AxiosResponse>;
 
@@ -274,8 +265,8 @@ describe('session', () => {
         await session.signOut();
       });
 
-      it('updates the currentUser value', () => {
-        expect(session.session.currentUser).toEqual(null);
+      it('resets the store', () => {
+        expect(storeMock.reset).toBeCalled();
       });
 
       it('shows a notification', () => {
@@ -298,8 +289,8 @@ describe('session', () => {
         await session.signOut();
       });
 
-      it('updates the currentUser value', () => {
-        expect(session.session.currentUser).toEqual(null);
+      it('resets the store', () => {
+        expect(storeMock.reset).toBeCalled();
       });
 
       it('shows a notification', () => {

@@ -1,15 +1,15 @@
-// subject:
+// Subject:
 
 import vm from './index';
 
-// dependencies:
+// Dependencies:
 
 import { createApp } from 'vue';
 import App from '@/components/app.vue';
 import configureVeeValidate from '@/helpers/configure-vee-validate';
 import router from '@/router';
 
-// mocks:
+// Mocks:
 
 jest.mock('vue', () => {
   return {
@@ -32,7 +32,7 @@ jest.mock('@/helpers/configure-vee-validate', () => {
   return jest.fn();
 });
 
-// tests:
+// Tests:
 
 describe('index', () => {
   it('configures vee validate', () => {

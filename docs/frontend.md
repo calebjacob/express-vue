@@ -65,6 +65,10 @@ Some modules might need to export a single instance (singleton) that's shared th
 
 This is a fairly broad category that could contain singletons, HTTP/API abstractions, and third party library instances.
 
+## Test Utils
+
+Abstracted logic/mocking that's shared between tests can be placed here. All code here is expected to be executed in a Jest test envirnoment (the `jest` namespace will be available).
+
 ## Types
 
 Contains files that export frontend specific types that are shared throughout the app.

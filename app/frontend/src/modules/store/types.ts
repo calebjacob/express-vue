@@ -1,9 +1,9 @@
-export interface StateModule<T> {
+export interface StoreModule<T> {
   reset(): void;
   state: Readonly<T>;
   update(value: Partial<T>): void;
 }
 
-export interface StateModuleOptions {
+export interface StoreModuleOptions {
   save?: 'local' | 'session' | null;
 }

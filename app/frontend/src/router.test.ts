@@ -1,8 +1,8 @@
-// subject:
+// Subject:
 
 import router from '@/router';
 
-// dependencies:
+// Dependencies:
 
 import { createRouter, createWebHistory } from 'vue-router';
 import CreateAccountPage from '@/components/pages/create-account-page.vue';
@@ -10,7 +10,7 @@ import ErrorPage from '@/components/pages/error-page.vue';
 import HomePage from '@/components/pages/home-page.vue';
 import SignInPage from '@/components/pages/sign-in-page.vue';
 
-// mocks:
+// Mocks:
 
 jest.mock('vue-router', () => {
   return {
@@ -19,7 +19,7 @@ jest.mock('vue-router', () => {
   };
 });
 
-// tests:
+// Tests:
 
 describe('router', () => {
   it('creates a router instance', () => {

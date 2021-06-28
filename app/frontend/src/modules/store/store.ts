@@ -1,12 +1,12 @@
-import { StateModule, StateModuleOptions } from './types';
+import { StoreModule, StoreModuleOptions } from './types';
 import { reactive, readonly } from 'vue';
 import logger from '@/services/logger';
 
 export function useStore<T extends object>(
   name: string,
   defaultValue: T,
-  options: StateModuleOptions = {}
-): StateModule<T> {
+  options: StoreModuleOptions = {}
+): StoreModule<T> {
   const state = reactive({
     ...defaultValue
   }) as T;

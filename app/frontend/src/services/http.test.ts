@@ -1,23 +1,23 @@
-// subject:
+// Subject:
 
 import http, { responseErrorInterceptor } from './http';
 
-// utils:
+// Utils:
 
 import { mock } from 'jest-mock-extended';
 import { mocked } from 'ts-jest/utils';
 
-// dependencies:
+// Dependencies:
 
 import { AxiosError, AxiosResponse } from 'axios';
 import router from '@/router';
 
-// mocks:
+// Mocks:
 
 jest.mock('@/router');
 const routerMock = mocked(router, true);
 
-// tests:
+// Tests:
 
 describe('http', () => {
   beforeEach(() => {

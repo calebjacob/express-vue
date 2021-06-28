@@ -1,23 +1,23 @@
-// subject:
+// Subject:
 
 import { useNotifications } from './notifications';
 import { NotificationType } from './types';
 
-// utils:
+// Utils:
 
 import flushPromises from 'flush-promises';
 import { mocked } from 'ts-jest/utils';
 
-// dependencies:
+// Dependencies:
 
 import timer from '@/helpers/timer';
 
-// mocks:
+// Mocks:
 
 jest.mock('@/helpers/timer');
 const timerMock = mocked(timer, true);
 
-// tests:
+// Tests:
 
 describe('notifications', () => {
   beforeEach(() => {
