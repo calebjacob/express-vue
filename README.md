@@ -147,6 +147,23 @@ npm run verify:backend
 npm run verify:frontend
 ```
 
+## Pre-Commit Hook
+
+By default, the following commands are run when committing any code:
+
+```
+npm run lint
+npm run verify
+```
+
+If any of these steps fail, your commit will be refused. After fixing the errors, you can add your changes and attempt to commit again.
+
+If for some reason you need to skip these pre-commit validations and force a commit, you can run:
+
+```
+git commit -m '...' --no-verify
+```
+
 ## Production Build
 
 Create a production ready build and start the service:
