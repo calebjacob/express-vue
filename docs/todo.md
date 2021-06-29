@@ -1,7 +1,7 @@
 # TODO
 
-- [] Instead of trully mocking `store`, try creating utility that returns an actual store that can be updated.
 - [] Show example of a computed prop / getter via store
+- [] Can destructuring of state be supported somehow? Look at Vue's ToRef/ToDeepRef?
 - [] Write updated tests for FE
 - [] Write updated tests for BE
 - [] Merge to master
