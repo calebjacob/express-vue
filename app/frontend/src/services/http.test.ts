@@ -4,23 +4,33 @@ import http, { responseErrorInterceptor } from './http';
 
 // Utils:
 
-import { mock } from 'jest-mock-extended';
+import { mock, MockProxy } from 'jest-mock-extended';
 import { mocked } from 'ts-jest/utils';
 
 // Dependencies:
 
 import { AxiosError, AxiosResponse } from 'axios';
 import router from '@/router';
+import { useTheSession } from '@/modules/session';
+import { SessionModule } from '@/modules/session/types';
 
 // Mocks:
 
 jest.mock('@/router');
 const routerMock = mocked(router, true);
 
+jest.mock('@/modules/session');
+const useTheSessionMock = mocked(useTheSession, true);
+
 // Tests:
 
 describe('http', () => {
+  let theSessionModuleMock: MockProxy<SessionModule>;
+
   beforeEach(() => {
+    theSessionModuleMock = mock<SessionModule>();
+    useTheSessionMock.mockReturnValue(theSessionModuleMock);
+
     jest.clearAllMocks();
   });
 
@@ -42,14 +52,19 @@ describe('http', () => {
         error.response = response;
       });
 
-      it('edirects to sign in page', () => {
+      it('resets the session and redirects to sign in page', (done) => {
         expect.hasAssertions();
 
         responseErrorInterceptor(error).catch((e) => {
           expect(e).toEqual(error);
+          expect(theSessionModuleMock.resetSession).toBeCalled();
           expect(routerMock.push).toBeCalledWith({
-            name: 'signIn'
+            name: 'signIn',
+            query: {
+              expired: 'true'
+            }
           });
+          done();
         });
       });
     });
@@ -61,12 +76,14 @@ describe('http', () => {
         error.response = response;
       });
 
-      it('does not redirects to sign in page', () => {
+      it('does not redirect to sign in page', (done) => {
         expect.hasAssertions();
 
         responseErrorInterceptor(error).catch((e) => {
           expect(e).toEqual(error);
+          expect(theSessionModuleMock.resetSession).not.toBeCalled();
           expect(routerMock.push).not.toBeCalled();
+          done();
         });
       });
     });

@@ -13,7 +13,7 @@ export interface Notification {
 }
 
 export interface Notifications {
-  notifications: Notification[];
+  allNotifications: Notification[];
 }
 
 export interface ShowNotificationOptions {

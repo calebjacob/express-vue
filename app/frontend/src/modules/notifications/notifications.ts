@@ -5,26 +5,26 @@ import { useStore } from '@/modules/store';
 
 export function useNotifications(): NotificationsModule {
   const store = useStore<Notifications>('Notifications', {
-    notifications: []
+    allNotifications: []
   });
 
   function closeAllErrorNotifications(): void {
-    const notifications = store.state.notifications.filter((n) => {
+    const allNotifications = store.state.allNotifications.filter((n) => {
       return n.type !== NotificationType.ERROR;
     });
 
     store.update({
-      notifications
+      allNotifications
     });
   }
 
   function hideNotification(notification: Notification) {
-    const notifications = store.state.notifications.filter((n) => {
+    const allNotifications = store.state.allNotifications.filter((n) => {
       return n.id !== notification.id;
     });
 
     store.update({
-      notifications
+      allNotifications
     });
   }
 
@@ -36,10 +36,10 @@ export function useNotifications(): NotificationsModule {
       type
     };
 
-    const notifications = [...store.state.notifications, notification];
+    const allNotifications = [...store.state.allNotifications, notification];
 
     store.update({
-      notifications
+      allNotifications
     });
 
     if (autoHide) {

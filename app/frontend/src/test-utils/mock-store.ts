@@ -3,7 +3,6 @@ import { useStore } from '@/modules/store';
 import { StoreModule } from '@/modules/store/types';
 import { when } from 'jest-when';
 
-jest.mock('@/modules/store');
 const useStoreMock = mocked(useStore, true);
 
 export interface StoreModuleMock<T> {

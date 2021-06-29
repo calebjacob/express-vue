@@ -1,6 +1,6 @@
 # TODO
 
-- [] Update `notifications` module tests to account for `useState()`
+- [] Instead of trully mocking `store`, try creating utility that returns an actual store that can be updated.
 - [] Show example of a computed prop / getter via store
 - [] Write updated tests for FE
 - [] Write updated tests for BE

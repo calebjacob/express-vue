@@ -1,6 +1,7 @@
 // Subject:
 
 import { useSession } from './session';
+import { Session, SessionModule } from './types';
 
 // Utils:
 
@@ -18,7 +19,6 @@ import {
   SignInResponse
 } from 'shared/types/api';
 import { UserMock } from 'shared/types/models';
-import { Session, SessionModule } from './types';
 import { useErrors } from '@/modules/errors';
 import { ErrorsModule } from '@/modules/errors/types';
 import { useTheNotifications, NotificationType } from '@/modules/notifications';
@@ -61,8 +61,9 @@ describe('session', () => {
       isLoadingCurrentUser: false
     });
 
-    session = useSession();
     jest.clearAllMocks();
+
+    session = useSession();
   });
 
   it('creates and exports a "Session" store', () => {
