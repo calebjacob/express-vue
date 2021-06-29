@@ -13,7 +13,7 @@ export function useStore<T extends object>(
   const readonlyState = readonly(state) as T;
   const storageKey = `StateStorage:${name}`;
 
-  function readSavedData() {
+  function loadSavedData() {
     if (!options.save) {
       return;
     }
@@ -29,7 +29,7 @@ export function useStore<T extends object>(
     if (data) {
       const storedValue = JSON.parse(data);
       Object.assign(state, storedValue);
-      logger.info(`💾 STORE RESTORED: ${name}`, storedValue);
+      logger.info(`💾 STORE LOADED: ${name}`, storedValue);
     }
   }
 
@@ -49,7 +49,7 @@ export function useStore<T extends object>(
 
   function update(newValue: Partial<T>) {
     Object.assign(state, newValue);
-    logger.info(`📝 STORE MUTATION: ${name}`, newValue);
+    logger.info(`📝 STORE UPDATE: ${name}`, newValue);
     updateSavedData();
   }
 
@@ -67,7 +67,7 @@ export function useStore<T extends object>(
     }
   }
 
-  readSavedData();
+  loadSavedData();
 
   return {
     reset,
