@@ -1,3 +1,6 @@
+// https://v3.vuejs.org/guide/reactivity-fundamentals.html#destructuring-reactive-state
+// https://v3.vuejs.org/guide/reactivity-fundamentals.html#prevent-mutating-reactive-objects-with-readonly
+
 import { StoreModule, StoreModuleOptions } from './types';
 import { reactive, readonly } from 'vue';
 import logger from '@/services/logger';

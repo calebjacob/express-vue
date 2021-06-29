@@ -1,7 +1,6 @@
 # TODO
 
 - [] Show example of a computed prop / getter via store
-- [] Can destructuring of state be supported somehow? Look at Vue's ToRef/ToDeepRef?
 - [] Write updated tests for FE
 - [] Write updated tests for BE
 - [] Create VS Code snippets for component scaffold and unit test scaffold (and document)
