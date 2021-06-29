@@ -109,11 +109,11 @@
 
             <div class="layout layout--horizontal layout--justify-start">
               <button type="button" class="button button--border button--small" @click="somethingPublic">
-                <span class="icon fa fa-globe"></span>
+                <span class="icon fa fa-globe color-primary"></span>
                 Public
               </button>
               <button type="button" class="button button--border button--small" @click="somethingPrivate">
-                <span class="icon fa fa-lock"></span>
+                <span class="icon fa fa-lock color-secondary"></span>
                 Private
               </button>
             </div>
