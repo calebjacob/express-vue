@@ -32,13 +32,13 @@ export function useStore<T extends object>(
     if (data) {
       const storedValue = JSON.parse(data);
       Object.assign(state, storedValue);
-      logger.info(`💾 STORE LOADED: ${name}`, storedValue);
+      logger.info(`💾 Store Loaded (${name})`, storedValue);
     }
   }
 
   function reset() {
     Object.assign(state, defaultValue);
-    logger.info(`🗑 STORE RESET: ${name}`, defaultValue);
+    logger.info(`🗑 Store Reset (${name})`, defaultValue);
     resetSavedData();
   }
 
@@ -52,7 +52,7 @@ export function useStore<T extends object>(
 
   function update(newValue: Partial<T>) {
     Object.assign(state, newValue);
-    logger.info(`📝 STORE UPDATE: ${name}`, newValue);
+    logger.info(`📝 Store Update (${name})`, newValue);
     updateSavedData();
   }
 

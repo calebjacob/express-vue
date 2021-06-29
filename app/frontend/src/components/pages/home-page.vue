@@ -152,7 +152,7 @@
         try {
           const response = await http.get<SomethingPrivateResponse>('/api/something-private');
 
-          logger.info('Private Info:', response.data);
+          logger.info('Private Data', response.data);
 
           showNotification({
             type: NotificationType.SUCCESS,
@@ -167,7 +167,7 @@
         try {
           const response = await http.get<SomethingPublicResponse>('/api/something-public');
 
-          logger.info('Public Info:', response.data);
+          logger.info('Public Data', response.data);
 
           showNotification({
             type: NotificationType.SUCCESS,
