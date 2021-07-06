@@ -17,46 +17,48 @@
             layout--stack-tablet
           "
         >
-          <div v-if="session.currentUser">
-            <h3 class="title title--3">Here's Your Account:</h3>
+          <div>
+            <template v-if="session.currentUser">
+              <h3 class="title title--3">Here's Your Account:</h3>
 
-            <ul>
-              <li>
-                <p>Full Name: {{ session.currentUser.fullName }}</p>
-              </li>
-              <li>
-                <p>Email: {{ session.currentUser.email }}</p>
-              </li>
-              <li>
-                <p>ID: {{ session.currentUser.id }}</p>
-              </li>
-            </ul>
-          </div>
+              <ul>
+                <li>
+                  <p>Full Name: {{ session.currentUser.fullName }}</p>
+                </li>
+                <li>
+                  <p>Email: {{ session.currentUser.email }}</p>
+                </li>
+                <li>
+                  <p>ID: {{ session.currentUser.id }}</p>
+                </li>
+              </ul>
+            </template>
 
-          <div v-else>
-            <h3 class="title title--3">You are not signed in.</h3>
+            <template v-else>
+              <h3 class="title title--3">You are not signed in.</h3>
 
-            <p>Account info won't be saved on registration. The auth flow is mocked on the backend.</p>
+              <p>Account info won't be saved on registration. The auth flow is mocked on the backend.</p>
 
-            <div class="layout layout--horizontal layout--justify-start">
-              <router-link
-                class="button"
-                :to="{
-                  name: 'signIn'
-                }"
-              >
-                Sign In
-              </router-link>
+              <div class="layout layout--horizontal layout--justify-start">
+                <router-link
+                  class="button"
+                  :to="{
+                    name: 'signIn'
+                  }"
+                >
+                  Sign In
+                </router-link>
 
-              <router-link
-                class="button button--secondary"
-                :to="{
-                  name: 'createAccount'
-                }"
-              >
-                Register
-              </router-link>
-            </div>
+                <router-link
+                  class="button button--secondary"
+                  :to="{
+                    name: 'createAccount'
+                  }"
+                >
+                  Register
+                </router-link>
+              </div>
+            </template>
           </div>
 
           <div>
@@ -123,6 +125,7 @@
 
       <section class="section">
         <p>{{ message }}</p>
+        <p>{{ computedMessage }}</p>
       </section>
     </div>
   </div>
@@ -179,6 +182,7 @@
       }
 
       return {
+        computedMessage: example.computedMessage,
         message: example.message,
         NotificationType,
         session,

@@ -1,6 +1,7 @@
-import { InjectionKey, Ref } from 'vue';
+import { ComputedRef, InjectionKey, Ref } from 'vue';
 
 export interface ExampleModule {
+  computedMessage: ComputedRef<string>;
   message: Ref<string>;
 }
 

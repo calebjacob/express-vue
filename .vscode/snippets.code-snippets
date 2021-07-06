@@ -1,0 +1,34 @@
+{
+	"Unit Test Boilerplate - Standard": {
+		"scope": "typescript",
+		"prefix": "test-standard",
+		"body": [
+			"// Subject:",
+			"",
+			"import $1 from './$2';",
+			"",
+			"// Utils:",
+			"",
+			"import { mock, MockProxy } from 'jest-mock-extended';",
+			"import { mocked } from 'ts-jest/utils';",
+			"",
+			"// Dependencies:",
+			"",
+			"import $3 from '@/$4';",
+			"",
+			"// Mocks:",
+			"",
+			"jest.mock('@/$4');",
+			"const $3Mock = mocked($3, true);",
+			"",
+			"// Tests:",
+			"",
+			"describe('$5', () => {",
+			"  beforeEach(() => {",
+			"    jest.clearAllMocks();",
+			"  });",
+			"});",
+			""
+		]
+	}
+}

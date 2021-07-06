@@ -12,5 +12,11 @@ module.exports = {
 
   transform: {
     '^.+\\.ts$': 'ts-jest'
+  },
+
+  globals: {
+    'ts-jest': {
+      tsconfig: '<rootDir>/app/backend/tsconfig.json'
+    }
   }
 };

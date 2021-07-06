@@ -13,5 +13,11 @@ module.exports = {
   transform: {
     '^.+\\.vue$': 'vue-jest',
     '^.+\\.tsx?$': 'ts-jest'
+  },
+
+  globals: {
+    'ts-jest': {
+      tsconfig: '<rootDir>/app/frontend/tsconfig.json'
+    }
   }
 };

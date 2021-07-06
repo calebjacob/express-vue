@@ -35,6 +35,7 @@ At this point in time (5/29/2021), Vetur has far too many bugs to work properly 
 - [Styles](docs/styles.md)
 - [Testing](docs/testing.md)
 - [Deploying With Dokku](docs/dokku.md)
+- [VS Code Snippets](docs/vs-code-snippets.md)
 
 ## Getting Started
 
