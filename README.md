@@ -8,7 +8,7 @@ A starter project ready to rock and roll!
 - [Vue 3](https://vuejs.org/)
 - [Vite](https://vitejs.dev/)
 - [Sass (Indented Syntax)](https://sass-lang.com/documentation/syntax#the-indented-syntax)
-- [Font Awesome 5](https://fontawesome.com/icons?d=gallery&p=2).
+- [Font Awesome 5](https://fontawesome.com/icons?d=gallery&p=2)
 
 The following linting & testing integrations are included:
 
