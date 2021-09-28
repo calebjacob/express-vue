@@ -174,3 +174,17 @@ npm run production
 ```
 
 This will generate an `app/backend/dist` and `app/frontend/dist` folder and start up the Node process configured via `.env` variables.
+
+## Upgrading Outdated Packages
+
+Every once and awhile, it can be a good idea to see how outdated the current dependencies are and see if it's worth upgrading. You can simply run:
+
+```
+npm outdated
+```
+
+This will give you a list of the currently installed versions alongside the latest versions for all packages out of date. If you wanted to upgrade any package, you'd simply run (in this example, updating the `vue` package):
+
+```
+npm install vue@latest
+```
