@@ -4,6 +4,5 @@
     "**/dist": true,
     "**/node_modules": true,
     "**/tmp": true
-  },
-  "volar.tsPlugin": true
+  }
 }

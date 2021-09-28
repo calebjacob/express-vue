@@ -9,6 +9,7 @@
     "sourceMap": true,
     "baseUrl": ".",
     "resolveJsonModule": true,
+    "useUnknownInCatchVariables": false,
     "types": [
       "jest",
       "vite/client"
