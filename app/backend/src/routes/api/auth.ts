@@ -7,10 +7,9 @@ import {
   SignInResponse
 } from 'shared/types/api';
 import { Handler, Response, Request } from '@/types/routes';
-import apiErrorHandler from '@/helpers/api-error-handler';
+import errorService from '@/services/errors';
 import authService from '@/services/auth';
 import logger from '@/services/logger';
-import updateAuthCookies from '@/helpers/update-auth-cookies';
 
 const createAccount: Handler = async (
   req: Request<CreateAccountBody>,
@@ -21,7 +20,7 @@ const createAccount: Handler = async (
       data: req.body
     });
 
-    updateAuthCookies({
+    authService.updateCookies({
       tokens,
       res
     });
@@ -31,14 +30,14 @@ const createAccount: Handler = async (
     });
   } catch (error) {
     if (error.message === ApiErrorCode.EMAIL_CONFLICT) {
-      apiErrorHandler({
+      errorService.apiErrorHandler({
         code: ApiErrorCode.EMAIL_CONFLICT,
         message: 'The email you entered is already in use.',
         res,
         status: 409
       });
     } else {
-      apiErrorHandler({
+      errorService.apiErrorHandler({
         error,
         res
       });
@@ -56,7 +55,7 @@ const currentUser: Handler = async (req: Request, res: Response<CurrentUserRespo
       throw new Error('Current user not found.');
     }
   } catch (error) {
-    apiErrorHandler({
+    errorService.apiErrorHandler({
       error,
       res
     });
@@ -70,7 +69,7 @@ const signIn: Handler = async (req: Request<SignInBody>, res: Response<SignInRes
       password: req.body.password
     });
 
-    updateAuthCookies({
+    authService.updateCookies({
       tokens,
       res
     });
@@ -80,14 +79,14 @@ const signIn: Handler = async (req: Request<SignInBody>, res: Response<SignInRes
     });
   } catch (error) {
     if (error.message === ApiErrorCode.INVALID_AUTH) {
-      apiErrorHandler({
+      errorService.apiErrorHandler({
         code: ApiErrorCode.INVALID_AUTH,
         message: 'The email or password you entered is incorrect.',
         res,
         status: 400
       });
     } else {
-      apiErrorHandler({
+      errorService.apiErrorHandler({
         error,
         res
       });
@@ -107,7 +106,7 @@ const signOut: Handler = async (req: Request, res: Response): Promise<void> => {
     logger.error(error);
   }
 
-  updateAuthCookies({
+  authService.updateCookies({
     tokens: null,
     res
   });

@@ -1,5 +1,7 @@
 import { ApiErrorCode, CreateAccountBody } from 'shared/types/api';
+import { Response } from '@/types/routes';
 import { User } from 'shared/types/models';
+import config from '@/config';
 import logger from '@/services/logger';
 import timer from '@/helpers/timer';
 
@@ -24,6 +26,11 @@ interface SignInSuccess {
 
 interface SignOutOptions {
   tokens: AuthTokens;
+}
+
+interface UpdateCookiesOptions {
+  res: Response;
+  tokens: AuthTokens | null;
 }
 
 interface VerifyOptions {
@@ -115,6 +122,27 @@ async function signOut({ tokens }: SignOutOptions): Promise<void> {
   }
 }
 
+function updateCookies({ res, tokens }: UpdateCookiesOptions): void {
+  if (tokens && tokens.accessToken && tokens.refreshToken) {
+    res.cookie('accessToken', tokens.accessToken, {
+      httpOnly: true,
+      sameSite: config.environment !== 'local',
+      secure: config.environment !== 'local',
+      signed: true
+    });
+
+    res.cookie('refreshToken', tokens.refreshToken, {
+      httpOnly: true,
+      sameSite: config.environment !== 'local',
+      secure: config.environment !== 'local',
+      signed: true
+    });
+  } else {
+    res.clearCookie('accessToken');
+    res.clearCookie('refreshToken');
+  }
+}
+
 async function verify({ tokens }: VerifyOptions): Promise<VerifySuccess> {
   try {
     await timer(150);
@@ -140,4 +168,4 @@ async function verify({ tokens }: VerifyOptions): Promise<VerifySuccess> {
   }
 }
 
-export default { createAccount, signIn, signOut, verify };
+export default { createAccount, signIn, signOut, updateCookies, verify };

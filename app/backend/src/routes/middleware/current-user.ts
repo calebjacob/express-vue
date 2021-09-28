@@ -1,10 +1,9 @@
 import { Middleware, Next, Response, Request } from '@/types/routes';
 import authService from '@/services/auth';
 import logger from '@/services/logger';
-import updateAuthCookies from '@/helpers/update-auth-cookies';
 
 function continueAsGuest(req: Request, res: Response, next: Next) {
-  updateAuthCookies({
+  authService.updateCookies({
     tokens: null,
     res
   });
@@ -27,7 +26,7 @@ const currentUser: Middleware = async (req: Request, res: Response, next: Next):
         }
       });
 
-      updateAuthCookies({
+      authService.updateCookies({
         tokens,
         res
       });

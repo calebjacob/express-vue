@@ -17,7 +17,7 @@ interface ApiErrorHandlerOptions {
   status?: number;
 }
 
-export default function apiErrorHandler({
+function apiErrorHandler({
   code: singleErrorCode,
   error: singleError,
   errors = [],
@@ -55,3 +55,5 @@ export default function apiErrorHandler({
   res.status(status);
   res.json(data);
 }
+
+export default { apiErrorHandler };
