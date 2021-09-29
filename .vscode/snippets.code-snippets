@@ -1,4 +1,32 @@
 {
+	"Vue Component - Standard": {
+		"scope": "vue",
+		"prefix": "vc",
+		"body": [
+			"<template>",
+			"  <div>Hello!</div>",
+			"</template>",
+			"",
+			"<script lang=\"ts\" setup>",
+			"  import { ref, reactive } from 'vue';",
+			"",
+			"  interface Emit {",
+			"    (e: 'myEvent', value: string): void;",
+			"  }",
+			"",
+			"  interface Props {",
+			"    myEvent?: string;",
+			"  }",
+			"",
+			"  const emit = defineEmits<Emit>();",
+			"",
+			"  const props = withDefaults(defineProps<Props>(), {",
+			"    myEvent: ''",
+			"  });",
+			"</script>",
+			""
+		]
+	},
 	"Unit Test Boilerplate - Standard": {
 		"scope": "typescript",
 		"prefix": "test-standard",
