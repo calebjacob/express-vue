@@ -40,21 +40,8 @@
   </div>
 </template>
 
-<script lang="ts">
-  import { defineComponent } from 'vue';
+<script lang="ts" setup>
   import { useTheNotifications, NotificationType } from '@/modules/notifications';
 
-  export default defineComponent({
-    name: 'TheNotifications',
-
-    setup() {
-      const { hideNotification, notifications } = useTheNotifications();
-
-      return {
-        NotificationType,
-        hideNotification,
-        notifications
-      };
-    }
-  });
+  const { hideNotification, notifications } = useTheNotifications();
 </script>

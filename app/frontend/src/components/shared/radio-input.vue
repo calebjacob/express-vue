@@ -25,10 +25,20 @@
   </div>
 </template>
 
-<script lang="ts">
-  import { defineComponent, PropType } from 'vue';
+<script lang="ts" setup>
   import { toRef, watch } from 'vue';
   import { useField } from 'vee-validate';
+
+  interface Emit {
+    (e: 'update:modelValue', value: string | number | boolean | null): void;
+  }
+
+  interface Props {
+    modelValue: string | number | boolean | null;
+    name: string;
+    options: RadioOption[];
+    validations?: RadioValidations;
+  }
 
   export interface RadioOption {
     display: string;
@@ -39,100 +49,71 @@
     required?: boolean;
   }
 
-  export default defineComponent({
-    name: 'RadioInput',
+  const emit = defineEmits<Emit>();
 
-    props: {
-      modelValue: {
-        type: [String, Number, Boolean],
-        required: true
-      },
-      name: {
-        type: String,
-        required: true
-      },
-      options: {
-        type: Array as PropType<RadioOption[]>,
-        required: true
-      },
-      validations: {
-        type: Object as PropType<RadioValidations>,
-        default: () => {
-          return {};
-        }
-      }
-    },
-
-    emits: ['update:modelValue'],
-
-    setup(props, { emit }) {
-      const validations = toRef(props, 'validations');
-      const { errorMessage, handleChange, value } = useField(props.name, validations, {
-        initialValue: props.modelValue,
-        validateOnMount: true
-      });
-
-      function onChange(option: RadioOption | null | undefined) {
-        if (option) {
-          handleChange(option.value);
-          emit('update:modelValue', option.value);
-        } else {
-          handleChange(null);
-          emit('update:modelValue', null);
-        }
-      }
-
-      function onLabelClick(option: RadioOption, inputId: string, event: Event) {
-        if (option.value === value.value) {
-          event.preventDefault();
-          onChange(null);
-          const input = document.getElementById(inputId);
-          if (input) {
-            input.focus();
-          }
-        }
-      }
-
-      function inputAttributes(index: number) {
-        const option = props.options[index];
-
-        return {
-          'aria-invalid': !!errorMessage.value,
-          checked: value.value === option.value ? true : undefined,
-          id: `${props.name}_${index}`,
-          name: props.name
-        };
-      }
-
-      watch(
-        () => props.options,
-        (newOptions) => {
-          const selectedOption = newOptions.find((option) => {
-            return option.value === value.value;
-          });
-          onChange(selectedOption);
-        },
-        {
-          deep: true
-        }
-      );
-
-      watch(
-        () => props.modelValue,
-        (newModelValue) => {
-          if (newModelValue !== value.value) {
-            value.value = newModelValue;
-          }
-        }
-      );
-
-      return {
-        errorMessage,
-        inputAttributes,
-        onChange,
-        onLabelClick,
-        value
-      };
+  const props = withDefaults(defineProps<Props>(), {
+    validations: () => {
+      return {};
     }
   });
+
+  const validations = toRef(props, 'validations');
+  const { errorMessage, handleChange, value } = useField(props.name, validations, {
+    initialValue: props.modelValue,
+    validateOnMount: true
+  });
+
+  function onChange(option: RadioOption | null | undefined) {
+    if (option) {
+      handleChange(option.value);
+      emit('update:modelValue', option.value);
+    } else {
+      handleChange(null);
+      emit('update:modelValue', null);
+    }
+  }
+
+  function onLabelClick(option: RadioOption, inputId: string, event: Event) {
+    if (option.value === value.value) {
+      event.preventDefault();
+      onChange(null);
+      const input = document.getElementById(inputId);
+      if (input) {
+        input.focus();
+      }
+    }
+  }
+
+  function inputAttributes(index: number) {
+    const option = props.options[index];
+
+    return {
+      'aria-invalid': !!errorMessage.value,
+      checked: value.value === option.value ? true : undefined,
+      id: `${props.name}_${index}`,
+      name: props.name
+    };
+  }
+
+  watch(
+    () => props.options,
+    (newOptions) => {
+      const selectedOption = newOptions.find((option) => {
+        return option.value === value.value;
+      });
+      onChange(selectedOption);
+    },
+    {
+      deep: true
+    }
+  );
+
+  watch(
+    () => props.modelValue,
+    (newModelValue) => {
+      if (newModelValue !== value.value) {
+        value.value = newModelValue;
+      }
+    }
+  );
 </script>

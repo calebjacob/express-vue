@@ -10,32 +10,20 @@
   <TheNotifications />
 </template>
 
-<script lang="ts">
-  import { defineComponent, provide } from 'vue';
+<script lang="ts" setup>
+  import { provide } from 'vue';
   import { ExampleModuleKey, useExample } from '@/modules/example';
   import { useTheSession } from '@/modules/session';
-  import TheFooter from '@/components/singles/the-footer.vue';
-  import TheHeader from '@/components/singles/the-header.vue';
-  import TheNotifications from '@/components/singles/the-notifications.vue';
+  import TheNotifications from './singles/the-notifications.vue';
+  import TheFooter from './singles/the-footer.vue';
+  import TheHeader from './singles/the-header.vue';
 
-  export default defineComponent({
-    name: 'App',
+  const session = useTheSession();
+  session.load();
 
-    components: {
-      TheFooter,
-      TheHeader,
-      TheNotifications
-    },
-
-    setup() {
-      const session = useTheSession();
-      session.load();
-
-      const example = useExample();
-      example.message.value = 'This is an example of using a provide/inject pattern.';
-      provide(ExampleModuleKey, example);
-    }
-  });
+  const example = useExample();
+  example.message.value = 'This is an example of using a provide/inject pattern.';
+  provide(ExampleModuleKey, example);
 </script>
 
 <style lang="sass">

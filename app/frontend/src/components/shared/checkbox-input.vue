@@ -19,72 +19,58 @@
   </div>
 </template>
 
-<script lang="ts">
-  import { computed, defineComponent, PropType, toRef, watch } from 'vue';
+<script lang="ts" setup>
+  import { computed, toRef, watch } from 'vue';
   import { useField } from 'vee-validate';
 
   interface CheckboxValidations {
     required?: boolean;
   }
 
-  export default defineComponent({
-    name: 'CheckboxInput',
+  interface Emit {
+    (e: 'update:modelValue', value: boolean | null): void;
+  }
 
-    props: {
-      modelValue: {
-        type: Boolean,
-        required: true
-      },
-      name: {
-        type: String,
-        required: true
-      },
-      validations: {
-        type: Object as PropType<CheckboxValidations>,
-        default: () => {
-          return {};
-        }
-      }
-    },
+  interface Props {
+    modelValue: boolean | null;
+    name: string;
+    validations?: CheckboxValidations;
+  }
 
-    emits: ['update:modelValue'],
+  const emit = defineEmits<Emit>();
 
-    setup(props, { emit }) {
-      const validations = toRef(props, 'validations');
-      const { errorMessage, handleChange, value } = useField(props.name, validations, {
-        initialValue: props.modelValue,
-        validateOnMount: true
-      });
-
-      function onChange(event: Event) {
-        const target = event.target as HTMLInputElement;
-        handleChange(target.checked);
-        emit('update:modelValue', value.value);
-      }
-
-      const inputAttributes = computed(() => {
-        return {
-          'aria-invalid': !!errorMessage.value,
-          checked: value.value ? true : undefined,
-          id: props.name
-        };
-      });
-
-      watch(
-        () => props.modelValue,
-        (newModelValue) => {
-          if (newModelValue !== value.value) {
-            value.value = newModelValue;
-          }
-        }
-      );
-
-      return {
-        errorMessage,
-        inputAttributes,
-        onChange,
-        value
-      };
+  const props = withDefaults(defineProps<Props>(), {
+    validations: () => {
+      return {};
     }
   });
+
+  const validations = toRef(props, 'validations');
+  const { errorMessage, handleChange, value } = useField(props.name, validations, {
+    initialValue: props.modelValue,
+    validateOnMount: true
+  });
+
+  function onChange(event: Event) {
+    const target = event.target as HTMLInputElement;
+    handleChange(target.checked);
+    emit('update:modelValue', value.value);
+  }
+
+  const inputAttributes = computed(() => {
+    return {
+      'aria-invalid': !!errorMessage.value,
+      checked: value.value ? true : undefined,
+      id: props.name
+    };
+  });
+
+  watch(
+    () => props.modelValue,
+    (newModelValue) => {
+      if (newModelValue !== value.value) {
+        value.value = newModelValue;
+      }
+    }
+  );
 </script>

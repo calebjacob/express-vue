@@ -23,6 +23,7 @@
           <div class="group">
             <TextInput
               v-model="state.fullName"
+              class="foobar"
               name="fullName"
               label="Full Name"
               icon-class="fa-user"

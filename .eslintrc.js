@@ -19,7 +19,11 @@ module.exports = {
 
   globals: {
     appRoot: true,
-    nodeMocksHttp: true
+    nodeMocksHttp: true,
+    defineProps: "readonly",
+    defineEmits: "readonly",
+    defineExpose: "readonly",
+    withDefaults: "readonly"
   },
 
   parserOptions: {

@@ -28,20 +28,8 @@
   </header>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
   import { useTheSession } from '@/modules/session';
-  import { defineComponent } from 'vue';
 
-  export default defineComponent({
-    name: 'TheHeader',
-
-    setup() {
-      const { session, signOut } = useTheSession();
-
-      return {
-        session,
-        signOut
-      };
-    }
-  });
+  const { session, signOut } = useTheSession();
 </script>
