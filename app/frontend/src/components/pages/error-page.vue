@@ -9,23 +9,15 @@
 
         <hr />
 
-        <router-link
+        <RouterLink
           class="button"
           :to="{
             name: 'home'
           }"
         >
           Go Home
-        </router-link>
+        </RouterLink>
       </div>
     </section>
   </div>
 </template>
-
-<script lang="ts">
-  import { defineComponent } from 'vue';
-
-  export default defineComponent({
-    name: 'ErrorPage'
-  });
-</script>

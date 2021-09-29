@@ -23,6 +23,8 @@ The following linting & testing integrations are included:
 
 VS Code in combination with the [Volar](https://github.com/johnsoncodehk/volar) extension is the recommended IDE setup for Vue 3 + TypeScript. This will give you great features like component/prop type validation and code autocompletion inside SFC templates. [WebStorm](https://www.jetbrains.com/webstorm/) is also another great choice. If you have the Vetur VS Code extension installed, you'll need to disable it - or it will conflict with Volar.
 
+Important read regarding Volar: https://github.com/johnsoncodehk/volar/discussions/471
+
 If you are using VS Code, all recommended extensions are defined in `.vscode/extensions.json`.
 
 At this point in time (5/29/2021), Vetur has far too many bugs to work properly with Vue 3 + TypeScript. Vetur also tries to do too much (linting/formatting is already handled by eslint). It seems like Volar will be taking over as the new standard Vue extension in the future.

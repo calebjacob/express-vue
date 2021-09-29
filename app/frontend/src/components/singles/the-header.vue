@@ -3,18 +3,18 @@
     <div class="container">
       <button class="header__hamburger icon icon--medium fa fa-bars" type="button" />
 
-      <router-link
+      <RouterLink
         class="header__logo"
         :to="{
           name: 'home'
         }"
-        >APP</router-link
+        >APP</RouterLink
       >
 
       <div class="header__right">
         <button v-if="session.currentUser" class="link" type="button" @click="signOut">Sign Out</button>
 
-        <router-link
+        <RouterLink
           v-else
           class="link"
           :to="{
@@ -22,7 +22,7 @@
           }"
         >
           Sign In
-        </router-link>
+        </RouterLink>
       </div>
     </div>
   </header>

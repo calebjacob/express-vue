@@ -1,7 +1,7 @@
 <template>
   <div class="notifications">
     <div class="notifications__wrapper">
-      <transition-group name="notification">
+      <TransitionGroup name="notification">
         <div
           v-for="notification in notifications.allNotifications"
           :key="notification.id"
@@ -35,7 +35,7 @@
             </div>
           </div>
         </div>
-      </transition-group>
+      </TransitionGroup>
     </div>
   </div>
 </template>

@@ -2,7 +2,7 @@
   <div class="layout layout--vertical-align">
     <section class="section">
       <div class="container max-width-mobile">
-        <validated-form v-slot="{ validatedForm }" :submit="submit">
+        <ValidatedForm v-slot="{ validatedForm }" :submit="submit">
           <div class="group">
             <h1 class="title title--2">Sign In</h1>
           </div>
@@ -28,7 +28,7 @@
           </template>
 
           <div class="group">
-            <text-input
+            <TextInput
               v-model="state.email"
               name="email"
               label="Email"
@@ -40,7 +40,7 @@
               }"
             />
 
-            <text-input
+            <TextInput
               v-model="state.password"
               name="password"
               label="Password"
@@ -55,14 +55,14 @@
           <div class="group layout layout--horizontal">
             <p>
               Don't have an account?
-              <router-link
+              <RouterLink
                 class="link"
                 :to="{
                   name: 'createAccount'
                 }"
               >
                 Register
-              </router-link>
+              </RouterLink>
             </p>
 
             <button
@@ -76,56 +76,41 @@
               <span class="icon fa fa-arrow-right" />
             </button>
           </div>
-        </validated-form>
+        </ValidatedForm>
       </div>
     </section>
   </div>
 </template>
 
-<script lang="ts">
-  import { defineComponent } from 'vue';
+<script lang="ts" setup>
   import { reactive } from 'vue';
   import { useErrors } from '@/modules/errors';
   import { useRouter } from 'vue-router';
   import { useTheSession } from '@/modules/session';
-  import sharedComponents from '@/components/shared';
+  import ValidatedForm from '../shared/validated-form.vue';
+  import TextInput from '../shared/text-input.vue';
 
-  export default defineComponent({
-    name: 'SignInPage',
+  const { signIn } = useTheSession();
+  const { handleError } = useErrors();
+  const router = useRouter();
 
-    components: {
-      ...sharedComponents
-    },
-
-    setup() {
-      const { signIn } = useTheSession();
-      const { handleError } = useErrors();
-      const router = useRouter();
-
-      const state = reactive({
-        email: 'frodo@baggins.com',
-        password: 'the_shire',
-        sessionDidExpire: router.currentRoute.value.query.expired === 'true'
-      });
-
-      async function submit() {
-        try {
-          await signIn({
-            email: state.email,
-            password: state.password
-          });
-          router.push({
-            name: 'home'
-          });
-        } catch (error) {
-          handleError(error);
-        }
-      }
-
-      return {
-        state,
-        submit
-      };
-    }
+  const state = reactive({
+    email: 'frodo@baggins.com',
+    password: 'the_shire',
+    sessionDidExpire: router.currentRoute.value.query.expired === 'true'
   });
+
+  async function submit() {
+    try {
+      await signIn({
+        email: state.email,
+        password: state.password
+      });
+      router.push({
+        name: 'home'
+      });
+    } catch (error) {
+      handleError(error);
+    }
+  }
 </script>

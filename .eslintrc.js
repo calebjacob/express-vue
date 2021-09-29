@@ -53,7 +53,7 @@ module.exports = {
     "vue/attribute-hyphenation": ["error"],
     "vue/component-name-in-template-casing": [
       "error",
-      "kebab-case",
+      "PascalCase",
       {
         registeredComponentsOnly: false,
         ignores: []

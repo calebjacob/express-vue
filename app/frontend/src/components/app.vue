@@ -1,13 +1,13 @@
 <template>
-  <the-header />
+  <TheHeader />
 
   <div class="wrapper__content">
-    <router-view />
+    <RouterView />
   </div>
 
-  <the-footer />
+  <TheFooter />
 
-  <the-notifications />
+  <TheNotifications />
 </template>
 
 <script lang="ts">

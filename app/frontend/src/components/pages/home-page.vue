@@ -40,23 +40,23 @@
               <p>Account info won't be saved on registration. The auth flow is mocked on the backend.</p>
 
               <div class="layout layout--horizontal layout--justify-start">
-                <router-link
+                <RouterLink
                   class="button"
                   :to="{
                     name: 'signIn'
                   }"
                 >
                   Sign In
-                </router-link>
+                </RouterLink>
 
-                <router-link
+                <RouterLink
                   class="button button--secondary"
                   :to="{
                     name: 'createAccount'
                   }"
                 >
                   Register
-                </router-link>
+                </RouterLink>
               </div>
             </template>
           </div>
@@ -124,15 +124,14 @@
       </section>
 
       <section class="section">
-        <p>{{ message }}</p>
-        <p>{{ computedMessage }}</p>
+        <p>{{ example.message }}</p>
+        <p>{{ example.computedMessage }}</p>
       </section>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-  import { defineComponent } from 'vue';
+<script lang="ts" setup>
   import { ExampleModuleKey } from '@/modules/example';
   import { useTheSession } from '@/modules/session';
   import { useTheNotifications, NotificationType } from '@/modules/notifications';
@@ -142,54 +141,38 @@
   import logger from '@/services/logger';
   import injectStrict from '@/helpers/inject-strict';
 
-  export default defineComponent({
-    name: 'HomePage',
+  const example = injectStrict(ExampleModuleKey);
+  const { session } = useTheSession();
+  const { showNotification } = useTheNotifications();
+  const { handleError } = useErrors();
 
-    setup() {
-      const example = injectStrict(ExampleModuleKey);
-      const { session } = useTheSession();
-      const { showNotification } = useTheNotifications();
-      const { handleError } = useErrors();
+  async function somethingPrivate() {
+    try {
+      const response = await http.get<SomethingPrivateResponse>('/api/something-private');
 
-      async function somethingPrivate() {
-        try {
-          const response = await http.get<SomethingPrivateResponse>('/api/something-private');
+      logger.info('Private Data', response.data);
 
-          logger.info('Private Data', response.data);
-
-          showNotification({
-            type: NotificationType.SUCCESS,
-            message: 'A private API was accessed!'
-          });
-        } catch (error) {
-          handleError(error);
-        }
-      }
-
-      async function somethingPublic() {
-        try {
-          const response = await http.get<SomethingPublicResponse>('/api/something-public');
-
-          logger.info('Public Data', response.data);
-
-          showNotification({
-            type: NotificationType.SUCCESS,
-            message: 'A public API was accessed!'
-          });
-        } catch (error) {
-          handleError(error);
-        }
-      }
-
-      return {
-        computedMessage: example.computedMessage,
-        message: example.message,
-        NotificationType,
-        session,
-        showNotification,
-        somethingPrivate,
-        somethingPublic
-      };
+      showNotification({
+        type: NotificationType.SUCCESS,
+        message: 'A private API was accessed!'
+      });
+    } catch (error) {
+      handleError(error);
     }
-  });
+  }
+
+  async function somethingPublic() {
+    try {
+      const response = await http.get<SomethingPublicResponse>('/api/something-public');
+
+      logger.info('Public Data', response.data);
+
+      showNotification({
+        type: NotificationType.SUCCESS,
+        message: 'A public API was accessed!'
+      });
+    } catch (error) {
+      handleError(error);
+    }
+  }
 </script>

@@ -2,7 +2,7 @@
   <div class="layout layout--vertical-align">
     <section class="section">
       <div class="container max-width-mobile">
-        <validated-form v-slot="{ validatedForm }" :submit="submit">
+        <ValidatedForm v-slot="{ validatedForm }" :submit="submit">
           <div class="group">
             <h1 class="title title--2">Create an Account</h1>
           </div>
@@ -21,7 +21,7 @@
           </div>
 
           <div class="group">
-            <text-input
+            <TextInput
               v-model="state.fullName"
               name="fullName"
               label="Full Name"
@@ -31,7 +31,7 @@
               }"
             />
 
-            <text-input
+            <TextInput
               v-model="state.email"
               name="email"
               label="Email"
@@ -43,7 +43,7 @@
               }"
             />
 
-            <text-input
+            <TextInput
               v-model="state.password"
               name="password"
               label="Password"
@@ -59,7 +59,7 @@
           <div v-if="state.showFavoriteThing" class="group">
             <p class="title title--5">What's your favorite thing?</p>
 
-            <radio-input
+            <RadioInput
               v-model="state.favoriteThing"
               name="favoriteThing"
               :options="favoriteThingOptions"
@@ -70,7 +70,7 @@
           </div>
 
           <div class="group">
-            <checkbox-input
+            <CheckboxInput
               v-model="state.acceptedTerms"
               name="acceptedTerms"
               :validations="{
@@ -79,7 +79,7 @@
             >
               I agree to the crazy
               <a href="#" class="link">Terms & Conditions</a>
-            </checkbox-input>
+            </CheckboxInput>
           </div>
 
           <hr />
@@ -87,14 +87,14 @@
           <div class="group layout layout--horizontal">
             <p>
               Already have an account?
-              <router-link
+              <RouterLink
                 class="link"
                 :to="{
                   name: 'signIn'
                 }"
               >
                 Sign In
-              </router-link>
+              </RouterLink>
             </p>
 
             <button
@@ -121,97 +121,81 @@
               {{ state.fullNameIsRequired ? 'Optional' : 'Required' }}
             </button>
           </div>
-        </validated-form>
+        </ValidatedForm>
       </div>
     </section>
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
   import { ApiErrorCode } from 'shared/types/api';
-  import { defineComponent, ref } from 'vue';
+  import { ref } from 'vue';
   import { reactive, Ref } from 'vue';
   import { useErrors } from '@/modules/errors';
   import { useRouter } from 'vue-router';
   import { useTheSession } from '@/modules/session';
-  import { RadioOption } from '@/components/shared/radio-input.vue';
-  import sharedComponents from '@/components/shared';
   import logger from '@/services/logger';
+  import RadioInput, { RadioOption } from '../shared/radio-input.vue';
+  import CheckboxInput from '../shared/checkbox-input.vue';
+  import TextInput from '../shared/text-input.vue';
+  import ValidatedForm from '../shared/validated-form.vue';
 
-  export default defineComponent({
-    name: 'CreateAccountPage',
+  const { createAccount } = useTheSession();
+  const { handleError } = useErrors();
+  const router = useRouter();
 
-    components: {
-      ...sharedComponents
+  const state = reactive({
+    acceptedTerms: true,
+    email: '',
+    favoriteThing: '',
+    fullName: '',
+    fullNameIsRequired: true,
+    password: '',
+    showFavoriteThing: true
+  });
+
+  const favoriteThingOptions: Ref<RadioOption[]> = ref([
+    {
+      display: 'Broncos',
+      value: 'broncos'
     },
+    {
+      display: 'Food',
+      value: 'food'
+    },
+    {
+      display: 'Family',
+      value: 'family'
+    }
+  ]);
 
-    setup() {
-      const { createAccount } = useTheSession();
-      const { handleError } = useErrors();
-      const router = useRouter();
-
-      const state = reactive({
-        acceptedTerms: true,
-        email: '',
-        favoriteThing: '',
-        fullName: '',
-        fullNameIsRequired: true,
-        password: '',
-        showFavoriteThing: true
+  async function submit() {
+    try {
+      await createAccount({
+        email: state.email,
+        fullName: state.fullName,
+        password: state.password
       });
 
-      const favoriteThingOptions: Ref<RadioOption[]> = ref([
-        {
-          display: 'Broncos',
-          value: 'broncos'
-        },
-        {
-          display: 'Food',
-          value: 'food'
-        },
-        {
-          display: 'Family',
-          value: 'family'
-        }
-      ]);
+      router.push({
+        name: 'home'
+      });
+    } catch (error) {
+      const { errors } = handleError(error);
 
-      async function submit() {
-        try {
-          await createAccount({
-            email: state.email,
-            fullName: state.fullName,
-            password: state.password
-          });
+      const emailConflictError = errors.find((e) => e.code === ApiErrorCode.EMAIL_CONFLICT);
 
-          router.push({
-            name: 'home'
-          });
-        } catch (error) {
-          const { errors } = handleError(error);
-
-          const emailConflictError = errors.find((e) => e.code === ApiErrorCode.EMAIL_CONFLICT);
-
-          if (emailConflictError) {
-            logger.info('Email conflict was detected. Exra logic could be run here to handle this specific error');
-          }
-        }
+      if (emailConflictError) {
+        logger.info('Email conflict was detected. Exra logic could be run here to handle this specific error');
       }
-
-      function toggleFavoriteThingQuestion() {
-        state.showFavoriteThing = !state.showFavoriteThing;
-      }
-
-      function toggleFullNameIsRequired() {
-        state.fullNameIsRequired = !state.fullNameIsRequired;
-      }
-
-      return {
-        favoriteThingOptions,
-        state,
-        submit,
-        toggleFavoriteThingQuestion,
-        toggleFullNameIsRequired
-      };
     }
-  });
+  }
+
+  function toggleFavoriteThingQuestion() {
+    state.showFavoriteThing = !state.showFavoriteThing;
+  }
+
+  function toggleFullNameIsRequired() {
+    state.fullNameIsRequired = !state.fullNameIsRequired;
+  }
 </script>

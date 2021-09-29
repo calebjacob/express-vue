@@ -33,14 +33,6 @@ A component used as a router/view component (home page, product page, etc). All 
 
 A component shared throughout the app and can have multiple instances at any one time (buttons, inputs, etc).
 
-Here are a few additional notes to keep in mind:
-
-1. Whenever adding a new shared component, don't forget to export it in the `index.ts` file. This will allow other components to easily import all shared components.
-
-2. As your project grows, it might be smart to have namespaced exports inside the shared folder. Maybe you'd have a `Base` group with very generic components (buttons, titles, icons, etc) and another `Form` group with all components related to forms (inputs, radios, checkboxes, etc).
-
-3. A shared component itself should never import `@/components/shared`, as this would cause a circular dependency. If a shared component depends upon another shared component, it should import that component directly.
-
 #### Singles (src/components/singles)
 
 A component that should only ever have a single instance rendered at any one time (main header, main footer, etc). Single components should follow a `the-x` naming convention. The keyword `the` helps make it obvious when a component is meant to be used as a single.
