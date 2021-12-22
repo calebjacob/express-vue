@@ -7,16 +7,7 @@
       </section>
 
       <section class="section">
-        <div
-          class="
-            layout
-            layout--horizontal
-            layout--horizontal-equal
-            layout--double-spacing
-            layout--align-start
-            layout--stack-tablet
-          "
-        >
+        <div class="layout layout--hz layout--hz-equal layout--double-spacing layout--a-start layout--stack-tablet">
           <div>
             <template v-if="session.currentUser">
               <h3 class="title title--3">Here's Your Account:</h3>
@@ -39,7 +30,7 @@
 
               <p>Account info won't be saved on registration. The auth flow is mocked on the backend.</p>
 
-              <div class="layout layout--horizontal layout--justify-start">
+              <div class="layout layout--hz layout--j-start">
                 <RouterLink
                   class="button"
                   :to="{
@@ -65,7 +56,7 @@
             <h3 class="title title--3">Notifications</h3>
 
             <div class="group">
-              <div class="layout layout--horizontal layout--justify-start margin-bottom">
+              <div class="layout layout--hz layout--j-start margin-b">
                 <button
                   class="link color-success"
                   type="button"
@@ -109,7 +100,7 @@
 
             <h3 class="title title--3">Actions</h3>
 
-            <div class="layout layout--horizontal layout--justify-start">
+            <div class="layout layout--hz layout--j-start">
               <button type="button" class="button button--border button--small" @click="somethingPublic">
                 <span class="icon fa fa-globe color-primary"></span>
                 Public

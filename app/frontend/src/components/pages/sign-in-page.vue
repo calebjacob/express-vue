@@ -1,14 +1,14 @@
 <template>
   <div class="layout layout--vertical-align">
     <section class="section">
-      <div class="container max-width-mobile">
+      <div class="container mw-mobile">
         <ValidatedForm v-slot="{ validatedForm }" :submit="submit">
           <div class="group">
             <h1 class="title title--2">Sign In</h1>
           </div>
 
           <div v-if="state.sessionDidExpire" class="group">
-            <div class="bubble layout layout--icon">
+            <div class="box layout layout--icon">
               <span class="icon fa fa-lock color-secondary"></span>
               <p>Your session has expired. Please sign in to continue.</p>
             </div>
@@ -52,7 +52,7 @@
             />
           </div>
 
-          <div class="group layout layout--horizontal">
+          <div class="group layout layout--hz">
             <p>
               Don't have an account?
               <RouterLink

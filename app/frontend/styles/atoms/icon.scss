@@ -1,0 +1,29 @@
+.icon {
+  color: currentColor;
+  display: inline-block;
+  font-family: 'Font Awesome 5 Pro';
+  font-size: 1em;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 300;
+  margin: 0;
+  position: relative;
+  text-decoration: none !important;
+  text-rendering: auto;
+}
+
+.icon--block {
+  display: block;
+  margin: 0 auto var(--spacing);
+  text-align: center;
+}
+
+.icon--large {
+  font-size: 3rem;
+}
+
+.icon--medium {
+  font-size: 2rem;
+}

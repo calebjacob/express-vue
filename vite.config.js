@@ -8,7 +8,7 @@ const { parsed: config = {} } = dotenv.config();
 
 export default defineConfig({
   plugins: [vue()],
-  publicDir: '../public',
+  publicDir: false,
   root: `${process.cwd()}/app/frontend`,
   resolve: {
     alias: [
@@ -25,7 +25,7 @@ export default defineConfig({
   server: {
     port: config.PORT_DEV_FE,
     proxy: {
-      '^/(api|images)': {
+      '^/(api|images|webfonts)': {
         target: `http://localhost:${config.PORT}`,
         changeOrigin: true
       }

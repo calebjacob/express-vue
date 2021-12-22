@@ -27,6 +27,6 @@
 </script>
 
 <style lang="sass">
-  @import '../../../../node_modules/@fortawesome/fontawesome-free/css/all.css'
-  @import '../../styles/main'
+  @import '../../styles/globals/font-awesome.css'
+  @import '../../styles/index'
 </style>

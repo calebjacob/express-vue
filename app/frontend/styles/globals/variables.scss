@@ -1,0 +1,67 @@
+// ---- Breakpoints ---- //
+
+$desktop-breakpoint: 1200px;
+$tablet-breakpoint: 900px;
+$mobile-breakpoint: 450px;
+
+:root {
+  // ---- Colors ---- //
+
+  --color-brand-primary-hue: 218;
+  --color-brand-primary-saturation: 100%;
+  --color-brand-primary-lightness: 50%;
+  --color-brand-primary: hsl(var(--color-brand-primary-hue), var(--color-brand-primary-saturation), var(--color-brand-primary-lightness));
+
+  --color-brand-secondary-hue: 20;
+  --color-brand-secondary-saturation: 100%;
+  --color-brand-secondary-lightness: 60%;
+  --color-brand-secondary: hsl(var(--color-brand-secondary-hue), var(--color-brand-secondary-saturation), var(--color-brand-secondary-lightness));
+
+  --color-surface-1: hsl(var(--color-brand-primary-hue), 25%, 5%);
+  --color-surface-2: hsl(var(--color-brand-primary-hue), 25%, 10%);
+  --color-surface-3: hsl(var(--color-brand-primary-hue), 25%, 15%);
+  --color-surface-4: hsl(var(--color-brand-primary-hue), 25%, 20%);
+  --color-surface-5: hsl(var(--color-brand-primary-hue), 25%, 25%);
+
+  --color-text-1: hsl(var(--color-brand-primary-hue), 30%, 98%);
+  --color-text-2: hsl(var(--color-brand-primary-hue), 30%, 70%);
+  --color-text-3: hsl(var(--color-brand-primary-hue), 20%, 50%);
+  --color-text-4: hsl(var(--color-brand-primary-hue), 15%, 30%);
+
+  --color-success-hue: 141;
+  --color-success-saturation: 50%;
+  --color-success-lightness: 50%;
+  --color-success: hsl(var(--color-success-hue), var(--color-success-saturation), var(--color-success-lightness));
+
+  --color-danger-hue: 0;
+  --color-danger-saturation: 80%;
+  --color-danger-lightness: 60%;
+  --color-danger: hsl(var(--color-danger-hue), var(--color-danger-saturation), var(--color-danger-lightness));
+
+  // ---- Fonts ---- //
+
+  --font-family-primary: 'Montserrat', 'Helvetica Neue', 'Helvetica', sans-serif;
+  --font-size-heading-1: 2.75rem;
+  --font-size-heading-2: 1.875rem;
+  --font-size-heading-3: 1.375rem;
+  --font-size-heading-4: 1.25rem;
+  --font-size-heading-5: 1.125rem;
+  --font-size-heading-6: 1rem;
+  --font-size-body-1: 1rem;
+  --font-size-body-2: 0.875rem;
+  --font-size-body-3: 0.75rem;
+  --font-size-text-input: 16px; // NOTE: Input font size should never go below 16px to avoid iOS Safari auto-zoom
+
+  // Other:
+
+  --border-radius: 6px;
+  --focus-glow: 0 0 14px 2px hsl(var(--color-brand-primary-hue), 20%, 15%);
+  --focus-glow: 0 0 0 2px hsl(var(--color-brand-primary-hue), var(--color-brand-primary-saturation), var(--color-brand-primary-lightness));
+  --input-height-large: 3.125rem;
+  --input-height: 2.75rem;
+  --input-height-small: 2rem;
+  --max-container-width: 1200px;
+  --spacing: 1rem;
+  --spacing-double: 2rem;
+  --spacing-half: 0.5rem;
+}

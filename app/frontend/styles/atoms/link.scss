@@ -1,0 +1,41 @@
+.link {
+  background: none;
+  border: 0;
+  color: currentColor;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1em;
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  transition: all 150ms;
+
+  &::after {
+    background: currentColor;
+    bottom: -1px;
+    content: '';
+    display: block;
+    height: 1px;
+    left: 0;
+    opacity: 0.5;
+    position: absolute;
+    right: 0;
+    transition: opacity 150ms;
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  &:focus {
+    &::after {
+      bottom: -2px;
+      height: 2px;
+    }
+  }
+}

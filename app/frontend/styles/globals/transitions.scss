@@ -1,0 +1,13 @@
+.notification-enter-active,
+.notification-leave-active {
+  transition: all 300ms ease;
+}
+
+.notification-enter-from,
+.notification-leave-to {
+  opacity: 0;
+}
+  
+.notification-enter-from {
+  transform: translateY(100%);
+}

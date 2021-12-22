@@ -1,0 +1,20 @@
+.box {
+  background: var(--color-surface-1);
+  border-radius: var(--border-radius);
+  color: var(--color-text-2);
+  margin: 0 0 var(--spacing);
+  overflow: hidden;
+  padding: var(--spacing) var(--spacing) 0;
+
+  &.layout--icon {
+    padding-bottom: var(--spacing);
+
+    .icon {
+      margin-right: var(--spacing);
+    }
+  }
+
+  p {
+    color: currentColor;
+  }
+}

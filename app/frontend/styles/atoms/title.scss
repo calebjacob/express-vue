@@ -1,0 +1,35 @@
+.title {
+  color: var(--color-text-1);
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 var(--spacing);
+  word-break: break-word;
+}
+
+.title--1 {
+  font-size: var(--font-size-heading-1);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.title--2 {
+  font-size: var(--font-size-heading-2);
+  font-weight: 400;
+}
+
+.title--3 {
+  font-size: var(--font-size-heading-3);
+}
+
+.title--4 {
+  font-size: var(--font-size-heading-4);
+}
+
+.title--5 {
+  font-size: var(--font-size-heading-5);
+}
+
+.title--6 {
+  font-size: var(--font-size-heading-6);
+}

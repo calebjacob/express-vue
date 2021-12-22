@@ -1,0 +1,51 @@
+.notifications {
+  bottom: 0;
+  position: fixed;
+  right: 0;
+  z-index: 1000;
+}
+
+.notifications__wrapper {
+  padding: var(--spacing);
+  text-align: right;
+  width: 100%;
+
+  &:empty {
+    padding: 0;
+  }
+}
+
+.notifications__notification {
+  margin: var(--spacing) 0 0;
+}
+
+.notifications__content {
+  background: var(--color-brand-primary);
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  color: var(--color-text-1);
+  display: inline-block;
+  padding: var(--spacing) var(--spacing) 0;
+  text-align: left;
+
+  p {
+    color: var(--color-text-1);
+    font-weight: 400;
+  }
+
+  .notifications__notification--error & {
+    background: var(--color-danger);
+  }
+
+  .notifications__notification--success & {
+    background: var(--color-success);
+  }
+
+  .link {
+    margin-left: var(--spacing-half);
+  }
+
+  @media (max-width: $tablet-breakpoint) {
+    width: 100%;
+  }
+}

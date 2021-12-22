@@ -1,7 +1,7 @@
 <template>
   <div class="layout layout--vertical-align">
     <section class="section">
-      <div class="container max-width-mobile">
+      <div class="container mw-mobile">
         <ValidatedForm v-slot="{ validatedForm }" :submit="submit">
           <div class="group">
             <h1 class="title title--2">Create an Account</h1>
@@ -84,7 +84,7 @@
 
           <hr />
 
-          <div class="group layout layout--horizontal">
+          <div class="group layout layout--hz">
             <p>
               Already have an account?
               <RouterLink
@@ -111,7 +111,7 @@
 
           <hr />
 
-          <div class="group layout layout--horizontal layout--justify-start layout--wrap">
+          <div class="group layout layout--hz layout--j-start layout--wrap">
             <button class="button button--border button--small" type="button" @click="toggleFavoriteThingQuestion">
               {{ state.showFavoriteThing ? 'Hide' : 'Show' }} Question
             </button>

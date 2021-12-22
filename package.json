@@ -29,7 +29,6 @@
     "verify:frontend": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.4",
     "@vee-validate/i18n": "^4.5.0",
     "@vee-validate/rules": "^4.5.0",
     "app-root-path": "^3.0.0",

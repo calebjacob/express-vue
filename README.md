@@ -7,7 +7,7 @@ A starter project ready to rock and roll!
 - [Express](https://expressjs.com/)
 - [Vue 3](https://vuejs.org/) + [SFC <script setup>](https://v3.vuejs.org/api/sfc-script-setup.html)
 - [Vite](https://vitejs.dev/)
-- [Sass (Indented Syntax)](https://sass-lang.com/documentation/syntax#the-indented-syntax)
+- [SCSS](https://sass-lang.com/)
 - [Font Awesome 5](https://fontawesome.com/icons?d=gallery&p=2)
 
 The following linting & testing integrations are included:
