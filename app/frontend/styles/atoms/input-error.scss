@@ -1,8 +1,8 @@
 .input-error {
+  color: var(--color-text-1);
   display: none;
   font-size: var(--font-size-body-2);
   padding-top: var(--spacing-half);
-  color: var(--color-text-1);
   text-align: left;
 
   .form--submitted & {
@@ -15,8 +15,8 @@
 
   &::before {
     @include icon('\f06a');
+    color: var(--color-danger);
     display: inline-block;
     margin-right: var(--spacing-half);
-    color: var(--color-danger);
   }
 }

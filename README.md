@@ -14,6 +14,7 @@ The following linting & testing integrations are included:
 
 - [ESLint](https://eslint.org/)
 - [Prettier](https://prettier.io/)
+- [Stylelint](https://stylelint.io/)
 - [Jest](https://jestjs.io/)
 - [Cypress](https://www.cypress.io/)
 

@@ -5,13 +5,18 @@
     "type": "git",
     "url": "https://github.com/iamceege/express-vue"
   },
+  "engines": {
+    "node": "16.13.1"
+  },
   "private": true,
   "scripts": {
     "build": "npm run build:backend && npm run build:frontend",
     "build:backend": "tsc --project ./app/backend/tsconfig.json",
     "build:frontend": "vue-tsc --noEmit && vite build",
     "husky": "husky install",
-    "lint": "eslint --ext .js,.jsx,.ts,.vue ./app/ --fix",
+    "lint": "npm run lint:css && npm run lint:source",
+    "lint:css": "stylelint '**/*.scss' --fix",
+    "lint:source": "eslint --ext .js,.jsx,.ts,.vue ./app/ --fix",
     "pre-commit": "npm run lint && npm run verify",
     "production": "NODE_ENV=production npm run build && node app/backend/dist/backend/src/index.js",
     "start:backend": "TS_NODE_PROJECT='./app/backend/tsconfig.json' ts-node-dev --files -r tsconfig-paths/register ./app/backend/src/index.ts",
@@ -77,12 +82,14 @@
     "module-alias": "^2.2.2",
     "node-mocks-http": "^1.11.0",
     "prettier": "^2.4.1",
+    "stylelint": "^14.2.0",
+    "stylelint-config-sass-guidelines": "^9.0.1",
     "ts-jest": "^26.5.6",
     "ts-node": "^9.1.1",
     "ts-node-dev": "^1.1.8",
     "tsconfig-paths": "^3.11.0",
     "typescript": "^4.4.3",
-    "vite": "^2.5.10",
+    "vite": "^2.7.10",
     "vue-jest": "^5.0.0-alpha.10",
     "vue-tsc": "^0.3.0"
   }
