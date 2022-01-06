@@ -27,6 +27,6 @@
 </script>
 
 <style lang="sass">
-  @import '../../styles/globals/font-awesome.css'
+  @import '../../styles/font-awesome.css'
   @import '../../styles/index'
 </style>

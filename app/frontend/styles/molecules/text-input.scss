@@ -58,6 +58,19 @@
   .text-input--has-icon & {
     padding-left: var(--input-height-large);
   }
+
+  .text-input--search & {
+    border-radius: 100rem;
+  }
+
+  .text-input--no-label & {
+    padding-top: 0;
+
+    &::placeholder {
+      font-size: var(--font-size-text-input);
+      opacity: 1;
+    }
+  }
 }
 
 .text-input__label {
@@ -106,6 +119,10 @@
       right: 0;
       top: 0;
     }
+  }
+
+  .text-input--no-label & {
+    display: none !important;
   }
 }
 

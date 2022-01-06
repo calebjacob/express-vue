@@ -2,7 +2,7 @@
   <div class="layout layout--vertical-align">
     <section class="section">
       <div class="container mw-mobile">
-        <ValidatedForm v-slot="{ validatedForm }" :submit="submit">
+        <ValidatedForm v-slot="{ form }" :submit="submit">
           <div class="group">
             <h1 class="title title--2">Create an Account</h1>
           </div>
@@ -100,7 +100,7 @@
             <button
               class="button button--icon-end"
               :class="{
-                'button--loading': validatedForm.isSubmitting
+                'button--loading': form.isSubmitting
               }"
               type="submit"
             >

@@ -2,7 +2,7 @@
   <div
     class="checkbox-input"
     :class="{
-      'checkbox-input--error': !!errorMessage
+      'checkbox-input--error': !!firstError
     }"
   >
     <div class="checkbox-input__option">
@@ -15,51 +15,41 @@
       </label>
     </div>
 
-    <p v-if="errorMessage" class="input-error" role="alert">This checkbox is required</p>
+    <p v-if="firstError" class="input-error" role="alert">This checkbox is required</p>
   </div>
 </template>
 
 <script lang="ts" setup>
   import { computed, toRef, watch } from 'vue';
-  import { useField } from 'vee-validate';
+  import { useInputValidation } from '@/modules/form-validation';
 
-  interface CheckboxValidations {
+  interface CheckboxValidations extends Record<string, any> {
     required?: boolean;
   }
 
-  interface Emit {
+  const emit = defineEmits<{
     (e: 'update:modelValue', value: boolean | null): void;
-  }
+  }>();
 
-  interface Props {
-    modelValue: boolean | null;
-    name: string;
-    validations?: CheckboxValidations;
-  }
-
-  const emit = defineEmits<Emit>();
-
-  const props = withDefaults(defineProps<Props>(), {
-    validations: () => {
-      return {};
+  const props = withDefaults(
+    defineProps<{
+      modelValue?: boolean | null;
+      name: string;
+      validations?: CheckboxValidations;
+    }>(),
+    {
+      modelValue: undefined,
+      validations: () => {
+        return {};
+      }
     }
-  });
+  );
 
   const validations = toRef(props, 'validations');
-  const { errorMessage, handleChange, value } = useField(props.name, validations, {
-    initialValue: props.modelValue,
-    validateOnMount: true
-  });
-
-  function onChange(event: Event) {
-    const target = event.target as HTMLInputElement;
-    handleChange(target.checked);
-    emit('update:modelValue', value.value);
-  }
 
   const inputAttributes = computed(() => {
     return {
-      'aria-invalid': !!errorMessage.value,
+      'aria-invalid': !!firstError.value,
       checked: value.value ? true : undefined,
       id: props.name
     };
@@ -73,4 +63,16 @@
       }
     }
   );
+
+  const { firstError, value } = useInputValidation({
+    label: 'Checkbox',
+    initialValue: props.modelValue,
+    name: props.name,
+    validations
+  });
+
+  function onChange(event: Event) {
+    const target = event.target as HTMLInputElement;
+    emit('update:modelValue', target.checked);
+  }
 </script>
