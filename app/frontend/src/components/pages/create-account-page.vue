@@ -50,7 +50,7 @@
               icon-class="fa-key"
               type="password"
               :validations="{
-                min: 8,
+                lengthMin: 8,
                 required: true
               }"
             />

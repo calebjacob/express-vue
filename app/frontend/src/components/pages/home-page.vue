@@ -98,17 +98,36 @@
               </div>
             </div>
 
-            <h3 class="title title--3">Actions</h3>
+            <hr />
 
-            <div class="layout layout--hz layout--j-start">
-              <button type="button" class="button button--border button--small" @click="somethingPublic">
-                <span class="icon fa fa-globe color-primary"></span>
-                Public
-              </button>
-              <button type="button" class="button button--border button--small" @click="somethingPrivate">
-                <span class="icon fa fa-lock color-secondary"></span>
-                Private
-              </button>
+            <div class="group">
+              <h3 class="title title--3">Actions</h3>
+
+              <div class="layout layout--hz layout--j-start">
+                <button type="button" class="button button--border button--small" @click="somethingPublic">
+                  <span class="icon fa fa-globe color-primary"></span>
+                  Public
+                </button>
+                <button type="button" class="button button--border button--small" @click="somethingPrivate">
+                  <span class="icon fa fa-lock color-secondary"></span>
+                  Private
+                </button>
+              </div>
+            </div>
+
+            <hr />
+
+            <div class="group">
+              <h3 class="title title--3">Modals</h3>
+
+              <div class="layout layout--hz layout--j-start">
+                <button type="button" class="button button--border button--small" @click="openConfirmModal">
+                  Confirm
+                </button>
+                <button type="button" class="button button--border button--small" @click="openCustomModal">
+                  Custom
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -120,22 +139,51 @@
       </section>
     </div>
   </div>
+
+  <Modal v-slot="{ modalData }" name="myCrazyModal">
+    <section class="section center">
+      <h2 class="title title--2">A Custom Modal</h2>
+
+      <p>
+        My favorite color is: <b>{{ modalData.favoriteColor }}</b>
+      </p>
+    </section>
+  </Modal>
 </template>
 
 <script lang="ts" setup>
   import { ExampleModuleKey } from '@/modules/example';
   import { useTheSession } from '@/modules/session';
   import { useTheNotifications, NotificationType } from '@/modules/notifications';
+  import { useTheModals } from '@/modules/modals';
   import { useErrors } from '@/modules/errors';
   import { SomethingPublicResponse, SomethingPrivateResponse } from 'shared/types/api';
   import http from '@/services/http';
   import logger from '@/services/logger';
   import injectStrict from '@/helpers/inject-strict';
+  import Modal from '../shared/modal.vue';
 
   const example = injectStrict(ExampleModuleKey);
   const { session } = useTheSession();
   const { showNotification } = useTheNotifications();
   const { handleError } = useErrors();
+  const { openModal, openConfirmationModal } = useTheModals();
+
+  function openCustomModal() {
+    openModal('myCrazyModal', {
+      favoriteColor: 'Orange'
+    });
+  }
+
+  function openConfirmModal() {
+    openConfirmationModal({
+      title: 'Is this thing cool?',
+      description: 'Here is some optional description text.',
+      onConfirm() {
+        console.log('It is cool!');
+      }
+    });
+  }
 
   async function somethingPrivate() {
     try {

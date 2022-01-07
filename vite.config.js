@@ -25,7 +25,7 @@ export default defineConfig({
   server: {
     port: config.PORT_DEV_FE,
     proxy: {
-      '^/(api|images|webfonts)': {
+      '^/(api|images|webfonts|favicon)': {
         target: `http://localhost:${config.PORT}`,
         changeOrigin: true
       }

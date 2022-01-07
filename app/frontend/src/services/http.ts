@@ -15,10 +15,7 @@ export function responseErrorInterceptor(error: AxiosError): Promise<void> {
     resetSession();
 
     router.push({
-      name: 'signIn',
-      query: {
-        expired: 'true'
-      }
+      name: 'signIn'
     });
   }
 

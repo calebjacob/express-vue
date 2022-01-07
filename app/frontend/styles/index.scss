@@ -4,6 +4,7 @@
 @import 'globals/variables';
 @import 'globals/mixins';
 @import 'globals/animations';
+@import 'globals/transitions';
 @import 'globals/defaults';
 
 // ---- Atoms ---- //
@@ -26,6 +27,7 @@
 @import 'molecules/group';
 @import 'molecules/header';
 @import 'molecules/layout';
+@import 'molecules/modal';
 @import 'molecules/notifications';
 @import 'molecules/section';
 @import 'molecules/text-input';

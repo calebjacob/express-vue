@@ -1,0 +1,150 @@
+.modal {
+  --modal-transition-length: 300ms;
+  align-items: center;
+  display: flex;
+  height: var(--app-height);
+  left: 0;
+  overflow: hidden;
+  position: fixed;
+  right: 0;
+  top: 0;
+  transition: opacity var(--modal-transition-length);
+  z-index: 1000;
+
+  &.modal-enter-from,
+  &.modal-leave-to {
+    opacity: 0;
+
+    .modal__wrapper {
+      transform: scale(0.75, 0.75);
+    }
+  }
+}
+
+.modal--compact {
+  .modal__wrapper {
+    max-width: 450px;
+  }
+}
+
+.modal--hide {
+  z-index: 900;
+}
+
+.modal__backdrop {
+  background: rgba(0, 0, 0, 0.925);
+  height: 100%;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: opacity var(--modal-transition-length);
+
+  .modal--hide & {
+    opacity: 0;
+  }
+}
+
+.modal__close {
+  background: var(--color-surface-2);
+  border: 0;
+  border-radius: 100%;
+  box-shadow: var(--shadow-soft);
+  color: var(--color-text-reverse-1);
+  cursor: pointer;
+  display: block;
+  height: 2.5rem;
+  margin-top: var(--spacing-negative);
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: calc(3.5rem * -1);
+  transition: background 150ms, opacity 150ms;
+  width: 2.5rem;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: var(--color-surface-3);
+  }
+
+  &:active {
+    .icon {
+      transform: scale(0.5, 0.5);
+      transition: none;
+    }
+  }
+
+  &[disabled] {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .icon {
+    display: block;
+    font-size: 1.2rem;
+    line-height: 2.5rem;
+    top: 0;
+    transition: transform 150ms;
+  }
+}
+
+.modal__wrapper {
+  margin: 0 auto;
+  max-width: 600px;
+  overflow: visible;
+  position: relative;
+  transform-origin: center top;
+  transition: transform var(--modal-transition-length), opacity var(--modal-transition-length);
+  width: 100%;
+
+  .modal--hide & {
+    opacity: 0;
+    transform: scale(0.75, 0.75);
+  }
+}
+
+.modal__content {
+  background: var(--color-surface-2);
+  border-radius: 6px;
+  box-shadow: var(--shadow-medium);
+  max-height: calc(90vh - 4.5rem);
+  -webkit-overflow-scrolling: touch;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+  width: 100%;
+}
+
+@media (max-width: 900px), (max-height: 600px) {
+  .modal {
+    --modal-transition-length: 400ms;
+    align-items: flex-end;
+
+    &.modal-enter-from,
+    &.modal-leave-to {
+      opacity: 1;
+
+      .modal__backdrop {
+        opacity: 0;
+      }
+
+      .modal__wrapper {
+        transform: translateY(120%);
+      }
+    }
+  }
+
+  .modal__content {
+    border-radius: 10px 10px 0 0;
+    max-height: calc(100vh - 4.5rem);
+  }
+
+  .modal__close {
+    right: var(--spacing);
+  }
+
+  .modal__scroll-shadow {
+    border-radius: 0;
+  }
+}

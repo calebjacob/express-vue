@@ -7,18 +7,18 @@
           :key="notification.id"
           class="notifications__notification"
           :class="{
-            'notifications__notification--error': notification.type === NotificationType.ERROR,
-            'notifications__notification--success': notification.type === NotificationType.SUCCESS
+            'notifications__notification--error': notification.type === 'ERROR',
+            'notifications__notification--success': notification.type === 'SUCCESS'
           }"
         >
           <div class="notifications__content">
             <div class="layout layout--icon">
               <span
-                class="icon fa"
+                class="icon"
                 :class="{
-                  'fa-exclamation-circle': notification.type === NotificationType.ERROR,
-                  'fa-info-circle': notification.type === NotificationType.GENERIC,
-                  'fa-check-circle': notification.type === NotificationType.SUCCESS
+                  'fa-exclamation-circle': notification.type === 'ERROR',
+                  'fa-info-circle': notification.type === 'GENERIC',
+                  'fa-check-circle': notification.type === 'SUCCESS'
                 }"
               />
 
@@ -41,7 +41,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { useTheNotifications, NotificationType } from '@/modules/notifications';
+  import { useTheNotifications } from '@/modules/notifications';
 
   const { hideNotification, notifications } = useTheNotifications();
 </script>
