@@ -186,7 +186,7 @@ Every once and awhile, it can be a good idea to see how outdated the current dep
 npm outdated
 ```
 
-This will give you a list of the currently installed versions alongside the latest versions for all packages out of date. If you wanted to upgrade any package, you'd simply run (in this example, updating the `vue` package):
+This will give you a list of the currently installed versions alongside the latest versions for all packages out of date.. If you wanted to upgrade any package, you'd simply run (in this example, updating the `vue` package):
 
 ```
 npm install vue@latest
