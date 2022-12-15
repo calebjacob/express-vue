@@ -40,7 +40,7 @@
     "cookie-parser": "^1.4.5",
     "core-js": "^3.18.1",
     "dotenv": "^9.0.2",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "js-cookie": "^2.2.1",
     "sass": "^1.42.1",
     "uuid": "^8.3.2",
